@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicología Laboral en la Empresa — Material Didáctico</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --c-primary: #1e3a5f;
+    --c-primary-dark: #142849;
+    --c-accent: #0d7377;
+    --c-accent-light: #14a4a8;
+    --c-bg: #f5f7fa;
+    --c-card: #ffffff;
+    --c-text: #2c3e50;
+    --c-text-soft: #5a6c7d;
+    --c-border: #e1e8ed;
+    --c-warning: #d97706;
+    --c-success: #059669;
+    --c-danger: #dc2626;
+    --c-highlight: #fef3c7;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ===== HEADER ===== */
+  header.app-header {
+    background: linear-gradient(135deg, var(--c-primary-dark) 0%, var(--c-primary) 50%, var(--c-accent) 100%);
+    color: #fff;
+    padding: 32px 24px 28px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  header.app-header::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  h1.app-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .header-sub {
+    font-size: 15px;
+    opacity: 0.92;
+    max-width: 800px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 18px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .header-meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 5px 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ===== TABS NAV ===== */
+  .tabs-nav {
+    background: var(--c-card);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--c-accent);
+  }
+  .tabs-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .tab-btn {
+    flex: 1 0 auto;
+    min-width: 200px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-text-soft);
+    transition: all 0.25s ease;
+    border-bottom: 3px solid transparent;
+    text-align: left;
+    line-height: 1.4;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: inherit;
+  }
+  .tab-btn:hover {
+    background: rgba(13,115,119,0.05);
+    color: var(--c-primary);
+  }
+  .tab-btn.active {
+    color: var(--c-accent);
+    border-bottom-color: var(--c-accent);
+    background: rgba(13,115,119,0.04);
+  }
+  .tab-btn .tab-num {
+    background: var(--c-primary);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .tab-btn.active .tab-num { background: var(--c-accent); }
+  .tab-btn .tab-lock { color: var(--c-warning); font-size: 14px; }
+
+  /* ===== MAIN CONTENT ===== */
+  main { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+  .tab-panel { display: none; animation: fadeIn 0.4s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .tab-panel h2 {
+    color: var(--c-primary);
+    font-size: 26px;
+    margin: 0 0 8px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--c-accent);
+    line-height: 1.3;
+  }
+  .tab-panel h3 {
+    color: var(--c-primary);
+    font-size: 20px;
+    margin: 28px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--c-accent);
+    line-height: 1.35;
+  }
+  .tab-panel h4 {
+    color: var(--c-accent);
+    font-size: 17px;
+    margin: 20px 0 10px;
+    font-weight: 700;
+  }
+  .tab-panel p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  .tab-panel ul, .tab-panel ol {
+    margin: 10px 0 14px 24px;
+  }
+  .tab-panel li {
+    margin: 6px 0;
+    text-align: justify;
+  }
+  .tab-panel strong { color: var(--c-primary); font-weight: 700; }
+  .tab-panel em { color: var(--c-accent); font-style: italic; }
+  .tab-panel a { color: var(--c-accent); text-decoration: none; border-bottom: 1px dotted; }
+  .tab-panel a:hover { color: var(--c-primary); }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 16px 0; box-shadow: var(--shadow-sm); border-radius: 8px; }
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--c-card);
+    font-size: 14px;
+  }
+  table.data th {
+    background: var(--c-primary);
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid var(--c-primary-dark);
+    vertical-align: top;
+  }
+  table.data td {
+    padding: 11px 14px;
+    border: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+  table.data tr:nth-child(even) td { background: #f8fafc; }
+  table.data tr:hover td { background: #eef6f6; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--c-card);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 18px 0;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--c-accent);
+  }
+  .card.info { border-left-color: var(--c-accent); background: linear-gradient(to right, #f0fbfb, #fff 60%); }
+  .card.warning { border-left-color: var(--c-warning); background: linear-gradient(to right, #fffbeb, #fff 60%); }
+  .card.success { border-left-color: var(--c-success); background: linear-gradient(to right, #ecfdf5, #fff 60%); }
+  .card.danger { border-left-color: var(--c-danger); background: linear-gradient(to right, #fef2f2, #fff 60%); }
+  .card-title {
+    font-weight: 700;
+    color: var(--c-primary);
+    margin-bottom: 8px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== MATH BLOCKS ===== */
+  .math-block {
+    background: #fafbfd;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    overflow-x: auto;
+  }
+  .math-inline { background: var(--c-highlight); padding: 1px 4px; border-radius: 3px; }
+
+  /* ===== FLOW DIAGRAMS ===== */
+  .flow-diagram {
+    background: #f8fafc;
+    border: 1px dashed var(--c-accent);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    overflow-x: auto;
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid var(--c-warning);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 6px;
+    color: #78350f;
+  }
+  .callout strong { color: #78350f; }
+
+  /* ===== LOCK / PASSWORD GATE ===== */
+  .lock-gate {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d7377 100%);
+    color: #fff;
+    padding: 36px 28px;
+    border-radius: 12px;
+    margin: 24px 0;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+  .lock-gate-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .lock-gate h3 {
+    color: #fff !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+    margin-top: 0 !important;
+  }
+  .lock-gate p { color: rgba(255,255,255,0.9); text-align: center; }
+  .lock-gate-input-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .lock-gate input {
+    padding: 12px 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.95);
+    color: var(--c-primary);
+    width: 180px;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: 700;
+  }
+  .lock-gate input:focus { outline: 2px solid #fff; }
+  .lock-gate button {
+    padding: 12px 24px;
+    background: #fff;
+    color: var(--c-accent);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .lock-gate button:hover { background: var(--c-accent-light); color: #fff; transform: translateY(-1px); }
+  .lock-error {
+    color: #fca5a5;
+    margin-top: 12px;
+    font-size: 14px;
+    min-height: 18px;
+  }
+  .protected-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    border: 2px dashed var(--c-success);
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 16px;
+    background: linear-gradient(to bottom, #ecfdf5 0%, transparent 5%);
+  }
+  .protected-content.unlocked {
+    display: block;
+    padding: 20px;
+    background: var(--c-card);
+  }
+  .protected-content .unlock-banner {
+    background: var(--c-success);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ===== QUIZ ITEMS ===== */
+  .quiz-item {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 14px 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .quiz-item .q-num {
+    display: inline-block;
+    background: var(--c-primary);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .quiz-item .q-stem { font-weight: 600; margin-bottom: 10px; color: var(--c-primary); }
+  .quiz-item .q-options { list-style: upper-alpha; margin-left: 22px; }
+  .quiz-item .q-options li { margin: 4px 0; }
+  .quiz-block-title {
+    background: var(--c-primary);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px 8px 0 0;
+    margin: 24px 0 0;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ===== RUBRIC ===== */
+  table.rubric th { background: var(--c-accent); }
+  table.rubric td:first-child { background: #ecfdf5; font-weight: 600; color: var(--c-primary); }
+
+  /* ===== FOOTER ===== */
+  footer.app-footer {
+    background: var(--c-primary-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 24px;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 40px;
+  }
+  footer.app-footer strong { color: #fff; }
+
+  /* ===== UTILITY ===== */
+  .highlight-box {
+    background: var(--c-highlight);
+    border: 1px solid #fde68a;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin: 10px 0;
+  }
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--c-accent);
+    color: #fff;
+    margin: 0 3px;
+  }
+  .pill.warning { background: var(--c-warning); }
+  .pill.success { background: var(--c-success); }
+  .pill.danger { background: var(--c-danger); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    h1.app-title { font-size: 22px; }
+    .tab-btn { min-width: 160px; font-size: 13px; padding: 12px 14px; }
+    .tab-panel h2 { font-size: 22px; }
+    .tab-panel h3 { font-size: 18px; }
+    main { padding: 20px 16px 60px; }
+    table.data { font-size: 13px; }
+    table.data th, table.data td { padding: 8px 10px; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .tabs-nav, .lock-gate { display: none !important; }
+    .tab-panel { display: block !important; page-break-after: always; }
+    .protected-content { display: block !important; border: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="header-eyebrow">Asignatura · Psicología Laboral en la Empresa</div>
+    <h1 class="app-title">Desarrollo Histórico, Principios y Aplicación de la Psicología Laboral en la Empresa</h1>
+    <p class="header-sub">Material didáctico integral — Facultad de Sistemas y Telecomunicaciones / Ingeniería Industrial — UPSE</p>
+    <div class="header-meta">
+      <span>📚 5 módulos</span>
+      <span>🧮 Modelación OEE</span>
+      <span>🧠 Ergonomía cognitiva</span>
+      <span>🔒 Solucionarios con clave de acceso</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-nav" role="tablist">
+  <div class="tabs-nav-inner">
+    <button class="tab-btn active" data-tab="tab1" role="tab">
+      <span class="tab-num">1</span>
+      <span>Desarrollo Histórico, Principios y Aplicación</span>
+    </button>
+    <button class="tab-btn" data-tab="tab2" role="tab">
+      <span class="tab-num">2</span>
+      <span>Caso de Estudio: Planta Península (AgroPen S.A.)</span>
+    </button>
+    <button class="tab-btn" data-tab="tab3" role="tab">
+      <span class="tab-num">3</span>
+      <span>Taller Práctico (Nivel Medio) <span class="tab-lock">🔒</span></span>
+    </button>
+    <button class="tab-btn" data-tab="tab4" role="tab">
+      <span class="tab-num">4</span>
+      <span>Evaluación Formativa y Sumativa <span class="tab-lock">🔒</span></span>
+    </button>
+    <button class="tab-btn" data-tab="tab5" role="tab">
+      <span class="tab-num">5</span>
+      <span>Tarea Asincrónica Avanzada <span class="tab-lock">🔒</span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================ TAB 1 ============================ -->
+<section id="tab1" class="tab-panel active">
+  <h2>Desarrollo Histórico, Principios y Aplicación de la Psicología Laboral en la Empresa</h2>
+
+  <p>La <strong>Psicología Laboral</strong> (frecuentemente denominada Psicología del Trabajo y de las Organizaciones) es la disciplina científica y aplicada que estudia el comportamiento, los procesos cognitivos, los estados afectivos y las interacciones interpersonales de los individuos en el contexto del trabajo. Su propósito central en la ingeniería y gestión organizacional radica en optimizar simultáneamente dos variables interdependientes: el bienestar psicosocial del trabajador y la eficiencia operativa de los sistemas sociotécnicos, impactando de forma medible en la Efectividad Global de los Equipos (OEE, por sus siglas en inglés: <em>Overall Equipment Effectiveness</em>).</p>
+
+  <h3>1. Evolución Histórica y Modelos Paradigmáticos</h3>
+  <p>El desarrollo epistemológico y aplicado de la psicología laboral se estructura a través de cinco etapas fundamentales de transición:</p>
+
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Periodo / Paradigma</th>
+          <th>Precursores Clave</th>
+          <th>Enfoque Teórico-Operativo</th>
+          <th>Impacto en el Sistema Productivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Psicología Industrial Clásica (1900–1920)</strong></td>
+          <td>Hugo Münsterberg, Walter Dill Scott, Frederick W. Taylor</td>
+          <td><em>Taylorismo</em> y psicotécnica. Énfasis en tiempos y movimientos, fatiga neuromuscular elemental y selección psicofísica rígida.</td>
+          <td>Concepción del factor humano como un apéndice de la máquina. Maximizó rendimientos mecánicos a costa de alienación y fatiga severa.</td>
+        </tr>
+        <tr>
+          <td><strong>Movimiento de Relaciones Humanas (1924–1940)</strong></td>
+          <td>Elton Mayo, Fritz Roethlisberger (Estudios Hawthorne)</td>
+          <td>Descubrimiento de las variables sociológicas y afectivas: el "efecto Hawthorne", la influencia del grupo informal y los incentivos no monetarios.</td>
+          <td>Primera evidencia empírica de que la atención, el reconocimiento y la estructura social informal modifican la productividad industrial.</td>
+        </tr>
+        <tr>
+          <td><strong>Segunda Guerra Mundial y Ergonomía (1940–1960)</strong></td>
+          <td>Paul Fitts, Kurt Lewin, Donald Broadbent</td>
+          <td>Interacción Hombre-Máquina (<em>Human Factors</em>), dinámica de grupos y toma de decisiones bajo estrés en entornos críticos.</td>
+          <td>Nacimiento formal de la ergonomía cognitiva y el diseño centrado en el usuario para cabinas de control, radares e instrumental.</td>
+        </tr>
+        <tr>
+          <td><strong>Enfoque Sociotécnico y Organizacional (1960–1990)</strong></td>
+          <td>Eric Trist, Fred Emery (Instituto Tavistock), Chris Argyris</td>
+          <td>Las organizaciones vistas como sistemas abiertos sociotécnicos donde el subsistema técnico y el social deben optimizarse conjuntamente.</td>
+          <td>Superación del diseño mecanicista; introducción del enriquecimiento del trabajo (<em>job enrichment</em>) y células de manufactura autónomas.</td>
+        </tr>
+        <tr>
+          <td><strong>Era Cognitiva, Salud Psicosocial e Industria 4.0/5.0 (1990–Presente)</strong></td>
+          <td>Karasek, Siegrist, Bakker, Demerouti</td>
+          <td>Carga mental (<em>mental workload</em>), modelos de Demandas-Recursos Laborales (JD-R), tecnoestrés, factores psicosociales y resiliencia organizacional.</td>
+          <td>Integración del bienestar cognitivo como activo estratégico; prevención de microparadas por fatiga mental en entornos automatizados e interfaces ciberfísicas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2. Principios Fundamentales de la Psicología Laboral</h3>
+  <p>La gestión sistemática del comportamiento humano en la empresa se sustenta en tres principios rectores:</p>
+
+  <ul>
+    <li><strong>Principio de Ajuste Persona-Puesto-Entorno (<em>P-E Fit</em>):</strong> La congruencia entre las capacidades cognitivas, competencias y valores del trabajador frente a las demandas de la tarea y la cultura organizacional. Una desalineación produce sobrecarga mental o aburrimiento crónico, degradando la tasa de calidad y la disponibilidad operativa.</li>
+    <li><strong>Principio de Interacción Sociotécnica:</strong> Ningún proceso productivo automatizado opera en el vacío. La variabilidad del comportamiento humano (comunicación, coordinación interdepartamental, resolución de anomalías) interactúa dinámicamente con la confiabilidad de las máquinas e infraestructuras.</li>
+    <li><strong>Principio de Causalidad Psicosocial del Desempeño:</strong> El rendimiento sostenido no depende exclusivamente de incentivos extrínsecos, sino de factores intrínsecos como la autoeficacia percibida (Bandura), la autonomía operativa y la justicia organizacional, reguladores directos de la energía psíquica invertida en la tarea.</li>
+  </ul>
+
+  <h3>3. Marcos Teóricos de Comportamiento y Salud Ocupacional</h3>
+  <p>Para modelar matemáticamente y diagnosticar la conducta en planta se aplican modelos estructurales validados:</p>
+
+  <h4>Modelo de Demandas-Control-Apoyo Social (Karasek &amp; Theorell)</h4>
+  <p>Define la tensión laboral ($S$, <em>Strain</em>) en función de las demandas cognitivas/temporales ($D$) y el nivel de control o latitud de decisión del operario ($C$):</p>
+  <div class="math-block">$$S \propto \frac{D}{C}$$</div>
+  <p>Cuando las demandas $D$ son elevadas y el control $C$ es restringido, el sistema biológico experimenta distrés sostenido. El apoyo social ($A$) actúa como una variable moderadora de amortiguamiento:</p>
+  <div class="math-block">$$\text{Riesgo Psicosocial} = f\left( \frac{D}{C \cdot A} \right)$$</div>
+
+  <h4>Modelo de Esfuerzo-Recompensa (Siegrist)</h4>
+  <p>Explica cómo la disparidad entre un alto esfuerzo intrínseco/extrínseco ($E$) y una baja recompensa económica/reconocimiento ($R$) induce respuestas de estrés neuroendocrino que detonan ausentismo, incidentes de seguridad y rotación:</p>
+  <div class="math-block">$$\text{Índice de Incongruencia} = \frac{E}{R \cdot c}$$</div>
+  <p><em>(donde $c$ representa el factor de ponderación de escala).</em></p>
+
+  <h3>4. Aplicación en la Gestión del Comportamiento y Optimización Industrial (OEE)</h3>
+  <p>La psicología laboral suministra herramientas predictivas y correctivas a la ingeniería de planta:</p>
+
+  <div class="flow-diagram">[ Factores Psicosociales / Fatiga Cognitiva ]
+                    │
+                    ▼
+        [ Comportamiento y Carga Mental ]
+                    │
+        ┌───────────┼───────────┐
+        ▼           ▼           ▼
+   Disponibilidad  Rendimiento  Calidad
+   (Microparadas)  (Velocidad)  (Errores/Scrap)
+        └───────────┼───────────┘
+                    ▼
+                  [ OEE ]</div>
+
+  <ul>
+    <li><strong>Disponibilidad:</strong> La fatiga mental del operario dilata los tiempos medios de reparación y ajuste (<em>MTTR</em>). La intervención psicológica rediseña pausas activas programadas y rotación de turnos basada en cronobiología.</li>
+    <li><strong>Rendimiento:</strong> El tecnoestrés y la sobrecarga perceptiva en tableros de control inducen paradas menores y velocidad reducida para compensar la lentitud del procesamiento sensorial humano.</li>
+    <li><strong>Calidad:</strong> Más del 70% del retrabajo o <em>scrap</em> en procesos de precisión se asocia a fallos de atención sostenida (<em>vigilance decrement</em>). La ergonomía cognitiva optimiza la relación señal-ruido en la interfaz hombre-máquina (HMI).</li>
+  </ul>
+
+  <h3>5. Referencias Normativas</h3>
+  <ul>
+    <li>American Psychological Association. (2020). <em>APA handbook of industrial and organizational psychology</em>. American Psychological Association.</li>
+    <li>Bakker, A. B., &amp; Demerouti, E. (2017). Job demands-resources theory: Taking stock and looking forward. <em>Journal of Occupational Health Psychology</em>, 22(3), 273–285.</li>
+    <li>Karasek, R., &amp; Theorell, T. (1990). <em>Healthy work: Stress, productivity, and the reconstruction of working life</em>. Basic Books.</li>
+    <li>Münsterberg, H. (1913). <em>Psychology and industrial efficiency</em>. Houghton Mifflin.</li>
+    <li>Organización Internacional del Trabajo. (2020). <em>Los factores psicosociales en el trabajo: Reconocimiento y control</em>. OIT.</li>
+  </ul>
+</section>
+
+<!-- ============================ TAB 2 ============================ -->
+<section id="tab2" class="tab-panel">
+  <h2>Caso de Estudio: Degradación del OEE por Fatiga Cognitiva y Desalineación Sociotécnica en la Línea de Envasado Automatizado "Planta Península"</h2>
+
+  <h3>1. Contexto Operativo y Caracterización de la Planta</h3>
+  <p>La empresa manufacturera <strong>AgroPen S.A.</strong> (ubicada en la provincia de Santa Elena) opera una línea continua de embotellado y termoformado de alta velocidad para productos agroquímicos y fertilizantes líquidos. La célula crítica es la envasadora-tapadora automática <em>Monoblock AP-800</em>, con una capacidad nominal de diseño de:</p>
+  <div class="math-block">$$v_{\text{nominal}} = 120\text{ unidades/minuto}$$</div>
+  <p>La operación se ejecuta en un turno diurno extendido de $8\text{ h}$ ($480\text{ min}$) con una dotación por puesto de dos maquinistas de consola y un inspector de aseguramiento de calidad.</p>
+
+  <h4>Parámetros de Operación Programada</h4>
+  <ul>
+    <li><strong>Tiempo Total Planificado ($T_{\text{prog}}$):</strong> $480\text{ min}$.</li>
+    <li><strong>Parada Programada por Mantenimiento Autónomo y Almuerzo:</strong> $40\text{ min}$.</li>
+    <li><strong>Tiempo Operativo Teórico ($T_{\text{op_teor}}$):</strong> $440\text{ min}$ ($26\,400\text{ s}$).</li>
+    <li><strong>Capacidad Máxima Teórica en $T_{\text{op_teor}}$:</strong> $52\,800\text{ unidades}$.</li>
+  </ul>
+
+  <h3>2. El Problema Operativo: Diagnóstico de Cuellos de Botella y Caída del OEE</h3>
+  <p>Durante el último trimestre, la gerencia de planta reportó un estancamiento en la Efectividad Global de los Equipos (OEE, por sus siglas en inglés: <em>Overall Equipment Effectiveness</em>), oscilando en torno al $61,83\%$, muy por debajo del objetivo de clase mundial ($\geq 85\%$).</p>
+  <p>El área de ingeniería mecánica atribuyó el problema a desajustes en el carrusel de tapado y variaciones de presión neumática. Sin embargo, tras auditorías técnicas con sensores de eventos, los registros mostraron que las máquinas no presentaban averías catastróficas, sino una proliferación de <strong>microparadas no programadas menores a 3 minutos</strong> e inconsistencias en la inspección visual al final del turno.</p>
+
+  <h4>Métricas Reales Consolidadas por Turno (Promedio de 60 días)</h4>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Variable Operativa</th>
+          <th>Magnitud Medida</th>
+          <th>Naturaleza del Fenómeno</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tiempo de Paradas Menores / Microparos</strong></td>
+          <td>$68,50\text{ min}$</td>
+          <td>Obstrucciones menores, demoras en resetear alarmas en interfaz HMI.</td>
+        </tr>
+        <tr>
+          <td><strong>Tiempo Neto de Operación ($T_{\text{op}}$)</strong></td>
+          <td>$371,50\text{ min}$</td>
+          <td>Disponibilidad calculada: $A = \frac{371,50}{440,00} = 0,8443$ ($84,43\%$).</td>
+        </tr>
+        <tr>
+          <td><strong>Producción Total Ejecutada ($P_{\text{total}}$)</strong></td>
+          <td>$37\,200\text{ unidades}$</td>
+          <td>Velocidad media real: $100,13\text{ u/min}$ (frente a $120\text{ u/min}$ nominal).</td>
+        </tr>
+        <tr>
+          <td><strong>Rendimiento Operativo ($P$)</strong></td>
+          <td>$P = \frac{37\,200}{371,50 \times 120}$</td>
+          <td>$P = \frac{37\,200}{44\,580} = 0,8345$ ($83,45\%$).</td>
+        </tr>
+        <tr>
+          <td><strong>Unidades Conformes ($P_{\text{conf}}$)</strong></td>
+          <td>$32\,650\text{ unidades}$</td>
+          <td>Unidades rechazadas por defectos de torque o sellado: $4\,550\text{ u}$.</td>
+        </tr>
+        <tr>
+          <td><strong>Tasa de Calidad ($Q$)</strong></td>
+          <td>$Q = \frac{32\,650}{37\,200}$</td>
+          <td>$Q = 0,8777$ ($87,77\%$).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="math-block">$$\text{OEE}_{\text{inicial}} = A \times P \times Q = 0,8443 \times 0,8345 \times 0,8777 = 0,6183 \Longrightarrow \mathbf{61,83\%}$$</div>
+
+  <h3>3. Diagnóstico desde la Psicología Laboral: El Factor Oculto</h3>
+  <p>Una intervención de ergonomía cognitiva y psicología del trabajo evaluó la interfase humano-sistema sociotécnico, identificando tres fenómenos patológicos:</p>
+
+  <div class="flow-diagram">[Sobrecarga Perceptiva HMI]    [Turnos sin Pausas Cognitivas]
+            │                              │
+            ▼                              ▼
+[Estrés y Fatiga Mental] ──────────► [Deterioro de la Vigilancia]
+            │                              │
+            ▼                              ▼
+   Latencia en Reset HMI          Errores en Inspección
+   (Pérdida Disponibilidad)       (Caída de Calidad)</div>
+
+  <h4>3.1 Sobrecarga de Vigilancia y Fatiga Cognitiva (Paradigma Broadbent / Fitts)</h4>
+  <p>El panel de control (HMI) emitía una media de 42 alarmas por hora, de las cuales el $78\%$ eran avisos redundantes de nivel secundario. La saturación de estímulos auditivos y lumínicos generó fatiga perceptual en los operadores. El tiempo de reacción humano para reconocer una parada y purgar el atasco pasó de $18\text{ s}$ en las primeras dos horas del turno a $145\text{ s}$ durante las últimas dos horas.</p>
+
+  <h4>3.2 Tensión por Desbalance Demanda-Control (Modelo de Karasek)</h4>
+  <p>Los operadores tenían una demanda cuantitativa severa impuesta por la gerencia (alcanzar cuota horaria estricta), pero <strong>cero latitud de decisión</strong>. Todo microparo requería la firma física de un supervisor de calidad para reiniciar la marcha tras un código de error, anulando la autonomía operativa y disparando la frustración y el estrés crónico.</p>
+
+  <h4>3.3 Incongruencia Esfuerzo-Recompensa (Modelo de Siegrist)</h4>
+  <p>El sistema de incentivos penalizaba económicamente el desperdicio (<em>scrap</em>), pero no premiaba la precisión diagnóstica ni la sugerencia de mejoras en el puesto. La respuesta adaptativa de los operarios ante este desbalance fue reducir la velocidad de alimentación de la banda transportadora para evitar bloqueos, degradando conscientemente el factor de Rendimiento ($P$).</p>
+
+  <h3>4. Plan de Intervención Ingenieril y Sociotécnico</h3>
+  <p>Se implementó una estrategia en dos etapas basada en la reingeniería de la interfaz y la reorganización del trabajo:</p>
+
+  <h4>Fase 1: Ergonomía Cognitiva e Interfaz Humano-Máquina (HMI)</h4>
+  <ul>
+    <li><strong>Filtrado de Alarmas:</strong> Racionalización de la interfaz según norma ISA-18.2. Se suprimieron alarmas sonoras de baja prioridad, reduciendo los avisos a 6 eventos críticos por hora.</li>
+    <li><strong>Codificación Visual por Compatibilidad Espacial:</strong> Rediseño del sinóptico de la máquina para alinear la distribución espacial de las luces testigo con la posición física exacta de los sensores en el carrusel de envasado.</li>
+  </ul>
+
+  <h4>Fase 2: Gestión Psicosocial y Organización del Trabajo</h4>
+  <ul>
+    <li><strong>Rotación Cognitiva y Pausas de Recuperación Activa:</strong> Implementación de rotación cada 120 minutos entre el rol de supervisión de consola HMI y el de monitoreo de empaque secundario, neutralizando el decremento de la vigilancia sostenida.</li>
+    <li><strong>Autonomía Operativa en Línea:</strong> Transferencia de autoridad a los maquinistas para reiniciar parámetros menores sin autorización jerárquica previa, incrementando la latitud de decisión ($C$ en el modelo de Karasek).</li>
+  </ul>
+
+  <h3>5. Resultados Posteriores a la Intervención (Semana 12)</h3>
+  <p>Tras la intervención sociotécnica, los registros revelaron una disminución radical de los tiempos de reacción y de los errores por omisión visual:</p>
+
+  <ul>
+    <li><strong>Tiempo de Microparadas:</strong> Disminuyó de $68,50\text{ min}$ a $18,00\text{ min}$.</li>
+  </ul>
+  <div class="math-block">$$\text{Disponibilidad }(A') = \frac{440,00 - 18,00}{440,00} = \frac{422,00}{440,00} = 0,9591 \Longrightarrow 95,91\%$$</div>
+
+  <ul>
+    <li><strong>Velocidad de Operación:</strong> Se restableció la velocidad de línea a un promedio de $114\text{ u/min}$ tras estabilizar los tiempos de respuesta del operador.</li>
+  </ul>
+  <div class="math-block">$$\text{Producción Total }(P'_{\text{total}}) = 422,00\text{ min} \times 114\text{ u/min} = 48\,108\text{ unidades}$$</div>
+  <div class="math-block">$$\text{Rendimiento }(P') = \frac{48\,108}{422,00 \times 120} = \frac{48\,108}{50\,640} = 0,9500 \Longrightarrow 95,00\%$$</div>
+
+  <ul>
+    <li><strong>Unidades Conformes:</strong> Se produjeron $47\,150\text{ unidades}$ de primera calidad ($958\text{ defectuosas}$).</li>
+  </ul>
+  <div class="math-block">$$\text{Calidad }(Q') = \frac{47\,150}{48\,108} = 0,9801 \Longrightarrow 98,01\%$$</div>
+
+  <h4>Impacto en la Eficiencia Global de los Equipos</h4>
+  <div class="math-block">$$\text{OEE}_{\text{final}} = A' \times P' \times Q' = 0,9591 \times 0,9500 \times 0,9801 = 0,8930 \Longrightarrow \mathbf{89,30\%}$$</div>
+  <div class="math-block">$$\Delta\text{OEE} = +27,47\%\quad\text{de ganancia neta en la capacidad productiva instalada.}$$</div>
+
+  <div class="card success">
+    <div class="card-title">Resultado destacado</div>
+    <p>La línea <strong>superó el umbral de Clase Mundial (≥85%)</strong> tras una intervención de bajo costo centrada en el factor humano, sin necesidad de reemplazar maquinaria. La ganancia absoluta de <strong>+27,47 puntos porcentuales</strong> evidencia que la degradación del OEE tenía origen sociotécnico, no mecánico.</p>
+  </div>
+
+  <h3>6. Guía de Discusión para el Docente en el Aula</h3>
+  <p>Para dirigir el debate técnico con los estudiantes de ingeniería, utilice las siguientes interrogantes orientadoras:</p>
+  <ol>
+    <li><strong>Frontera Técnico-Conductual:</strong> ¿Por qué la gerencia técnica tendió a culpar a la mecánica de la máquina y pasó por alto la latencia de respuesta del operario frente al panel HMI?</li>
+    <li><strong>Aplicación del Modelo de Karasek:</strong> Al otorgar autonomía a los maquinistas para resetear el sistema sin la firma del supervisor, ¿qué variables psicológicas cambiaron y cómo incidieron directamente en la curva de disponibilidad?</li>
+    <li><strong>Cálculo de Coste-Beneficio:</strong> Compare la inversión requerida para rediseñar la interfaz visual y reorganizar turnos frente a la alternativa tradicional de reemplazar servomotores o adquirir una nueva envasadora.</li>
+  </ol>
+
+  <h3>7. Referencias en Formato APA (7.ª edición)</h3>
+  <ul>
+    <li>American Psychological Association. (2020). <em>APA handbook of industrial and organizational psychology</em>. American Psychological Association.</li>
+    <li>Karasek, R., &amp; Theorell, T. (1990). <em>Healthy work: Stress, productivity, and the reconstruction of working life</em>. Basic Books.</li>
+    <li>International Society of Automation. (2016). <em>Management of alarm systems for the process industries</em> (ANSI/ISA-18.2-2016). ISA.</li>
+    <li>Nakajima, S. (1988). <em>Introduction to TPM: Total productive maintenance</em>. Productivity Press.</li>
+    <li>Wickens, C. D., Hollands, J. G., Banbury, S., &amp; Parasuraman, R. (2021). <em>Engineering psychology and human performance</em> (5th ed.). Routledge. <a href="https://doi.org/10.4324/9781003177616">https://doi.org/10.4324/9781003177616</a></li>
+  </ul>
+</section>
+
+<!-- ============================ TAB 3 ============================ -->
+<section id="tab3" class="tab-panel">
+  <h2>Taller Práctico de Ingeniería y Psicología Laboral: Caso de Estudio Aplicado (Nivel Medio)</h2>
+
+  <div class="card info">
+    <div class="card-title">Datos generales</div>
+    <p><strong>Asignatura:</strong> Psicología Laboral en la Empresa</p>
+    <p><strong>Facultad de Sistemas y Telecomunicaciones / Ingeniería Industrial — UPSE</strong></p>
+    <p><strong>Modalidad:</strong> Taller de modelación matemática y optimización sociotécnica en planta</p>
+    <p><strong>Tiempo estimado de ejecución:</strong> 90 minutos</p>
+  </div>
+
+  <h3>1. Contexto del Problema y Datos de Planta</h3>
+  <p>La planta de procesamiento y empaque primario de conservas marinas <strong>"MarPenínsula S.A."</strong> (La Libertad, Santa Elena) opera una línea de sellado al vacío y codificado térmico semiautomatizada (Célula <em>Sealer-400</em>).</p>
+
+  <h4>Especificaciones de Diseño del Equipo</h4>
+  <ul>
+    <li><strong>Velocidad nominal de diseño ($v_{\text{nom}}$):</strong> $80\text{ envases/min}$ (Tiempo de ciclo teórico $t_{\text{ciclo}} = 0,75\text{ s/envase}$).</li>
+    <li><strong>Jornada de producción planificada:</strong> 1 turno de $8\text{ horas}$ ($480\text{ min}$).</li>
+    <li><strong>Mantenimiento autónomo y parada de refrigerio:</strong> $30\text{ min/turno}$ (paradas programadas).</li>
+    <li><strong>Tiempo de Carga Teórico ($T_{\text{carga}}$):</strong> $480 - 30 = 450\text{ min}$ ($27\,000\text{ s}$).</li>
+  </ul>
+
+  <div class="flow-diagram">[Alimentación Manual] ──► [Selladora al Vacío Sealer-400] ──► [Inspección Visual HMI]
+            │                                       │
+            ▼                                       ▼
+   (Fatiga Postural / Estrés)              (Sobrecarga Perceptual)</div>
+
+  <h3>2. Registro de Campo y Cronoanálisis (Línea Base: Estado Crítico)</h3>
+  <p>Durante la auditoría del último mes, se registró una dispersión notable en los tiempos de respuesta y una tasa anómala de rechazo durante la segunda mitad de la jornada. El equipo de cronoanalistas consolidó los siguientes datos reales por turno:</p>
+
+  <h4>2.1 Pérdidas de Tiempo por Paradas No Planificadas (Averías y Microparos)</h4>
+  <ul>
+    <li>Paradas por atascos mecánicos mayores: $15\text{ min}$.</li>
+    <li>Tiempos muertos acumulados por <strong>retraso de respuesta del operario</strong> ante alarmas en consola y microatascos de sellado ($&lt; 2\text{ min}$ cada uno): Se contabilizaron $46\text{ eventos}$ con una duración promedio de $65\text{ s}$ por evento.</li>
+  </ul>
+
+  <h4>2.2 Registro de Producción Real</h4>
+  <ul>
+    <li>La máquina procesó un total bruto de $26\,100\text{ envases}$ durante el tiempo de operación neto.</li>
+  </ul>
+
+  <h4>2.3 Control de Calidad (Defectos y Retrabajos)</h4>
+  <ul>
+    <li>Del lote total de envases procesados, el sistema de visión y el muestreo destructivo identificaron $2\,350\text{ envases}$ con deficiencias de hermeticidad o codificación borrosa.</li>
+  </ul>
+
+  <h4>2.4 Evaluación de Factores Psicosociales y Cognitivos</h4>
+  <ul>
+    <li><strong>Carga mental:</strong> Se aplicó la escala subjetiva NASA-TLX (<em>Task Load Index</em>), obteniendo un puntaje global medio de $82/100$ (Zona de saturación cognitiva).</li>
+    <li><strong>Modelo Demanda-Control (Karasek):</strong> La relación cuantitativa determinó demandas elevadas ($D = 4,6/5$) con baja autonomía o latitud de decisión ($C = 1,8/5$).</li>
+    <li><strong>Ergonomía de Interfaz:</strong> La consola presenta tipografía inferior a $10\text{ pt}$ en alarmas, con avisos luminosos parpadeantes continuos sin priorización semántica (norma ANSI/ISA-18.2 no implementada).</li>
+  </ul>
+
+  <h3>3. Tareas a Desarrollar por los Estudiantes</h3>
+
+  <h4>Tarea A: Modelación y Descomposición Matemática del OEE Inicial</h4>
+  <ol>
+    <li>Calcule el <strong>Tiempo de Operación Real ($T_{\text{op}}$)</strong> descontando las paradas mayores y las pérdidas por latencia en microparos.</li>
+    <li>Determine los tres factores componentes de la Efectividad Global de los Equipos:
+      <ul>
+        <li><strong>Disponibilidad ($A$):</strong> Relación entre el tiempo de operación real y el tiempo de carga planificado.</li>
+        <li><strong>Rendimiento ($P$):</strong> Comparación entre la producción real y la capacidad teórica en el tiempo de operación.</li>
+        <li><strong>Calidad ($Q$):</strong> Proporción de unidades conformes respecto a las unidades totales producidas.</li>
+      </ul>
+    </li>
+    <li>Deduzca el valor numérico del $\text{OEE}_{\text{inicial}}$.</li>
+  </ol>
+
+  <h4>Tarea B: Diagnóstico de Errores y Carga Cognitiva</h4>
+  <ol>
+    <li>Explique mediante la teoría de la <strong>Atención Sostenida (Vigilancia de Broadbent/Parasuraman)</strong> por qué los $46$ microparos se concentran en las últimas 3 horas del turno y cómo se vincula este decremento con la degradación del factor Calidad ($Q$).</li>
+    <li>Identifique cómo el desbalance en la fracción $\frac{D}{C}$ (Karasek) incide directamente en el retraso del restablecimiento del ciclo operativo.</li>
+  </ol>
+
+  <h4>Tarea C: Propuesta de Reingeniería Sociotécnica y Proyección de Mejora</h4>
+  <p>El grupo debe formular una propuesta técnica que incluya:</p>
+  <ul>
+    <li><strong>Intervención en Ergonomía Cognitiva:</strong> Racionalización de la HMI y reducción de señales espurias.</li>
+    <li><strong>Rediseño Organizacional del Puesto:</strong> Protocolo de rotación de tareas (pausas activas cognitivas de 5 minutos por cada 90 minutos de vigilancia) y empoderamiento de línea (<em>Job Enrichment</em>).</li>
+    <li><strong>Cálculo Proyectado:</strong> Si las intervenciones reducen los eventos de microparadas a la mitad ($23$ eventos de $25\text{ s}$ promedio), elevan la velocidad media a $74\text{ envases/min}$ y reducen las unidades defectuosas a $420\text{ envases}$, calcule el nuevo $\text{OEE}_{\text{optimizado}}$ y el incremento porcentual absoluto ($\Delta\text{OEE}$).</li>
+  </ul>
+
+  <!-- ===== LOCK GATE ===== -->
+  <div class="lock-gate" id="lock-taller3">
+    <span class="lock-gate-icon">🔒</span>
+    <h3>Solucionario y Criterios Técnicos para el Docente</h3>
+    <p>El solucionario completo paso a paso y la rúbrica analítica están reservados para el cuerpo docente.<br>Ingrese la clave de acceso para visualizar el contenido.</p>
+    <div class="lock-gate-input-row">
+      <input type="password" inputmode="numeric" maxlength="6" placeholder="• • • •" aria-label="Clave de acceso" onkeydown="handleKey(event,'taller3')">
+      <button onclick="unlockContent('taller3')">Desbloquear</button>
+    </div>
+    <div class="lock-error" role="alert"></div>
+  </div>
+
+  <div class="protected-content" id="protected-taller3">
+    <div class="unlock-banner">✓ Solucionario desbloqueado — Uso docente</div>
+
+    <h3>4. Solucionario y Criterios Técnicos para el Docente</h3>
+
+    <h4>Resolución Matemática de la Tarea A (Estado Inicial)</h4>
+    <p><strong>Tiempo de pérdidas por microparos ($t_{\mu}$):</strong></p>
+    <div class="math-block">$$t_{\mu} = \frac{46 \times 65\text{ s}}{60\text{ s/min}} = \frac{2\,990\text{ s}}{60} = 49,83\text{ min}$$</div>
+
+    <p><strong>Tiempo de paradas no programadas totales:</strong></p>
+    <div class="math-block">$$T_{\text{paro\_total}} = 15\text{ min (mecánico)} + 49,83\text{ min (microparos cognitivos)} = 64,83\text{ min}$$</div>
+
+    <p><strong>Tiempo de Operación Real ($T_{\text{op}}$):</strong></p>
+    <div class="math-block">$$T_{\text{op}} = 450 - 64,83 = 385,17\text{ min}$$</div>
+
+    <p><strong>Cálculo de Factores:</strong></p>
+    <div class="math-block">$$\text{Disponibilidad }(A) = \frac{T_{\text{op}}}{T_{\text{carga}}} = \frac{385,17}{450,00} = 0,8559 \Longrightarrow \mathbf{85,59\%}$$</div>
+    <div class="math-block">$$\text{Capacidad Teórica en }T_{\text{op}} = 385,17\text{ min} \times 80\text{ u/min} = 30\,813,6\text{ unidades}$$</div>
+    <div class="math-block">$$\text{Rendimiento }(P) = \frac{26\,100}{30\,813,6} = 0,8470 \Longrightarrow \mathbf{84,70\%}$$</div>
+    <div class="math-block">$$\text{Calidad }(Q) = \frac{26\,100 - 2\,350}{26\,100} = \frac{23\,750}{26\,100} = 0,9099 \Longrightarrow \mathbf{90,99\%}$$</div>
+
+    <p><strong>OEE Consolidado Inicial:</strong></p>
+    <div class="math-block">$$\text{OEE}_{\text{inicial}} = A \times P \times Q = 0,8559 \times 0,8470 \times 0,9099 = 0,6596 \Longrightarrow \mathbf{65,96\%}$$</div>
+
+    <h4>Resolución Matemática de la Tarea C (Estado Proyectado / Optimizado)</h4>
+    <p><strong>Nuevas pérdidas por microparadas ($t'_{\mu}$):</strong></p>
+    <div class="math-block">$$t'_{\mu} = \frac{23 \times 25\text{ s}}{60} = 9,58\text{ min}$$</div>
+
+    <p><strong>Nuevo Tiempo de Operación Real ($T'_{\text{op}}$):</strong></p>
+    <div class="math-block">$$T'_{\text{op}} = 450 - (15 + 9,58) = 450 - 24,58 = 425,42\text{ min}$$</div>
+
+    <p><strong>Cálculo de Nuevos Factores:</strong></p>
+    <div class="math-block">$$A' = \frac{425,42}{450,00} = 0,9454 \Longrightarrow \mathbf{94,54\%}$$</div>
+    <div class="math-block">$$\text{Producción Total Proyectada} = 425,42\text{ min} \times 74\text{ u/min} = 31\,481\text{ unidades}$$</div>
+    <div class="math-block">$$\text{Capacidad Teórica en }T'_{\text{op}} = 425,42 \times 80 = 34\,033,6\text{ unidades}$$</div>
+    <div class="math-block">$$P' = \frac{31\,481}{34\,033,6} = 0,9250 \Longrightarrow \mathbf{92,50\%}$$</div>
+    <div class="math-block">$$Q' = \frac{31\,481 - 420}{31\,481} = \frac{31\,061}{31\,481} = 0,9867 \Longrightarrow \mathbf{98,67\%}$$</div>
+
+    <p><strong>OEE Consolidado Optimizado:</strong></p>
+    <div class="math-block">$$\text{OEE}_{\text{optimizado}} = 0,9454 \times 0,9250 \times 0,9867 = 0,8629 \Longrightarrow \mathbf{86,29\%}$$</div>
+    <div class="math-block">$$\Delta\text{OEE} = 86,29\% - 65,96\% = \mathbf{+20,33\%}\quad\left(\text{Supera el umbral de Clase Mundial } \geq 85\%\right)$$</div>
+
+    <div class="card success">
+      <div class="card-title">Conclusión del solucionario</div>
+      <p>La intervención sociotécnica propuesta permite <strong>superar el umbral de Clase Mundial (≥85%)</strong>, con una ganancia absoluta de <strong>+20,33 puntos porcentuales</strong>. La recuperación se sustenta principalmente en la Disponibilidad (reducción de latencia cognitiva) y en la Calidad (disminución del <em>vigilance decrement</em>).</p>
+    </div>
+
+    <h3>5. Matriz de Evaluación Analítica (Rúbrica)</h3>
+    <div class="table-wrap">
+      <table class="data rubric">
+        <thead>
+          <tr>
+            <th>Criterio de Evaluación</th>
+            <th>Insuficiente (0–4)</th>
+            <th>En Desarrollo (5–7)</th>
+            <th>Competente / Sobresaliente (8–10)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Modelación Matemática de Pérdidas y OEE</strong></td>
+            <td>Omite la conversión de microparadas a unidades de tiempo o comete errores algebraicos en las razones de $A$, $P$ o $Q$.</td>
+            <td>Calcula correctamente el OEE pero no discrimina el impacto específico de la latencia humana frente a la avería mecánica.</td>
+            <td>Deduce con rigor matemático cada componente en LaTeX, demostrando coherencia en las cifras significativas y unidades.</td>
+          </tr>
+          <tr>
+            <td><strong>Diagnóstico Psicosocial y Cognitivo</strong></td>
+            <td>Trata el problema como un fallo puramente mecánico sin citar modelos de fatiga o carga mental.</td>
+            <td>Menciona el estrés o fatiga pero sin vincularlo conceptualmente con modelos formales (Karasek, Broadbent, NASA-TLX).</td>
+            <td>Articula con precisión el decremento de la vigilancia con la tasa de rechazo ($Q$) y la falta de autonomía ($C$) con la latencia en $A$.</td>
+          </tr>
+          <tr>
+            <td><strong>Diseño Sociotécnico y Optimización Industrial</strong></td>
+            <td>Propone únicamente sanciones o incentivos económicos convencionales sin justificación técnica.</td>
+            <td>Sugiere cambios ergonómicos pero sin cuantificar su impacto proyectado en la Efectividad Global de los Equipos.</td>
+            <td>Diseña una solución balanceada (rediseño HMI + protocolo de rotación) y valida matemáticamente la ganancia de OEE ($\geq 85\%$).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>6. Referencias en Formato APA (7.ª edición)</h3>
+    <ul>
+      <li>American Psychological Association. (2020). <em>APA handbook of industrial and organizational psychology</em>. American Psychological Association.</li>
+      <li>International Society of Automation. (2016). <em>Management of alarm systems for the process industries</em> (ANSI/ISA-18.2-2016). ISA.</li>
+      <li>Karasek, R., &amp; Theorell, T. (1990). <em>Healthy work: Stress, productivity, and the reconstruction of working life</em>. Basic Books.</li>
+      <li>Nakajima, S. (1988). <em>Introduction to TPM: Total productive maintenance</em>. Productivity Press.</li>
+      <li>Parasuraman, R., &amp; Davies, D. R. (Eds.). (1984). <em>Varieties of attention</em>. Academic Press.</li>
+      <li>Wickens, C. D., Hollands, J. G., Banbury, S., &amp; Parasuraman, R. (2021). <em>Engineering psychology and human performance</em> (5th ed.). Routledge. <a href="https://doi.org/10.4324/9781003177616">https://doi.org/10.4324/9781003177616</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ TAB 4 ============================ -->
+<section id="tab4" class="tab-panel">
+  <h2>Taller de Evaluación Formativa y Sumativa</h2>
+
+  <div class="card info">
+    <div class="card-title">Datos generales</div>
+    <p><strong>Asignatura:</strong> Psicología Laboral en la Empresa</p>
+    <p><strong>Facultad de Sistemas y Telecomunicaciones / Ingeniería Industrial — UPSE</strong></p>
+    <p><strong>Unidad Temática:</strong> Desarrollo Histórico, Principios Teóricos y Modelación Sociotécnica del Comportamiento Humano y OEE</p>
+    <p><strong>Banco de Reactivos:</strong> 30 Ítems (Texto Plano Estructurado)</p>
+  </div>
+
+  <div class="callout">
+    <strong>📋 Instrucciones:</strong> A continuación se presentan 30 reactivos distribuidos en 6 bloques de complejidad creciente. Las respuestas, justificaciones técnicas y desarrollos matemáticos están disponibles al final de esta pestaña, protegidos con clave de acceso docente.
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 1: Reactivos de Opción Múltiple (Selección Única)</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 1</span>
+    <div class="q-stem">¿Cuál fue la principal limitación epistemológica y operativa del enfoque de la Organización Científica del Trabajo (Taylorismo) respecto al factor humano en las líneas de producción?</div>
+    <ol class="q-options">
+      <li>Ignorar la necesidad de incentivos económicos individuales basados en la productividad.</li>
+      <li>Concebir al operario como un subsistema biológico mecanicista, omitiendo variables psicosociales, afectivas y de fatiga cognitiva.</li>
+      <li>Priorizar la rotación de puestos de trabajo por encima de la especialización de tareas.</li>
+      <li>Rechazar la estandarización de herramientas y métodos de trabajo.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 2</span>
+    <div class="q-stem">Los estudios de Hawthorne (1924–1932), dirigidos por Elton Mayo en la planta de la Western Electric Company, concluyeron principalmente que:</div>
+    <ol class="q-options">
+      <li>La intensidad de la iluminación física tiene una relación lineal monotónica con la tasa de defectos.</li>
+      <li>El rendimiento operativo está fuertemente mediado por variables sociológicas, la pertenencia a grupos informales y la atención prestada a los operarios.</li>
+      <li>La fatiga física se neutraliza exclusivamente mediante el aumento calórico de las colaciones de turno.</li>
+      <li>Los incentivos salariales a destajo son el factor determinante absoluto en la contención del ausentismo.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 3</span>
+    <div class="q-stem">En el modelo Demanda-Control de Karasek, ¿cuál de las siguientes combinaciones genera la mayor tasa de "Tensión Laboral Severa" (<em>High Strain</em>) y riesgo psicopatológico en operarios de manufactura?</div>
+    <ol class="q-options">
+      <li>Demandas laborales bajas y alta latitud de decisión (control).</li>
+      <li>Demandas laborales elevadas y alta latitud de decisión (control).</li>
+      <li>Demandas laborales elevadas y baja latitud de decisión (control).</li>
+      <li>Demandas laborales bajas y baja latitud de decisión (control).</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 4</span>
+    <div class="q-stem">De acuerdo con el modelo sociotécnico originado en el Instituto Tavistock por Trist y Emery, una organización productiva alcanza su máxima efectividad cuando:</div>
+    <ol class="q-options">
+      <li>El subsistema social se subordina enteramente a los requisitos de la automatización técnica.</li>
+      <li>Se maximiza la inversión en capital de maquinaria sin alterar la estructura jerárquica existente.</li>
+      <li>Se optimizan conjuntamente (<em>joint optimization</em>) el subsistema técnico y el subsistema social.</li>
+      <li>Se elimina toda supervisión humana sustituyéndola por sistemas de control distribuido.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 5</span>
+    <div class="q-stem">En el contexto del modelo de Desbalance Esfuerzo-Recompensa (ERI) de Siegrist, ¿qué consecuencia operativa directa se predice cuando el índice $ERI > 1$?</div>
+    <ol class="q-options">
+      <li>Incremento espontáneo de la velocidad de línea por motivación de logro.</li>
+      <li>Reducción del absentismo no justificado en células de alta exigencia.</li>
+      <li>Comportamientos de compensación adaptativa negativa, fatiga crónica, desapego laboral e incremento de microparadas por desatención.</li>
+      <li>Eliminación de la necesidad de pausas activas programadas.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 6</span>
+    <div class="q-stem">La Ley de Hick-Hyman en ergonomía cognitiva establece que el tiempo que tarda un operador en tomar una decisión ante un panel de control:</div>
+    <ol class="q-options">
+      <li>Disminuye linealmente con la cantidad de botones disponibles.</li>
+      <li>Aumenta logarítmicamente con el número de alternativas de elección presentadas.</li>
+      <li>Es independiente del número de alarmas o señales visuales presentes.</li>
+      <li>Varía de forma senoidal según la hora del turno de trabajo.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 7</span>
+    <div class="q-stem">La norma ANSI/ISA-18.2 clasifica y regula la gestión de sistemas de alarmas en la industria de procesos. Desde la perspectiva de la psicología laboral, su objetivo principal es:</div>
+    <ol class="q-options">
+      <li>Reducir el volumen de decibeles a cero para evitar distracciones en el área de corte.</li>
+      <li>Prevenir la "inundación de alarmas" (<em>alarm flood</em>) para no saturar la capacidad de memoria de trabajo del operador en contingencias.</li>
+      <li>Asegurar que todas las alarmas suenen al mismo tiempo con la misma prioridad visual.</li>
+      <li>Forzar al operador a escribir un informe escrito antes de reiniciar cada parada.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 8</span>
+    <div class="q-stem">El decremento de la vigilancia (<em>vigilance decrement</em>), estudiado formalmente desde las investigaciones de Mackworth, describe:</div>
+    <ol class="q-options">
+      <li>El aumento de la agudeza visual durante las últimas horas de una jornada de inspección.</li>
+      <li>La caída progresiva en la probabilidad de detectar señales críticas infrecuentes a medida que se mantiene la atención sostenida en el tiempo.</li>
+      <li>La capacidad del operario para ejecutar múltiples tareas mecánicas concurrentes sin fatiga mental.</li>
+      <li>La sincronización de fases acústicas en áreas de embotellado continuo.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 9</span>
+    <div class="q-stem">¿Cuál de las siguientes variables del OEE (<em>Overall Equipment Effectiveness</em>) se ve afectada de forma más directa cuando un operario experimenta una latencia prolongada en el reconocimiento de una parada en la interfaz HMI?</div>
+    <ol class="q-options">
+      <li>Tasa de Calidad ($Q$).</li>
+      <li>Rendimiento ($P$).</li>
+      <li>Disponibilidad ($A$).</li>
+      <li>Tasa de Reparabilidad Estocástica.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 10</span>
+    <div class="q-stem">El concepto de "Ajuste Persona-Entorno" (<em>Person-Environment Fit</em>) formulado en la psicología organizacional postula que:</div>
+    <ol class="q-options">
+      <li>Cualquier trabajador puede adaptarse al $100\%$ a cualquier condición de estrés si el salario es competitivo.</li>
+      <li>La tensión psicológica y el bajo rendimiento son el resultado de la discrepancia entre los recursos/capacidades de la persona y las demandas/suministros del puesto.</li>
+      <li>El entorno físico de la planta debe permanecer inalterable frente a las características antropométricas del personal.</li>
+      <li>Las características sociodemográficas determinan exclusivamente el nivel de OEE de una planta.</li>
+    </ol>
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 2: Reactivos de Verdadero o Falso (Con Justificación Exigida)</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 11</span>
+    <div class="q-stem"><strong>Enunciado:</strong> Hugo Münsterberg es considerado uno de los pioneros de la psicología industrial gracias a su obra <em>Psychology and Industrial Efficiency</em> (1913), donde promovió la aplicación de pruebas psicotécnicas para la selección de personal y la adaptación del trabajo a la mente humana.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 12</span>
+    <div class="q-stem"><strong>Enunciado:</strong> En la modelación del OEE, las microparadas no registradas formalmente por el sistema SCADA (aquellas de duración inferior a 2 o 3 minutos) no afectan el factor de Rendimiento ($P$) ni el de Disponibilidad ($A$).</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 13</span>
+    <div class="q-stem"><strong>Enunciado:</strong> El modelo de Recursos y Demandas Laborales (JD-R) asume que los recursos laborales (como la autonomía y la retroalimentación) únicamente son útiles cuando las demandas de la tarea son extremadamente bajas.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 14</span>
+    <div class="q-stem"><strong>Enunciado:</strong> Frank y Lillian Gilbreth ampliaron el estudio de tiempos y movimientos al incorporar la dimensión psicológica del bienestar y la fatiga, diseñando los <em>therbligs</em> para optimizar el esfuerzo físico del operario.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 15</span>
+    <div class="q-stem"><strong>Enunciado:</strong> Un operario que experimenta fatiga cognitiva severa tiende a estrechar su foco de atención (<em>foco túnel</em>), incrementando la probabilidad de omitir señales periféricas de seguridad en el tablero de control.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 16</span>
+    <div class="q-stem"><strong>Enunciado:</strong> En un análisis de OEE de clase mundial, una tasa de Calidad ($Q$) de $99\%$ garantiza de forma inequívoca que los factores psicosociales y la carga mental de los operarios de la célula se encuentran en niveles óptimos.</div>
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 3: Reactivos de Emparejamiento / Relación de Columnas</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 17</span>
+    <div class="q-stem">Relacione el autor o corriente histórica con su postulado o contribución principal a la psicología laboral:</div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Columna A (Autor / Enfoque)</th><th>Columna B (Aporte Conceptual)</th></tr></thead>
+        <tbody>
+          <tr><td>1. Robert Karasek</td><td>a. Descubrimiento del impacto del grupo informal y la atención social sobre el rendimiento en el trabajo.</td></tr>
+          <tr><td>2. Elton Mayo</td><td>b. Teoría de la Autoeficacia y modelamiento cognitivo-conductual en el entorno de tareas.</td></tr>
+          <tr><td>3. Paul Fitts</td><td>c. Modelo bidimensional de Demanda-Control para evaluar tensión laboral y riesgo psicosocial.</td></tr>
+          <tr><td>4. Albert Bandura</td><td>d. Ley ergonómica que modela el tiempo de movimiento humano en función de la distancia y el ancho del objetivo en interfaces de control.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Opciones de combinación:</strong></p>
+    <ol class="q-options" type="A">
+      <li>1c, 2a, 3d, 4b</li>
+      <li>1a, 2c, 3b, 4d</li>
+      <li>1c, 2d, 3a, 4b</li>
+      <li>1d, 2a, 3c, 4b</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 18</span>
+    <div class="q-stem">Relacione la variable del cálculo de OEE con el factor humano / psicosocial que incide directamente sobre ella:</div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Columna A (Variable OEE)</th><th>Columna B (Mecanismo Psicosocial / Cognitivo de Afectación)</th></tr></thead>
+        <tbody>
+          <tr><td>1. Disponibilidad ($A$)</td><td>a. Decremento de la vigilancia sostenida y errores de omisión durante la inspección visual al final del turno.</td></tr>
+          <tr><td>2. Rendimiento ($P$)</td><td>b. Reducción deliberada o inconsciente de la velocidad de alimentación de máquina para mitigar la sobrecarga mental ante alarmas continuas.</td></tr>
+          <tr><td>3. Calidad ($Q$)</td><td>c. Tiempos excesivos de reacción del maquinista para reiniciar el equipo tras una parada menor por falta de autonomía delegada.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Opciones de combinación:</strong></p>
+    <ol class="q-options" type="A">
+      <li>1b, 2c, 3a</li>
+      <li>1c, 2b, 3a</li>
+      <li>1a, 2b, 3c</li>
+      <li>1c, 2a, 3b</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 19</span>
+    <div class="q-stem">Relacione la herramienta o instrumento de medición con el constructo psicológico u operativo que evalúa:</div>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Columna A (Instrumento)</th><th>Columna B (Constructo Evaluado)</th></tr></thead>
+        <tbody>
+          <tr><td>1. NASA-TLX (<em>Task Load Index</em>)</td><td>a. Diagnóstico de factores de riesgo psicosocial mediante 20 dimensiones (versión media).</td></tr>
+          <tr><td>2. Cuestionario ISTAS-21 (CoPsoQ)</td><td>b. Evaluación subjetiva multidimensional de la carga mental de trabajo en tareas complejas.</td></tr>
+          <tr><td>3. MBI (<em>Maslach Burnout Inventory</em>)</td><td>c. Medición de dimensiones de agotamiento emocional, despersonalización y realización personal.</td></tr>
+          <tr><td>4. Matriz de Seis Grandes Pérdidas (TPM)</td><td>d. Cuantificación de tiempos de inactividad, pérdidas de velocidad y defectos de proceso en maquinaria.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Opciones de combinación:</strong></p>
+    <ol class="q-options" type="A">
+      <li>1b, 2a, 3c, 4d</li>
+      <li>1a, 2b, 3d, 4c</li>
+      <li>1c, 2d, 3a, 4b</li>
+      <li>1b, 2c, 3a, 4d</li>
+    </ol>
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 4: Reactivos de Completación / Texto Breve</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 20</span>
+    <div class="q-stem">Complete el enunciado:<br><br>El fenómeno por el cual los participantes en un estudio o los trabajadores en una línea productiva alteran temporalmente su comportamiento e incrementan su desempeño como consecuencia del hecho de saber que están siendo observados y evaluados se conoce formalmente en la literatura como el <strong>__________________</strong>.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 21</span>
+    <div class="q-stem">Complete el enunciado:<br><br>En el modelo de Carga Mental de Múltiples Recursos propuesto por Christopher Wickens, el procesamiento cognitivo humano se distribuye en cuatro dimensiones esenciales: etapas de procesamiento, códigos de procesamiento, modalidades perceptivas y <strong>__________________</strong>.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 22</span>
+    <div class="q-stem">Complete el enunciado:<br><br>La fórmula canónica que define la Efectividad Global de los Equipos en función de sus tres componentes fundamentales se expresa matemáticamente como:</div>
+    <div class="math-block">$$\text{OEE} = \text{Disponibilidad}\,(A) \times \text{______________} \times \text{Calidad}\,(Q)$$</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 23</span>
+    <div class="q-stem">Complete el enunciado:<br><br>El constructo formulado por Mihaly Csikszentmihalyi que describe un estado psicológico óptimo donde las altas demandas y desafíos de la tarea se equilibran perfectamente con las elevadas habilidades del individuo se denomina estado de <strong>__________________</strong>.</div>
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 5: Reactivos de Respuesta Abierta / Desarrollo Analítico y Aplicado</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 24</span>
+    <div class="q-stem">Defina el concepto de <strong>Carga Mental de Trabajo (<em>Mental Workload</em>)</strong> y explique la diferencia crítica entre la carga impuesta externamente (<em>task demands</em>) y la carga experimentada subjetivamente (<em>mental strain</em>).</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 25</span>
+    <div class="q-stem">Analice cómo la <strong>Tecnofatiga</strong> o el <strong>Tecnoestrés</strong> inducido por interfaces HMI mal estructuradas (sin ergonomía de software ni consistencia sintáctica) genera un cuello de botella cognitivo en un operario de Control Numérico Computarizado (CNC) o celda de manufactura flexible.</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 26</span>
+    <div class="q-stem">Explique la función amortiguadora que ejerce el <strong>Apoyo Social</strong> en el modelo ampliado de Karasek y Theorell (<em>Demand-Control-Support Model</em>). ¿Cómo interviene el liderazgo de los supervisores en planta sobre la tasa de rotación y ausentismo de operarios de producción?</div>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 27</span>
+    <div class="q-stem">Desde la perspectiva de la Ergonomía Cognitiva, ¿por qué la simple imposición de sanciones disciplinarias ante un error humano de omisión en inspección de calidad suele ser contraproducente para el OEE de la organización?</div>
+  </div>
+
+  <h3 class="quiz-block-title">Bloque 6: Problemas de Modelación y Cálculo Numérico Integrado (OEE y Factores Humanos)</h3>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 28 — Cálculo de Disponibilidad y Latencia Cognitiva</span>
+    <div class="q-stem">Una línea de envasado tiene un tiempo de turno programado de $T_{\text{prog}} = 480\text{ min}$, con $40\text{ min}$ asignados a paradas planificadas (almuerzo y mantenimiento preventivo).</div>
+    <p>Durante el turno, la máquina registró $35\text{ microatascos}$. El tiempo mecánico puramente necesario para liberar el atasco es de $15\text{ s}$. Sin embargo, debido a la saturación visual en la consola, el operador tardó en promedio $75\text{ s}$ adicionales por cada evento antes de percatarse y acudir a restablecer el sistema.</p>
+    <p><strong>Pregunta:</strong> Calcule:</p>
+    <ol>
+      <li>El tiempo total de inactividad por microparadas atribuible a la latencia cognitiva humana en minutos.</li>
+      <li>El factor de Disponibilidad ($A$) real del turno, considerando que no hubo averías mecánicas mayores.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 29 — Cálculo de Rendimiento con Restricción Humana de Velocidad</span>
+    <div class="q-stem">Continuando con la celda anterior ($T_{\text{op}} = 387,50\text{ min}$), la máquina posee una velocidad de diseño nominal de $v_{\text{nom}} = 100\text{ botellas/minuto}$.</div>
+    <p>El operario, al experimentar tensión laboral severa y temor a generar bloqueos múltiples, configuró manualmente el potenciómetro de alimentación a una velocidad de crucero reducida, logrando producir un total de $31\,000\text{ botellas}$ al finalizar su tiempo de operación neto.</p>
+    <p><strong>Pregunta:</strong> Determine:</p>
+    <ol>
+      <li>La capacidad de producción teórica que debió alcanzarse en el tiempo de operación.</li>
+      <li>El factor de Rendimiento ($P$) resultante.</li>
+    </ol>
+  </div>
+
+  <div class="quiz-item">
+    <span class="q-num">Pregunta 30 — Cálculo Consolidado de Calidad y OEE Global</span>
+    <div class="q-stem">De las $31\,000\text{ botellas}$ producidas en el turno, la inspección final determinó que $1\,860\text{ unidades}$ presentaron sellado defectuoso debido a fallas de atención visual no detectadas en la etapa de empaque.</div>
+    <p><strong>Pregunta:</strong></p>
+    <ol>
+      <li>Calcule la tasa de Calidad ($Q$).</li>
+      <li>Determine el valor final consolidado del $\text{OEE}$.</li>
+      <li>Si una intervención ergonómica (filtrado de alarmas en HMI y rotación cognitiva cada 2 horas) reduce la inactividad por microparos a la mitad y los defectos a solo $310\text{ unidades}$, manteniendo constante el Rendimiento en $80,00\%$, calcule el nuevo $\text{OEE}'$ y determine si la línea alcanza la clase mundial ($\geq 85\%$).</li>
+    </ol>
+  </div>
+
+  <!-- ===== LOCK GATE FOR ANSWERS ===== -->
+  <div class="lock-gate" id="lock-eval4">
+    <span class="lock-gate-icon">🔑</span>
+    <h3>Respuestas, Justificaciones y Soluciones</h3>
+    <p>Las respuestas correctas, justificaciones técnicas y desarrollos matemáticos de los 30 reactivos están reservados para el cuerpo docente.<br>Ingrese la clave de acceso para visualizar el solucionario completo.</p>
+    <div class="lock-gate-input-row">
+      <input type="password" inputmode="numeric" maxlength="6" placeholder="• • • •" aria-label="Clave de acceso" onkeydown="handleKey(event,'eval4')">
+      <button onclick="unlockContent('eval4')">Desbloquear</button>
+    </div>
+    <div class="lock-error" role="alert"></div>
+  </div>
+
+  <div class="protected-content" id="protected-eval4">
+    <div class="unlock-banner">✓ Solucionario desbloqueado — Uso docente</div>
+
+    <h3>Solucionario Completo — Taller de Evaluación Formativa y Sumativa</h3>
+
+    <h4>Bloque 1 — Opción Múltiple (Preguntas 1–10)</h4>
+
+    <div class="card">
+      <div class="card-title">Pregunta 1 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> El Taylorismo redujo al trabajador a una extensión de la máquina, concentrándose únicamente en tiempos y movimientos neuromusculares y asumiendo que el único motivador era el salario, omitiendo la salud mental y la dinámica de grupos.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 2 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> Los experimentos demostraron el "Efecto Hawthorne", donde la productividad se elevó al sentirse observados y valorados socialmente, sentando las bases de la Escuela de Relaciones Humanas.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 3 — Respuesta Correcta: C</div>
+      <p><strong>Justificación Técnica:</strong> La condición de alta demanda cuantitativa combinada con nulo o bajo control/autonomía operativa sobre la tarea inhibe los mecanismos de afrontamiento y dispara el estrés crónico y desórdenes neuroendocrinos.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 4 — Respuesta Correcta: C</div>
+      <p><strong>Justificación Técnica:</strong> El enfoque sociotécnico postula que la eficiencia global del sistema depende de la correlación y codiseño equilibrado entre la tecnología y las necesidades psicosociales de los trabajadores.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 5 — Respuesta Correcta: C</div>
+      <p><strong>Justificación Técnica:</strong> Un ratio mayor a 1 evidencia que el esfuerzo invertido supera con creces las recompensas percibidas (salario, estima, estabilidad), desencadenando distrés y respuestas defensivas que degradan la productividad.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 6 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> Matemáticamente, $T = b \cdot \log_{2}(n + 1)$. A mayor número de alternativas de alarma sin jerarquizar, mayor latencia de respuesta del operario, impactando directamente la Disponibilidad ($A$).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 7 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> La memoria de trabajo humana tiene un canal limitado de procesamiento ($7 \pm 2$ piezas de información de Miller). Superar ese umbral en una emergencia provoca colapso de atención y paradas prolongadas.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 8 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> La atención sostenida se deteriora drásticamente pasados los 20-30 minutos en tareas monótonas de monitoreo visual, disparando los defectos de Calidad ($Q$).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 9 — Respuesta Correcta: C</div>
+      <p><strong>Justificación Técnica:</strong> La demora entre el momento en que se detiene la máquina y el momento en que el operario interviene físicamente incrementa el tiempo de parada no programada, restando tiempo neto de operación ($T_{\text{op}}$) y afectando la Disponibilidad.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 10 — Respuesta Correcta: B</div>
+      <p><strong>Justificación Técnica:</strong> Si las capacidades cognitivas o valores no corresponden con las exigencias del rol o la cultura de planta, se genera frustración, estrés y bajo desempeño.</p>
+    </div>
+
+    <h4>Bloque 2 — Verdadero / Falso (Preguntas 11–16)</h4>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 11 — Respuesta: [ VERDADERO ]</div>
+      <p><strong>Justificación Técnica:</strong> Münsterberg introdujo formalmente métodos experimentales de psicología para evaluar la atención, la fatiga y las destrezas operativas en entornos industriales y de transporte.</p>
+    </div>
+
+    <div class="card danger">
+      <div class="card-title">Pregunta 12 — Respuesta: [ FALSO ]</div>
+      <p><strong>Justificación Técnica:</strong> Si no se computan como eventos de parada en la Disponibilidad ($A$), esas demoras consumen tiempo productivo y disminuyen la cantidad total procesada frente a la velocidad nominal teórica, erosionando inevitablemente el factor de Rendimiento ($P$).</p>
+    </div>
+
+    <div class="card danger">
+      <div class="card-title">Pregunta 13 — Respuesta: [ FALSO ]</div>
+      <p><strong>Justificación Técnica:</strong> El postulado central del modelo JD-R (Bakker &amp; Demerouti) señala que los recursos laborales amortiguan el impacto negativo de las altas demandas laborales y potencian la motivación intrínseca precisamente cuando la exigencia es crítica.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 14 — Respuesta: [ VERDADERO ]</div>
+      <p><strong>Justificación Técnica:</strong> Los Gilbreth no solo buscaban rapidez, sino reducir la fatiga innecesaria mediante la economía de movimientos y el rediseño antropométrico y psicológico del puesto de trabajo.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 15 — Respuesta: [ VERDADERO ]</div>
+      <p><strong>Justificación Técnica:</strong> Bajo sobrecarga y agotamiento mental, los recursos atencionales colapsan, induciendo visión de túnel y reduciendo la conciencia situacional (<em>Situation Awareness</em>).</p>
+    </div>
+
+    <div class="card danger">
+      <div class="card-title">Pregunta 16 — Respuesta: [ FALSO ]</div>
+      <p><strong>Justificación Técnica:</strong> Una alta calidad puede sostenerse temporalmente a expensas de un sobreesfuerzo cognitivo extremo, ritmo de trabajo forzado o retrabajos no declarados, lo que a mediano plazo genera colapso psicofisiológico (<em>burnout</em>) o caídas abruptas de Rendimiento y Disponibilidad.</p>
+    </div>
+
+    <h4>Bloque 3 — Emparejamiento (Preguntas 17–19)</h4>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 17 — Respuesta Correcta: A (1c, 2a, 3d, 4b)</div>
+      <p><strong>Justificación:</strong> Karasek (Demanda-Control), Mayo (Estudios Hawthorne), Fitts (Ley de Fitts en diseño de interfaces), Bandura (Autoeficacia).</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 18 — Respuesta Correcta: B (1c, 2b, 3a)</div>
+      <p><strong>Justificación:</strong> La latencia de respuesta ante paradas no planificadas erosiona la Disponibilidad; la desaceleración de la marcha afecta el Rendimiento; las fallas en detección de defectos deterioran la Calidad.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 19 — Respuesta Correcta: A (1b, 2a, 3c, 4d)</div>
+      <p><strong>Justificación:</strong> NASA-TLX mide carga mental; ISTAS-21 evalúa factores psicosociales organizacionales; Maslach mide desgaste profesional (burnout); la matriz TPM clasifica pérdidas operativas de planta.</p>
+    </div>
+
+    <h4>Bloque 4 — Completación (Preguntas 20–23)</h4>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 20 — Respuesta Clave</div>
+      <p><strong>Efecto Hawthorne.</strong></p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 21 — Respuesta Clave</div>
+      <p><strong>Canales visuales / Canales de respuesta (motor vs. vocal).</strong></p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 22 — Respuesta Clave</div>
+      <p><strong>Rendimiento ($P$) / Desempeño.</strong></p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Pregunta 23 — Respuesta Clave</div>
+      <p><strong>Flujo / <em>Flow</em>.</strong></p>
+    </div>
+
+    <h4>Bloque 5 — Respuesta Abierta (Preguntas 24–27)</h4>
+
+    <div class="card">
+      <div class="card-title">Pregunta 24 — Guía de Calificación / Criterio</div>
+      <ul>
+        <li><strong>Carga impuesta:</strong> requerimientos objetivos de la tarea (velocidad de datos, señales concurrentes, restricciones de tiempo impuestas por la máquina).</li>
+        <li><strong>Carga experimentada:</strong> costo psicofisiológico interno incurrido por el operador para satisfacer esas demandas, condicionado por su memoria operativa, experiencia, nivel de fatiga y estado afectivo.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 25 — Guía de Calificación / Criterio</div>
+      <ul>
+        <li>El estudiante debe mencionar la competencia por recursos limitados en la memoria de trabajo.</li>
+        <li>Debe explicar cómo la ambigüedad en códigos y menús de control eleva el tiempo de ciclo de ajuste (<em>setup</em>) y propicia errores de programación o configuración en variables de corte y avance.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 26 — Guía de Calificación / Criterio</div>
+      <ul>
+        <li>El apoyo social (tanto instrumental como socioemocional de supervisores y pares) modera el impacto de la alta tensión laboral.</li>
+        <li>Reduce la percepción de aislamiento, disminuye la reactividad neuroendocrina al estrés y contiene la intención de abandono del puesto, reduciendo el ausentismo no médico.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 27 — Guía de Calificación / Criterio</div>
+      <ul>
+        <li>La sanción no remueve la causa raíz fisiológica/cognitiva (saturación sensorial, fatiga de vigilancia, mala relación señal-ruido).</li>
+        <li>Incrementa la ansiedad del operario, lo cual satura aún más los recursos atencionales, provoca ocultamiento de información sobre defectos y degrada la cultura de seguridad.</li>
+      </ul>
+    </div>
+
+    <h4>Bloque 6 — Problemas de Modelación Numérica (Preguntas 28–30)</h4>
+
+    <div class="card">
+      <div class="card-title">Pregunta 28 — Solución y Deducción</div>
+      <p><strong>Datos:</strong></p>
+      <ul>
+        <li>Pérdida cognitiva por evento: $75\text{ s}$.</li>
+        <li>Pérdida total por evento: $15\text{ s} + 75\text{ s} = 90\text{ s} = 1,5\text{ min}$.</li>
+      </ul>
+      <p><strong>1. Tiempo total por microparadas cognitivas:</strong></p>
+      <div class="math-block">$$t_{\text{cognitivo}} = \frac{35 \times 75\text{ s}}{60\text{ s/min}} = 43,75\text{ min}$$</div>
+      <p><strong>Tiempo total de inactividad:</strong></p>
+      <div class="math-block">$$T_{\text{paro}} = 35 \times 1,5\text{ min} = 52,50\text{ min}$$</div>
+      <p><strong>Tiempo de carga planificado:</strong></p>
+      <div class="math-block">$$T_{\text{carga}} = 480 - 40 = 440,00\text{ min}$$</div>
+      <p><strong>Tiempo de Operación Real:</strong></p>
+      <div class="math-block">$$T_{\text{op}} = 440 - 52,50 = 387,50\text{ min}$$</div>
+      <p><strong>2. Disponibilidad:</strong></p>
+      <div class="math-block">$$A = \frac{387,50}{440,00} \approx 0,8807 \Longrightarrow \mathbf{88,07\%}$$</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 29 — Solución y Deducción</div>
+      <p><strong>1. Capacidad teórica:</strong></p>
+      <div class="math-block">$$P_{\text{teor}} = T_{\text{op}} \times v_{\text{nom}} = 387,50\text{ min} \times 100\text{ u/min} = 38\,750\text{ botellas}$$</div>
+      <p><strong>2. Rendimiento:</strong></p>
+      <div class="math-block">$$P = \frac{\text{Producción Real}}{P_{\text{teor}}} = \frac{31\,000}{38\,750} = 0,8000 \Longrightarrow \mathbf{80,00\%}$$</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 30 — Solución y Deducción</div>
+      <p><strong>1. Tasa de Calidad inicial:</strong></p>
+      <div class="math-block">$$Q = \frac{31\,000 - 1\,860}{31\,000} = \frac{29\,140}{31\,000} = 0,9400 \Longrightarrow \mathbf{94,00\%}$$</div>
+      <p><strong>2. OEE Inicial:</strong></p>
+      <div class="math-block">$$\text{OEE} = A \times P \times Q = 0,8807 \times 0,8000 \times 0,9400 = 0,6623 \Longrightarrow \mathbf{66,23\%}$$</div>
+      <p><strong>3. Escenario Optimizado:</strong></p>
+      <p>Nuevas pérdidas por microparadas:</p>
+      <div class="math-block">$$T'_{\text{paro}} = \frac{52,50\text{ min}}{2} = 26,25\text{ min}$$</div>
+      <p>Nuevo $T'_{\text{op}} = 440 - 26,25 = 413,75\text{ min}$.</p>
+      <p>Nueva Disponibilidad:</p>
+      <div class="math-block">$$A' = \frac{413,75}{440,00} = 0,9403 \Longrightarrow 94,03\%$$</div>
+      <p>Nueva Calidad:</p>
+      <div class="math-block">$$Q' = \frac{31\,000 - 310}{31\,000} = \frac{30\,690}{31\,000} = 0,9900 \Longrightarrow 99,00\%$$</div>
+      <p>Rendimiento sostenido: $P' = 0,8000$.</p>
+      <p>Nuevo OEE:</p>
+      <div class="math-block">$$\text{OEE}' = 0,9403 \times 0,8000 \times 0,9900 = 0,7447 \Longrightarrow \mathbf{74,47\%}$$</div>
+      <div class="callout">
+        <strong>Conclusión:</strong> Aunque la mejora absoluta es significativa ($\Delta\text{OEE} = +8,24\%$), <strong>no</strong> alcanza aún el estándar de Clase Mundial ($\geq 85\%$), debido a que el factor de Rendimiento ($80,00\%$) actúa como cuello de botella operativo, requiriendo recuperar la velocidad nominal de diseño.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TAB 5 ============================ -->
+<section id="tab5" class="tab-panel">
+  <h2>Tarea Asincrónica: Caso de Estudio Avanzado de Optimización Sociotécnica</h2>
+
+  <div class="card info">
+    <div class="card-title">Datos generales</div>
+    <p><strong>Asignatura:</strong> Psicología Laboral en la Empresa</p>
+    <p><strong>Nivel:</strong> Avanzado (Modelación Matemática, Factores Humanos y Diagnóstico de OEE)</p>
+    <p><strong>Modalidad:</strong> Asincrónica individual o en parejas</p>
+    <p><strong>Ponderación:</strong> 20% de la evaluación formativa</p>
+    <p><strong>Tiempo estimado de dedicación:</strong> 6 horas de análisis y cálculo</p>
+  </div>
+
+  <h3>1. Planteamiento del Caso: Línea de Corte y Estampado Continuo "Península Precision"</h3>
+  <p>La planta metalmecánica <strong>Península Precision S.A.</strong> opera una celda flexible de troquelado y estampado progresivo para autopartes de aleación de aluminio. La celda consta de una prensa hidráulica automatizada integrada con un robot cartesiano de alimentación y una estación de inspección por visión artificial asistida por un operador de consola HMI.</p>
+
+  <h4>Parámetros Nominales de Diseño</h4>
+  <ul>
+    <li><strong>Capacidad nominal de diseño ($v_{\text{nom}}$):</strong> $150\text{ golpes/min}$ ($t_{\text{ciclo}} = 0,40\text{ s/pieza}$).</li>
+    <li><strong>Jornada programada ($T_{\text{prog}}$):</strong> Turno nocturno de $8\text{ horas}$ ($480\text{ min}$).</li>
+    <li><strong>Parada programada para lubricación y colación:</strong> $30\text{ min/turno}$.</li>
+    <li><strong>Tiempo de Carga Teórico ($T_{\text{carga}}$):</strong> $450\text{ min}$ ($27\,000\text{ s}$).</li>
+  </ul>
+
+  <div class="flow-diagram">[Bobina de Aluminio] ──► [Prensa Progresiva] ──► [Manipulador Cartesiano] ──► [Inspección HMI]
+            │                                       │
+            ▼                                       ▼
+   (Microatascos Chatarra)                  (Inundación Alarmas)</div>
+
+  <h3>2. Registro Auditado de Campo (Turno Nocturno Crítico)</h3>
+  <p>El equipo de ingeniería de confiabilidad auditó el turno de 23:00 a 07:00 durante un mes completo, registrando un deterioro severo del rendimiento:</p>
+
+  <h4>2.1 Eventos de Inactividad y Dinámica de Interfaz</h4>
+  <ul>
+    <li>Averías mecánicas/eléctricas mayores no programadas: $22\text{ min}$.</li>
+    <li>Microparadas de la prensa por retención de virutas y desalineación leve: se contabilizaron $52\text{ eventos}$ durante el turno.</li>
+    <li>La remoción física del atasco toma exactamente $12\text{ s}$ mecánicos. Sin embargo, la consola HMI satura al operario con una media de $68\text{ señales/hora}$ (muchas de ellas avisos informativos parpadeantes en ámbar y rojo sin segregación de criticidad según norma ANSI/ISA-18.2).</li>
+    <li>La latencia humana promedio para atender cada evento (reconocimiento en pantalla, desplazamiento y desbloqueo manual) fue de $88\text{ s}$ <strong>por evento</strong>.</li>
+  </ul>
+
+  <h4>2.2 Degradación de la Marcha</h4>
+  <ul>
+    <li>La máquina procesó un total bruto de $44\,200\text{ piezas}$ a lo largo del tiempo de operación real.</li>
+    <li>Entrevistas semiestructuradas revelaron que el operario redujo intencionalmente la velocidad de tracción de la bobina debido a la ansiedad generada por la supervisión punitiva y la falta de autonomía ante fallas recurrentes.</li>
+  </ul>
+
+  <h4>2.3 Control de Conformidad de Piezas</h4>
+  <ul>
+    <li>Del total procesado, el escáner láser y el control metrológico de tolerancias geométricas descartaron $3\,978\text{ piezas}$ por rebabas fuera de especificación dimensional no corregidas oportunamente por el maquinista.</li>
+  </ul>
+
+  <h4>2.4 Variables Neuroergonómicas y Psicosociales Registradas</h4>
+  <ul>
+    <li><strong>NASA-TLX Global:</strong> Puntuación promedio de $88/100$, con percentiles críticos en <em>Esfuerzo Mental</em> ($95\%$) y <em>Frustración</em> ($90\%$).</li>
+    <li><strong>Cuestionario SUS (System Usability Scale) de la HMI:</strong> $38/100$ (Nivel no aceptable / deficiente).</li>
+    <li><strong>Modelo Demanda-Control-Apoyo (Karasek &amp; Theorell):</strong> Demandas cognitivas y temporales extremas ($D = 4,8/5$), nula latitud de decisión ($C = 1,2/5$) y soporte del supervisor de turno ausente ($A = 1,5/5$).</li>
+    <li><strong>Curva Circadiana:</strong> El 74% de los errores dimensionales y los tiempos de latencia más altos ($&gt; 120\text{ s}$) se agruparon entre las 03:00 y las 05:30.</li>
+  </ul>
+
+  <h3>3. Requerimientos de la Tarea Asincrónica</h3>
+  <p>El estudiante deberá estructurar y entregar un informe técnico-analítico que resuelva las siguientes dimensiones:</p>
+
+  <div class="card warning">
+    <div class="card-title">Sección 1: Descomposición Matemática de la Eficiencia Global (OEE Inicial)</div>
+    <ul>
+      <li>Calcular y deducir en notación formal el tiempo total de inactividad, distinguiendo la fracción atribuible a causas electromecánicas de la atribuible a latencia cognitiva humana.</li>
+      <li>Determinar los factores de Disponibilidad ($A$), Rendimiento ($P$) y Calidad ($Q$), concluyendo con el $\text{OEE}_{\text{inicial}}$.</li>
+    </ul>
+  </div>
+
+  <div class="card warning">
+    <div class="card-title">Sección 2: Diagnóstico Sociotécnico Multidimensional</div>
+    <ul>
+      <li>Analizar la degradación de la atención según los modelos de Broadbent, Wickens (teoría de múltiples recursos) y Karasek.</li>
+      <li>Contrastar el impacto del trabajo en turno nocturno (ritmos circadianos y secreción de melatonina) sobre el tiempo de reacción frente a la interfaz HMI.</li>
+    </ul>
+  </div>
+
+  <div class="card warning">
+    <div class="card-title">Sección 3: Proyecto de Reingeniería Sociotécnica y Modelo Predictivo</div>
+    <ul>
+      <li>Diseñar un protocolo de rediseño ergonómico de la HMI bajo ANSI/ISA-18.2 (racionalización de alarmas) y un esquema de pausas activas programadas / rotación ergonómica.</li>
+      <li>Calcular el $\text{OEE}_{\text{proyectado}}$ asumiendo que la propuesta logra:
+        <ol>
+          <li>Reducir los microparos a $20\text{ eventos}$, con una latencia de atención humana optimizada de solo $18\text{ s}$ (más los $12\text{ s}$ de despeje físico).</li>
+          <li>Mantener las averías mecánicas en $22\text{ min}$.</li>
+          <li>Recuperar la velocidad de línea a un régimen promedio sostenido de $135\text{ piezas/min}$.</li>
+          <li>Reducir los defectos de calidad al $1,2\%$ del lote total producido.</li>
+        </ol>
+      </li>
+      <li>Cuantificar la ganancia neta absoluta ($\Delta\text{OEE}$) y relativa ($\%\text{ Crecimiento}$).</li>
+    </ul>
+  </div>
+
+  <!-- ===== LOCK GATE FOR SOLUTION ===== -->
+  <div class="lock-gate" id="lock-async5">
+    <span class="lock-gate-icon">🔒</span>
+    <h3>Solucionario Técnico para el Docente</h3>
+    <p>El solucionario completo paso a paso con la rúbrica analítica de evaluación (100 puntos) está reservado para el cuerpo docente.<br>Ingrese la clave de acceso para visualizar el contenido.</p>
+    <div class="lock-gate-input-row">
+      <input type="password" inputmode="numeric" maxlength="6" placeholder="• • • •" aria-label="Clave de acceso" onkeydown="handleKey(event,'async5')">
+      <button onclick="unlockContent('async5')">Desbloquear</button>
+    </div>
+    <div class="lock-error" role="alert"></div>
+  </div>
+
+  <div class="protected-content" id="protected-async5">
+    <div class="unlock-banner">✓ Solucionario desbloqueado — Uso docente</div>
+
+    <h3>4. Solucionario Técnico para el Docente</h3>
+
+    <h4>4.1 Modelación Matemática del Estado Inicial</h4>
+
+    <p><strong>1. Tiempo de Paradas y Operación Real:</strong></p>
+    <ul>
+      <li>Tiempo mecánico por microparo: $12\text{ s}$.</li>
+      <li>Latencia humana cognitiva por microparo: $88\text{ s}$.</li>
+      <li>Tiempo total perdido por evento: $12\text{ s} + 88\text{ s} = 100\text{ s} = 1,6667\text{ min}$.</li>
+    </ul>
+    <p><strong>Tiempo total de inactividad por microparadas ($T_{\mu}$):</strong></p>
+    <div class="math-block">$$T_{\mu} = \frac{52 \times 100\text{ s}}{60\text{ s/min}} = \frac{5\,200\text{ s}}{60} = 86,67\text{ min}$$</div>
+    <p><em>(De los cuales $76,27\text{ min}$ corresponden estrictamente a latencia cognitiva humana).</em></p>
+
+    <p><strong>Tiempo total de inactividad no planificado:</strong></p>
+    <div class="math-block">$$T_{\text{paro}} = 22\text{ min (mecánico)} + 86,67\text{ min (microparadas)} = 108,67\text{ min}$$</div>
+
+    <p><strong>Tiempo de Operación Real ($T_{\text{op}}$):</strong></p>
+    <div class="math-block">$$T_{\text{op}} = T_{\text{carga}} - T_{\text{paro}} = 450,00 - 108,67 = 341,33\text{ min}\quad\left(20\,480\text{ s}\right)$$</div>
+
+    <p><strong>2. Deducción de Factores y OEE Inicial:</strong></p>
+
+    <p><strong>Disponibilidad ($A$):</strong></p>
+    <div class="math-block">$$A = \frac{T_{\text{op}}}{T_{\text{carga}}} = \frac{341,33}{450,00} = 0,7585 \Longrightarrow \mathbf{75,85\%}$$</div>
+
+    <p><strong>Rendimiento ($P$):</strong></p>
+    <div class="math-block">$$\text{Capacidad Teórica en }T_{\text{op}} = 341,33\text{ min} \times 150\text{ piezas/min} = 51\,200\text{ piezas}$$</div>
+    <div class="math-block">$$P = \frac{\text{Producción Real}}{\text{Capacidad Teórica}} = \frac{44\,200}{51\,200} = 0,8633 \Longrightarrow \mathbf{86,33\%}$$</div>
+
+    <p><strong>Calidad ($Q$):</strong></p>
+    <div class="math-block">$$\text{Piezas Conformes} = 44\,200 - 3\,978 = 40\,222\text{ piezas}$$</div>
+    <div class="math-block">$$Q = \frac{40\,222}{44\,200} = 0,9100 \Longrightarrow \mathbf{91,00\%}$$</div>
+
+    <p><strong>OEE Consolidado Inicial:</strong></p>
+    <div class="math-block">$$\text{OEE}_{\text{inicial}} = A \times P \times Q = 0,7585 \times 0,8633 \times 0,9100 = 0,5959 \Longrightarrow \mathbf{59,59\%}$$</div>
+
+    <div class="card danger">
+      <div class="card-title">Diagnóstico cuantitativo</div>
+      <p>El OEE inicial del <strong>59,59%</strong> está <strong>25,41 puntos por debajo</strong> del umbral de Clase Mundial (≥85%). La fracción atribuible a latencia cognitiva humana ($76,27\text{ min}$) representa el <strong>70,2%</strong> del tiempo total de inactividad no planificada, evidenciando que el problema es predominantemente sociotécnico, no electromecánico.</p>
+    </div>
+
+    <h4>4.2 Modelación Matemática del Estado Proyectado (Optimizado)</h4>
+
+    <p><strong>1. Nuevos Tiempos Operativos:</strong></p>
+    <ul>
+      <li>Tiempo por evento: $12\text{ s} + 18\text{ s} = 30\text{ s} = 0,5\text{ min}$.</li>
+    </ul>
+    <p><strong>Pérdidas por microparadas:</strong></p>
+    <div class="math-block">$$T'_{\mu} = 20 \times 0,5\text{ min} = 10,00\text{ min}$$</div>
+    <p><strong>Pérdida total no programada:</strong> $22\text{ min} + 10\text{ min} = 32,00\text{ min}$.</p>
+    <p><strong>Nuevo Tiempo de Operación Real ($T'_{\text{op}}$):</strong></p>
+    <div class="math-block">$$T'_{\text{op}} = 450,00 - 32,00 = 418,00\text{ min}$$</div>
+
+    <p><strong>2. Deducción de Factores y OEE Proyectado:</strong></p>
+
+    <p><strong>Nueva Disponibilidad ($A'$):</strong></p>
+    <div class="math-block">$$A' = \frac{418,00}{450,00} = 0,9289 \Longrightarrow \mathbf{92,89\%}$$</div>
+
+    <p><strong>Nuevo Rendimiento ($P'$):</strong></p>
+    <div class="math-block">$$\text{Producción Total Estimada} = 418,00\text{ min} \times 135\text{ piezas/min} = 56\,430\text{ piezas}$$</div>
+    <div class="math-block">$$\text{Capacidad Teórica Máxima} = 418,00\text{ min} \times 150\text{ piezas/min} = 62\,700\text{ piezas}$$</div>
+    <div class="math-block">$$P' = \frac{56\,430}{62\,700} = 0,9000 \Longrightarrow \mathbf{90,00\%}$$</div>
+
+    <p><strong>Nueva Calidad ($Q'$):</strong></p>
+    <div class="math-block">$$\text{Defectos }(1,2\%) = 56\,430 \times 0,012 \approx 677\text{ piezas defectuosas}$$</div>
+    <div class="math-block">$$\text{Piezas Conformes} = 56\,430 - 677 = 55\,753\text{ piezas}$$</div>
+    <div class="math-block">$$Q' = \frac{55\,753}{56\,430} = 0,9880 \Longrightarrow \mathbf{98,80\%}$$</div>
+
+    <p><strong>OEE Consolidado Proyectado:</strong></p>
+    <div class="math-block">$$\text{OEE}_{\text{optimizado}} = A' \times P' \times Q' = 0,9289 \times 0,9000 \times 0,9880 = 0,8260 \Longrightarrow \mathbf{82,60\%}$$</div>
+
+    <p><strong>3. Indicadores de Mejora:</strong></p>
+    <div class="math-block">$$\text{Ganancia Absoluta: } \Delta\text{OEE} = 82,60\% - 59,59\% = \mathbf{+23,01\%}$$</div>
+    <div class="math-block">$$\text{Crecimiento Relativo: } \frac{82,60 - 59,59}{59,59} \times 100 = \mathbf{+38,61\%}$$</div>
+
+    <div class="card warning">
+      <div class="card-title">Interpretación crítica del resultado proyectado</div>
+      <p>Aunque la intervención genera una ganancia absoluta significativa de <strong>+23,01 puntos porcentuales</strong> (crecimiento relativo de <strong>+38,61%</strong>), la línea <strong>no alcanza aún el umbral de Clase Mundial (≥85%)</strong>, quedando 2,40 puntos por debajo. Para superar el umbral, el factor de Rendimiento ($P' = 90,00\%$) requiere recuperación adicional de la velocidad nominal de diseño (150 piezas/min), o bien una combinación de reducciones adicionales en latencia y defectos.</p>
+    </div>
+
+    <h3>5. Rúbrica Analítica de Evaluación (Total: 100 Puntos)</h3>
+
+    <div class="table-wrap">
+      <table class="data rubric">
+        <thead>
+          <tr>
+            <th>Criterio de Evaluación</th>
+            <th>Insuficiente (0–59)</th>
+            <th>En Desarrollo (60–79)</th>
+            <th>Competente (80–89)</th>
+            <th>Sobresaliente (90–100)</th>
+            <th>Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Modelación Matemática y Deducción de Pérdidas</strong></td>
+            <td>Errores en la formulación del OEE; no discrimina la latencia cognitiva del fallo mecánico; unidades inconsistentes.</td>
+            <td>Calcula el OEE pero omite el desglose formal de microparadas o comete fallas menores de redondeo.</td>
+            <td>Deduce con rigor matemático cada componente en LaTeX; discrimina la latencia cognitiva con precisión numérica.</td>
+            <td>Deducción matemática exhaustiva en LaTeX, análisis de sensibilidad en las cifras significativas y justificación operativa de cada variable.</td>
+            <td>35%</td>
+          </tr>
+          <tr>
+            <td><strong>Diagnóstico Neuroergonómico y Psicosocial</strong></td>
+            <td>Enfoque superficial; atribuye el problema exclusivamente a desidia del operario o a fallas mecánicas.</td>
+            <td>Cita modelos teóricos (Karasek, Wickens) de forma aislada sin correlacionarlos con las métricas de planta.</td>
+            <td>Articula de forma coherente la sobrecarga perceptual (HMI), la pérdida de vigilancia y el ritmo circadiano con los defectos.</td>
+            <td>Diagnóstico sociotécnico de nivel avanzado: integra NASA-TLX, SUS, leyes ergonómicas (Hick/Fitts) y cronobiología con el impacto en el OEE.</td>
+            <td>30%</td>
+          </tr>
+          <tr>
+            <td><strong>Propuesta de Reingeniería Sociotécnica</strong></td>
+            <td>Medidas punitivas o genéricas sin rigor ingenieril ni sustento normativo.</td>
+            <td>Sugiere cambios ergonómicos pero sin alineación explícita a normas de interfaz ni cuantificación temporal.</td>
+            <td>Propone rediseño de interfaz basado en ANSI/ISA-18.2 y esquemas de rotación validados técnicamente.</td>
+            <td>Propuesta integral de optimización industrial: ingeniería de interfaz (ISA-18.2), enriquecimiento del puesto (<em>Job Enrichment</em>), pausas activas y validación de factibilidad.</td>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <td><strong>Estructura y Rigor Académico (APA 7.ª)</strong></td>
+            <td>Estructura desordenada; ausencia de citas o uso incorrecto del estándar bibliográfico.</td>
+            <td>Estructura aceptable pero con deficiencias de estilo técnico o citas incompletas.</td>
+            <td>Documento técnico formal con redacción directa, tablas de alta densidad y citas pertinentes.</td>
+            <td>Redacción técnica impecable de nivel maestría, jerarquía visual óptima y referencias bibliográficas rigurosas bajo APA 7.ª edición.</td>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>7. Referencias en Formato APA (7.ª edición)</h3>
+    <ul>
+      <li>American Psychological Association. (2020). <em>APA handbook of industrial and organizational psychology</em>. American Psychological Association.</li>
+      <li>International Society of Automation. (2016). <em>Management of alarm systems for the process industries</em> (ANSI/ISA-18.2-2016). ISA.</li>
+      <li>Karasek, R., &amp; Theorell, T. (1990). <em>Healthy work: Stress, productivity, and the reconstruction of working life</em>. Basic Books.</li>
+      <li>Nakajima, S. (1988). <em>Introduction to TPM: Total productive maintenance</em>. Productivity Press.</li>
+      <li>Wickens, C. D., Hollands, J. G., Banbury, S., &amp; Parasuraman, R. (2021). <em>Engineering psychology and human performance</em> (5th ed.). Routledge. <a href="https://doi.org/10.4324/9781003177616">https://doi.org/10.4324/9781003177616</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="app-footer">
+  <p><strong>Psicología Laboral en la Empresa</strong> — Material didáctico · Facultad de Sistemas y Telecomunicaciones / Ingeniería Industrial — UPSE</p>
+  <p style="margin-top:6px; font-size:12px;">Los solucionarios de los Talleres (Pestañas 3, 4 y 5) están protegidos con clave de acceso docente.</p>
+</footer>
+
+<script>
+  // ===== TAB NAVIGATION =====
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById(targetTab);
+      panel.classList.add('active');
+      // Re-render MathJax when tab becomes visible
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([panel]).catch(()=>{});
+      }
+      // Scroll to top of content
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ===== PASSWORD GATE =====
+  const ACCESS_KEY = '1981';
+  // Use sessionStorage so the unlock persists during the session
+  function unlockContent(gateId) {
+    const gate = document.querySelector(`#lock-${gateId}`);
+    if (!gate) return;
+    const input = gate.querySelector('input');
+    const errBox = gate.querySelector('.lock-error');
+    const val = (input.value || '').trim();
+    if (val === ACCESS_KEY) {
+      const target = document.getElementById(`protected-${gateId}`);
+      if (target) {
+        target.classList.add('unlocked');
+        gate.style.display = 'none';
+        try { sessionStorage.setItem(`unlock_${gateId}`, '1'); } catch(e){}
+        // Re-typeset math inside unlocked content
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([target]).catch(()=>{});
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      errBox.textContent = '✗ Clave incorrecta. Intente nuevamente.';
+      input.value = '';
+      input.focus();
+    }
+  }
+  function handleKey(e, gateId) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      unlockContent(gateId);
+    }
+  }
+  // Restore unlock state on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    ['taller3','eval4','async5'].forEach(id => {
+      try {
+        if (sessionStorage.getItem(`unlock_${id}`) === '1') {
+          const target = document.getElementById(`protected-${id}`);
+          const gate = document.querySelector(`#lock-${id}`);
+          if (target && gate) {
+            target.classList.add('unlocked');
+            gate.style.display = 'none';
+            if (window.MathJax && window.MathJax.typesetPromise) {
+              window.MathJax.typesetPromise([target]).catch(()=>{});
+            }
+          }
+        }
+      } catch(e){}
+    });
+  });
+</script>
+
+</body>
+</html>
