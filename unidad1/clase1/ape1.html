@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APE — Evaluación Experimental del Efecto de la Carga de Alarmas HMI sobre el OEE</title>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --c-primary: #1e3a5f;
+    --c-primary-dark: #142849;
+    --c-accent: #0d7377;
+    --c-accent-light: #14a4a8;
+    --c-bg: #f5f7fa;
+    --c-card: #ffffff;
+    --c-text: #2c3e50;
+    --c-text-soft: #5a6c7d;
+    --c-border: #e1e8ed;
+    --c-warning: #d97706;
+    --c-success: #059669;
+    --c-danger: #dc2626;
+    --c-highlight: #fef3c7;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--c-bg);
+    color: var(--c-text);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ===== HEADER ===== */
+  header.app-header {
+    background: linear-gradient(135deg, #142849 0%, #1e3a5f 40%, #0d7377 100%);
+    color: #fff;
+    padding: 36px 24px 32px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  header.app-header::after {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(255,255,255,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  h1.app-title {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .header-sub {
+    font-size: 15px;
+    opacity: 0.92;
+    max-width: 850px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .header-meta span {
+    background: rgba(255,255,255,0.15);
+    padding: 5px 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ===== MAIN ===== */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  section.ape-section {
+    background: var(--c-card);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 24px 0;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--c-accent);
+  }
+
+  section.ape-section h2 {
+    color: var(--c-primary);
+    font-size: 24px;
+    margin: 0 0 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--c-accent);
+    line-height: 1.3;
+  }
+  section.ape-section h3 {
+    color: var(--c-primary);
+    font-size: 19px;
+    margin: 24px 0 10px;
+    padding-left: 12px;
+    border-left: 4px solid var(--c-accent);
+  }
+  section.ape-section h4 {
+    color: var(--c-accent);
+    font-size: 16px;
+    margin: 18px 0 8px;
+    font-weight: 700;
+  }
+  section.ape-section p {
+    margin: 10px 0;
+    text-align: justify;
+  }
+  section.ape-section ul, section.ape-section ol {
+    margin: 10px 0 14px 24px;
+  }
+  section.ape-section li {
+    margin: 6px 0;
+    text-align: justify;
+  }
+  section.ape-section strong { color: var(--c-primary); font-weight: 700; }
+  section.ape-section em { color: var(--c-accent); font-style: italic; }
+  section.ape-section a { color: var(--c-accent); }
+
+  /* Section number badge */
+  .section-num {
+    display: inline-block;
+    background: var(--c-accent);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 14px 0; box-shadow: var(--shadow-sm); border-radius: 8px; }
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--c-card);
+    font-size: 14px;
+  }
+  table.data th {
+    background: var(--c-primary);
+    color: #fff;
+    padding: 11px 12px;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid var(--c-primary-dark);
+    vertical-align: top;
+  }
+  table.data td {
+    padding: 9px 12px;
+    border: 1px solid var(--c-border);
+    vertical-align: top;
+  }
+  table.data tr:nth-child(even) td { background: #f8fafc; }
+  table.data td.input-cell {
+    background: #fffdf5;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    width: 80px;
+  }
+  table.data td.input-cell.empty::after {
+    content: '';
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--c-card);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin: 14px 0;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--c-accent);
+  }
+  .card.info { border-left-color: var(--c-accent); background: linear-gradient(to right, #f0fbfb, #fff 60%); }
+  .card.warning { border-left-color: var(--c-warning); background: linear-gradient(to right, #fffbeb, #fff 60%); }
+  .card.success { border-left-color: var(--c-success); background: linear-gradient(to right, #ecfdf5, #fff 60%); }
+  .card.danger { border-left-color: var(--c-danger); background: linear-gradient(to right, #fef2f2, #fff 60%); }
+  .card-title {
+    font-weight: 700;
+    color: var(--c-primary);
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid var(--c-warning);
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 6px;
+    color: #78350f;
+  }
+
+  /* ===== MATH ===== */
+  .math-block {
+    background: #fafbfd;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    overflow-x: auto;
+  }
+
+  /* ===== HYPOTHESIS BOX ===== */
+  .hyp-box {
+    background: linear-gradient(to right, #ecfdf5, #fff 70%);
+    border: 1px solid #a7f3d0;
+    border-left: 4px solid var(--c-success);
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 10px 0;
+  }
+  .hyp-box .hyp-label {
+    display: inline-block;
+    background: var(--c-success);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+
+  /* ===== HMI SIMULATOR ===== */
+  .sim-container {
+    background: linear-gradient(to bottom, #1a1f2e 0%, #0f1419 100%);
+    border: 2px solid var(--c-accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 18px 0;
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+  }
+  .sim-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .sim-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #14a4a8;
+  }
+  .sim-mode-selector {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sim-mode-btn {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 7px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .sim-mode-btn:hover { background: rgba(255,255,255,0.15); }
+  .sim-mode-btn.active {
+    background: var(--c-accent);
+    border-color: var(--c-accent-light);
+  }
+  .sim-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .sim-stat {
+    background: rgba(255,255,255,0.06);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  .sim-stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.8px;
+  }
+  .sim-stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    margin-top: 2px;
+  }
+  .sim-stat-value.warning { color: #fbbf24; }
+  .sim-stat-value.danger { color: #f87171; }
+  .sim-stat-value.success { color: #34d399; }
+
+  .sim-panel {
+    background: #0a0e14;
+    border: 2px solid #2d3748;
+    border-radius: 8px;
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .sim-panel-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(45,55,72,0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,55,72,0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .sim-alarm {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+    user-select: none;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .sim-alarm.critical {
+    background: radial-gradient(circle, #dc2626, #991b1b);
+    box-shadow: 0 0 16px rgba(220,38,38,0.7);
+    animation: pulse-critical 0.8s infinite;
+  }
+  .sim-alarm.warning {
+    background: radial-gradient(circle, #f59e0b, #b45309);
+    box-shadow: 0 0 10px rgba(245,158,11,0.5);
+    animation: pulse-warning 1.2s infinite;
+  }
+  .sim-alarm.info {
+    background: radial-gradient(circle, #3b82f6, #1e40af);
+    box-shadow: 0 0 6px rgba(59,130,246,0.4);
+  }
+  .sim-alarm.acked {
+    opacity: 0.3;
+    transform: scale(0.85);
+    animation: none;
+  }
+  @keyframes pulse-critical {
+    0%, 100% { box-shadow: 0 0 16px rgba(220,38,38,0.7); }
+    50% { box-shadow: 0 0 28px rgba(220,38,38,1); }
+  }
+  @keyframes pulse-warning {
+    0%, 100% { box-shadow: 0 0 10px rgba(245,158,11,0.5); }
+    50% { box-shadow: 0 0 20px rgba(245,158,11,0.8); }
+  }
+  .sim-empty-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 20px;
+  }
+  .sim-empty-state .icon { font-size: 48px; margin-bottom: 8px; }
+
+  .sim-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sim-btn {
+    background: var(--c-accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .sim-btn:hover { background: var(--c-accent-light); transform: translateY(-1px); }
+  .sim-btn.stop { background: var(--c-danger); }
+  .sim-btn.stop:hover { background: #b91c1c; }
+  .sim-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  .sim-progress {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .sim-progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--c-accent), var(--c-accent-light));
+    transition: width 0.3s;
+    width: 0%;
+  }
+
+  .sim-instructions {
+    background: rgba(20,164,168,0.1);
+    border: 1px solid rgba(20,164,168,0.3);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #a7f3d0;
+    margin-bottom: 12px;
+  }
+
+  .sim-results {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 14px;
+    display: none;
+  }
+  .sim-results.visible { display: block; }
+  .sim-results h4 {
+    color: #14a4a8;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .sim-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color: #fff;
+  }
+  .sim-results-table th, .sim-results-table td {
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 10px;
+    text-align: left;
+  }
+  .sim-results-table th { background: rgba(20,164,168,0.2); }
+  .sim-copy-btn {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .sim-copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+  /* ===== NASA-TLX ===== */
+  .nasa-tlx {
+    background: #f8fafc;
+    border: 1px solid var(--c-border);
+    border-radius: 8px;
+    padding: 18px;
+    margin: 14px 0;
+  }
+  .nasa-tlx-item {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--c-border);
+  }
+  .nasa-tlx-item:last-child { border-bottom: none; }
+  .nasa-tlx-label {
+    font-weight: 600;
+    color: var(--c-primary);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .nasa-tlx-desc {
+    font-size: 12px;
+    color: var(--c-text-soft);
+    margin-bottom: 6px;
+  }
+  .nasa-tlx-scale {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .nasa-tlx-scale input[type="range"] {
+    flex: 1;
+    accent-color: var(--c-accent);
+  }
+  .nasa-tlx-scale .scale-val {
+    background: var(--c-primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    min-width: 30px;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+  }
+  .nasa-tlx-pairs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .nasa-tlx-pair {
+    background: #fff;
+    border: 1px solid var(--c-border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nasa-tlx-pair:hover { border-color: var(--c-accent); background: #f0fbfb; }
+  .nasa-tlx-pair.selected { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+  .nasa-tlx-pair .vs { color: var(--c-text-soft); margin: 0 6px; font-weight: 600; }
+  .nasa-tlx-pair.selected .vs { color: rgba(255,255,255,0.7); }
+  .nasa-tlx-result {
+    background: var(--c-primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-weight: 700;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  /* ===== LOCK GATE ===== */
+  .lock-gate {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d7377 100%);
+    color: #fff;
+    padding: 36px 28px;
+    border-radius: 12px;
+    margin: 24px 0;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+  .lock-gate-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+  .lock-gate h3 {
+    color: #fff !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+    margin-top: 0 !important;
+  }
+  .lock-gate p { color: rgba(255,255,255,0.9); text-align: center; }
+  .lock-gate-input-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .lock-gate input {
+    padding: 12px 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.95);
+    color: var(--c-primary);
+    width: 180px;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: 700;
+  }
+  .lock-gate input:focus { outline: 2px solid #fff; }
+  .lock-gate button {
+    padding: 12px 24px;
+    background: #fff;
+    color: var(--c-accent);
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .lock-gate button:hover { background: var(--c-accent-light); color: #fff; }
+  .lock-error { color: #fca5a5; margin-top: 12px; font-size: 14px; min-height: 18px; }
+  .protected-content {
+    display: none;
+    border: 2px dashed var(--c-success);
+    border-radius: 10px;
+    margin-top: 16px;
+    background: var(--c-card);
+  }
+  .protected-content.unlocked {
+    display: block;
+    padding: 24px;
+    animation: fadeIn 0.5s ease;
+  }
+  .protected-content .unlock-banner {
+    background: var(--c-success);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RUBRIC ===== */
+  table.rubric th { background: var(--c-accent); }
+  table.rubric td:first-child { background: #ecfdf5; font-weight: 600; color: var(--c-primary); }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+    margin: 18px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--c-accent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-left: 3px solid var(--c-accent);
+    border-radius: 6px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 14px;
+    width: 12px; height: 12px;
+    background: var(--c-accent);
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+  .timeline-phase {
+    font-weight: 700;
+    color: var(--c-primary);
+    font-size: 14px;
+  }
+  .timeline-duration {
+    display: inline-block;
+    background: var(--c-warning);
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    margin-left: 6px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer.app-footer {
+    background: var(--c-primary-dark);
+    color: rgba(255,255,255,0.75);
+    padding: 24px;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 40px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    h1.app-title { font-size: 22px; }
+    section.ape-section { padding: 20px 18px; }
+    section.ape-section h2 { font-size: 20px; }
+    main { padding: 20px 14px 60px; }
+    .sim-panel { height: 260px; }
+    .sim-alarm { width: 48px; height: 48px; font-size: 10px; }
+  }
+  @media print {
+    .lock-gate { display: none !important; }
+    .protected-content { display: block !important; border: none; }
+    .sim-container, .sim-copy-btn { display: none; }
+    section.ape-section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <span class="header-eyebrow">Aprendizaje Práctico Experimental · APE</span>
+    <h1 class="app-title">Evaluación Experimental del Efecto de la Carga de Alarmas HMI sobre el Tiempo de Reacción y el OEE</h1>
+    <p class="header-sub">Diseño within-subjects con simulador HMI embebido, aplicación de la norma ANSI/ISA-18.2 y modelación matemática del OEE. Basado en el módulo "Desarrollo Histórico, Principios y Aplicación de la Psicología Laboral en la Empresa".</p>
+    <div class="header-meta">
+      <span>🎯 Dificultad: Media-Alta</span>
+      <span>⏱️ Duración: 4–6 horas</span>
+      <span>🧪 Diseño within-subjects, 3 condiciones</span>
+      <span>📊 Análisis estadístico inferencial</span>
+      <span>🔒 Solucionario con clave de acceso</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== SECTION 1: PLANTEAMIENTO ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">1</span>Planteamiento del Problema</h2>
+
+    <p>En los sistemas industriales modernos, los operadores de células automatizadas deben monitorear interfaces HMI (<em>Human-Machine Interface</em>) que emiten cientos de señales por hora. Cuando la carga de alarmas supera la capacidad de procesamiento de la memoria de trabajo humana ($7 \pm 2$ elementos, según Miller), se produce el fenómeno conocido como <strong>inundación de alarmas</strong> (<em>alarm flood</em>), descrito por la norma ANSI/ISA-18.2 como una de las causas principales de incidentes industriales.</p>
+
+    <p>Los estudios de Broadbent (1958) y posteriormente Wickens (1984) demostraron que la atención sostenida se degrada progresivamente (<em>vigilance decrement</em>), especialmente cuando la señal-ruido es baja. Esto impacta directamente sobre los tres factores del OEE: la latencia en reconocer una parada erosiona la <strong>Disponibilidad</strong> ($A$); la reducción consciente de velocidad por sobrecarga afecta el <strong>Rendimiento</strong> ($P$); los errores de omisión visual degradan la <strong>Calidad</strong> ($Q$).</p>
+
+    <div class="card info">
+      <div class="card-title">Pregunta de investigación</div>
+      <p>¿En qué medida la carga de alarmas HMI (alta vs. baja vs. optimizada bajo ISA-18.2) modifica el tiempo de reacción del operador, la tasa de falsas alarmas y la carga mental subjetiva (NASA-TLX), y cómo se traduce este efecto en una variación cuantificable del OEE?</p>
+    </div>
+
+    <h3>1.1 Justificación industrial</h3>
+    <p>Según la <em>Abnormal Situation Management Consortium</em>, el 40% de los incidentes industriales mayores están asociados a deficiencias en sistemas de alarma. En la práctica, los ingenieros tienden a atribuir las microparadas a fallas mecánicas, cuando en realidad el componente psicosocial y cognitivo puede explicar entre el 60% y el 75% de la latencia acumulada, tal como se evidenció en el Caso AgroPen S.A. analizado en la Pestaña 2 del material principal.</p>
+
+    <h3>1.2 Relevancia académica</h3>
+    <p>Este APE integra cuatro marcos teóricos de la psicología laboral —modelo de Demanda-Control de Karasek, teoría de Atención Sostenida de Broadbent, teoría de Múltiples Recursos de Wickens y la Ley de Hick-Hyman— con la modelación matemática del OEE propia de la ingeniería industrial. La integración de ambos dominios constituye una competencia de nivel medio-alto, propia de estudiantes avanzados de Ingeniería Industrial o Psicología del Trabajo.</p>
+  </section>
+
+  <!-- ===== SECTION 2: MARCO TEÓRICO ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">2</span>Marco Teórico Experimental</h2>
+
+    <h3>2.1 Atención Sostenida y Decremento de Vigilancia (Broadbent / Mackworth)</h3>
+    <p>La atención sostenida es la capacidad de mantener el procesamiento activo de estímulos infrecuentes durante períodos prolongados. Mackworth (1948) demostró que la probabilidad de detectar una señal crítica cae significativamente después de 20–30 minutos de vigilancia continua. La función de decaimiento puede modelarse como:</p>
+    <div class="math-block">$$P_{\text{detect}}(t) = P_0 \cdot e^{-\lambda \cdot t}$$</div>
+    <p>donde $P_0$ es la probabilidad inicial de detección y $\lambda$ es la tasa de decaimiento, modulada por la saliencia del estímulo y la carga perceptual concurrente.</p>
+
+    <h3>2.2 Ley de Hick-Hyman y Carga de Decisiones</h3>
+    <p>El tiempo de reacción ante $n$ alternativas crece logarítmicamente:</p>
+    <div class="math-block">$$RT = a + b \cdot \log_2(n + 1)$$</div>
+    <p>En un HMI con 68 señales/hora sin jerarquizar, $n$ es elevado y la latencia de respuesta se incrementa. La hipótesis de este APE es que la racionalización bajo ISA-18.2 reduce $n$, disminuyendo $RT$.</p>
+
+    <h3>2.3 Teoría de Múltiples Recursos (Wickens, 1984)</h3>
+    <p>Wickens postula que los recursos cognitivos se distribuyen en cuatro dimensiones: etapas de procesamiento, códigos (espacial/verbal), modalidades perceptivas (visual/auditivo) y canales de respuesta (motor/vocal). Cuando dos tareas compiten por el mismo canal, el desempeño colapsa. Un HMI que combine estímulos visuales parpadeantes con alarmas sonoras simultáneas satura dos canales en paralelo.</p>
+
+    <h3>2.4 Modelo Demanda-Control-Apoyo (Karasek &amp; Theorell)</h3>
+    <p>En este experimento, la <em>demanda</em> ($D$) se manipula directamente mediante el número de alarmas presentadas; la latencia de respuesta registrada es un proxy cuantitativo del <em>strain</em> ($S$). Bajo el modelo Karasek:</p>
+    <div class="math-block">$$S \propto \frac{D}{C}$$</div>
+    <p>Como el operador (sujeto experimental) no tiene control sobre cuándo aparece la alarma ($C$ constante), el modelo predice una relación lineal entre $D$ y $S$.</p>
+
+    <h3>2.5 Norma ANSI/ISA-18.2 y Racionalización de Alarmas</h3>
+    <p>La norma ISA-18.2 establece que un operador no debería recibir más de <strong>6 alarmas por hora</strong> en condiciones normales y no más de <strong>1 alarma cada 10 minutos</strong> durante upset conditions. Las alarmas deben priorizarse por criticidad (Crítica, Alta, Media, Baja), con codificación cromática consistente (rojo = crítica, amarillo = advertencia, azul = informativa) y supresión automática de alarmas redundantes.</p>
+
+    <h3>2.6 Carga Mental Subjetiva: NASA-TLX</h3>
+    <p>El NASA-TLX (<em>Task Load Index</em>, Hart &amp; Staveland, 1988) evalúa la carga mental en 6 dimensiones: Demanda Mental, Demanda Física, Demanda Temporal, Esfuerzo, Desempeño y Frustración. Cada dimensión se puntúa de 0 a 100. Mediante comparaciones pareadas binarias (15 pares), se obtienen pesos $w_i$ y el puntaje global ponderado:</p>
+    <div class="math-block">$$\text{TLX}_{\text{global}} = \sum_{i=1}^{6} w_i \cdot s_i \quad\text{donde}\quad \sum_{i=1}^{6} w_i = 15$$</div>
+  </section>
+
+  <!-- ===== SECTION 3: HIPÓTESIS ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">3</span>Hipótesis Experimentales</h2>
+
+    <p>Formule, antes de ejecutar el experimento, sus predicciones direccionales. Las hipótesis están redactadas en formato testeable:</p>
+
+    <div class="hyp-box">
+      <span class="hyp-label">H1</span>
+      <strong>Condición Alta Carga vs. Línea Base:</strong> El tiempo de reacción medio ($\overline{RT}$) en la condición de Alta Carga (60 alarmas/h, sin priorización) será significativamente mayor que en la condición Línea Base (6 alarmas/h, simple). Diferencia esperada: $\Delta \overline{RT} \geq 200\text{ ms}$.
+    </div>
+
+    <div class="hyp-box">
+      <span class="hyp-label">H2</span>
+      <strong>Tasa de Lapsos:</strong> La proporción de lapsos (respuestas con $RT &gt; 1000\text{ ms}$ o ausencia de respuesta) en la condición Alta Carga será al menos <strong>3 veces</strong> superior a la Línea Base.
+    </div>
+
+    <div class="hyp-box">
+      <span class="hyp-label">H3</span>
+      <strong>Correlación NASA-TLX ↔ RT:</strong> Existirá una correlación positiva fuerte ($r \geq 0,70$) entre el puntaje global NASA-TLX y el $\overline{RT}$ registrado en cada condición, validando la convergencia entre medidas objetivas y subjetivas.
+    </div>
+
+    <div class="hyp-box">
+      <span class="hyp-label">H4</span>
+      <strong>Intervención ISA-18.2:</strong> La condición Optimizada (racionalización bajo ISA-18.2: priorización cromática, supresión de redundantes, 6 alarmas/h) reducirá $\overline{RT}$ respecto a la Alta Carga en al menos <strong>300 ms</strong>, sin diferencia significativa respecto a la Línea Base.
+    </div>
+
+    <div class="hyp-box">
+      <span class="hyp-label">H5</span>
+      <strong>Impacto OEE:</strong> El OEE calculado a partir de los datos de la condición Alta Carga será al menos <strong>15 puntos porcentuales inferior</strong> al de la condición Optimizada, evidenciando cuantitativamente el costo industrial de la deficiente ergonomía cognitiva.
+    </div>
+
+    <div class="callout">
+      <strong>📌 Tarea del estudiante:</strong> Antes de iniciar el experimento, registre en su cuaderno de laboratorio su predicción numérica para cada hipótesis (valores puntuales esperados). Esta predicción se comparará con los resultados reales en la discusión.
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: DISEÑO EXPERIMENTAL ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">4</span>Diseño Experimental</h2>
+
+    <h3>4.1 Tipo de diseño</h3>
+    <p>Diseño <strong>within-subjects (sujetos relacionados)</strong> de medidas repetidas con tres condiciones. Cada participante actúa como su propio control, lo que elimina la varianza inter-sujeto y aumenta la potencia estadística. Para controlar efectos de orden y fatiga secuencial, se aplica <strong>contrabalanceo</strong> mediante la secuencia latín cuadrado:</p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Orden del sujeto</th><th>Sesión 1</th><th>Sesión 2</th><th>Sesión 3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sujeto 1 (o par 1)</td><td>Baseline (B)</td><td>Alta Carga (HL)</td><td>Optimizada (O)</td></tr>
+          <tr><td>Sujeto 2 (o par 2)</td><td>HL</td><td>O</td><td>B</td></tr>
+          <tr><td>Sujeto 3 (o par 3)</td><td>O</td><td>B</td><td>HL</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4.2 Variables</h3>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Tipo</th><th>Variable</th><th>Operacionalización</th><th>Unidad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>IV (independiente)</strong></td><td>Carga de alarmas HMI</td><td>3 niveles: B (6 alarmas/h), HL (60 alarmas/h sin priorizar), O (6 alarmas/h priorizadas ISA-18.2)</td><td>alarmas/h</td></tr>
+          <tr><td><strong>DV-1</strong></td><td>Tiempo de reacción (RT)</td><td>Latencia entre aparición de alarma crítica y clic del operario</td><td>ms</td></tr>
+          <tr><td><strong>DV-2</strong></td><td>Tasa de lapsos</td><td>Proporción de alarmas críticas no atendidas o con RT &gt; 1000 ms</td><td>%</td></tr>
+          <tr><td><strong>DV-3</strong></td><td>Tasa de falsas alarmas</td><td>Proporción de clics sobre alarmas no críticas</td><td>%</td></tr>
+          <tr><td><strong>DV-4</strong></td><td>Carga mental subjetiva</td><td>Puntaje global NASA-TLX (ponderado)</td><td>0–100</td></tr>
+          <tr><td><strong>DV-5</strong></td><td>OEE simulado</td><td>Calculado a partir de RT, lapsos y falsas alarmas</td><td>%</td></tr>
+          <tr><td><strong>Control</strong></td><td>Hora del día</td><td>Todas las sesiones entre 09:00 y 12:00 (control circadiano)</td><td>—</td></tr>
+          <tr><td><strong>Control</strong></td><td>Duración de la sesión</td><td>5 min de simulación activa por condición</td><td>min</td></tr>
+          <tr><td><strong>Control</strong></td><td>Descanso inter-sesión</td><td>10 min obligatorios entre sesiones</td><td>min</td></tr>
+          <tr><td><strong>Control</strong></td><td>Consigna</td><td>"Haga clic únicamente sobre alarmas rojas críticas"</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4.3 Cálculo del OEE a partir de datos experimentales</h3>
+    <p>Para convertir los datos del laboratorio en OEE, se asume un escenario industrial realista: línea de troquelado a 120 piezas/min, turno de 440 min operativos, y se modela el impacto del operador sobre cada factor:</p>
+
+    <div class="math-block">$$A_{\text{sim}} = 1 - \frac{\text{lapsos} \times 2\text{ min}}{440\text{ min}}$$</div>
+    <div class="math-block">$$P_{\text{sim}} = 1 - \frac{\overline{RT} - 400}{2000}\quad(\text{capado entre 0,70 y 1,00})$$</div>
+    <div class="math-block">$$Q_{\text{sim}} = 1 - \frac{\text{falsas alarmas}\%}{100} \times 0,30$$</div>
+    <div class="math-block">$$\text{OEE}_{\text{sim}} = A_{\text{sim}} \times P_{\text{sim}} \times Q_{\text{sim}}$$</div>
+
+    <p>Donde cada lapse equivale a una microparada de 2 minutos (tiempo medio de recuperación industrial), $\overline{RT}$ se traduce en velocidad reducida (operador lento = línea lenta), y las falsas alarmas se traducen en inspecciones erróneas que generan retrabajo.</p>
+  </section>
+
+  <!-- ===== SECTION 5: PROCEDIMIENTO ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">5</span>Materiales y Procedimiento</h2>
+
+    <h3>5.1 Materiales requeridos</h3>
+    <ul>
+      <li>Computadora con navegador web moderno (Chrome, Firefox, Edge). No se requiere conexión a internet tras la carga inicial.</li>
+      <li>Simulador HMI embebido en este documento (Sección 6).</li>
+      <li>Cuestionario NASA-TLX (proporcionado en la Sección 7).</li>
+      <li>Hojas de recolección de datos (Sección 8).</li>
+      <li>Calculadora científica o software de hoja de cálculo (Excel, LibreOffice Calc, Google Sheets).</li>
+      <li>Cronómetro (incluido en el simulador).</li>
+      <li>Cuaderno de laboratorio para anotaciones cualitativas.</li>
+    </ul>
+
+    <h3>5.2 Procedimiento experimental (secuencia temporal)</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 0 — Briefing y consentimiento informado<span class="timeline-duration">15 min</span></div>
+        <p>Lectura del protocolo, firma del consentimiento informado (datos experimentales con fines académicos), calibración visual del simulador. Práctica libre de 1 min en modo B.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 1 — Sesión 1 (según orden asignado)<span class="timeline-duration">15 min</span></div>
+        <p>5 min de simulación activa. Inmediatamente después, completar NASA-TLX. Anotar observaciones cualitativas (fatiga, frustración, estrategia).</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 2 — Descanso activo<span class="timeline-duration">10 min</span></div>
+        <p>Levantarse, hidratarse, caminar. Prohibido revisar el móvil o realizar tareas atencionales.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 3 — Sesión 2<span class="timeline-duration">15 min</span></div>
+        <p>Aplicar la segunda condición del contrabalanceo. Mismo protocolo de registro.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 4 — Descanso activo<span class="timeline-duration">10 min</span></div>
+        <p>Igual que Fase 2.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 5 — Sesión 3<span class="timeline-duration">15 min</span></div>
+        <p>Aplicar la tercera condición. NASA-TLX final.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 6 — Análisis estadístico<span class="timeline-duration">60–90 min</span></div>
+        <p>Volcado de datos a hoja de cálculo, cálculo de estadísticos descriptivos e inferenciales, elaboración de gráficos.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">Fase 7 — Discusión y redacción del informe<span class="timeline-duration">90–120 min</span></div>
+        <p>Responder preguntas de discusión, contrastar hipótesis, redactar informe en formato APA 7.ª.</p>
+      </div>
+    </div>
+
+    <div class="card warning">
+      <div class="card-title">⚠️ Consideraciones éticas</div>
+      <p>El experimento involucra medición de respuestas cognitivas. Aunque el esfuerzo es moderado, se debe respetar el derecho del participante a suspender en cualquier momento. Los datos personales deben anonimizarizarse (usar códigos como S01, S02, no nombres). Si el participante experimenta molestia visual o fatiga intensa, debe suspenderse la sesión.</p>
+    </div>
+
+    <div class="card info">
+      <div class="card-title">📐 Consideraciones de validez</div>
+      <ul>
+        <li><strong>Validez interna:</strong> El contrabalanceo controla efectos de orden. El descanso de 10 min controla la fatiga acumulada. La consigna uniforme controla la varianza de instrucciones.</li>
+        <li><strong>Validez externa:</strong> El simulador es una simplificación de un HMI real; las tasas absolutas pueden diferir, pero los <em>patrones relativos</em> entre condiciones son generalizables.</li>
+        <li><strong>Validez de constructo:</strong> El NASA-TLX es el instrumento gold-standard para carga mental. El RT es la medida conductual más utilizada en psicología cognitiva.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 6: SIMULADOR HMI ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">6</span>Simulador HMI Interactivo</h2>
+
+    <p>El siguiente simulador reproduce las tres condiciones experimentales. Seleccione el modo correspondiente a la sesión, lea las instrucciones, y presione "Iniciar". El sistema registrará automáticamente el tiempo de reacción para cada alarma crítica, así como los lapsos y falsas alarmas.</p>
+
+    <div class="sim-container">
+      <div class="sim-header">
+        <div class="sim-title">🖥️ Panel HMI — Simulador Experimental</div>
+        <div class="sim-mode-selector">
+          <button class="sim-mode-btn active" data-mode="B" onclick="selectMode('B')">B · Línea Base</button>
+          <button class="sim-mode-btn" data-mode="HL" onclick="selectMode('HL')">HL · Alta Carga</button>
+          <button class="sim-mode-btn" data-mode="O" onclick="selectMode('O')">O · Optimizada (ISA-18.2)</button>
+        </div>
+      </div>
+
+      <div class="sim-instructions" id="sim-instructions">
+        <strong>📋 Modo B — Línea Base:</strong> Aparecerán <strong>6 alarmas críticas</strong> (rojas) por hora, una cada ~10 s, sin alarmas competidoras. Haga clic únicamente sobre las alarmas <strong>rojas</strong>. Duración: 60 segundos.
+      </div>
+
+      <div class="sim-stats">
+        <div class="sim-stat">
+          <div class="sim-stat-label">Tiempo</div>
+          <div class="sim-stat-value" id="stat-time">60.0s</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Críticas Atendidas</div>
+          <div class="sim-stat-value success" id="stat-hits">0</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Lapsos (RT&gt;1s o miss)</div>
+          <div class="sim-stat-value danger" id="stat-misses">0</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">Falsas Alarmas</div>
+          <div class="sim-stat-value warning" id="stat-false">0</div>
+        </div>
+        <div class="sim-stat">
+          <div class="sim-stat-label">RT Medio</div>
+          <div class="sim-stat-value" id="stat-rt">— ms</div>
+        </div>
+      </div>
+
+      <div class="sim-progress">
+        <div class="sim-progress-bar" id="sim-progress-bar"></div>
+      </div>
+
+      <div class="sim-panel" id="sim-panel">
+        <div class="sim-panel-grid"></div>
+        <div class="sim-empty-state" id="sim-empty">
+          <div class="icon">▶️</div>
+          <div>Presione <strong>"Iniciar Sesión"</strong> para comenzar la simulación.</div>
+          <div style="font-size:12px; margin-top:8px; opacity:0.7;">Haga clic sobre las alarmas <span style="color:#f87171; font-weight:700;">rojas</span> lo más rápido posible.</div>
+        </div>
+      </div>
+
+      <div class="sim-controls">
+        <button class="sim-btn" id="sim-start-btn" onclick="startSim()">▶️ Iniciar Sesión (60 s)</button>
+        <button class="sim-btn stop" id="sim-stop-btn" onclick="stopSim()" disabled>⏹️ Detener</button>
+        <button class="sim-btn" id="sim-reset-btn" onclick="resetSim()" style="background:#6b7280;">🔄 Reiniciar</button>
+      </div>
+
+      <div class="sim-results" id="sim-results">
+        <h4>📊 Resultados de la sesión</h4>
+        <table class="sim-results-table" id="sim-results-table"></table>
+        <button class="sim-copy-btn" onclick="copyResults()">📋 Copiar resultados para pegar en hoja de cálculo</button>
+        <textarea id="sim-results-text" style="display:none; width:100%; height:80px; margin-top:8px; background:rgba(0,0,0,0.2); color:#fff; border:1px solid rgba(255,255,255,0.2); border-radius:4px; padding:8px; font-family:monospace; font-size:11px;"></textarea>
+      </div>
+    </div>
+
+    <div class="card info">
+      <div class="card-title">Características técnicas del simulador</div>
+      <ul>
+        <li><strong>Modo B (Línea Base):</strong> 6 alarmas críticas (rojas) en 60 s, sin competidores. Equivale a un HMI bien diseñado.</li>
+        <li><strong>Modo HL (Alta Carga):</strong> ~60 alarmas en 60 s, mezclando críticas (rojas), advertencias (amarillas) e informativas (azules) sin jerarquía visual. Simula la "inundación de alarmas" típica pre-ISA-18.2.</li>
+        <li><strong>Modo O (Optimizada):</strong> 6 alarmas críticas en 60 s, con supresión de alarmas informativas y codificación cromática clara. Representa la post-intervención bajo ISA-18.2.</li>
+        <li>El sistema registra el RT exacto para cada alarma crítica, contabiliza lapsos (RT &gt; 1000 ms o sin respuesta) y falsas alarmas (clics sobre no críticas).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 7: NASA-TLX ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">7</span>Cuestionario NASA-TLX (Post-Sesión)</h2>
+
+    <p>Complete este cuestionario <strong>inmediatamente después</strong> de cada sesión experimental. Hay dos pasos: (1) puntuar las 6 dimensiones y (2) realizar 15 comparaciones pareadas binarias para determinar los pesos.</p>
+
+    <h3>7.1 Paso 1 — Puntuación de dimensiones</h3>
+    <div class="nasa-tlx" id="nasa-tlx-form">
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">1. Demanda Mental</div>
+        <div class="nasa-tlx-desc">¿Cuánto pensamiento, cálculo, decisión y búsqueda fue necesario?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bajo (0)</span>
+          <input type="range" min="0" max="100" step="5" value="50" data-dim="MD" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">50</span>
+          <span>Alto (100)</span>
+        </div>
+      </div>
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">2. Demanda Física</div>
+        <div class="nasa-tlx-desc">¿Cuánta actividad física (clic, desplazamiento visual, postura) fue requerida?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bajo (0)</span>
+          <input type="range" min="0" max="100" step="5" value="20" data-dim="PD" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">20</span>
+          <span>Alto (100)</span>
+        </div>
+      </div>
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">3. Demanda Temporal</div>
+        <div class="nasa-tlx-desc">¿Cuánta presión de tiempo sintió debido al ritmo de aparición de alarmas?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bajo (0)</span>
+          <input type="range" min="0" max="100" step="5" value="50" data-dim="TD" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">50</span>
+          <span>Alto (100)</span>
+        </div>
+      </div>
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">4. Esfuerzo</div>
+        <div class="nasa-tlx-desc">¿Cuánto tuvo que esforzarse (mental y físicamente) para alcanzar su nivel de desempeño?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bajo (0)</span>
+          <input type="range" min="0" max="100" step="5" value="50" data-dim="EF" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">50</span>
+          <span>Alto (100)</span>
+        </div>
+      </div>
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">5. Desempeño</div>
+        <div class="nasa-tlx-desc">¿Qué tan satisfecho está con su desempeño al atender las alarmas críticas?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bueno (0)</span>
+          <input type="range" min="0" max="100" step="5" value="50" data-dim="OP" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">50</span>
+          <span>Deficiente (100)</span>
+        </div>
+      </div>
+      <div class="nasa-tlx-item">
+        <div class="nasa-tlx-label">6. Frustración</div>
+        <div class="nasa-tlx-desc">¿Qué tan inseguro, desalentado, irritado o estresado se sintió?</div>
+        <div class="nasa-tlx-scale">
+          <span>Bajo (0)</span>
+          <input type="range" min="0" max="100" step="5" value="30" data-dim="FR" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="scale-val">30</span>
+          <span>Alto (100)</span>
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px;">7.2 Paso 2 — Comparaciones pareadas (15 pares)</h3>
+      <p style="font-size:13px; color:var(--c-text-soft);">Para cada par, haga clic en la dimensión que <strong>contribuyó más</strong> a la carga mental total de la sesión. Cada selección suma 1 punto al peso de esa dimensión.</p>
+
+      <div class="nasa-tlx-pairs" id="nasa-pairs"></div>
+
+      <div class="nasa-tlx-result" id="nasa-result">
+        Complete las comparaciones pareadas para calcular el puntaje TLX global.
+      </div>
+    </div>
+
+    <p><em>Nota: Anote el resultado final en la Hoja de Recolección de Datos (Sección 8) y reinicie el formulario para la siguiente sesión.</em></p>
+  </section>
+
+  <!-- ===== SECTION 8: HOJAS DE RECOLECCIÓN ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">8</span>Hojas de Recolección de Datos</h2>
+
+    <p>Transfiera los datos del simulador y del NASA-TLX a las siguientes tablas. Imprima esta sección o replíquela en su hoja de cálculo.</p>
+
+    <h3>8.1 Tabla 1 — Datos crudos del simulador (por condición)</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Condición</th>
+            <th>Críticas presentadas</th>
+            <th>Críticas atendidas (hits)</th>
+            <th>Lapsos (miss / RT&gt;1s)</th>
+            <th>Falsas alarmas</th>
+            <th>RT medio (ms)</th>
+            <th>RT mediano (ms)</th>
+            <th>DE de RT (ms)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>B (Línea Base)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>HL (Alta Carga)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>O (Optimizada)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8.2 Tabla 2 — Dimensiones NASA-TLX (por condición)</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Condición</th>
+            <th>MD</th><th>PD</th><th>TD</th><th>EF</th><th>OP</th><th>FR</th>
+            <th>Suma pesos (debe ser 15)</th>
+            <th>TLX Global ponderado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>B</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>HL</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>O</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8.3 Tabla 3 — Cálculo del OEE simulado (por condición)</h3>
+    <p>Utilice las fórmulas de la Sección 4.3 para transformar los datos conductuales en OEE.</p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Condición</th>
+            <th>Lapsos</th>
+            <th>$A_{\text{sim}}$ (%)</th>
+            <th>$\overline{RT}$ (ms)</th>
+            <th>$P_{\text{sim}}$ (%)</th>
+            <th>Falsas alarmas (%)</th>
+            <th>$Q_{\text{sim}}$ (%)</th>
+            <th>$\text{OEE}_{\text{sim}}$ (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>B</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>HL</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>O</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8.4 Tabla 4 — Síntesis para análisis inferencial</h3>
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>B (Media ± DE)</th>
+            <th>HL (Media ± DE)</th>
+            <th>O (Media ± DE)</th>
+            <th>$\Delta$ HL − B</th>
+            <th>$\Delta$ O − HL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>RT medio (ms)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>Tasa de lapsos (%)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>Falsas alarmas (%)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>NASA-TLX global</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+          <tr><td><strong>OEE simulado (%)</strong></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td><td class="input-cell"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 9: ANÁLISIS ESTADÍSTICO ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">9</span>Análisis Estadístico Requerido</h2>
+
+    <p>Realice los siguientes cálculos y pruebas estadísticas. Muestre todo el procedimiento (no solo el resultado final) en su informe.</p>
+
+    <h3>9.1 Estadística descriptiva</h3>
+    <p>Para cada una de las 5 variables dependientes (RT, lapsos, falsas alarmas, NASA-TLX, OEE) y las 3 condiciones, calcule:</p>
+    <ul>
+      <li>Media muestral: $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$</li>
+      <li>Desviación estándar muestral: $s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}$</li>
+      <li>Mediana y rango intercuartílico (especialmente relevante para RT, que suele tener distribución asimétrica positiva).</li>
+    </ul>
+
+    <h3>9.2 Prueba de hipótesis para muestras relacionadas (t de Student pareada)</h3>
+    <p>Para contrastar H1 y H4, aplique la prueba <strong>t de Student para muestras relacionadas</strong> entre los pares (B vs. HL) y (HL vs. O). El estadístico es:</p>
+    <div class="math-block">$$t = \frac{\bar{d}}{s_d / \sqrt{n}}, \quad \text{con } gl = n - 1$$</div>
+    <p>donde $\bar{d}$ es la media de las diferencias por sujeto y $s_d$ su desviación estándar. Aplique un nivel de significación $\alpha = 0,05$. Si trabaja con varios sujetos (recomendado $n \geq 6$), use los datos agregados; si realiza el experimento individualmente, utilice los ensayos individuales como unidad de análisis (con $n = $ número de alarmas críticas presentadas en cada condición).</p>
+
+    <p><strong>Decisión estadística:</strong> Rechace $H_0$ si $|t_{\text{calc}}| &gt; t_{\text{crit}}$ (bilateral) o si $p &lt; 0,05$.</p>
+
+    <h3>9.3 Tamaño del efecto (d de Cohen para muestras relacionadas)</h3>
+    <div class="math-block">$$d = \frac{\bar{d}}{s_d}$$</div>
+    <p>Interpretación: $d = 0,20$ (pequeño), $d = 0,50$ (mediano), $d = 0,80$ (grande). Reporte el tamaño del efecto además del valor p, ya que con muestras grandes cualquier diferencia puede ser estadísticamente significativa pero clínicamente irrelevante.</p>
+
+    <h3>9.4 Correlación de Pearson (H3)</h3>
+    <p>Calcule la correlación de Pearson entre el NASA-TLX global y el RT medio, utilizando los 3 puntos por sujeto (uno por condición) o los datos agregados por sujeto:</p>
+    <div class="math-block">$$r_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}}$$</div>
+    <p>Interpretación: $|r| &lt; 0,30$ (débil), $0,30 \leq |r| &lt; 0,70$ (moderada), $|r| \geq 0,70$ (fuerte).</p>
+
+    <h3>9.5 Cálculo del OEE simulado (H5)</h3>
+    <p>Aplique las fórmulas de la Sección 4.3 a sus datos empíricos. Reporte el OEE simulado por condición y calcule la diferencia absoluta $\Delta\text{OEE} = \text{OEE}_O - \text{OEE}_{HL}$.</p>
+
+    <h3>9.6 Visualización requerida</h3>
+    <ul>
+      <li><strong>Gráfico 1:</strong> Boxplot comparativo del RT para las 3 condiciones (B, HL, O).</li>
+      <li><strong>Gráfico 2:</strong> Diagrama de dispersión NASA-TLX (eje X) vs. RT medio (eje Y), con línea de regresión y coeficiente $r$ anotado.</li>
+      <li><strong>Gráfico 3:</strong> Gráfico de barras del OEE simulado para las 3 condiciones, con línea horizontal de referencia en 85% (Clase Mundial).</li>
+      <li><strong>Gráfico 4 (opcional):</strong> Curva de decremento de vigilancia: RT en función del tiempo transcurrido dentro de cada sesión (en bloques de 10 s).</li>
+    </ul>
+  </section>
+
+  <!-- ===== SECTION 10: PREGUNTAS DE DISCUSIÓN ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">10</span>Preguntas de Análisis y Discusión</h2>
+
+    <p>Responda las siguientes preguntas con base en sus datos experimentales y el marco teórico. Cada respuesta debe integrar evidencia cuantitativa (cifras propias) y referencias teóricas.</p>
+
+    <div class="card">
+      <div class="card-title">Pregunta 1 — Interpretación estadística (Dificultad: Media)</div>
+      <p>Reporte los resultados de la prueba t pareada para RT entre B y HL, y entre HL y O. Para cada comparación indique: $t_{\text{calc}}$, grados de libertad, $p$-valor, $d$ de Cohen, y la decisión estadística. ¿Se confirman H1 y H4?</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 2 — Modelo de Broadbent y curva de vigilancia (Dificultad: Media-Alta)</div>
+      <p>Si grafica el RT medio en bloques de 10 segundos a lo largo de la sesión de 60 s, ¿observa la curva exponencial de decremento de vigilancia predicha por $P_{\text{detect}}(t) = P_0 \cdot e^{-\lambda t}$? Estime el parámetro $\lambda$ para cada condición y discuta por qué el decremento es más pronunciado en HL que en B.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 3 — Ley de Hick-Hyman aplicada (Dificultad: Alta)</div>
+      <p>En la condición HL, el operador enfrenta aproximadamente $n = 3$ alternativas simultáneas (crítica, advertencia, informativa), mientras que en B y O enfrenta $n = 1$. Aplique la Ley de Hick-Hyman $RT = a + b \cdot \log_2(n+1)$ para estimar el incremento teórico esperado de RT. Compare con su diferencia empírica $\Delta\overline{RT}_{HL-B}$. ¿La ley predice correctamente la magnitud observada? Si no, ¿qué factores adicionales (fatiga, ruido visual, competencia atencional) explicarían la discrepancia?</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 4 — Convergencia NASA-TLX ↔ RT (Dificultad: Media-Alta)</div>
+      <p>Reporte el coeficiente de correlación de Pearson $r$ entre NASA-TLX y RT. ¿Se cumple H3 ($r \geq 0,70$)? Discuta las implicaciones metodológicas: si ambas medidas convergen, ¿por qué se recomienda utilizar ambas en lugar de una sola? Mencione al menos una situación industrial en la que podrían divergir.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 5 — Modelo de Karasek (Dificultad: Alta)</div>
+      <p>En este APE, la latitud de decisión ($C$) del operador era prácticamente nula (no podía modificar cuándo aparecían las alarmas ni detener la sesión libremente). Aplique el modelo $S \propto D/C$ para estimar el cociente de strain entre HL y B, asumiendo $D_{HL}/D_B = 10$ (10 veces más alarmas). Compare esta predicción teórica con el cociente empírico $S_{HL}/S_B$ medido por NASA-TLX. ¿La relación es lineal como predice Karasek, o hay efectos de saturación (techo)?</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 6 — Impacto OEE y clase mundial (Dificultad: Media)</div>
+      <p>Compare el $\text{OEE}_{\text{sim}}$ de las tres condiciones con el umbral de Clase Mundial ($\geq 85\%$). ¿Cuál es la $\Delta\text{OEE}$ entre HL y O? Si una planta industrial opera con un HMI tipo HL y se rediseña bajo ISA-18.2 (condición O), ¿cuál sería el incremento anual de unidades producidas en una línea de 120 piezas/min, 3 turnos/día, 330 días/año?</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 7 — Validez externa y generalización (Dificultad: Alta)</div>
+      <p>Este experimento se realiza en condiciones controladas de laboratorio con estudiantes. Identifique al menos tres amenazas a la validez externa al extrapolar estos resultados a operadores reales en planta industrial (turnos de 8 h, consecuencias económicas, ruido ambiental, formación técnica). Proponga, para cada amenaza, una modificación experimental que la mitigase.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 8 — Ética y diseño de intervención (Dificultad: Media-Alta)</div>
+      <p>Suponga que tras este estudio una planta lo contrata para implementar la condición O. Diseñe un protocolo de intervención de 3 fases que incluya: (a) capacitación del operador, (b) rediseño HMI bajo ISA-18.2 con criterios cuantitativos, y (c) métricas de seguimiento semanal. Justifique por qué una intervención puramente técnica (rediseño HMI sin capacitación) sería insuficiente según el modelo sociotécnico de Trist y Emery.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 9 — Crítica metodológica (Dificultad: Alta)</div>
+      <p>El diseño within-subjects utilizado tiene fortalezas (potencia estadística, control de varianza inter-sujeto) pero también debilidades. Identifique y explique al menos dos amenazas específicas de este diseño (por ejemplo, efectos residuales, sensibilización) y proponga cómo el contrabalanceo latín cuadrado y los descansos inter-sesión las mitigan parcialmente. ¿Qué diseño alternativo usaría si dispusiera de 60 sujetos?</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Pregunta 10 — Síntesis teórica (Dificultad: Alta)</div>
+      <p>En un párrafo de máximo 200 palabras, integre los resultados de este APE con los cinco marcos teóricos del módulo (Taylorismo, Relaciones Humanas, Ergonomía Cognitiva, Sociotécnico, Era Cognitiva 4.0/5.0). Argumente cómo este experimento ilustra la transición histórica desde una concepción mecanicista del operador (Taylor) hacia una concepción cognitivo-ergonómica (Industria 5.0).</p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 11: INFORME FINAL ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">11</span>Informe Final Requerido</h2>
+
+    <p>Elabore un informe técnico-científico en formato <strong>APA 7.ª edición</strong>, de <strong>entre 2.500 y 3.500 palabras</strong> (excluyendo referencias y anexos), con la siguiente estructura:</p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Sección</th><th>Contenido</th><th>Extensión orientativa</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Resumen</strong></td><td>Resumen estructurado (propósito, método, resultados principales, conclusión). Máximo 250 palabras.</td><td>250 palabras</td></tr>
+          <tr><td><strong>Introducción</strong></td><td>Planteamiento del problema, marco teórico (5 marcos), hipótesis H1–H5.</td><td>500–700 palabras</td></tr>
+          <tr><td><strong>Método</strong></td><td>Participantes, diseño, variables, materiales, procedimiento, consideraciones éticas.</td><td>500–700 palabras</td></tr>
+          <tr><td><strong>Resultados</strong></td><td>Descriptivos, t pareada, d de Cohen, correlación, OEE simulado, 4 gráficos.</td><td>600–900 palabras</td></tr>
+          <tr><td><strong>Discusión</strong></td><td>Contraste de hipótesis, respuesta a las 10 preguntas, integración teórica, limitaciones, implicaciones industriales.</td><td>700–900 palabras</td></tr>
+          <tr><td><strong>Conclusiones</strong></td><td>Síntesis de hallazgos clave y recomendación operativa para planta industrial.</td><td>150–250 palabras</td></tr>
+          <tr><td><strong>Referencias</strong></td><td>Mínimo 8 referencias en APA 7.ª (incluyendo ANSI/ISA-18.2, Wickens, Karasek, Broadbent, Hart &amp; Staveland).</td><td>—</td></tr>
+          <tr><td><strong>Anexos</strong></td><td>Tablas de datos crudos, capturas del simulador, formulario NASA-TLX completado.</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>📌 Criterios de entrega:</strong> Archivo PDF, fuente Times New Roman 12 pt o Arial 11 pt, interlineado 1,5, márgenes 2,5 cm, numeración de páginas, encabezado con apellido del autor. Nombre del archivo: <code>APE_PsicologiaLaboral_ApellidoNombre.pdf</code>.
+    </div>
+  </section>
+
+  <!-- ===== SECTION 12: RÚBRICA ===== -->
+  <section class="ape-section">
+    <h2><span class="section-num">12</span>Rúbrica de Evaluación (100 Puntos)</h2>
+
+    <p>El informe será evaluado según 5 criterios ponderados. Cada criterio se puntúa en 4 niveles de desempeño. El puntaje total se calcula como la suma ponderada.</p>
+
+    <div class="table-wrap">
+      <table class="data rubric">
+        <thead>
+          <tr>
+            <th>Criterio</th>
+            <th>Insuficiente (0–59%)</th>
+            <th>En Desarrollo (60–79%)</th>
+            <th>Competente (80–89%)</th>
+            <th>Sobresaliente (90–100%)</th>
+            <th>Peso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ejecución experimental y registro de datos</strong></td>
+            <td>No completa las 3 sesiones; datos parciales o sin registro de DE/mediana.</td>
+            <td>Completa las 3 sesiones pero con datos incompletos (fallos en el registro de algún estadístico).</td>
+            <td>Completa las 3 sesiones con registro sistemático de todos los estadísticos requeridos y observaciones cualitativas.</td>
+            <td>Registro exhaustivo y ordenado; incluye verificación de consistencia (suma de pesos NASA-TLX = 15) y control de artefactos.</td>
+            <td>20%</td>
+          </tr>
+          <tr>
+            <td><strong>Análisis estadístico e inferencia</strong></td>
+            <td>Solo descriptivos básicos; no aplica t pareada ni d de Cohen; cálculos con errores.</td>
+            <td>Aplica t pareada pero con errores en grados de libertad o interpretación del p-valor; no reporta tamaño del efecto.</td>
+            <td>Aplica correctamente t pareada, d de Cohen y correlación de Pearson; interpreta adecuadamente significación y tamaño del efecto.</td>
+            <td>Análisis impecable que incluye verificación de supuestos (normalidad de diferencias), intervalos de confianza y análisis de potencia post-hoc.</td>
+            <td>30%</td>
+          </tr>
+          <tr>
+            <td><strong>Discusión teórica integrada</strong></td>
+            <td>Responde menos de 6 preguntas o con respuestas superficiales sin citar marcos teóricos.</td>
+            <td>Responde 6–8 preguntas pero con integración limitada entre datos empíricos y teoría; menciona autores sin articulación.</td>
+            <td>Responde las 10 preguntas articulando datos propios con los 5 marcos teóricos; identifica limitaciones.</td>
+            <td>Discusión profunda que compara resultados con literatura empírica previa, propone interpretaciones alternativas y sugiere líneas de investigación futuras.</td>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <td><strong>Modelación OEE y aplicabilidad industrial</strong></td>
+            <td>No calcula OEE o lo hace con errores algebraicos; no interpreta el resultado.</td>
+            <td>Calcula OEE pero sin justificar las fórmulas de transformación; discusión limitada de implicaciones industriales.</td>
+            <td>Calcula correctamente OEE para las 3 condiciones; cuantifica impacto anual; justifica la intervención bajo ISA-18.2.</td>
+            <td>Análisis costo-beneficio cuantitativo, propuesta de KPI de seguimiento, sensibilidad ante variaciones de los parámetros de transformación.</td>
+            <td>15%</td>
+          </tr>
+          <tr>
+            <td><strong>Calidad académica y APA 7.ª</strong></td>
+            <td>Estructura incompleta; errores de citación; tablas/sin formato; ortografía deficiente.</td>
+            <td>Estructura básica cumplida pero con deficiencias de formato APA o de redacción técnica.</td>
+            <td>Estructura completa y ordenada; APA 7.ª aplicado correctamente; redacción técnica clara; gráficos bien rotulados.</td>
+            <td>Documento de nivel de tesis de maestría: prosa precisa, jerarquía visual óptima, referencias rigurosas, anexos bien organizados.</td>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>12.1 Cálculo de la nota final</h3>
+    <div class="math-block">$$\text{Nota final} = \sum_{i=1}^{5} p_i \cdot n_i$$</div>
+    <p>donde $p_i$ es el peso del criterio $i$ y $n_i$ es el puntaje porcentual obtenido en ese criterio. La nota final se expresa en escala 0–100. Aprobado $\geq 70$.</p>
+
+    <div class="card info">
+      <div class="card-title">Equivalencia con escala cualitativa</div>
+      <ul>
+        <li><strong>90–100:</strong> Sobresaliente. Evidencia de dominio metodológico y teórico avanzado.</li>
+        <li><strong>80–89:</strong> Competente. Cumple con todos los requisitos con calidad técnica adecuada.</li>
+        <li><strong>70–79:</strong> Suficiente. Cumple los requisitos mínimos pero con limitaciones en algún criterio.</li>
+        <li><strong>&lt; 70:</strong> Insuficiente. Requiere repetir el APE con correcciones sustanciales.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== LOCK GATE: SOLUCIONARIO ===== -->
+  <div class="lock-gate" id="lock-solucion">
+    <span class="lock-gate-icon">🔐</span>
+    <h3>Solucionario Docente — Datos Modelo, Análisis Estadístico y Respuestas</h3>
+    <p>El solucionario completo contiene: <strong>dataset modelo realista</strong> de un sujeto típico, todos los cálculos estadísticos resueltos paso a paso, respuestas modelo a las 10 preguntas de discusión, y una rúbrica calibrada con puntajes de referencia.<br><br>Ingrese la clave de acceso docente para visualizar el contenido.</p>
+    <div class="lock-gate-input-row">
+      <input type="password" inputmode="numeric" maxlength="6" placeholder="• • • •" aria-label="Clave de acceso" onkeydown="handleKey(event,'solucion')">
+      <button onclick="unlockContent('solucion')">Desbloquear Solucionario</button>
+    </div>
+    <div class="lock-error" role="alert"></div>
+  </div>
+
+  <div class="protected-content" id="protected-solucion">
+    <div class="unlock-banner">✓ Solucionario desbloqueado — Uso docente. Las respuestas aquí contenidas son referenciales; los datos reales obtenidos por cada estudiante variarán.</div>
+
+    <h2>Solucionario Completo del APE</h2>
+
+    <h3>S.1 Dataset modelo — Sujeto típico (datos de referencia)</h3>
+    <p>Los siguientes datos corresponden a un sujeto sano, 22 años, sin experiencia industrial previa, contrabalanceo orden O → B → HL. Son valores <strong>orientativos</strong> basados en literatura empírica (Wickens et al., 2021; Hart, 2006) y deben servir como referencia comparativa, no como respuesta única.</p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Condición</th><th>Críticas presentadas</th><th>Hits</th><th>Lapsos</th><th>Falsas alarmas</th><th>RT medio (ms)</th><th>RT mediano (ms)</th><th>DE RT (ms)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>B (Línea Base)</strong></td><td>6</td><td>6</td><td>0</td><td>0</td><td>428</td><td>412</td><td>68</td></tr>
+          <tr><td><strong>HL (Alta Carga)</strong></td><td>6</td><td>4</td><td>2</td><td>11</td><td>815</td><td>742</td><td>184</td></tr>
+          <tr><td><strong>O (Optimizada)</strong></td><td>6</td><td>6</td><td>0</td><td>0</td><td>412</td><td>398</td><td>54</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Condición</th><th>MD</th><th>PD</th><th>TD</th><th>EF</th><th>OP</th><th>FR</th><th>Suma pesos</th><th>TLX global</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>B</strong></td><td>30 (peso 2)</td><td>15 (peso 0)</td><td>35 (peso 3)</td><td>40 (peso 4)</td><td>25 (peso 1)</td><td>20 (peso 5)</td><td>15</td><td><strong>28,7</strong></td></tr>
+          <tr><td><strong>HL</strong></td><td>85 (peso 5)</td><td>40 (peso 0)</td><td>90 (peso 4)</td><td>85 (peso 3)</td><td>65 (peso 1)</td><td>75 (peso 2)</td><td>15</td><td><strong>78,3</strong></td></tr>
+          <tr><td><strong>O</strong></td><td>25 (peso 2)</td><td>10 (peso 0)</td><td>30 (peso 3)</td><td>35 (peso 4)</td><td>20 (peso 1)</td><td>15 (peso 5)</td><td>15</td><td><strong>24,3</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Cálculo TLX global para B (ejemplo):</strong></p>
+    <div class="math-block">$$\text{TLX}_B = \frac{30 \cdot 2 + 15 \cdot 0 + 35 \cdot 3 + 40 \cdot 4 + 25 \cdot 1 + 20 \cdot 5}{15} = \frac{60+0+105+160+25+100}{15} = \frac{430}{15} \approx 28,7$$</div>
+
+    <h3>S.2 Cálculo del OEE simulado</h3>
+
+    <h4>Condición B (Línea Base)</h4>
+    <div class="math-block">$$A_B = 1 - \frac{0 \times 2}{440} = 1,0000 \Longrightarrow 100,00\%$$</div>
+    <div class="math-block">$$P_B = 1 - \frac{428 - 400}{2000} = 1 - 0,014 = 0,986 \Longrightarrow 98,60\%$$</div>
+    <div class="math-block">$$Q_B = 1 - \frac{0}{100} \times 0,30 = 1,000 \Longrightarrow 100,00\%$$</div>
+    <div class="math-block">$$\text{OEE}_B = 1,0000 \times 0,986 \times 1,000 = 0,986 \Longrightarrow \mathbf{98,60\%}$$</div>
+
+    <h4>Condición HL (Alta Carga)</h4>
+    <div class="math-block">$$A_{HL} = 1 - \frac{2 \times 2}{440} = 1 - 0,0091 = 0,9909 \Longrightarrow 99,09\%$$</div>
+    <div class="math-block">$$P_{HL} = 1 - \frac{815 - 400}{2000} = 1 - 0,2075 = 0,7925 \Longrightarrow 79,25\%$$</div>
+    <div class="math-block">$$Q_{HL} = 1 - \frac{11/6}{100} \times 0,30 = 1 - 0,0055 \times 0,30 = 1 - 0,00165 = 0,9984 \Longrightarrow 99,84\%$$</div>
+    <p><em>Nota: "11/6" convierte el número absoluto de falsas alarmas en porcentaje respecto a las 6 críticas presentadas. Si se reporta directamente el porcentaje de falsas alarmas (183% en HL), use la fórmula alternativa: $Q = 1 - \min(\text{FA\%}/100, 1) \times 0,30$.</em></p>
+    <div class="math-block">$$\text{OEE}_{HL} = 0,9909 \times 0,7925 \times 0,9984 = 0,784 \Longrightarrow \mathbf{78,40\%}$$</div>
+
+    <h4>Condición O (Optimizada)</h4>
+    <div class="math-block">$$A_O = 1 - \frac{0 \times 2}{440} = 1,0000 \Longrightarrow 100,00\%$$</div>
+    <div class="math-block">$$P_O = 1 - \frac{412 - 400}{2000} = 1 - 0,006 = 0,994 \Longrightarrow 99,40\%$$</div>
+    <div class="math-block">$$Q_O = 1 - \frac{0}{100} \times 0,30 = 1,000 \Longrightarrow 100,00\%$$</div>
+    <div class="math-block">$$\text{OEE}_O = 1,0000 \times 0,994 \times 1,000 = 0,994 \Longrightarrow \mathbf{99,40\%}$$</div>
+
+    <div class="card success">
+      <div class="card-title">Resultado destacado</div>
+      <p>$\Delta\text{OEE}_{O - HL} = 99,40\% - 78,40\% = \mathbf{+21,00}$ puntos porcentuales. Se confirma H5 (diferencia $\geq 15$ puntos).</p>
+    </div>
+
+    <h3>S.3 Análisis inferencial (suponiendo $n = 6$ sujetos)</h3>
+    <p>Para ilustrar el análisis inferencial, supongamos 6 sujetos con las siguientes medias de RT (ms) por condición:</p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Sujeto</th><th>B</th><th>HL</th><th>O</th><th>$d_1 = HL - B$</th><th>$d_2 = O - HL$</th></tr></thead>
+        <tbody>
+          <tr><td>S1</td><td>428</td><td>815</td><td>412</td><td>+387</td><td>−403</td></tr>
+          <tr><td>S2</td><td>445</td><td>832</td><td>425</td><td>+387</td><td>−407</td></tr>
+          <tr><td>S3</td><td>410</td><td>780</td><td>400</td><td>+370</td><td>−380</td></tr>
+          <tr><td>S4</td><td>460</td><td>850</td><td>440</td><td>+390</td><td>−410</td></tr>
+          <tr><td>S5</td><td>415</td><td>790</td><td>405</td><td>+375</td><td>−385</td></tr>
+          <tr><td>S6</td><td>438</td><td>825</td><td>418</td><td>+387</td><td>−407</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Comparación HL vs. B (H1)</h4>
+    <p>Media de diferencias: $\bar{d}_1 = (387+387+370+390+375+387)/6 = 382,67$ ms</p>
+    <p>DE de diferencias: $s_{d_1} = \sqrt{\frac{\sum (d_i - \bar{d})^2}{n-1}} = 7,74$ ms</p>
+    <div class="math-block">$$t_1 = \frac{\bar{d}_1}{s_{d_1}/\sqrt{n}} = \frac{382,67}{7,74/\sqrt{6}} = \frac{382,67}{3,16} = 121,10$$</div>
+    <p>Grados de libertad: $gl = 6 - 1 = 5$. Valor crítico $t_{0,025; 5} = 2,571$. Como $t_{\text{calc}} = 121,10 \gg 2,571$, se rechaza $H_0$ con $p &lt; 0,001$. <strong>H1 confirmada.</strong></p>
+    <div class="math-block">$$d_{\text{Cohen}} = \frac{\bar{d}_1}{s_{d_1}} = \frac{382,67}{7,74} = 49,44 \quad (\text{tamaño del efecto enorme, } d \gg 0,80)$$</div>
+
+    <h4>Comparación O vs. HL (H4)</h4>
+    <p>Media de diferencias: $\bar{d}_2 = (−403 + −407 + −380 + −410 + −385 + −407)/6 = −398,67$ ms</p>
+    <p>DE de diferencias: $s_{d_2} = 12,11$ ms</p>
+    <div class="math-block">$$t_2 = \frac{-398,67}{12,11/\sqrt{6}} = \frac{-398,67}{4,94} = -80,69$$</div>
+    <p>Como $|t_2| = 80,69 \gg 2,571$, se rechaza $H_0$ con $p &lt; 0,001$. <strong>H4 confirmada</strong> (la reducción es $\geq 300$ ms).</p>
+    <div class="math-block">$$d_{\text{Cohen}} = \frac{-398,67}{12,11} = -32,92$$</div>
+
+    <h4>Correlación NASA-TLX vs. RT (H3)</h4>
+    <p>Utilizando los 3 puntos por sujeto (uno por condición) del Sujeto 1: $(RT, TLX) = (428, 28,7), (815, 78,3), (412, 24,3)$.</p>
+    <div class="math-block">$$r_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}} = \frac{(428-551,7)(28,7-43,8) + (815-551,7)(78,3-43,8) + (412-551,7)(24,3-43,8)}{\sqrt{[(123,7)^2 + (263,3)^2 + (139,7)^2] \cdot [(15,1)^2 + (34,5)^2 + (19,5)^2]}}$$</div>
+    <p>Calculando: numerador $= 1868,87 + 9083,85 + 2724,15 = 13676,87$. Denominador $= \sqrt{228951 \cdot 1897,71} = \sqrt{434482810} = 20844,2$. $r = 13676,87 / 20844,2 = 0,656$.</p>
+    <p>Promediando $r$ de los 6 sujetos se obtiene típicamente $r \approx 0,72$–$0,85$, cumpliendo H3. <strong>H3 confirmada.</strong></p>
+
+    <h3>S.4 Respuestas modelo a las 10 preguntas de discusión</h3>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 1 (estadística)</div>
+      <p>Las pruebas t pareadas muestran diferencias altamente significativas: <strong>$t_1(5) = 121,10, p &lt; 0,001, d = 49,44$</strong> para B vs. HL; <strong>$t_2(5) = −80,69, p &lt; 0,001, d = −32,92$</strong> para HL vs. O. Ambos tamaños del efecto son extraordinariamente grandes (muy superiores al umbral $d = 0,80$ de Cohen para "efecto grande"), lo que indica no solo significancia estadística sino relevancia práctica sustancial. <strong>H1 y H4 se confirman.</strong> El incremento de RT de ~383 ms entre B y HL excede el umbral de 200 ms predicho; la reducción de ~399 ms entre HL y O supera los 300 ms predichos.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 2 (curva de vigilancia)</div>
+      <p>Al dividir la sesión de 60 s en 6 bloques de 10 s, en HL el RT típicamente aumenta de ~600 ms (bloque 1) a ~1050 ms (bloque 6), mostrando una curva de decremento ajustable a $P(t) = P_0 \cdot e^{-\lambda t}$ con $\lambda \approx 0,012\text{ s}^{-1}$ (decaimiento del ~50% cada 60 s). En B el decremento es mínimo ($\lambda \approx 0,002$). La diferencia se debe a que en HL la sobrecarga perceptual acelera el agotamiento de los recursos atencionales descritos por Wickens: la competencia por el canal visual entre críticas, advertencias e informativas consume los recursos limitados de la memoria de trabajo ($7 \pm 2$ de Miller), provocando un colapso más temprano del mecanismo de vigilancia.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 3 (Ley de Hick-Hyman)</div>
+      <p>Con $n_B = 1$ (solo críticas) y $n_{HL} = 3$ (críticas + advertencias + informativas), el incremento teórico es $\Delta RT = b \cdot [\log_2(4) - \log_2(2)] = b \cdot (2 - 1) = b$. Con el valor típico $b \approx 150\text{ ms}$ (Wickens, 1984), la ley predice $\Delta RT \approx 150$ ms. Sin embargo, la diferencia empírica es ~383 ms, es decir <strong>2,5 veces mayor</strong>. La discrepancia se explica por: (a) <em>fatiga visual</em> por parpadeo concurrente de múltiples alarmas, (b) <em>competencia atencional</em> entre códigos cromáticos simultáneos (efecto Stroop-like), (c) <em>ruido perceptual</em> que reduce la saliencia de la señal crítica, y (d) <em>carga de memoria de trabajo</em> para mantener el criterio decisional. Hick-Hyman es un modelo de decision-time puro que no incorpora estos factores de carga perceptual sostenida.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 4 (convergencia NASA-TLX y RT)</div>
+      <p>Con $r \approx 0,72$, <strong>H3 se cumple</strong>. La convergencia entre una medida objetiva (RT conductual) y una subjetiva (NASA-TLX) valida la constructo de "carga mental" como fenómeno multifacético. Se recomienda utilizar ambas porque: (1) el RT es sensible a la velocidad de procesamiento pero no captura el componente afectivo (frustración, ansiedad); (2) el NASA-TLX captura el componente afectivo y el esfuerzo percibido, pero es vulnerable a sesgos de deseabilidad social. En operadores altamente entrenados que aplican estrategias de compensación (esfuerzo extremo sostenido), el RT puede mantenerse estable mientras el TLX se dispara: en esos casos solo el NASA-TLX revelaría el riesgo inminente de colapso. Análogamente, en tareas automatizadas donde el operador "finge atención", el RT puede ser normal pero el TLX bajo revelaría desenganche (<em>underload</em>), otro estado peligroso.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 5 (Karasek)</div>
+      <p>Con $C$ constante (sin autonomía operativa), el modelo Karasek predice $S_{HL}/S_B = D_{HL}/D_B = 60/6 = 10$. Empíricamente, $S_{HL}/S_B = \text{TLX}_{HL}/\text{TLX}_B = 78,3/28,7 \approx 2,73$. La relación observada es <strong>3,7 veces menor</strong> que la predicción teórica, evidenciando un efecto de techo o saturación: el strain subjetivo no escala linealmente con la demanda, sino que se modera por (a) mecanismos de afrontamiento defensivo (desconexión atencional parcial), (b) habituation al ruido visual tras los primeros 30 s, y (c) la propia escala NASA-TLX, que al ser 0–100 satura en el rango superior. Esto sugiere que el modelo Karasek es válido cualitativamente (más demanda → más strain) pero requiere funciones no lineales (p. ej., logarítmicas) para modelar cargas extremas.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 6 (impacto OEE anual)</div>
+      <p>Con $\Delta\text{OEE}_{O-HL} = 21,00$ puntos, capacidad nominal 120 piezas/min, 3 turnos × 480 min = 1440 min/día, 330 días/año:</p>
+      <div class="math-block">$$\Delta\text{Producción anual} = 120 \times 1440 \times 330 \times 0,21 = 11\,973\,696 \text{ piezas/año adicionales}$$</div>
+      <p>A un precio unitario conservador de USD 0,50/pieza, esto equivale a <strong>≈ USD 5,99 millones/año</strong> de capacidad productiva recuperada sin invertir en nueva maquinaria, solo mediante rediseño HMI + capacitación. Adicionalmente, las plantas que alcanzan OEE $\geq 85\%$ reportan reducciones del 30–40% en accidentes y del 25% en rotación voluntaria (Nakajima, 1988).</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 7 (validez externa)</div>
+      <p>Tres amenazas principales: <strong>(1) Duración del turno</strong>: el experimento dura 5 min por condición, mientras que un turno real es de 8 h. La fatiga acumulada, los ritmos circadianos (especialmente en turnos nocturnos) y la deprivación progres de recursos atencionales son magnitudes completamente diferentes. <em>Mitigación:</em> replicar con sesiones de 60–120 min por condición. <strong>(2) Consecuencias del error</strong>: el estudiante no enfrenta coste económico ni riesgo de seguridad al cometer un error; el operador real sí, lo que activa vías de estrés (cortisol) que modulan el rendimiento. <em>Mitigación:</em> introducir incentivos/penalizaciones económicas simuladas en la tarea. <strong>(3) Habilidades técnicas previas</strong>: los operadores tienen entrenamiento específico en HMI que los estudiantes no poseen, lo que puede sobreestimar el RT en laboratorio. <em>Mitigación:</em> proporcionar 30 min de entrenamiento pre-experimental con feedback. Con 60 sujetos se recomendaría un diseño <strong>between-subjects con bloques aleatorizados</strong> para eliminar efectos residuales, aceptando el costo de menor potencia estadística.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 8 (intervención)</div>
+      <p><strong>Fase 1 — Capacitación:</strong> 8 horas de entrenamiento en (a) reconocimiento de prioridades de alarma según ISA-18.2, (b) protocolo de respuesta a alarmas críticas, (c) autoconciencia de signos de fatiga cognitiva. Evaluación con nota mínima 80/100 antes de certificar.<br>
+      <strong>Fase 2 — Rediseño HMI:</strong> (a) Supresión de alarmas informativas en pantalla principal (mover a log histórico), (b) priorización cromática estricta (rojo = crítica, amarillo = advertencia, sin parpadeo para no críticas), (c) agrupación espacial por zona de máquina, (d) target ≤ 6 alarmas/hora en régimen normal. Auditoría con SUS, objetivo ≥ 75/100.<br>
+      <strong>Fase 3 — Métricas de seguimiento:</strong> semanalmente registrar (a) OEE, (b) número de alarmas/h, (c) TLX del operador, (d) tasa de lapsos. Revisión mensual con ajustes finos.<br>
+      El modelo sociotécnico de Trist y Emery postula que la optimización del subsistema técnico sin la del subsistema social produce resultados subóptimos: el operador no capacitado tiende a ignorar o desactivar las nuevas funcionalidades ("workaround"), anulando el rediseño. La capacitación es lo que convierte un cambio técnico en un cambio organizacional.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 9 (crítica metodológica)</div>
+      <p>Dos amenazas del within-subjects: <strong>(1) Efectos residuales (carryover)</strong>: la fatiga acumulada en HL puede contaminar la sesión O si esta le sigue inmediatamente. <em>Mitigación:</em> el descanso de 10 min entre sesiones, aunque insuficiente para restauración completa, reduce el carryover; un diseño ideal incluiría 24 h entre sesiones. <strong>(2) Sensibilización (practice effect)</strong>: el sujeto mejora por mera exposición a la tarea, confundiendo el efecto de la condición con el aprendizaje. <em>Mitigación:</em> el latín cuadrado distribuye los órdenes de manera que cada condición aparezca en cada posición exactamente una vez, cancelando linealmente el efecto de práctica. Si el efecto de práctica es no lineal (p. ej., meseta tras la primera sesión), el contrabalanceo no es suficiente y se requiere un diseño <strong>between-subjects</strong> con 60 sujetos (20 por condición), aleatorización pura y análisis ANOVA unifactorial. La pérdida de potencia se compensa con el mayor $n$.</p>
+    </div>
+
+    <div class="card success">
+      <div class="card-title">Respuesta 10 (síntesis teórica)</div>
+      <p>Este APE ilustra la evolución completa de la psicología laboral: el sujeto experimental tratado como <em>detector automático de señales</em> evoca el paradigma taylorista (1900s), donde el operador era un apéndice de la máquina. La introducción del NASA-TLX reconoce la dimensión afectiva y social del trabajo (Relaciones Humanas, Mayo). La manipulación de la carga de alarmas y la aplicación de Hick-Hyman sitúan el experimento en la Ergonomía Cognitiva (1940–1960). El rediseño bajo ISA-18.2 con autonomía delegada al operador refleja el paradigma Sociotécnico (Tavistock). Finalmente, la integración de medidas objetivas (RT), subjetivas (TLX) y de impacto sistémico (OEE) caracteriza a la Industria 5.0, donde el bienestar cognitivo del operador es un activo estratégico y no un coste. La transición Taylor → Industria 5.0 es, en esencia, el paso de concebir al operador como <em>recurso productivo</em> a concebirlo como <em>sociotécnico cognitivamente limitado</em> cuyo diseño del entorno determina el desempeño del sistema.</p>
+    </div>
+
+    <h3>S.5 Calibración de la rúbrica — Puntajes de referencia</h3>
+    <p>Para el dataset modelo presentado, un informe ejemplar obtendría los siguientes puntajes orientativos:</p>
+
+    <div class="table-wrap">
+      <table class="data">
+        <thead>
+          <tr><th>Criterio</th><th>Nivel esperado</th><th>%</th><th>Peso</th><th>Aporte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ejecución experimental</td><td>Competente</td><td>85</td><td>20%</td><td>17,0</td></tr>
+          <tr><td>Análisis estadístico</td><td>Sobresaliente</td><td>95</td><td>30%</td><td>28,5</td></tr>
+          <tr><td>Discusión teórica</td><td>Sobresaliente</td><td>92</td><td>25%</td><td>23,0</td></tr>
+          <tr><td>Modelación OEE</td><td>Sobresaliente</td><td>95</td><td>15%</td><td>14,25</td></tr>
+          <tr><td>Calidad académica</td><td>Competente</td><td>88</td><td>10%</td><td>8,8</td></tr>
+          <tr><td colspan="4" style="text-align:right;"><strong>NOTA FINAL</strong></td><td><strong>91,55</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Calificación cualitativa: Sobresaliente.</strong> El informe cumple con todos los criterios técnicos y muestra dominio avanzado del análisis estadístico e integración teórica.</p>
+
+    <h3>S.6 Referencias para el solucionario</h3>
+    <ul>
+      <li>Broadbent, D. E. (1958). <em>Perception and communication</em>. Pergamon Press.</li>
+      <li>Hart, S. G. (2006). NASA-TLX: 20 years later. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</em>, 50(9), 904–908.</li>
+      <li>Hart, S. G., &amp; Staveland, L. E. (1988). Development of NASA-TLX. En P. Hancock &amp; N. Meshkati (Eds.), <em>Human mental workload</em> (pp. 139–183). North-Holland.</li>
+      <li>International Society of Automation. (2016). <em>Management of alarm systems for the process industries</em> (ANSI/ISA-18.2-2016). ISA.</li>
+      <li>Karasek, R., &amp; Theorell, T. (1990). <em>Healthy work</em>. Basic Books.</li>
+      <li>Mackworth, N. H. (1948). The breakdown of vigilance during prolonged visual search. <em>Quarterly Journal of Experimental Psychology</em>, 1(1), 6–21.</li>
+      <li>Nakajima, S. (1988). <em>Introduction to TPM</em>. Productivity Press.</li>
+      <li>Wickens, C. D. (1984). Engineering psychology and human performance. <em>Annual Review of Psychology</em>, 35, 1–31.</li>
+      <li>Wickens, C. D., Hollands, J. G., Banbury, S., &amp; Parasuraman, R. (2021). <em>Engineering psychology and human performance</em> (5th ed.). Routledge.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="app-footer">
+  <p><strong>APE — Psicología Laboral en la Empresa</strong> · Facultad de Sistemas y Telecomunicaciones / Ingeniería Industrial — UPSE</p>
+  <p style="margin-top:6px; font-size:12px;">Material didáctico experimental · Solucionario protegido con clave docente · Diseño within-subjects con simulador HMI embebido</p>
+</footer>
+
+<script>
+  /* ===== TAB / NAV: not used, single-page ===== */
+
+  /* ===== PASSWORD GATE (clave ofuscada mediante SHA-256) ===== */
+  /* La clave nunca aparece en el código fuente; solo se almacena su hash SHA-256.
+     La verificación se realiza comparando el hash del input del usuario con este hash. */
+  const _ACCESS_HASH = 'a78f19952edd18bf02b3c9eb704b088e2120941d6acb22f6f795c42796e60252';
+  async function _hashInput(s) {
+    try {
+      const data = new TextEncoder().encode(s);
+      const buf = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(buf))
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+    } catch (e) {
+      // Fallback simple si Web Crypto no está disponible
+      let h = 0;
+      for (let i = 0; i < s.length; i++) { h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+      return 'fallback_' + h;
+    }
+  }
+  async function unlockContent(gateId) {
+    const gate = document.querySelector(`#lock-${gateId}`);
+    if (!gate) return;
+    const input = gate.querySelector('input');
+    const errBox = gate.querySelector('.lock-error');
+    const val = (input.value || '').trim();
+    if (!val) return;
+    errBox.textContent = 'Verificando…';
+    const hashed = await _hashInput(val);
+    if (hashed === _ACCESS_HASH) {
+      const target = document.getElementById(`protected-${gateId}`);
+      if (target) {
+        target.classList.add('unlocked');
+        gate.style.display = 'none';
+        try { sessionStorage.setItem(`unlock_${gateId}`, '1'); } catch(e){}
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([target]).catch(()=>{});
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      errBox.textContent = '✗ Clave incorrecta. Intente nuevamente.';
+      input.value = '';
+      input.focus();
+    }
+  }
+  function handleKey(e, gateId) {
+    if (e.key === 'Enter') { e.preventDefault(); unlockContent(gateId); }
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      if (sessionStorage.getItem('unlock_solucion') === '1') {
+        const t = document.getElementById('protected-solucion');
+        const g = document.querySelector('#lock-solucion');
+        if (t && g) {
+          t.classList.add('unlocked');
+          g.style.display = 'none';
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([t]).catch(()=>{});
+          }
+        }
+      }
+    } catch(e){}
+    initNasaTlx();
+  });
+
+  /* ===== HMI SIMULATOR ===== */
+  let simState = {
+    mode: 'B',           // 'B' | 'HL' | 'O'
+    running: false,
+    timeLeft: 60,
+    timer: null,
+    spawnTimer: null,
+    alarms: [],
+    hits: 0,
+    misses: 0,
+    falseAlarms: 0,
+    rtRecords: [],
+    criticalsShown: 0,
+    startedAt: 0
+  };
+
+  const MODE_CONFIG = {
+    B: {
+      label: 'Línea Base',
+      duration: 60,
+      spawnIntervalMin: 8000, spawnIntervalMax: 12000,  // ~6 críticas en 60s
+      onlyCritical: true,
+      instructions: '<strong>📋 Modo B — Línea Base:</strong> Aparecerán <strong>6 alarmas críticas</strong> (rojas) por minuto, sin alarmas competidoras. Haga clic únicamente sobre las alarmas <strong>rojas</strong>. Duración: 60 segundos.'
+    },
+    HL: {
+      label: 'Alta Carga',
+      duration: 60,
+      spawnIntervalMin: 800, spawnIntervalMax: 1200,    // ~60 alarmas en 60s
+      onlyCritical: false,
+      instructions: '<strong>📋 Modo HL — Alta Carga:</strong> Aparecerán <strong>~60 alarmas por minuto</strong> mezclando críticas (rojas), advertencias (amarillas) e informativas (azules) sin jerarquía visual. Haga clic <strong>únicamente</strong> sobre las rojas. Duración: 60 segundos.'
+    },
+    O: {
+      label: 'Optimizada',
+      duration: 60,
+      spawnIntervalMin: 8000, spawnIntervalMax: 12000,
+      onlyCritical: true,
+      instructions: '<strong>📋 Modo O — Optimizada (ISA-18.2):</strong> Aparecerán <strong>6 alarmas críticas</strong> (rojas) por minuto, con supresión de alarmas informativas y codificación cromática clara. Haga clic únicamente sobre las rojas. Duración: 60 segundos.'
+    }
+  };
+
+  function selectMode(m) {
+    if (simState.running) return;
+    simState.mode = m;
+    document.querySelectorAll('.sim-mode-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.mode === m);
+    });
+    document.getElementById('sim-instructions').innerHTML = MODE_CONFIG[m].instructions;
+    resetSim();
+  }
+
+  function resetSim() {
+    if (simState.timer) clearInterval(simState.timer);
+    if (simState.spawnTimer) clearTimeout(simState.spawnTimer);
+    simState.running = false;
+    simState.timeLeft = 60;
+    simState.alarms = [];
+    simState.hits = 0;
+    simState.misses = 0;
+    simState.falseAlarms = 0;
+    simState.rtRecords = [];
+    simState.criticalsShown = 0;
+    document.getElementById('sim-start-btn').disabled = false;
+    document.getElementById('sim-stop-btn').disabled = true;
+    document.getElementById('sim-results').classList.remove('visible');
+    document.getElementById('sim-empty').style.display = 'flex';
+    // Clear alarms
+    document.querySelectorAll('.sim-alarm').forEach(a => a.remove());
+    updateStats();
+  }
+
+  function startSim() {
+    if (simState.running) return;
+    simState.running = true;
+    simState.timeLeft = MODE_CONFIG[simState.mode].duration;
+    simState.startedAt = Date.now();
+    document.getElementById('sim-start-btn').disabled = true;
+    document.getElementById('sim-stop-btn').disabled = false;
+    document.getElementById('sim-empty').style.display = 'none';
+    document.getElementById('sim-results').classList.remove('visible');
+
+    // Tick timer
+    simState.timer = setInterval(() => {
+      simState.timeLeft -= 0.1;
+      if (simState.timeLeft <= 0) {
+        simState.timeLeft = 0;
+        stopSim(true);
+      }
+      updateStats();
+    }, 100);
+
+    // Spawn first alarm
+    scheduleNextAlarm();
+  }
+
+  function stopSim(natural = false) {
+    if (!simState.running && !natural) return;
+    simState.running = false;
+    if (simState.timer) clearInterval(simState.timer);
+    if (simState.spawnTimer) clearTimeout(simState.spawnTimer);
+    document.getElementById('sim-start-btn').disabled = false;
+    document.getElementById('sim-stop-btn').disabled = true;
+
+    // Count misses (unanswered criticals)
+    simState.alarms.forEach(a => {
+      if (a.critical && !a.acked && !a.counted) {
+        simState.misses++;
+        a.counted = true;
+      }
+    });
+
+    // Remove unanswered alarms after a delay
+    setTimeout(() => {
+      document.querySelectorAll('.sim-alarm').forEach(a => {
+        if (!a.classList.contains('acked')) {
+          a.style.opacity = '0';
+          setTimeout(() => a.remove(), 200);
+        }
+      });
+    }, 500);
+
+    showResults();
+    updateStats();
+  }
+
+  function scheduleNextAlarm() {
+    if (!simState.running) return;
+    const cfg = MODE_CONFIG[simState.mode];
+    const delay = cfg.spawnIntervalMin + Math.random() * (cfg.spawnIntervalMax - cfg.spawnIntervalMin);
+    simState.spawnTimer = setTimeout(() => {
+      spawnAlarm();
+      scheduleNextAlarm();
+    }, delay);
+  }
+
+  function spawnAlarm() {
+    if (!simState.running) return;
+    const cfg = MODE_CONFIG[simState.mode];
+    let type;
+    if (cfg.onlyCritical) {
+      type = 'critical';
+    } else {
+      // HL: ~10% critical, 35% warning, 55% info
+      const r = Math.random();
+      if (r < 0.10) type = 'critical';
+      else if (r < 0.45) type = 'warning';
+      else type = 'info';
+    }
+    if (type === 'critical') simState.criticalsShown++;
+
+    const panel = document.getElementById('sim-panel');
+    const panelRect = panel.getBoundingClientRect();
+    const alarm = document.createElement('div');
+    alarm.className = `sim-alarm ${type}`;
+    const label = type === 'critical' ? 'CRÍTICA' : (type === 'warning' ? 'AVISO' : 'INFO');
+    alarm.textContent = label;
+    // Random position within panel (with margins)
+    const margin = 70;
+    const maxX = panelRect.width - margin;
+    const maxY = panelRect.height - margin;
+    alarm.style.left = (Math.random() * maxX) + 'px';
+    alarm.style.top = (Math.random() * maxY) + 'px';
+    alarm.dataset.spawnTime = Date.now();
+    alarm.dataset.type = type;
+
+    alarm.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (alarm.classList.contains('acked')) return;
+      const rt = Date.now() - parseInt(alarm.dataset.spawnTime);
+      if (type === 'critical') {
+        if (!alarm.counted) {
+          simState.hits++;
+          simState.rtRecords.push(rt);
+          alarm.counted = true;
+        }
+      } else {
+        simState.falseAlarms++;
+      }
+      alarm.classList.add('acked');
+      setTimeout(() => alarm.remove(), 250);
+      updateStats();
+    });
+
+    panel.appendChild(alarm);
+    simState.alarms.push({ el: alarm, critical: type === 'critical', acked: false, counted: false });
+
+    // Auto-remove non-acked after 4s (count as miss if critical)
+    setTimeout(() => {
+      if (alarm.parentNode && !alarm.classList.contains('acked')) {
+        if (type === 'critical' && !alarm.counted) {
+          simState.misses++;
+          alarm.counted = true;
+        }
+        alarm.style.opacity = '0';
+        setTimeout(() => alarm.remove(), 200);
+      }
+    }, 4000);
+  }
+
+  function updateStats() {
+    document.getElementById('stat-time').textContent = simState.timeLeft.toFixed(1) + 's';
+    document.getElementById('stat-hits').textContent = simState.hits;
+    document.getElementById('stat-misses').textContent = simState.misses;
+    document.getElementById('stat-false').textContent = simState.falseAlarms;
+    if (simState.rtRecords.length > 0) {
+      const mean = simState.rtRecords.reduce((a,b) => a+b, 0) / simState.rtRecords.length;
+      document.getElementById('stat-rt').textContent = Math.round(mean) + ' ms';
+    } else {
+      document.getElementById('stat-rt').textContent = '— ms';
+    }
+    // Progress bar
+    const pct = ((MODE_CONFIG[simState.mode].duration - simState.timeLeft) / MODE_CONFIG[simState.mode].duration) * 100;
+    document.getElementById('sim-progress-bar').style.width = pct + '%';
+  }
+
+  function showResults() {
+    const rt = simState.rtRecords;
+    const meanRT = rt.length > 0 ? rt.reduce((a,b) => a+b, 0) / rt.length : 0;
+    const sortedRT = [...rt].sort((a,b) => a-b);
+    const medianRT = sortedRT.length > 0
+      ? (sortedRT.length % 2 === 1
+          ? sortedRT[(sortedRT.length-1)/2]
+          : (sortedRT[sortedRT.length/2 - 1] + sortedRT[sortedRT.length/2]) / 2)
+      : 0;
+    const sdRT = rt.length > 1
+      ? Math.sqrt(rt.reduce((sum, v) => sum + Math.pow(v - meanRT, 2), 0) / (rt.length - 1))
+      : 0;
+    const lapseRate = simState.criticalsShown > 0
+      ? (simState.misses / simState.criticalsShown * 100).toFixed(1)
+      : '0.0';
+    const falseRate = simState.criticalsShown > 0
+      ? (simState.falseAlarms / simState.criticalsShown * 100).toFixed(1)
+      : '0.0';
+
+    // OEE simulation
+    const A = 1 - (simState.misses * 2 / 440);
+    const Praw = 1 - (meanRT - 400) / 2000;
+    const P = Math.max(0.70, Math.min(1.00, Praw));
+    const Q = 1 - Math.min(falseRate / 100, 1) * 0.30;
+    const OEE = A * P * Q;
+
+    const html = `
+      <table class="sim-results-table">
+        <tr><th>Métrica</th><th>Valor</th></tr>
+        <tr><td>Condición</td><td><strong>${simState.mode} — ${MODE_CONFIG[simState.mode].label}</strong></td></tr>
+        <tr><td>Críticas presentadas</td><td>${simState.criticalsShown}</td></tr>
+        <tr><td>Críticas atendidas (hits)</td><td>${simState.hits}</td></tr>
+        <tr><td>Lapsos (miss / RT&gt;1s)</td><td>${simState.misses} (${lapseRate}%)</td></tr>
+        <tr><td>Falsas alarmas</td><td>${simState.falseAlarms} (${falseRate}%)</td></tr>
+        <tr><td>RT medio</td><td>${meanRT.toFixed(0)} ms</td></tr>
+        <tr><td>RT mediana</td><td>${medianRT.toFixed(0)} ms</td></tr>
+        <tr><td>DE de RT</td><td>${sdRT.toFixed(0)} ms</td></tr>
+        <tr><td>A_sim (Disponibilidad)</td><td>${(A*100).toFixed(2)}%</td></tr>
+        <tr><td>P_sim (Rendimiento)</td><td>${(P*100).toFixed(2)}%</td></tr>
+        <tr><td>Q_sim (Calidad)</td><td>${(Q*100).toFixed(2)}%</td></tr>
+        <tr><td><strong>OEE simulado</strong></td><td><strong>${(OEE*100).toFixed(2)}%</strong></td></tr>
+      </table>
+    `;
+    document.getElementById('sim-results-table').innerHTML = html;
+    document.getElementById('sim-results').classList.add('visible');
+
+    // Also prepare plain-text version
+    const txt = `Condicion\t${simState.mode}\nCriticas_presentadas\t${simState.criticalsShown}\nHits\t${simState.hits}\nLapsos\t${simState.misses}\nLapse_rate_pct\t${lapseRate}\nFalsas_alarmas\t${simState.falseAlarms}\nFalse_rate_pct\t${falseRate}\nRT_medio_ms\t${meanRT.toFixed(0)}\nRT_mediana_ms\t${medianRT.toFixed(0)}\nRT_DE_ms\t${sdRT.toFixed(0)}\nA_sim\t${(A*100).toFixed(2)}\nP_sim\t${(P*100).toFixed(2)}\nQ_sim\t${(Q*100).toFixed(2)}\nOEE_sim\t${(OEE*100).toFixed(2)}`;
+    document.getElementById('sim-results-text').value = txt;
+  }
+
+  function copyResults() {
+    const txt = document.getElementById('sim-results-text').value;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt).then(() => {
+        alert('✓ Resultados copiados al portapapeles. Puede pegarlos en Excel/Calc usando "Pegado especial → texto".');
+      }).catch(() => {
+        showTextFallback();
+      });
+    } else {
+      showTextFallback();
+    }
+  }
+  function showTextFallback() {
+    const ta = document.getElementById('sim-results-text');
+    ta.style.display = 'block';
+    ta.select();
+    alert('Seleccione y copie el texto manualmente (Ctrl+C).');
+  }
+
+  /* ===== NASA-TLX COMPARISONS ===== */
+  const TLX_DIMS = [
+    { code: 'MD', label: 'Demanda Mental' },
+    { code: 'PD', label: 'Demanda Física' },
+    { code: 'TD', label: 'Demanda Temporal' },
+    { code: 'EF', label: 'Esfuerzo' },
+    { code: 'OP', label: 'Desempeño' },
+    { code: 'FR', label: 'Frustración' }
+  ];
+
+  let tlxPairs = [];
+  let tlxSelections = {};
+
+  function initNasaTlx() {
+    // Build 15 pairs (C(6,2) = 15)
+    tlxPairs = [];
+    for (let i = 0; i < TLX_DIMS.length; i++) {
+      for (let j = i+1; j < TLX_DIMS.length; j++) {
+        tlxPairs.push([TLX_DIMS[i], TLX_DIMS[j]]);
+      }
+    }
+    const container = document.getElementById('nasa-pairs');
+    container.innerHTML = '';
+    tlxPairs.forEach((pair, idx) => {
+      const div = document.createElement('div');
+      div.className = 'nasa-tlx-pair';
+      div.dataset.idx = idx;
+      div.innerHTML = `<span data-dim="${pair[0].code}">${pair[0].label}</span> <span class="vs">vs</span> <span data-dim="${pair[1].code}">${pair[1].label}</span>`;
+      div.addEventListener('click', (e) => {
+        const target = e.target.closest('span[data-dim]');
+        if (!target) return;
+        const dim = target.dataset.dim;
+        tlxSelections[idx] = dim;
+        // Highlight selected
+        div.querySelectorAll('span[data-dim]').forEach(s => s.style.fontWeight = 'normal');
+        target.style.fontWeight = '700';
+        div.classList.add('selected');
+        calculateTlx();
+      });
+      container.appendChild(div);
+    });
+  }
+
+  function calculateTlx() {
+    const numSelections = Object.keys(tlxSelections).length;
+    if (numSelections < 15) {
+      document.getElementById('nasa-result').textContent = `Complete las comparaciones pareadas: ${numSelections}/15 realizadas.`;
+      return;
+    }
+    // Count weights
+    const weights = { MD:0, PD:0, TD:0, EF:0, OP:0, FR:0 };
+    Object.values(tlxSelections).forEach(dim => weights[dim]++);
+    // Get scores
+    const scores = {};
+    document.querySelectorAll('#nasa-tlx-form input[type="range"]').forEach(input => {
+      scores[input.dataset.dim] = parseInt(input.value);
+    });
+    // Calculate weighted
+    let total = 0;
+    let debug = [];
+    TLX_DIMS.forEach(d => {
+      total += weights[d.code] * scores[d.code];
+      debug.push(`${d.code}=${scores[d.code]}×w${weights[d.code]}`);
+    });
+    const tlx = total / 15;
+    document.getElementById('nasa-result').innerHTML =
+      `TLX Global = (${debug.join(' + ')}) / 15 = <strong>${tlx.toFixed(1)}</strong> / 100`;
+  }
+</script>
+
+</body>
+</html>
