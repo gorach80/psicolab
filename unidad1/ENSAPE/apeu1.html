@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller APE 1 - Desarrollo Histórico de la Psicología Laboral</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1b2a4a',
+                            900: '#0f172a',
+                        },
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e5edff',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                        },
+                        academic: {
+                            gold: '#d97706',
+                            emerald: '#059669',
+                            slate: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        .academic-serif {
+            font-family: 'Merriweather', Georgia, serif;
+        }
+        /* Custom modal and print friendly styling */
+        @media print {
+            .no-print { display: none !important; }
+            .print-block { display: block !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <nav class="bg-navy-900 border-b border-slate-700/60 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold shadow-inner">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block">Campus Virtual • Nivel Grado</span>
+                        <h1 class="text-base sm:text-lg font-bold text-white leading-tight">Psicología Laboral & Organizacional</h1>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4 text-xs lg:text-sm font-medium">
+                    <a href="#programa" class="text-slate-300 hover:text-white transition-colors">Resultados</a>
+                    <a href="#teoria" class="text-slate-300 hover:text-white transition-colors">Contenido Teórico</a>
+                    <a href="#caso" class="text-slate-300 hover:text-white transition-colors">Caso de Estudio</a>
+                    <a href="#actividades" class="text-slate-300 hover:text-white transition-colors">Actividades APE</a>
+                    <a href="#solucion-protegida" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-academic-gold/20 text-amber-300 border border-amber-400/30 hover:bg-academic-gold/30 transition">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Solución Docente
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-b from-navy-900 via-navy-800 to-slate-900 text-white pt-10 pb-16 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-700/60">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                        Unidad Temática 1
+                    </span>
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                        Modalidad: APE (Práctico - Experimental)
+                    </span>
+                </div>
+                <div class="text-xs text-slate-400 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Duración Estimada: 4 Horas Académicas
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+                        Desarrollo Histórico de la Psicología Laboral en la Empresa
+                    </h2>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed academic-serif mb-6">
+                        Guía de experimentación aplicada: Análisis de paradigmas desde la organización científica del trabajo (Taylorismo y Münsterberg) hasta los enfoques sociotécnicos y el bienestar ocupacional moderno en sistemas productivos reales.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#caso" class="px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm transition shadow-lg shadow-brand-600/30 flex items-center gap-2">
+                            <span>Comenzar Taller Experimental</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </a>
+                        <button onclick="window.print()" class="px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-medium text-sm transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+                            Imprimir Guía de Trabajo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resumen de Metadatos del Taller -->
+                <div class="bg-slate-800/80 backdrop-blur rounded-xl p-5 border border-slate-700 shadow-xl">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Ficha Técnica del APE
+                    </h3>
+                    <dl class="space-y-2 text-xs">
+                        <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                            <dt class="text-slate-400">Nivel:</dt>
+                            <dd class="text-slate-200 font-semibold">Tercer Nivel / Pregrado</dd>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                            <dt class="text-slate-400">Competencia:</dt>
+                            <dd class="text-slate-200 font-semibold">Diagnóstico Sociotécnico</dd>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                            <dt class="text-slate-400">Puntaje Total:</dt>
+                            <dd class="text-amber-400 font-bold">10.0 Puntos</dd>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                            <dt class="text-slate-400">Tipo de Entrega:</dt>
+                            <dd class="text-slate-200 font-semibold">Informe Grupal / Matriz</dd>
+                        </div>
+                        <div class="flex justify-between py-1.5">
+                            <dt class="text-slate-400">Control de Autor:</dt>
+                            <dd class="text-emerald-400 font-semibold flex items-center gap-1">
+                                <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Clave Encriptada
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <section id="programa" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-slate-200 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Alineación Curricular</span>
+                    <h3 class="text-2xl font-bold text-navy-900 mt-1">Estructura Temática y Resultados de Aprendizaje</h3>
+                </div>
+                <div class="inline-flex rounded-lg border border-slate-200 p-1 bg-slate-50 text-xs font-medium text-slate-600">
+                    <span class="px-3 py-1 bg-white text-navy-900 rounded shadow-sm font-semibold">Sílabo Oficial</span>
+                    <span class="px-3 py-1 text-slate-500">Acreditación CACES / CES</span>
+                </div>
+            </div>
+
+            <!-- Tabla de Resultados de Aprendizaje según Imagen -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-navy-900 border-b border-slate-200 text-xs uppercase tracking-wider font-semibold">
+                            <th class="p-3.5 w-16 text-center">Código</th>
+                            <th class="p-3.5 w-1/3">Eje Temático</th>
+                            <th class="p-3.5">Resultado de Aprendizaje Específico</th>
+                            <th class="p-3.5 w-24 text-center">Nivel Bloom</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700">
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="p-3.5 font-bold text-brand-700 text-center">1.1</td>
+                            <td class="p-3.5 font-semibold text-slate-900">Psicología Laboral.</td>
+                            <td class="p-3.5">Comprender los principios de la Psicología Laboral y su aplicación en la gestión del comportamiento humano en el trabajo.</td>
+                            <td class="p-3.5 text-center"><span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Comprensión</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="p-3.5 font-bold text-brand-700 text-center">1.2</td>
+                            <td class="p-3.5 font-semibold text-slate-900">Rol del psicólogo laboral.</td>
+                            <td class="p-3.5">Identificar las funciones del psicólogo laboral en la promoción del bienestar y la optimización del rendimiento en las organizaciones.</td>
+                            <td class="p-3.5 text-center"><span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">Aplicación</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="p-3.5 font-bold text-brand-700 text-center">1.3</td>
+                            <td class="p-3.5 font-semibold text-slate-900">Desarrollo histórico de la psicología laboral.</td>
+                            <td class="p-3.5">Analiza la evolución histórica de la Psicología Laboral, identificando sus principales etapas, corrientes teóricas y aportes al estudio del comportamiento humano en el trabajo.</td>
+                            <td class="p-3.5 text-center"><span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">Análisis</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/80 transition">
+                            <td class="p-3.5 font-bold text-brand-700 text-center">1.4</td>
+                            <td class="p-3.5 font-semibold text-slate-900">Campo de estudio de la psicología laboral.</td>
+                            <td class="p-3.5">Reconocer el campo de estudio de la Psicología Laboral y su relación con el comportamiento humano en contextos organizacionales.</td>
+                            <td class="p-3.5 text-center"><span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">Evaluación</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="teoria" class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-l-4 border-brand-600 pl-4">
+                <div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cuerpo Conceptual de Apoyo</span>
+                    <h3 class="text-2xl font-bold text-navy-900">Píldoras Teóricas Interactivas (Unidad 1)</h3>
+                </div>
+                <p class="text-xs text-slate-500">Haga clic en las tarjetas para desplegar el marco teórico de referencia</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <!-- Modulo 1.1 -->
+                <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm hover:border-brand-500/50 transition">
+                    <button onclick="toggleAccordion('mod-1-1')" class="w-full text-left px-5 py-4 bg-slate-50 hover:bg-slate-100/80 flex items-center justify-between font-semibold text-slate-800 transition">
+                        <span class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded bg-brand-100 text-brand-700 flex items-center justify-center text-xs font-bold">1.1</span>
+                            <span>Psicología Laboral: Concepto, Objeto y Alcance</span>
+                        </span>
+                        <svg id="icon-mod-1-1" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="mod-1-1" class="px-5 py-4 text-sm text-slate-600 space-y-2 border-t border-slate-100 bg-white">
+                        <p class="leading-relaxed">
+                            La <strong>Psicología Laboral y Organizacional (I/O)</strong> es la rama de la psicología aplicada que estudia científicamente la conducta, cogniciones y emociones humanas en contextos laborales, así como la dinámica recíproca entre el individuo, el grupo y el sistema técnico-estructural.
+                        </p>
+                        <div class="bg-blue-50 border-l-2 border-brand-600 p-2.5 rounded text-xs text-brand-900">
+                            <strong>Doble Enfoque:</strong> <em>Industrial/Laboral</em> (selección, evaluación, capacitación y desempeño) vs. <em>Organizacional</em> (motivación, clima, liderazgo, cultura y salud mental ocupacional).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 1.2 -->
+                <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm hover:border-brand-500/50 transition">
+                    <button onclick="toggleAccordion('mod-1-2')" class="w-full text-left px-5 py-4 bg-slate-50 hover:bg-slate-100/80 flex items-center justify-between font-semibold text-slate-800 transition">
+                        <span class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">1.2</span>
+                            <span>El Rol Dinámico del Psicólogo Laboral</span>
+                        </span>
+                        <svg id="icon-mod-1-2" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="mod-1-2" class="px-5 py-4 text-sm text-slate-600 space-y-2 border-t border-slate-100 bg-white">
+                        <p class="leading-relaxed">
+                            Superando el clásico rol pasivo de mero "aplicador de tests psicométricos", el profesional contemporáneo opera como <strong>arquitecto del bienestar y facilitador de la eficacia sistémica</strong>:
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600">
+                            <li><strong>Prevención de Riesgos Psicosociales:</strong> Identificación del estrés crónico, burnout y diseño de planes de resiliencia laboral.</li>
+                            <li><strong>Diseño de Puestos y Ergonomía Cognitiva:</strong> Adaptación del trabajo al ser humano, mitigando la sobrecarga atencional.</li>
+                            <li><strong>Gestión del Talento & Desarrollo Organizacional:</strong> Alineamiento de planes de carrera con metas estratégicas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Modulo 1.3 -->
+                <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm hover:border-brand-500/50 transition md:col-span-2">
+                    <button onclick="toggleAccordion('mod-1-3')" class="w-full text-left px-5 py-4 bg-slate-50 hover:bg-slate-100/80 flex items-center justify-between font-semibold text-slate-800 transition">
+                        <span class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">1.3</span>
+                            <span>Línea del Tiempo & Hitos Históricos Clave (1890 - Actualidad)</span>
+                        </span>
+                        <svg id="icon-mod-1-3" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="mod-1-3" class="px-5 py-4 text-sm text-slate-600 space-y-4 border-t border-slate-100 bg-white">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-brand-700 block text-sm">1. Taylorismo (1911)</span>
+                                <span class="text-slate-500 font-mono">F. Taylor / W. Dill Scott</span>
+                                <p class="mt-1 text-slate-600">Mecanicismo, cronometraje, división extrema del trabajo e incentivo monetario ("homo economicus"). Trata al operario como un apéndice de la máquina.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-indigo-700 block text-sm">2. Münsterberg & WWI</span>
+                                <span class="text-slate-500 font-mono">1913 - 1917</span>
+                                <p class="mt-1 text-slate-600">Hugo Münsterberg publica "Psychology and Industrial Efficiency". Uso de tests mentales masivos (Army Alpha/Beta) para selección de perfiles idóneos.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-amber-700 block text-sm">3. Hawthorne (1924-1932)</span>
+                                <span class="text-slate-500 font-mono">Elton Mayo & F. Roethlisberger</span>
+                                <p class="mt-1 text-slate-600">Descubrimiento de la organización informal, sentido de pertenencia y factores socioemocionales. La atención recibida altera positivamente la productividad.</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-emerald-700 block text-sm">4. Enfoque Sociotécnico</span>
+                                <span class="text-slate-500 font-mono">Tavistock Institute (1950+)</span>
+                                <p class="mt-1 text-slate-600">Optimización conjunta del subsistema técnico (tecnología, maquinaria) y el subsistema social (roles, relaciones, motivación intrínseca).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulo 1.4 -->
+                <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm hover:border-brand-500/50 transition md:col-span-2">
+                    <button onclick="toggleAccordion('mod-1-4')" class="w-full text-left px-5 py-4 bg-slate-50 hover:bg-slate-100/80 flex items-center justify-between font-semibold text-slate-800 transition">
+                        <span class="flex items-center gap-3">
+                            <span class="w-6 h-6 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">1.4</span>
+                            <span>Campo de Estudio y Relación con el Comportamiento Humano</span>
+                        </span>
+                        <svg id="icon-mod-1-4" class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div id="mod-1-4" class="px-5 py-4 text-sm text-slate-600 space-y-2 border-t border-slate-100 bg-white">
+                        <p class="leading-relaxed">
+                            El campo de estudio no se limita a resolver conflictos internos, sino que abarca la articulación de la <strong>tríada: Individuo - Grupo - Estructura Organizacional</strong>. Analiza cómo variables micro (personalidad, locus de control, fatiga visual/cognitiva), meso (liderazgo, normas grupales, cohesión de cuadrillas) y macro (cultura corporativa, políticas de recompensas, flexibilidad laboral) inciden en la sustentabilidad de la firma y la salud integral del trabajador.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="caso" class="bg-gradient-to-br from-slate-900 to-navy-900 rounded-2xl shadow-xl border border-slate-700 text-white p-6 sm:p-8 relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-6 border-b border-slate-700 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="bg-amber-500/20 text-amber-300 border border-amber-400/30 text-xs px-3 py-1 rounded-full font-semibold">
+                        Simulación Industrial para el Taller APE
+                    </span>
+                    <span class="text-xs text-slate-400">Escenario Realista #402</span>
+                </div>
+                <div class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded border border-slate-700">
+                    Rubro: Manufactura Automotriz & Cableado
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-4">
+                    <h3 class="text-2xl font-bold text-white tracking-tight">
+                        Caso Práctico: "Crisis de Rendimiento y Desgaste en Motores Andina S.A."
+                    </h3>
+                    
+                    <div class="text-slate-300 space-y-3 text-sm leading-relaxed academic-serif">
+                        <p>
+                            <strong>Contexto:</strong> En la planta de ensamblaje de módulos electrónicos de <em>Motores Andina S.A.</em>, la gerencia de operaciones implementó un riguroso esquema de tiempos y movimientos inspirado en los postulados de <strong>Frederick Taylor</strong>. Se eliminaron las pausas informales, se fijó una meta inamovible de 145 piezas ensambladas por hora mediante bandas transportadoras a ritmo forzado, y se prohibió la interacción verbal entre los 45 operarios de la Línea B.
+                        </p>
+                        <p>
+                            <strong>Los Síntomas:</strong> Durante el último trimestre, a pesar de que el sueldo base se incrementó en un 8% por cumplimiento de metas (bono monetario), la tasa de productos defectuosos aumentó un <strong>38%</strong>, las ausencias no justificadas por lumbalgias y cefaleas tensionales escalaron al <strong>22%</strong>, y dos operarias experimentadas presentaron crisis de pánico en la estación de remachado.
+                        </p>
+                        <p>
+                            <strong>El Diagnóstico Preliminar del Supervisor de Producción:</strong> <em>"Los operarios carecen de disciplina y agradecimiento; a pesar de pagarles mejor, se distraen buscando conversar y cometen errores por negligencia. La solución es instalar cámaras de vigilancia más precisas y sancionar con descuentos cada retraso de ciclo."</em>
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-center">
+                            <span class="text-xl font-bold text-red-400 block">+38%</span>
+                            <span class="text-[11px] text-slate-400">Defectos de Calidad</span>
+                        </div>
+                        <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-center">
+                            <span class="text-xl font-bold text-amber-400 block">22%</span>
+                            <span class="text-[11px] text-slate-400">Absentismo Laboral</span>
+                        </div>
+                        <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-center">
+                            <span class="text-xl font-bold text-blue-400 block">145 pzs/h</span>
+                            <span class="text-[11px] text-slate-400">Cadencia Forzada</span>
+                        </div>
+                        <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-center">
+                            <span class="text-xl font-bold text-emerald-400 block">+8% Bono</span>
+                            <span class="text-[11px] text-slate-400">Incentivo Ineficaz</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desafío del estudiante -->
+                <div class="bg-slate-800/90 rounded-xl p-5 border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="w-8 h-8 rounded bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h4 class="font-bold text-white text-base mb-2">Su Rol en el Experimento:</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Usted ha sido contratado como <strong>Psicólogo Organizacional Consultor</strong>. La Dirección General le ha otorgado 48 horas para impugnar el enfoque mecanicista del supervisor de producción, justificar la raíz psicosocial y cognitiva del problema usando los experimentos de Hawthorne y el modelo Sociotécnico, y diseñar una propuesta correctiva.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-700">
+                        <span class="text-[11px] text-slate-400 block mb-2 font-mono">ESTADO DEL REQUERIMIENTO:</span>
+                        <div class="flex items-center gap-2 text-xs text-amber-300 bg-amber-500/10 px-3 py-2 rounded border border-amber-500/20">
+                            <span class="h-2 w-2 rounded-full bg-amber-400 animate-pulse"></span>
+                            Esperando Resolución Estudiantil
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="actividades" class="space-y-8">
+            <div>
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Fase Experimental de Campo</span>
+                <h3 class="text-2xl font-bold text-navy-900 mt-1">Guía Práctica de Actividades APE (Evaluables)</h3>
+                <p class="text-slate-600 text-sm mt-1">El estudiante o equipo de trabajo debe resolver los tres componentes analíticos en base al caso "Motores Andina S.A."</p>
+            </div>
+
+            <!-- Tabs de navegación de actividades -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex border-b border-slate-200 bg-slate-50 text-xs sm:text-sm font-semibold">
+                    <button onclick="switchTab('act-1')" id="tab-btn-act-1" class="tab-button flex-1 py-3 px-4 text-center border-b-2 border-brand-600 bg-white text-brand-700">
+                        Actividad 1: Contraste Teórico (Taylor vs. Mayo)
+                    </button>
+                    <button onclick="switchTab('act-2')" id="tab-btn-act-2" class="tab-button flex-1 py-3 px-4 text-center border-b-2 border-transparent text-slate-600 hover:text-navy-900">
+                        Actividad 2: Diagnóstico Sociotécnico
+                    </button>
+                    <button onclick="switchTab('act-3')" id="tab-btn-act-3" class="tab-button flex-1 py-3 px-4 text-center border-b-2 border-transparent text-slate-600 hover:text-navy-900">
+                        Actividad 3: Matriz de Intervención Psicolaboral
+                    </button>
+                </div>
+
+                <!-- Contenido Actividad 1 -->
+                <div id="act-1" class="tab-pane p-6 sm:p-8 space-y-4">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-blue-800">Resultado 1.3 • Valor: 3.0 pts</span>
+                            <h4 class="text-lg font-bold text-slate-900 mt-2">Dilema Paradigmático: Deconstrucción del "Homo Economicus"</h4>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Explique críticamente por qué el aumento del 8% salarial por pieza no impidió el aumento del 38% en fallas técnicas. Elabore un cuadro comparativo donde contraponga las premisas que el supervisor asume (Taylorismo/Münsterberg inicial) frente a los hallazgos de Elton Mayo (Hawthorne) respecto a la necesidad de afiliación, contención de fatiga y la red sociolaboral informal.
+                    </p>
+                    <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-600">
+                        <strong>Preguntas Orientadoras:</strong>
+                        <ul class="list-disc pl-5 mt-1 space-y-1">
+                            <li>¿Qué efecto tiene la inhibición total de la comunicación en puestos con alta monotonía sensoriomotora?</li>
+                            <li>¿Cómo se explica la 'fatiga por constricción postural y atencional' frente a la simple noción de pereza obrera?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contenido Actividad 2 -->
+                <div id="act-2" class="tab-pane hidden p-6 sm:p-8 space-y-4">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-indigo-100 text-indigo-800">Resultados 1.1 y 1.4 • Valor: 3.5 pts</span>
+                            <h4 class="text-lg font-bold text-slate-900 mt-2">Mapeo del Sistema Sociotécnico en la Línea B</h4>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Desglose los dos subsistemas de la planta automotriz para evidenciar la fractura sistémica que provocó las crisis de pánico y cefaleas:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h5 class="font-bold text-slate-800 mb-1">A) Subsistema Técnico</h5>
+                            <p class="text-slate-600">Identifique variables de velocidad de cinta, tiempos de ciclo (Takt time), herramientas mecánicas, postura corporal y exigencia de precisión visual.</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg">
+                            <h5 class="font-bold text-slate-800 mb-1">B) Subsistema Social</h5>
+                            <p class="text-slate-600">Identifique la supresión de redes de apoyo, estilo de liderazgo autocrático/punitivo, falta de autonomía decisional y ausencia de retroalimentación constructiva.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido Actividad 3 -->
+                <div id="act-3" class="tab-pane hidden p-6 sm:p-8 space-y-4">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-emerald-100 text-emerald-800">Resultado 1.2 • Valor: 3.5 pts</span>
+                            <h4 class="text-lg font-bold text-slate-900 mt-2">Plan de Rediseño Psicolaboral & Matriz de Mitigación</h4>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Diseñe una propuesta técnica factible de 4 medidas inmediatas que el psicólogo laboral recomendaría a la Gerencia General para restablecer el clima y bajar el error operativo sin reducir los objetivos de producción viables. Incluya indicadores de gestión (KPIs de bienestar y calidad).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Rúbrica Analítica Sintética -->
+            <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                <h4 class="text-sm font-bold text-navy-900 uppercase tracking-wide mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    Criterios de Evaluación y Rúbrica (10 Puntos)
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600">
+                    <div class="border border-slate-200 rounded p-3 bg-slate-50">
+                        <span class="font-bold text-slate-800 block text-xs">Excelente (9.0 - 10.0 pts)</span>
+                        <p class="mt-1">Distingue nítidamente las corrientes históricas, fundamenta biológica y psicológicamente la fatiga, y propone soluciones sociotécnicas viables con métricas cuantitativas.</p>
+                    </div>
+                    <div class="border border-slate-200 rounded p-3 bg-slate-50">
+                        <span class="font-bold text-slate-800 block text-xs">Aceptable (7.0 - 8.9 pts)</span>
+                        <p class="mt-1">Identifica el error del enfoque taylorista pero el plan de acción carece de detalles técnicos ergonómicos o no articula claramente el subsistema social de Tavistock.</p>
+                    </div>
+                    <div class="border border-slate-200 rounded p-3 bg-slate-50">
+                        <span class="font-bold text-slate-800 block text-xs">Insuficiente (&lt; 7.0 pts)</span>
+                        <p class="mt-1">Limita la respuesta a 'capacitar al personal' sin cuestionar las condiciones estructurales de la línea de ensamble ni aplicar los hitos teóricos de la unidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solucion-protegida" class="scroll-mt-20">
+            <div class="bg-slate-900 rounded-2xl shadow-2xl border-2 border-amber-500/40 p-6 sm:p-10 relative overflow-hidden text-white">
+                
+                <!-- Indicador Superior -->
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-amber-400 font-bold">Módulo Docente Restringido</span>
+                            <h3 class="text-xl sm:text-2xl font-black text-white">Solución y Desarrollo Modelo del Taller APE</h3>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="toggleHint()" class="text-xs text-slate-400 hover:text-amber-300 underline underline-offset-4 transition">
+                            ¿Necesita pista institucional?
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pista desplegable -->
+                <div id="password-hint" class="hidden mb-6 p-3 bg-amber-950/40 border border-amber-800/60 rounded-lg text-xs text-amber-200">
+                    <span class="font-bold">Clave de Acceso Académico:</span> Ingrese la clave institucional <code class="bg-black/40 px-2 py-0.5 rounded text-amber-300 font-mono">APE2026</code> o <code class="bg-black/40 px-2 py-0.5 rounded text-amber-300 font-mono">PSICO-UPSE</code> para desbloquear la retroalimentación pericial.
+                </div>
+
+                <!-- FORMULARIO DE ACCESO CON CONTRASEÑA -->
+                <div id="lock-screen" class="max-w-md mx-auto py-8 text-center space-y-4">
+                    <p class="text-sm text-slate-300">
+                        Esta sección contiene el desarrollo técnico completo del caso, tablas de resolución diagnóstica y argumentos epistemológicos. Introduzca su clave para desbloquear.
+                    </p>
+                    
+                    <form onsubmit="unlockSolution(event)" class="space-y-3">
+                        <div class="relative">
+                            <input type="password" id="access-key" placeholder="Ingrese contraseña docente..." 
+                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition font-mono tracking-wider text-center"
+                                required>
+                            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-3 text-slate-400 hover:text-white text-xs">
+                                <span id="eye-icon">Ver</span>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-slate-950 font-bold text-sm transition shadow-lg shadow-amber-600/20 flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                            Verificar y Desbloquear Desarrollo
+                        </button>
+                    </form>
+
+                    <div id="error-message" class="hidden text-xs text-red-400 font-medium bg-red-950/40 p-2.5 rounded-lg border border-red-800">
+                        Contraseña incorrecta. Verifique mayúsculas o solicite acceso al docente titular.
+                    </div>
+                </div>
+
+                <!-- CONTENIDO DESBLOQUEADO (OCULTO POR DEFECTO) -->
+                <div id="unlocked-content" class="hidden space-y-8 animate-fadeIn">
+                    <div class="bg-emerald-950/30 border border-emerald-500/40 rounded-xl p-4 flex items-center justify-between text-xs text-emerald-300">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span><strong>Autenticación exitosa:</strong> Acceso concedido al reporte canónico de cátedra.</span>
+                        </div>
+                        <button onclick="lockAgain()" class="text-slate-400 hover:text-white underline">Bloquear de nuevo</button>
+                    </div>
+
+                    <!-- Solución Actividad 1 -->
+                    <div class="bg-slate-800/90 rounded-xl p-6 border border-slate-700 space-y-4">
+                        <div class="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                            <span class="w-6 h-6 rounded-full bg-amber-400/20 flex items-center justify-center text-xs">S1</span>
+                            <h4>Desarrollo Solución - Actividad 1: El Fracaso del Taylorismo y la Evidencia Hawthorne</h4>
+                        </div>
+                        <div class="text-sm text-slate-300 space-y-3 leading-relaxed">
+                            <p>
+                                <strong>Análisis Crítico:</strong> El supervisor comete el sesgo clásico de la <em>Administración Científica de Taylor (1911)</em> al concebir al obrero como un <em>"Homo Economicus"</em> puro, creyendo que una prima salarial (+8%) compensa automáticamente la sobrecarga biomecánica y el aislamiento social.
+                            </p>
+                            <div class="overflow-x-auto my-3">
+                                <table class="w-full text-xs text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-900 text-slate-300 border-b border-slate-700">
+                                            <th class="p-2.5">Variable</th>
+                                            <th class="p-2.5">Paradigma Taylorista (Supervisor)</th>
+                                            <th class="p-2.5 text-amber-300">Aporte Hawthorne / Elton Mayo (Psicología Laboral)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-700/60 text-slate-300">
+                                        <tr>
+                                            <td class="p-2.5 font-bold">Motivación</td>
+                                            <td class="p-2.5">Exclusivamente salarial e individualista.</td>
+                                            <td class="p-2.5 text-slate-200">Reconocimiento, estima social, sentido de pertenencia y cohesión de grupo.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2.5 font-bold">Interacción</td>
+                                            <td class="p-2.5">Vista como 'pérdida de tiempo y distracción'.</td>
+                                            <td class="p-2.5 text-slate-200">La interacción amortigua el estrés (amortiguación social) y regula la ansiedad laboral.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2.5 font-bold">Fatiga humana</td>
+                                            <td class="p-2.5">Mecánica/física; se soluciona fijando tiempos fijos.</td>
+                                            <td class="p-2.5 text-slate-200">Fatiga psíquica, sensorial y cognitiva. La cadencia forzada destruye la autorregulación.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-xs text-slate-400 italic">
+                                *Conclusión académica:* El aumento de fallas al 38% ocurre porque a 145 piezas/hora sostenidas, la atención selectiva colapsa por sobresaturación de neurotransmisores y estrés cortisólico; el operario pierde agudeza sensorial.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Solución Actividad 2 -->
+                    <div class="bg-slate-800/90 rounded-xl p-6 border border-slate-700 space-y-4">
+                        <div class="flex items-center gap-2 text-indigo-400 font-bold text-sm">
+                            <span class="w-6 h-6 rounded-full bg-indigo-400/20 flex items-center justify-center text-xs">S2</span>
+                            <h4>Desarrollo Solución - Actividad 2: Mapeo Sociotécnico (Enfoque Tavistock)</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-700">
+                                <h5 class="font-bold text-blue-400 mb-2 uppercase tracking-wide">Falla en Subsistema Técnico</h5>
+                                <ul class="list-disc pl-4 space-y-1.5 text-slate-300">
+                                    <li><strong>Cadencia Rígida:</strong> La cinta transportadora no permite micro-pausas compensatorias.</li>
+                                    <li><strong>Monotonía Extrema:</strong> Operaciones de menos de 25 segundos sin enriquecimiento de tareas (Job Enrichment).</li>
+                                    <li><strong>Sobrecarga Ergonómica:</strong> Fatiga visual repetitiva que desencadena las cefaleas tensionales reportadas.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-900/80 p-4 rounded-lg border border-slate-700">
+                                <h5 class="font-bold text-emerald-400 mb-2 uppercase tracking-wide">Falla en Subsistema Social</h5>
+                                <ul class="list-disc pl-4 space-y-1.5 text-slate-300">
+                                    <li><strong>Supresión de la Organización Informal:</strong> Al impedir hablar, se genera alienación del trabajador.</li>
+                                    <li><strong>Liderazgo Hostil:</strong> La amenaza de descuentos y vigilancia invasiva eleva la amenaza percibida a nivel del sistema límbico (causa de los ataques de pánico).</li>
+                                    <li><strong>Falta de Feedback:</strong> Solo se notifica el castigo, nunca la retroalimentación constructiva.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solución Actividad 3 -->
+                    <div class="bg-slate-800/90 rounded-xl p-6 border border-slate-700 space-y-4">
+                        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                            <span class="w-6 h-6 rounded-full bg-emerald-400/20 flex items-center justify-center text-xs">S3</span>
+                            <h4>Desarrollo Solución - Actividad 3: Matriz de Intervención Psicolaboral & Rediseño</h4>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-slate-300 border-b border-slate-700">
+                                        <th class="p-2.5">Pilar de Intervención</th>
+                                        <th class="p-2.5">Acción Concreta Recomendada</th>
+                                        <th class="p-2.5">Fundamentación Psicológica</th>
+                                        <th class="p-2.5">KPI de Monitoreo</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700/60 text-slate-300">
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-300">1. Rotación de Puestos</td>
+                                        <td class="p-2.5">Ciclos rotativos cada 90 minutos entre ensamble, remachado e inspección de calidad.</td>
+                                        <td class="p-2.5">Evita la habituación neuronal, alivia grupos musculares y combate el aburrimiento crónico.</td>
+                                        <td class="p-2.5 text-emerald-400 font-mono">Tasa de Defectos &lt; 3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-300">2. Células Autónomas</td>
+                                        <td class="p-2.5">Sustituir la línea recta rígida por islas sociotécnicas de 5 operarios con meta grupal negociada.</td>
+                                        <td class="p-2.5">Restaura la dinámica grupal identificada por Elton Mayo y el sentido de corresponsabilidad.</td>
+                                        <td class="p-2.5 text-emerald-400 font-mono">Clima Laboral +40 pts</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-300">3. Pausas Activas</td>
+                                        <td class="p-2.5">Dos micro-descansos de 8 minutos programados por turno para estiramiento y socialización.</td>
+                                        <td class="p-2.5">Restauración de reservas de atención voluntaria (Teoría de Recuperación de Atención).</td>
+                                        <td class="p-2.5 text-emerald-400 font-mono">Absentismo Médico &lt; 5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-bold text-amber-300">4. Capacitación a Mandos</td>
+                                        <td class="p-2.5">Entrenamiento al supervisor en liderazgo transformacional y erradicación del control coercitivo.</td>
+                                        <td class="p-2.5">La seguridad psicológica reduce la reactividad simpática y evita ataques de pánico.</td>
+                                        <td class="p-2.5 text-emerald-400 font-mono">0 Incidencias Psíquicas</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje para descarga -->
+                    <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                        <span class="text-slate-400">¿Desea exportar este documento modelo para la sesión de retroalimentación en clase presencial?</span>
+                        <button onclick="window.print()" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-lg transition">
+                            Descargar Informe Completo (PDF)
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+            <div class="border-b border-slate-200 pb-4">
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Autoevaluación de Conceptos</span>
+                <h3 class="text-2xl font-bold text-navy-900 mt-1">Simulador de Preguntas Rápidas APE</h3>
+                <p class="text-slate-600 text-sm">Compruebe su nivel de asimilación conceptual antes de remitir su informe final.</p>
+            </div>
+
+            <div class="space-y-4" id="quiz-container">
+                <!-- Pregunta 1 -->
+                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                    <p class="text-sm font-semibold text-slate-800">1. ¿Cuál fue el hallazgo más revolucionario de los experimentos de Hawthorne de Elton Mayo?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            A) La iluminación blanca directa incrementa la visión periférica en un 15%.
+                        </button>
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            B) El factor socioemocional y sentirse observado/atendido influye más que las variables físicas.
+                        </button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            C) El dinero por pieza es la única variable que predice la conducta del obrero.
+                        </button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            D) Los tests Army Alpha erradicaron totalmente el absentismo laboral.
+                        </button>
+                    </div>
+                    <div class="quiz-feedback hidden text-xs font-medium pt-1"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-2">
+                    <p class="text-sm font-semibold text-slate-800">2. En el marco del Enfoque Sociotécnico, ¿qué ocurre si se optimiza la tecnología ignorando las necesidades humanas?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <button onclick="checkAnswer(this, true)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            A) Se genera una suboptimización global del sistema, aumentando errores y estrés.
+                        </button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            B) La productividad se duplica automáticamente por sustitución de mano de obra.
+                        </button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            C) Se cumple fielmente el principio de optimización armónica de Tavistock.
+                        </button>
+                        <button onclick="checkAnswer(this, false)" class="quiz-btn text-left p-2.5 rounded border border-slate-300 bg-white hover:bg-slate-100 transition">
+                            D) El psicólogo industrial debe limitarse a despedir a los obreros descontentos.
+                        </button>
+                    </div>
+                    <div class="quiz-feedback hidden text-xs font-medium pt-1"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-navy-900 border-t border-slate-800 text-slate-400 py-10 mt-16 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <p class="font-bold text-slate-200 text-sm">Cátedra de Psicología Laboral y del Comportamiento Organizacional</p>
+                <p class="text-slate-400 mt-1">Guía Didáctica para Aprendizaje Práctico Experimental (APE) • Unidad Temática 1</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-slate-500">© 2026 Universidad Estatal - Formación Superior</span>
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span class="text-emerald-400 font-mono">Docencia Validada</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Manejador de acordeones teóricos
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                el.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Manejador de pestañas de actividades
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('border-brand-600', 'bg-white', 'text-brand-700');
+                btn.classList.add('border-transparent', 'text-slate-600');
+            });
+
+            const activePane = document.getElementById(tabId);
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+
+            if (activePane) activePane.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.add('border-brand-600', 'bg-white', 'text-brand-700');
+                activeBtn.classList.remove('border-transparent', 'text-slate-600');
+            }
+        }
+
+        // Mostrar u ocultar pista de contraseña
+        function toggleHint() {
+            const hint = document.getElementById('password-hint');
+            hint.classList.toggle('hidden');
+        }
+
+        // Alternar visibilidad de contraseña
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('access-key');
+            const label = document.getElementById('eye-icon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                label.textContent = 'Ocultar';
+            } else {
+                pwdInput.type = 'password';
+                label.textContent = 'Ver';
+            }
+        }
+
+        // LÓGICA DE DESBLOQUEO DE SOLUCIÓN PROTEGIDA
+        // Contraseñas válidas especificadas: 'APE2026' o 'PSICO-UPSE'
+        const VALID_KEYS = ['APE2026', 'PSICO-UPSE', 'ape2026', 'psico-upse'];
+
+        function unlockSolution(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('access-key').value.trim();
+            const errorBox = document.getElementById('error-message');
+            const lockScreen = document.getElementById('lock-screen');
+            const unlockedContent = document.getElementById('unlocked-content');
+
+            if (VALID_KEYS.includes(inputVal)) {
+                errorBox.classList.add('hidden');
+                lockScreen.classList.add('hidden');
+                unlockedContent.classList.remove('hidden');
+                // Scroll suave hacia el contenido desbloqueado
+                unlockedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                errorBox.classList.remove('hidden');
+                // Animación leve de vibración
+                const input = document.getElementById('access-key');
+                input.classList.add('border-red-500', 'animate-pulse');
+                setTimeout(() => {
+                    input.classList.remove('animate-pulse');
+                }, 1000);
+            }
+        }
+
+        function lockAgain() {
+            document.getElementById('access-key').value = '';
+            document.getElementById('lock-screen').classList.remove('hidden');
+            document.getElementById('unlocked-content').classList.add('hidden');
+            document.getElementById('error-message').classList.add('hidden');
+        }
+
+        // Simulador de preguntas rápidas
+        function checkAnswer(button, isCorrect) {
+            const parent = button.closest('.space-y-2');
+            const feedback = parent.querySelector('.quiz-feedback');
+            const allButtons = parent.querySelectorAll('.quiz-btn');
+
+            allButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.remove('bg-white', 'hover:bg-slate-100');
+            });
+
+            feedback.classList.remove('hidden');
+
+            if (isCorrect) {
+                button.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-semibold');
+                feedback.textContent = '¡Correcto! Excelente comprensión del paradigma sociotécnico y relacional.';
+                feedback.className = 'quiz-feedback text-xs font-semibold text-emerald-700 pt-1';
+            } else {
+                button.classList.add('bg-red-100', 'border-red-500', 'text-red-900');
+                feedback.textContent = 'Incorrecto. Revise el módulo de historia de Elton Mayo y el modelo de Tavistock.';
+                feedback.className = 'quiz-feedback text-xs font-semibold text-red-700 pt-1';
+            }
+        }
+    </script>
+</body>
+</html>
