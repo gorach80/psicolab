@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Cátedra de Psicología Laboral y Ergonomía Sociotécnica">
+<meta name="description" content="Material didáctico universitario: psicología laboral, ergonomía sociotécnica, OEE y gestión de células robotizadas">
+<title>Clase 2 · Psicología Laboral en la Empresa — Material Didáctico Universitario</title>
+<style>
+:root{
+  --bg:#fbfaf6;
+  --ink:#1c2230;
+  --ink-soft:#3a4258;
+  --rule:#c9c4b3;
+  --primary:#1f3a5f;
+  --primary-dark:#0f2240;
+  --accent:#8a1c2b;
+  --accent-soft:#b3404d;
+  --gold:#a9873a;
+  --paper:#ffffff;
+  --soft:#f3efe3;
+  --warn:#fdf3e2;
+  --ok:#e8f3ec;
+  --info:#e9f0f7;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  --serif:'Georgia','Noto Serif','Times New Roman',serif;
+  --sans:'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;padding:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  line-height:1.62;
+  font-size:16px;
+  text-rendering:optimizeLegibility;
+}
+a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent-soft)}
+a:hover{background:var(--soft)}
+h1,h2,h3,h4,h5{font-family:var(--sans);color:var(--primary-dark);line-height:1.3;font-weight:700;margin:0 0 .5em}
+h1{font-size:2.1rem;letter-spacing:-.01em}
+h2{font-size:1.55rem;border-bottom:2px solid var(--gold);padding-bottom:.25em;margin-top:2em}
+h3{font-size:1.25rem;color:var(--primary);margin-top:1.6em}
+h4{font-size:1.05rem;color:var(--accent);margin-top:1.4em;text-transform:uppercase;letter-spacing:.05em}
+p{margin:0 0 1em;text-align:justify;hyphens:auto}
+ul,ol{margin:0 0 1em 1.5em;padding:0}
+li{margin:.3em 0}
+blockquote{
+  margin:1.2em 0;padding:1em 1.4em;
+  background:var(--soft);border-left:4px solid var(--primary);
+  font-style:italic;color:var(--ink-soft)
+}
+blockquote p{margin:0;text-align:left}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;background:var(--paper)}
+caption{caption-side:bottom;font-size:.82rem;color:var(--ink-soft);font-style:italic;padding:.4em 0}
+th,td{border:1px solid var(--rule);padding:.55em .7em;text-align:left;vertical-align:top}
+th{background:var(--primary);color:#fff;font-family:var(--sans);font-weight:600}
+tbody tr:nth-child(even){background:var(--soft)}
+code,pre{font-family:var(--mono)}
+code{background:var(--soft);padding:.1em .35em;border-radius:3px;font-size:.9em;color:var(--accent)}
+pre{background:var(--primary-dark);color:#e8e3d2;padding:1em 1.2em;border-radius:6px;overflow-x:auto;font-size:.86rem;line-height:1.5}
+
+/* LAYOUT */
+.site-header{
+  background:var(--primary-dark);
+  color:#fff;
+  padding:1.6em 2em 1em;
+  border-bottom:4px solid var(--gold);
+}
+.site-header .brand{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:1em}
+.site-header h1{color:#fff;margin:0;font-size:1.7rem;border:none}
+.site-header .subtitle{font-family:var(--serif);font-style:italic;color:#d9d1b3;font-size:.95rem;margin:.2em 0 0}
+.site-header .meta{font-family:var(--sans);font-size:.78rem;color:#cfc7a6;letter-spacing:.04em;text-transform:uppercase}
+
+/* NAV / TABS */
+.tabs{
+  background:var(--primary);
+  display:flex;flex-wrap:wrap;gap:0;
+  border-bottom:1px solid var(--gold);
+  position:sticky;top:0;z-index:50;
+}
+.tabs a{
+  flex:1 1 auto;
+  color:#fff;
+  font-family:var(--sans);
+  font-size:.82rem;
+  font-weight:600;
+  text-align:center;
+  padding:.9em .8em;
+  border:none;
+  border-right:1px solid rgba(255,255,255,.15);
+  border-bottom:3px solid transparent;
+  letter-spacing:.02em;
+  cursor:pointer;
+  display:block;
+  text-decoration:none;
+  background:transparent;
+  transition:background .2s,border-color .2s;
+  min-width:140px;
+}
+.tabs a:hover{background:var(--primary-dark);border-bottom-color:var(--gold)}
+.tabs a.active{background:var(--primary-dark);border-bottom-color:var(--gold);color:#fff}
+.tabs a .num{
+  display:inline-block;background:var(--gold);color:var(--primary-dark);
+  width:1.5em;height:1.5em;line-height:1.5em;border-radius:50%;
+  font-size:.75rem;margin-right:.4em;font-weight:700
+}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:2em 2.4em 4em;background:var(--paper);box-shadow:0 0 18px rgba(0,0,0,.06)}
+.tab-panel{display:none;animation:fade .3s ease}
+.tab-panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* CALLOUTS */
+.callout{margin:1.3em 0;padding:1em 1.3em;border-left:4px solid var(--primary);background:var(--info);border-radius:0 4px 4px 0}
+.callout.warn{background:var(--warn);border-left-color:var(--gold)}
+.callout.ok{background:var(--ok);border-left-color:#3a7d4f}
+.callout.danger{background:#f7e8ea;border-left-color:var(--accent)}
+.callout h4{margin-top:0}
+
+/* CASE STUDY */
+.case-header{display:grid;grid-template-columns:1fr;gap:1em;padding:1.2em 1.4em;background:var(--soft);border:1px solid var(--rule);border-radius:4px;margin:1em 0 1.6em}
+.case-header h2{margin-top:0;border:none}
+.case-tags{display:flex;flex-wrap:wrap;gap:.4em;margin-top:.4em}
+.case-tags span{font-family:var(--sans);font-size:.72rem;background:var(--primary);color:#fff;padding:.2em .6em;border-radius:10px;letter-spacing:.03em}
+
+/* CHRONOLOGY */
+.timeline{list-style:none;margin:1.4em 0;padding:0;position:relative;border-left:3px solid var(--primary);padding-left:1.6em}
+.timeline li{margin:0 0 1em;position:relative}
+.timeline li::before{content:"";position:absolute;left:-2em;top:.4em;width:1em;height:1em;background:var(--gold);border-radius:50%;border:3px solid var(--primary)}
+.timeline .year{display:inline-block;font-family:var(--sans);font-weight:700;color:var(--accent);min-width:5em}
+.timeline .event{display:block;color:var(--ink-soft)}
+
+/* FIGURES & DIAGRAMS */
+.figure{margin:1.5em 0;text-align:center}
+.figure-caption{font-size:.84rem;color:var(--ink-soft);font-style:italic;margin-top:.5em;text-align:center}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8em;margin:1.2em 0}
+.kpi{background:var(--primary-dark);color:#fff;padding:1em 1.2em;border-radius:4px;text-align:center}
+.kpi .v{font-family:var(--sans);font-size:1.6rem;font-weight:700;color:var(--gold);display:block}
+.kpi .l{font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:#d9d1b3}
+
+/* EXERCISES */
+.exercise{
+  background:var(--soft);
+  border:1px solid var(--rule);
+  border-radius:4px;
+  padding:1.1em 1.4em;
+  margin:1.4em 0;
+}
+.exercise h4{margin-top:0;color:var(--primary)}
+.exercise .options{list-style:upper-alpha inside;margin:.6em 0 0;padding-left:.5em}
+.exercise .options li{margin:.25em 0}
+
+/* ANSWERS */
+.answer{
+  display:none;
+  margin:.8em 0 0;
+  padding:.7em 1em;
+  background:#f7e8ea;
+  border:1px dashed var(--accent);
+  border-radius:4px;
+  font-family:var(--sans);
+  font-size:.9rem;
+  color:var(--accent);
+}
+.answer.revealed{display:block}
+
+/* PROTECTED SECTIONS (reveal only with key) */
+.protected-section{
+  display:none;
+  margin:1.5em 0;
+}
+.protected-section.revealed{display:block}
+.protected-marker{
+  margin:1.5em 0;
+  padding:.8em 1.2em;
+  background:repeating-linear-gradient(45deg,#f3efe3,#f3efe3 10px,#e8e3d2 10px,#e8e3d2 20px);
+  border:1px dashed var(--gold);
+  border-radius:4px;
+  font-family:var(--sans);
+  font-size:.85rem;
+  color:var(--ink-soft);
+  text-align:center;
+}
+.protected-marker .lock{font-size:1rem;margin-right:.4em;color:var(--accent)}
+.answer .key-badge{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;padding:.1em .5em;border-radius:3px;margin-right:.5em;letter-spacing:.05em;text-transform:uppercase}
+
+.reveal-bar{
+  position:sticky;bottom:0;background:var(--ink);color:#fff;
+  padding:.7em 1em;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--sans);font-size:.85rem;
+  border-top:2px solid var(--gold);
+  margin-top:2em;
+}
+.reveal-bar button{
+  background:var(--gold);color:var(--primary-dark);
+  border:none;padding:.5em 1em;border-radius:3px;
+  font-family:var(--sans);font-weight:700;cursor:pointer;
+  font-size:.82rem;letter-spacing:.04em;
+}
+.reveal-bar button:hover{background:#c4a14e}
+.reveal-bar .status{font-size:.78rem;color:#cfc7a6}
+
+/* FOOTER */
+footer{
+  background:var(--primary-dark);color:#cfc7a6;
+  padding:1.6em 2em;text-align:center;font-family:var(--sans);font-size:.82rem;
+  border-top:4px solid var(--gold);
+}
+footer a{color:#e8e3d2}
+
+/* PRINT */
+@media print{
+  .tabs,.reveal-bar,footer{display:none}
+  main{box-shadow:none;max-width:none;padding:0}
+  .tab-panel{display:block !important;page-break-after:always}
+  body{background:#fff;font-size:11pt}
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .site-header{padding:1em}
+  .tabs{position:static;flex-direction:column}
+  .tabs a{border-right:none;border-bottom:1px solid rgba(255,255,255,.15);text-align:left}
+  main{padding:1.2em}
+  h1{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <div>
+      <h1>Psicología Laboral en la Empresa</h1>
+      <p class="subtitle">Clase 2 · Material didáctico universitario para el estudio sociotécnico del trabajo industrial robotizado</p>
+    </div>
+    <div class="meta">Cátedra de Ergonomía &amp; Sistemas Sociotécnicos · Curso 2026</div>
+  </div>
+</header>
+
+<nav class="tabs" id="mainNav">
+  <a href="#/historico" data-route="historico"><span class="num">1</span>Desarrollo Histórico</a>
+  <a href="#/caso-linea-4" data-route="caso-linea-4"><span class="num">2</span>Estudio de Caso: Línea 4</a>
+  <a href="#/taller-oee" data-route="taller-oee"><span class="num">3</span>Taller OEE &amp; Sociotécnica</a>
+  <a href="#/evaluacion" data-route="evaluacion"><span class="num">4</span>Evaluación: Banco de Reactivos</a>
+  <a href="#/tarea-asincrona" data-route="tarea-asincrona"><span class="num">5</span>Tarea Asíncrona</a>
+</nav>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 1 — DESARROLLO HISTÓRICO -->
+<!-- ============================================================ -->
+<section class="tab-panel" id="panel-historico">
+<h2>1. Desarrollo Histórico de la Psicología Laboral en la Empresa</h2>
+
+<p>La psicología laboral —también denominada psicología del trabajo, psicología industrial u psicología organizacional, según la tradición académica— constituye una disciplina puente entre la psicología científica y la ingeniería del trabajo. Su objeto de estudio abarca los procesos psicológicos (cognitivos, emocionales, motivacionales y sociales) que se activan cuando un ser humano ejecuta una actividad laboral dentro de un sistema técnico-productivo. Comprender su evolución histórica es indispensable para situar las problemáticas contemporáneas de la fatiga cognitiva, el colapso operativo en células robotizadas y la optimización sociotécnica que aborda el resto de este material.</p>
+
+<h3>1.1 Marco epistemológico y delimitación del objeto</h3>
+<p>La psicología laboral se constituye como disciplina científica aplicada a finales del siglo XIX, en el cruce entre la psicología experimental wundtiana, la fisiología del trabajo y la naciente ingeniería industrial. Su objeto no es el trabajo como entidad material, sino la <em>experiencia subjetiva y conductual del trabajador</em> en situación real de producción. Esto implica un desplazamiento desde la mecánica del cuerpo (manejada por la fisiología laboral decimonónica) hacia la psicología de la atención, la decisión, el error, la motivación y el grupo. La disciplina integra tres niveles de análisis: el individual (aptitudes, capacidades, estrés), el grupal (clima, liderazgo, comunicación) y el sistémico (cultura organizacional, diseño del puesto, arquitectura sociotécnica).</p>
+
+<h3>1.2 Antecedentes filosóficos y pre-científicos (siglos V a.C. – XIX)</h3>
+<p>Antes de su constitución científica, la reflexión sobre el trabajo atravesó la filosofía clásica, la escolástica y el pensamiento económico. Aristóteles, en la <em>Política</em>, distinguía entre <em>poiesis</em> (producción) y <em>praxis</em> (acción ética), sentando una jerarquía que durante siglos subordinó el trabajo manual al trabajo intelectual. La escolástica medieval, con Tomás de Aquino, articuló el trabajo como pena consecuencia del pecado original pero también como vía de perfeccionamiento espiritual. La Reforma protestante, especialmente en Max Weber, re-significó el trabajo como vocación (<em>Beruf</em>) y como signo de elección divina, base cultural del capitalismo industrial moderno. Estos marcos, lejos de ser meros antecedentes, configuran aún las representaciones sociales que los trabajadores tienen del esfuerzo, la fatiga y la jerarquía.</p>
+
+<h3>1.3 Higienismo, medicina del trabajo y los albores de la fisiología laboral (siglo XIX)</h3>
+<p>La Revolución Industrial genera condiciones materiales que obligan a una mirada científica sobre el trabajador: jornadas de 14 a 16 horas, trabajo infantil sistematizado, hacinamiento fabril y tasas de accidentabilidad sin precedentes. En 1832, el médico inglés Charles Turner Thackrah publica <em>The Effects of Arts, Trades, and Professions on Health and Longevity</em>, primer tratado sistemático de medicina del trabajo. En 1840, Friedrich Engels describe en <em>La situación de la clase obrera en Inglaterra</em> las consecuencias somáticas y psíquicas de la industrialización. En Alemania, Max von Pettenkofer y Carl Ludwig desarrollan la fisiología experimental que luego nutrirá a Angelo Mosso, quien en 1891 publica <em>La fatica</em>, obra fundacional sobre la fatiga fisiológica y psíquica. Estos antecedentes hacen emergir la noción de <strong>fatiga</strong> como objeto medible y, por tanto, gestionable —concepto que siglos después reaparecerá en la fatiga cognitiva de los operarios de células robotizadas.</p>
+
+<h3>1.4 Administración científica del trabajo: Frederick W. Taylor (1900–1915)</h3>
+<p>La publicación en 1911 de <em>Principles of Scientific Management</em> marca un punto de inflexión. Frederick Winslow Taylor propone una racionalización sistemática del trabajo mediante el estudio de tiempos y movimientos, la separación entre concepción y ejecución, la estandarización de métodos y herramientas, y la remuneración por pieza. Aunque habitualmente criticado por su reduccionismo, Taylor introdujo tres aportes que la psicología laboral heredaría: <strong>(i)</strong> la idea de que el trabajo puede ser objeto de estudio científico; <strong>(ii)</strong> la noción de que el rendimiento óptimo requiere selección, capacitación y diseño del puesto; y <strong>(iii)</strong> la formalización del puesto de trabajo como unidad de análisis. Los seguidores de Taylor —Frank y Lillian Gilbreth— introducirán el concepto de <em>therblig</em> (unidades elementales de movimiento) y los primeros estudios sobre fatiga y monotonía, ya explícitamente psicológicos.</p>
+
+<h3>1.5 Nacimiento de la psicología industrial: Münsterberg y Scott (1910–1920)</h3>
+<p>Hugo Münsterberg, discípulo directo de Wilhelm Wundt y profesor en Harvard, publica en 1913 <em>Psychology and Industrial Efficiency</em>, obra considerada fundacional de la psicología industrial. Münsterberg articula la disciplina en tres problemas: <em>encontrar el hombre adecuado para el trabajo</em> (selección), <em>crear las condiciones adecuadas para el trabajo</em> (ergonomía incipiente) y <em>obtener los efectos psicológicos deseados</em> (motivación y publicidad). Diseña los primeros test de aptitud para conductores de tranvía, telefonistas y capitanes de barco. Simultáneamente, Walter Dill Scott publica <em>Increasing Human Efficiency in Business</em> (1911) y funda la psicología aplicada a la publicidad y a la selección de personal. Durante la Primera Guerra Mundial, ambos —junto con Robert Yerkes— coordinan los Army Alpha y Beta Tests, que evaluaron a más de 1,7 millones de reclutas estadounidenses y profesionalizaron el testeo psicométrico masivo.</p>
+
+<h3>1.6 La escuela de Relaciones Humanas: los experimentos de Hawthorne (1924–1932)</h3>
+<p>Entre 1924 y 1932, la Western Electric Company encarga a la National Research Council un estudio sobre la relación entre iluminación y rendimiento en su planta de Hawthorne (Cicero, Illinois). Los resultados son paradójicos: el rendimiento mejora tanto cuando se aumenta como cuando se disminuye la iluminación. Elton Mayo, sociólogo australiano de la Harvard Business School, es convocado en 1927 para interpretar los datos. Mayo concluye que el factor determinante no era la variable técnica, sino la <strong>atención psicológica recibida</strong>, la cohesión grupal y la posibilidad de opinar. Este fenómeno —conocido como <em>efecto Hawthorne</em>— desplaza el foco de la psicología industrial desde la eficiencia individual hacia la dinámica grupal. Fritz Roethlisberger y William Dickson sistematizan los hallazgos en <em>Management and the Worker</em> (1939), obra fundacional de la escuela de Relaciones Humanas, que enfatiza la organización informal, el liderazgo participativo y la satisfacción en el trabajo.</p>
+
+<h3>1.7 Dinámica de grupos y psicología social aplicada: Kurt Lewin (1935–1947)</h3>
+<p>Kurt Lewin, físico y psicólogo alemán emigrado a EE. UU., introduce la psicología de la Gestalt en el estudio del trabajo. Lewin formaliza la <em>teoría del campo</em>, expresada en la ecuación B = f(P, E): el comportamiento es función de la persona y del ambiente. Desarrolla la investigación-acción participativa, los grupos de discusión (T-groups) y los estudios sobre liderazgo democrático, autocrático y laissez-faire. Su concepto de <em>clima social</em> y de <em>espacio vital</em> articula la base conceptual para las posteriores intervenciones sociotécnicas. Muerto en 1947, su herencia se prolonga en el MIT, en el National Training Laboratories y, indirectamente, en el Tavistock Institute.</p>
+
+<h3>1.8 El enfoque sociotécnico: el Tavistock Institute (1951–presente)</h3>
+<p>Tras la Segunda Guerra Mundial, el British Medical Research Council crea en 1947 el Tavistock Institute of Human Relations en Londres. Sus fundadores —entre ellos Eric Trist, Fred Emery y A. K. Rice—, herederos de Lewin y de la psiquiatría social de wartime, estudian la reconversión de las minas de carbón británicas. En 1951, Trist y Bamforth publican <em>Organizational Choice</em>, trabajo fundacional del enfoque sociotécnico. Demuestran que el cambio técnico (introducción de la vivienda mecanizada en longwalls) destruye el sistema de grupos autónomos tradicionales sin ofrecer un reemplazo psicosocial, lo que produce alienación, ausentismo y accidentes. El enfoque sociotécnico propone que todo sistema productivo es la interacción entre un <strong>sistema técnico</strong> (tecnología, lay-out, procedimientos) y un <strong>sistema social</strong> (roles, normas, autoridad, significados), y que el diseño óptimo requiere <em>joint optimization</em>: la optimización conjunta de ambos sistemas. Este principio —básico para analizar el colapso de la Línea 4 en este material— inaugura una tradición que se extiende a Volvo (Kalmar, 1971), Toyota (TPS, 1950s-1970s), Iso/SA 8000 y los modernos diseños Lean sociotécnicos.</p>
+
+<h3>1.9 Ergonomía y factores humanos (1950–1980)</h3>
+<p>Paralelamente al Tavistock, la ergonomía se institucionaliza como disciplina. La Ergonomics Research Society se funda en 1949 en el Reino Unido. Durante la Segunda Guerra Mundial, los estudios sobre la integración humano-máquina en aviación militar (panel de instrumentos, palancas, alarmas) dan lugar a la <em>human factors engineering</em>. Paul Fitts formaliza en 1954 la ley que lleva su nombre (tiempo de movimiento como función logarítmica de la distancia y la precisión). En 1963, J. K. Duncan introduce la distinción entre ergonomía física, cognitiva y organizacional. En 1979, the International Ergonomics Association (IEA) define tres dominios consolidados: físico, cognitivo y organizacional. Este período marca el pasaje de una ergonomía correctiva (corregir puestos ya diseñados) a una ergonomía concebiente (diseñar el puesto desde el origen).</p>
+
+<h3>1.10 Psicología cognitiva del trabajo y natural decision making (1980–2000)</h3>
+<p>El desarrollo de la psicología cognitiva —el “cognitivismo” de Ulric Neisser, Donald Broadbent, Herbert Simon— reorienta la psicología laboral hacia los procesos mentales del operador. En 1989, Jens Rasmussen y Kim Vicente distinguen tres niveles de control cognitivo: <em>skill-based</em> (automático), <em>rule-based</em> (basado en reglas) y <em>knowledge-based</em> (basado en conocimiento declarativo). En 1989, Gary Klein publica <em>Sources of Power</em>, iniciando la tradición del <em>naturalistic decision making</em>: el estudio de cómo los operadores experimentados (bomberos, controladores aéreos, médicos de emergencia) toman decisiones bajo presión, tiempo y ambigüedad. James Reason publica en 1990 <em>Human Error</em>, modelo del “queso suizo” que articula error activo y error latente, base del moderno análisis de incidentes. Este corpus teórico es indispensable para diagnosticar el colapso de la Línea 4 y la fatiga cognitiva de los operarios.</p>
+
+<h3>1.11 Psicología organizacional positiva, neurociencia laboral y trabajo 4.0 (2000–presente)</h3>
+<p>En 2000, Martin Seligman y Mihaly Csikszentmihalyi formalizan la <em>psicología positiva</em>, que se traslada al mundo del trabajo con la psicología organizacional positiva (POP) de Fred Luthans. La neurociencia aplicada (neuroergonomía, estudios con fNIRS y EEG en condiciones reales de trabajo) permite medir la carga cognitiva y la fatiga mental con precisión sin precedentes. La Industria 4.0 —células robotizadas colaborativas (cobots), gemelos digitales, sistemas de ejecución de manufactura conectados— introduce nuevos desafíos: supervisión extendida, vigilancia de pantallas múltiples, automatización de la decisión y consecuente <em>out-of-the-loop problem</em>. La psicología laboral contemporánea integra estos desarrollos en marcos como el “human-system integration” (NASA, 2017) y los estándares ISO 9241 (interacción humano-sistema) e ISO 6385 (principios ergonómicos del diseño del trabajo).</p>
+
+<h3>1.12 Cronología sintética de hitos</h3>
+<ul class="timeline">
+  <li><span class="year">1832</span><span class="event">Thackrah publica el primer tratado de medicina del trabajo.</span></li>
+  <li><span class="year">1891</span><span class="event">Mosso publica <em>La fatica</em>; la fatiga deviene objeto científico.</span></li>
+  <li><span class="year">1911</span><span class="event">Taylor publica <em>Principles of Scientific Management</em>.</span></li>
+  <li><span class="year">1913</span><span class="event">Münsterberg funda la psicología industrial con su obra programática.</span></li>
+  <li><span class="year">1924-32</span><span class="event">Experimentos de Hawthorne; nace la escuela de Relaciones Humanas.</span></li>
+  <li><span class="year">1947</span><span class="event">Se funda el Tavistock Institute of Human Relations.</span></li>
+  <li><span class="year">1951</span><span class="event">Trist &amp; Bamforth publican <em>Organizational Choice</em>.</span></li>
+  <li><span class="year">1954</span><span class="event">Fitts formula la ley de Fitts; madura la ergonomía.</span></li>
+  <li><span class="year">1979</span><span class="event">IEA distingue los tres dominios ergonómicos.</span></li>
+  <li><span class="year">1989</span><span class="event">Rasmussen &amp; Vicente: niveles de control cognitivo.</span></li>
+  <li><span class="year">1990</span><span class="event">Reason publica <em>Human Error</em>; modelo del queso suizo.</span></li>
+  <li><span class="year">2000</span><span class="event">Luthans formaliza la psicología organizacional positiva.</span></li>
+  <li><span class="year">2017</span><span class="event">NASA publica el marco <em>Human-System Integration</em>.</span></li>
+  <li><span class="year">2020s</span><span class="event">Industria 4.0 y neuroergonomía convergen en el estudio de la fatiga cognitiva.</span></li>
+</ul>
+
+<h3>1.13 Pensadores y obras fundamentales</h3>
+<table>
+  <thead>
+    <tr><th>Autor</th><th>Período</th><th>Obra clave</th><th>Aporte nuclear</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Charles T. Thackrah</td><td>1795–1833</td><td><em>Effects of Arts, Trades...</em> (1832)</td><td>Medicina del trabajo como disciplina.</td></tr>
+    <tr><td>Aristotle (tradición)</td><td>—</td><td><em>Política</em></td><td>Diferenciación poiesis/praxis.</td></tr>
+    <tr><td>A. Mosso</td><td>1846–1910</td><td><em>La fatica</em> (1891)</td><td>Fatiga fisiológica y psíquica medible.</td></tr>
+    <tr><td>F. W. Taylor</td><td>1856–1915</td><td><em>Scientific Management</em> (1911)</td><td>Organización científica del trabajo.</td></tr>
+    <tr><td>L. y F. Gilbreth</td><td>1868–1924 / 1878–1972</td><td><em>Motion Study</em> (1911)</td><td>Therbligs y estudio de movimientos.</td></tr>
+    <tr><td>H. Münsterberg</td><td>1863–1916</td><td><em>Psychology &amp; Industrial Efficiency</em> (1913)</td><td>Fundación de la psicología industrial.</td></tr>
+    <tr><td>W. D. Scott</td><td>1869–1955</td><td><em>Increasing Human Efficiency</em> (1911)</td><td>Psicología aplicada a publicidad y selección.</td></tr>
+    <tr><td>E. Mayo</td><td>1880–1949</td><td><em>The Human Problems of Civilization</em> (1933)</td><td>Relaciones Humanas; efecto Hawthorne.</td></tr>
+    <tr><td>K. Lewin</td><td>1890–1947</td><td><em>Field Theory in Social Science</em> (1951)</td><td>Teoría del campo; investigación-acción.</td></tr>
+    <tr><td>E. Trist</td><td>1909–1993</td><td><em>Organizational Choice</em> (con Bamforth, 1951)</td><td>Enfoque sociotécnico.</td></tr>
+    <tr><td>P. Fitts</td><td>1912–1968</td><td>Ley de Fitts (1954)</td><td>Movimientos dirigidos y diseño de controles.</td></tr>
+    <tr><td>J. Rasmussen</td><td>1926–2005</td><td><em>Human Error</em> (1990, junto con Reason)</td><td>Niveles skill-rule-knowledge; error cognitivo.</td></tr>
+    <tr><td>J. Reason</td><td>1940–presente</td><td><em>Human Error</em> (1990)</td><td>Modelo del queso suizo; error latente.</td></tr>
+    <tr><td>G. Klein</td><td>1944–presente</td><td><em>Sources of Power</em> (1989)</td><td>Naturalistic decision making.</td></tr>
+    <tr><td>M. Seligman</td><td>1942–presente</td><td><em>Flourish</em> (2011)</td><td>Psicología positiva aplicada.</td></tr>
+  </tbody>
+</table>
+
+<h3>1.14 Implicaciones para la práctica contemporánea</h3>
+<p>El recorrido histórico permite extraer cuatro principios que atravesarán el resto de las pestañas. <strong>Primero</strong>, todo sistema técnico produce efectos psicológicos no deliberados: la introducción de tecnología no es neutra en términos humanos. <strong>Segundo</strong>, la fatiga —física, cognitiva, emocional— es un objeto medible y, por tanto, gestionable; ignorarla equivale a aceptar su coste en accidentes, errores y enfermedades. <strong>Tercero</strong>, los grupos informales y la cultura organizacional son tan determinantes del rendimiento como los procedimientos formales; un diseño técnico perfecto sobre un sistema social degradado produce fracaso. <strong>Cuarto</strong>, el error humano rara vez es individual: es la manifestación visible de desajustes latentes en el sistema técnico, en el diseño del puesto y en la cultura organizacional. Estos principios, enunciados por la tradición sociotécnica, constituyen el marco conceptual para analizar el colapso de la Línea 4 y plantear la intervención del Taller de OEE.</p>
+
+<blockquote>
+  “La eficiencia no se obtiene empujando al hombre hacia la máquina, sino diseñando la máquina —y el sistema que la rodea— para que el hombre pueda desplegar su capacidad sin degradarse a sí mismo.”
+  <br><em>— adaptado de Eric Trist, 1981.</em>
+</blockquote>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 2 — ESTUDIO DE CASO: LÍNEA 4 -->
+<!-- ============================================================ -->
+<section class="tab-panel" id="panel-caso-linea-4">
+<h2>2. Estudio de Caso: Colapso Operativo y Fatiga Cognitiva en la Célula Robotizada de Envasado “Línea 4”</h2>
+
+<div class="case-header">
+  <h2>Resumen ejecutivo</h2>
+  <p>La Línea 4 de la planta de envasado automatizado de una empresa multinacional de productos de consumo masivo sufre, durante un trimestre, una degradación sostenida del OEE que culmina en un incidente grave de seguridad. El presente caso reconstruye la cadena causal del colapso, identifica la fatiga cognitiva del operario supervisor como factor desencadenante inmediato, y revela errores latentes en el diseño del puesto, en la arquitectura sociotécnica y en la cultura de mantenimiento diferido.</p>
+  <div class="case-tags">
+    <span>Caso real anonimizado</span><span>Sector: consumo masivo</span>
+    <span>Tecnología: cobots + MES</span><span>Periodo analizado: Q1</span>
+    <span>Diagnóstico: fatiga cognitiva + error latente</span>
+  </div>
+</div>
+
+<h3>2.1 Contexto industrial y descripción técnica de la Línea 4</h3>
+<p>La planta corresponde a una empresa multinacional de bebidas y productos de consumo masivo, ubicada en un polígono industrial de una zona metropolitana de América Latina. La Línea 4, puesta en operación hace 18 meses, integra cinco estaciones robotizadas dispuestas en configuración en línea: (1) despaletizador de botellas vacías mediante brazo antropomorfo de 6 ejes; (2) túnel de inspección y soplado con visión artificial; (3) llenadora isobárica rotativa de 120 válvulas; (4) taponadora monoblock; y (5) paletizador con dos cobots colaborativos UR10e. La célula está gobernada por un controlador de lógica programable (PLC) Siemens S7-1500 vinculado a un sistema de ejecución de manufactura (MES) Aveva que opera con un SCADA Wonderware. El ritmo nominal de la línea es de 24.000 botellas/hora, con un OEE objetivo del 85% (world-class) y un OEE real sostenido en el periodo previo al incidente del 72,3%.</p>
+
+<p>La planta opera en régimen de tres turnos rotativos de 8 horas (mañana, tarde, noche), con dotación de un supervisor técnico-operativo por turno y dos operarios asistidos (uno para la entrada de envases y otro para la salida de paletas). El supervisor, denominado en la jerga interna “<em>líder de célula</em>”, combina funciones de operación del HMI, gestión de alarmas, ajuste fino de recetas, control de calidad in-line y comunicación con mantenimiento. La planta es producto de una inversión de 14,3 millones de dólares y representa el activo productivo más sensible de la multinacional en la región.</p>
+
+<h3>2.2 Cronología del colapso operativo</h3>
+<table>
+  <thead><tr><th>Semana</th><th>Evento observable</th><th>Indicador</th><th>Acción tomada</th></tr></thead>
+  <tbody>
+    <tr><td>S1</td><td>Aumento de micro-paradas no clasificadas en la llenadora</td><td>Tiempo de paro no clasificado +14%</td><td>Reset automático del PLC sin diagnóstico</td></tr>
+    <tr><td>S2</td><td>Caída sostenida del rendimiento del vision system</td><td>Tasa de rechazo: 0,8% → 1,7%</td><td>Limpieza de lentes en horario de mantenimiento</td></tr>
+    <tr><td>S3</td><td>Inconsistencia en el apilado de paletas por los cobots</td><td>Paletas con offset &gt; 5mm: 4% → 9%</td><td>Repetición de ciclos de calibración manual</td></tr>
+    <tr><td>S4</td><td>Aumento del ausentismo del operario de entrada</td><td>Ausentismo: 3,1% → 7,8%</td><td>Refuerzo con personal eventual no entrenado</td></tr>
+    <tr><td>S5</td><td>Primer incidente menor: caída de una paleta sin lesionados</td><td>Near-miss reportado</td><td>Investigación informal; no se eleva a HSE</td></tr>
+    <tr><td>S6</td><td>Micro-paradas migran a paradas largas; cae el OEE</td><td>OEE: 72,3% → 64,1%</td><td>Cronograma de mantenimiento diferido +30 días</td></tr>
+    <tr><td>S7</td><td>Aumento de quejas de fatiga del supervisor del turno noche</td><td>Encuesta interna: 7/10 en escala de fatiga</td><td>No se registra en el sistema de salud ocupacional</td></tr>
+    <tr><td>S8</td><td>Falsa alarma de fuga de CO₂; parada de emergencia</td><td>Stop de emergencia intempestivo (E-stop)</td><td>Reinicio sin root cause analysis</td></tr>
+    <tr><td>S9</td><td><strong>Colapso operativo: encajonamiento de botellas en llenadora, rotura de 1.840 unidades, detención de 6 h</strong></td><td>OEE semanal: 41,2%</td><td>Investigación formal; involucra HSE corporativa</td></tr>
+    <tr><td>S10</td><td>Durante la recuperación, un cobot UR10e impacta a un operario por hallarse en zona de seguridad</td><td><strong>Accidente con baja de 9 días</strong></td><td>Parada total de la línea 72 h; auditoría</td></tr>
+  </tbody>
+  <caption>Cronología reconstruida a partir de logs del MES, registros de mantenimiento y entrevistas.</caption>
+</table>
+
+<h3>2.3 Manifestaciones clínicas y operativas de la fatiga cognitiva del supervisor</h3>
+<p>El supervisor del turno de noche, técnico con 12 años de experiencia y 18 meses en la Línea 4, fue entrevistado siguiendo el protocolo de critical decision method (Klein, 1989). Las manifestaciones recuperadas encajan con los criterios diagnósticos de fatiga cognitiva según la ISO 10075-1:2017 y los modelos de Wickens sobre carga mental:</p>
+
+<ul>
+  <li><strong>Decremento de la capacidad de vigilancia sostenida:</strong> tiempo de reacción ante alarmas incrementado de 2,3 s (baseline) a 7,8 s en la semana 8; omisión de 22% de alarmas de severidad baja.</li>
+  <li><strong>Reducción del control atencional dividido:</strong> imposibilidad de procesar simultáneamente el HMI principal, el panel de calidad y la señal del paletizador —tareas que en condiciones normales se ejecutan en paralelo.</li>
+  <li><strong>Aparición de errores de tipo de conocimiento (knowledge-based):</strong> selección de receta errónea para cambio de formato en dos ocasiones; ambos errores en la semana 8.</li>
+  <li><strong>Síntomas subjetivos:</strong> cefalea tensional vespertina, bruxismo nocturno, disturbios del sueño con latencia superior a 90 minutos, irritabilidad creciente, sensación de “vacío mental” al final del turno.</li>
+  <li><strong>Deterioro de la metacognición:</strong> el supervisor declara “sentirse alerta” mientras sus pruebas psicométricas (PVT —Psychomotor Vigilance Test—) muestran lapsus &gt; 500 ms en 14% de los ensayos (valor normal: &lt; 5%).</li>
+  <li><strong>Aumento de los errores por sobreautomatización:</strong> ejecución de procedimientos en su secuencia habitual aunque las condiciones hubieran cambiado.</li>
+</ul>
+
+<h3>2.4 Diagnóstico sociotécnico: causas raíz</h3>
+<p>La investigación formal, conducida con un equipo multidisciplinario (HSE, ingeniería de planta, recursos humanos, psicología laboral), reconstruye la cadena causal mediante un diagrama Ishikawa con seis ramas. El análisis revela que el incidente nunca fue producto de una única falla, sino de la confluencia de factores latentes (razón de ser del error latente según Reason, 1990):</p>
+
+<table>
+  <thead><tr><th>Rama Ishikawa</th><th>Factor identificado</th><th>Comentario</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3"><strong>Maquinaria</strong></td><td>Mantenimiento diferido de válvulas de llenadora</td><td>Política de costes redujo PM preventivo a correctivo</td></tr>
+    <tr><td>Calibración de visión artificial sin intervalo adaptado a la vida útil del LED</td><td>Procedimiento heredado de otra línea</td></tr>
+    <tr><td>Cobots UR10e sin actualización de firmware de seguridad (liberación 2023-04)</td><td>Equipo sin gestión de versiones</td></tr>
+    <tr><td rowspan="3"><strong>Método</strong></td><td>Procedimiento de reset sin root cause analysis</td><td>Práctica informal incentivada por KPI de uptime</td></tr>
+    <tr><td>Cambio de formato documentado pero no validado con simulador</td><td>Reducción de tiempos de formación por presión de demanda</td></tr>
+    <tr><td>Ausencia de procedimiento de gestión de fatiga del supervisor</td><td>No previsto en el manual HSE</td></tr>
+    <tr><td rowspan="3"><strong>Mano de obra</strong></td><td>Supervisor con déficit acumulado de sueño (media 5,7 h en últimas 4 semanas)</td><td>Turnos rotativos cada 5 días; sin pausas estructuradas</td></tr>
+    <tr><td>Operario eventual sin formación en cobots</td><td>Outsourcing estacional sin protocolo de inducción</td></tr>
+    <tr><td>Comunicación entre turnos reducida a bitácora de papel</td><td>Sin handover formal; información crítica perdida</td></tr>
+    <tr><td rowspan="2"><strong>Medio ambiente</strong></td><td>Iluminación nocturna insuficiente en zona de paletizado</td><td>Luminarias originales con 30% de LEDs fundidos</td></tr>
+    <tr><td>Ruido ambiente 78–84 dBA con picos en vaciado de envases</td><td>Impacto en comunicación verbal de alarmas</td></tr>
+    <tr><td rowspan="2"><strong>Materiales</strong></td><td>Lote de botellas con variación de tolerancia dimensional &gt; especificación</td><td>Proveedor sustituto no auditado</td></tr>
+    <tr><td>Paletas de madera con humedad superior a 18%</td><td>Variable no controlada por planta</td></tr>
+    <tr><td rowspan="2"><strong>Mediciones</strong></td><td>OEE medido solo por disponibilidad × rendimiento × calidad, sin desagregar pérdidas</td><td>Métrica ciega a causas raíz</td></tr>
+    <tr><td>KPI de supervisor: uptime, no salud del operador</td><td>Incentivo perverso a ocultar fatiga</td></tr>
+  </tbody>
+</table>
+
+<h3>2.5 Indicadores clave de degradación (KPI)</h3>
+<div class="kpi-grid">
+  <div class="kpi"><span class="v">41,2%</span><span class="l">OEE semana 9</span></div>
+  <div class="kpi"><span class="v">7,8 s</span><span class="l">Tiempo de reacción a alarma</span></div>
+  <div class="kpi"><span class="v">14%</span><span class="l">Lapsus en PVT</span></div>
+  <div class="kpi"><span class="v">5,7 h</span><span class="l">Sueño medio (4 sem)</span></div>
+  <div class="kpi"><span class="v">22%</span><span class="l">Alarmas omitidas</span></div>
+  <div class="kpi"><span class="v">+30 días</span><span class="l">Mantenimiento diferido</span></div>
+</div>
+
+<h3>2.6 Análisis de la fatiga cognitiva: marco teórico</h3>
+<p>La fatiga cognitiva se distingue de la fatiga física en que no se produce por agotamiento metabólico muscular, sino por la depleción de recursos atencionales y ejecutivos del córtex prefrontal. El modelo de Wickens (multiple resource theory, 1984) predice que la fatiga se acentúa cuando dos tareas comparten el mismo recurso cognitivo (por ejemplo, dos tareas visuales que compiten por el canal visual y la codificación espacial). El supervisor de la Línea 4 operaba tres pantallas (HMI principal, panel de calidad y SCADA), todas con codificación visual y demanda de procesamiento espacial —una configuración claramente saturante desde la teoría de Wickens.</p>
+
+<p>La ISO 10075-1:2017 distingue tres efectos: <strong>(a) fatiga de actividad mental</strong> (reversible con descanso), <strong>(b) sobrecarga mental sostenida</strong> (degradación progresiva del rendimiento), y <strong>(c) fatiga crónica</strong> (recuperación insuficiente que deriva en trastornos clínicos). El supervisor se hallaba en la frontera entre (b) y (c), con marcadores objetivos (PVT, escalas KSS —Karolinska Sleepiness Scale— y NASA-TLX) en rango patológico.</p>
+
+<h3>2.7 Recomendaciones de intervención</h3>
+<ol>
+  <li><strong>Rediseño del puesto supervisor:</strong> consolidar la información de los tres HMI en una sola interfaz con jerarquía perceptual clara; introducir gestión de alarmas basada en severidad y en colores semánticamente codificados.</li>
+  <li><strong>Reingeniería sociotécnica:</strong> rotar al supervisor cada 90 minutos entre operación y verificación externa; introducir un segundo operario en el turno de noche para distribuir la carga.</li>
+  <li><strong>Gestión de fatiga:</strong> implementar un protocolo de auto-evaluación KSS cada 2 horas; imposibilidad de superar 5 h de operación continua sin pausa estructurada de 15 minutos.</li>
+  <li><strong>Mantenimiento predictivo:</strong> reactivar el PM preventivo en válvulas, visión y firmware de cobots; auditoría de proveedores de paletas y envases.</li>
+  <li><strong>Cultura de seguridad:</strong> reformar el KPI del supervisor —sustituir uptime único por un scorecard que incluya salud, near-miss reportado y OEE.</li>
+  <li><strong>Capacitación específica:</strong> formación del operario eventual antes del alta, con simulador de cobots y validación de competencias.</li>
+  <li><strong>Handover formal:</strong> pasar de bitácora de papel a checklist digital con timestamps y verificación de criticidad.</li>
+</ol>
+
+<div class="callout danger">
+  <h4>Lección central del caso</h4>
+  <p>El colapso de la Línea 4 no fue provocado por un fallo técnico aislado, sino por la <strong>confluencia de errores latentes</strong> en un sistema técnico perfectamente diseñado en términos de hardware, pero con un <strong>sistema social degradado</strong>. La fatiga cognitiva del supervisor actuó como detonante, pero el terreno estaba preparado por decisiones gerenciales de reducción de costes, postergación de mantenimiento, KPIs perversos y ausencia de cultura de seguridad. Es el ejemplo paradigmático de la tesis sociotécnica: <em>la optimización exclusiva del sistema técnico produce degradación del sistema social, y ambos acaban colapsando juntos</em>.</p>
+</div>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 3 — TALLER PRÁCTICO OEE -->
+<!-- ============================================================ -->
+<section class="tab-panel" id="panel-taller-oee">
+<h2>3. Taller Práctico Aplicado: Optimización Sociotécnica y OEE en Célula de Ensamble y Paletizado</h2>
+
+<p>Este taller propone, a partir del marco teórico sociotécnico y de los conceptos del OEE (Overall Equipment Effectiveness), aplicar los instrumentos a una célula de ensamble y paletizado ficticia pero realista, diseñada para ejercitar las competencias de diagnóstico, cálculo y diseño de intervención. El estudiante debe entregar las respuestas a cada ejercicio en un informe técnico que será evaluado con la rúbrica incluida al final. Las soluciones se encuentran protegidas y serán reveladas por el docente mediante la clave de catedrático disponible en la barra inferior.</p>
+
+<h3>3.1 Fundamentación teórica</h3>
+<p>El OEE, formalizado por Seiichi Nakajima en su obra <em>TPM Development Program</em> (1988), sintetiza la eficiencia global de un equipo productivo en un único indicador que resulta del producto de tres factores: <strong>disponibilidad</strong> (Availability), <strong>rendimiento</strong> (Performance) y <strong>calidad</strong> (Quality). Un OEE del 85% se considera “clase mundial” en industrias discretas; el 60% es un valor típico de plantas sin TPM; el 40% indica un colapso operativo que requiere intervención inmediata. La fórmula es:</p>
+
+<pre>OEE = Disponibilidad × Rendimiento × Calidad
+     = (Tiempo de operación / Tiempo planificado)
+       × (Producción real / Producción teórica)
+       × (Unidades conformes / Unidades totales)</pre>
+
+<p>El enfoque sociotécnico de Trist y Emery, complementario al OEE, postula que el sistema productivo debe optimizarse conjuntamente en sus dimensiones técnica y social. Esto significa que <strong>no basta con maximizar el OEE</strong>: es necesario que el sistema social (carga mental, autonomía, significado del trabajo, cohesión grupal) sea sostenible. Un OEE del 95% sostenido sobre un sistema social degradado es —como muestra el caso de la Línea 4— una receta para el colapso posterior.</p>
+
+<h3>3.2 Datos del caso de aplicación: célula “CEP-7”</h3>
+<p>La célula de ensamble y paletizado <strong>CEP-7</strong> ensambla y paletiza kits de productos electrónicos de consumo. Consta de: (i) estación de ensamble manual asistido por cobot UR5e; (ii) estación de ensamblaje automatizado con brazo antropomorfo KR-3; (iii) cámara de visión para inspección de tornillería; (iv) paletizador dual con dos cobots UR10e; (v) sellado y etiquetado. La célula opera en dos turnos de 8 horas (16 h/día), 6 días a la semana. Los datos del último trimestre son los siguientes:</p>
+
+<table>
+  <thead><tr><th>Variable</th><th>Valor</th></tr></thead>
+  <tbody>
+    <tr><td>Tiempo planificado por turno</td><td>480 minutos</td></tr>
+    <tr><td>Tiempo planificado total del trimestre</td><td>74.880 minutos (480 × 156 turnos)</td></tr>
+    <tr><td>Paradas planificadas (mantenimiento, descansos, comidas)</td><td>9.360 minutos</td></tr>
+    <tr><td>Paradas no planificadas (averías, atascos, ajustes)</td><td>14.712 minutos</td></tr>
+    <tr><td>Micro-paradas (&lt; 5 min) no clasificadas</td><td>3.120 minutos</td></tr>
+    <tr><td>Tiempo de operación efectiva</td><td>47.688 minutos</td></tr>
+    <tr><td>Velocidad nominal de la célula</td><td>120 kits/hora</td></tr>
+    <tr><td>Producción real del trimestre</td><td>89.420 kits</td></tr>
+    <tr><td>Producción teórica máxima (tiempo de operación × velocidad)</td><td>95.376 kits</td></tr>
+    <tr><td>Unidades conformes</td><td>84.271 kits</td></tr>
+    <tr><td>Unidades no conformes (rechazo + retrabajo)</td><td>5.149 kits</td></tr>
+    <tr><td>Operarios asignados</td><td>3 por turno (1 supervisor + 2 operarios)</td></tr>
+    <tr><td>Carga mental NASA-TLX supervisor (0-100)</td><td>72 (umbral crítico: 65)</td></tr>
+    <tr><td>Escala KSS (somnolencia, 1-9) supervisor fin de turno</td><td>7 (valor normal: &lt; 4)</td></tr>
+  </tbody>
+</table>
+
+<h3>3.3 Ejercicios prácticos</h3>
+
+<div class="exercise">
+  <h4>Ejercicio 3.1 — Cálculo del OEE total</h4>
+  <p>Calcule, con los datos del trimestre, los tres componentes del OEE y el OEE total. Exprese los resultados en porcentaje con dos decimales.</p>
+  <div class="answer" data-id="a1"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.2 — Identificación de las seis grandes pérdidas (six big losses)</h4>
+  <p>Clasifique cada una de las pérdidas siguientes en una de las seis grandes pérdidas del TPM (paradas, cambio/setup, micro-paradas, velocidad reducida, rechazos de proceso, rechazos de arranque):</p>
+  <ul>
+    <li>(a) Cambio de paletizador entre formatos de kit: 14 min por cambio, 3 cambios por turno.</li>
+    <li>(b) Atasco intermitente del alimentador de tornillos: 6 min cada 90 min.</li>
+    <li>(c) Recalibración de la cámara de visión tras reset: 8 min por reset, 2 resets por turno.</li>
+    <li>(d) Producción de kits con torque insuficiente en los primeros 15 minutos tras arranque: 1,2% de scrap.</li>
+    <li>(e) Velocidad de los cobots reducida por software de seguridad tras incidente.</li>
+    <li>(f) Avería del motor de la cinta transportadora: 145 min totales en el trimestre.</li>
+  </ul>
+  <div class="answer" data-id="a2"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.3 — Diagnóstico sociotécnico (cuadrante de Mumford)</h4>
+  <p>Aplique el modelo de cuadrantes de Enid Mumford (sistema técnico vs. sistema social; diseño optimizado vs. diseño degradado). Identifique el cuadrante en el que se encuentra la célula CEP-7 y justifique brevemente su respuesta (máx. 100 palabras).</p>
+  <div class="answer" data-id="a3"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.4 — Carga mental NASA-TLX</h4>
+  <p>El supervisor completa el NASA-TLX. Las puntuaciones brutas (0-100) en las seis dimensiones son: Demanda mental 80; Demanda temporal 75; Esfuerzo 70; Rendimiento percibido 60 (recordar: en rendimiento, mayor puntuación = peor desempeño); Frustración 65; Esfuerzo físico 30. Los pesos asignados por el evaluador son: Demanda mental 5; Demanda temporal 3; Esfuerzo 4; Rendimiento 2; Frustración 2; Esfuerzo físico 1 (suma 15). Calcule la carga global ponderada.</p>
+  <div class="answer" data-id="a4"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.5 — Causa raíz: método 5 por qué</h4>
+  <p>Tras un incidente de colisión de un cobot UR10e con un operario, se ejecuta un análisis 5-Whys. Complete el quinto por qué a partir de la siguiente cadena:</p>
+  <ol>
+    <li>¿Por qué ocurrió la colisión? — El operario penetró la zona de seguridad del cobot.</li>
+    <li>¿Por qué penetró? — Necesitaba retirar manualmente una caja atascada en el palletizador.</li>
+    <li>¿Por qué estaba atascada? — El alimentador de cajas tenía una geometría de guía mal calibrada.</li>
+    <li>¿Por qué estaba mal calibrada? — La guía no había sido recalibrada tras el último cambio de formato.</li>
+    <li>¿Por qué no se recalibró? — ???</li>
+  </ol>
+  <p>Proponga la causa raíz organizacional.</p>
+  <div class="answer" data-id="a5"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.6 — Proyección del OEE tras intervención</h4>
+  <p>Suponga que una intervención sociotécnica logra: (i) reducir paradas no planificadas en 35%; (ii) eliminar las micro-paradas; (iii) mantener el rendimiento; (iv) mejorar la calidad al 98%. Calcule el nuevo OEE proyectado y comente si la célula alcanza el umbral clase mundial (85%).</p>
+  <div class="answer" data-id="a6"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.7 — Diseño sociotécnico de un grupo semiautónomo</h4>
+  <p>Rediseñe la dotación de la célula CEP-7 (actualmente 1 supervisor + 2 operarios por turno) según los principios del grupo semiautónomo del Tavistock. Especifique: (a) número de miembros, (b) distribución de roles, (c) tareas de las que el grupo se hace cargo, (d) funciones que permanecen externas, (e) mecanismo de rotación.</p>
+  <div class="answer" data-id="a7"></div>
+</div>
+
+<div class="exercise">
+  <h4>Ejercicio 3.8 — Indicador sociotécnico balanceado</h4>
+  <p>Proponga un scorecard de 5 indicadores para el supervisor que equilibre productividad y salud. Justifique cada uno en una línea.</p>
+  <div class="answer" data-id="a8"></div>
+</div>
+
+<h3>3.4 Rúbrica de evaluación del taller</h3>
+<table>
+  <thead><tr><th>Criterio</th><th>Excelente (4)</th><th>Suficiente (3)</th><th>Insuficiente (1-2)</th></tr></thead>
+  <tbody>
+    <tr><td>Cálculo correcto del OEE</td><td>Tres componentes y total exactos; pasos mostrados</td><td>Cálculo correcto pero sin descomposición</td><td>Errores numéricos</td></tr>
+    <tr><td>Clasificación de las seis grandes pérdidas</td><td>Las 6 correctas</td><td>4-5 correctas</td><td>&lt;4 correctas</td></tr>
+    <tr><td>Diagnóstico sociotécnico (Mumford)</td><td>Cuadrante correcto + justificación sólida</td><td>Cuadrante correcto, justificación breve</td><td>Cuadrante incorrecto</td></tr>
+    <tr><td>NASA-TLX</td><td>Cálculo ponderado exacto e interpretación</td><td>Cálculo exacto</td><td>Errores</td></tr>
+    <tr><td>Método 5-Whys</td><td>Causa raíz organizacional identificada</td><td>Causa técnica identificada</td><td>Causa superficial</td></tr>
+    <tr><td>Proyección OEE</td><td>Cálculo exacto + comentario crítico</td><td>Cálculo exacto</td><td>Errores</td></tr>
+    <tr><td>Grupo semiautónomo</td><td>Coherente con Tavistock + completo</td><td>Parcialmente coherente</td><td>Incoherente</td></tr>
+    <tr><td>Scorecard</td><td>5 indicadores balanceados + justificación</td><td>5 indicadores sin balance</td><td>Indicadores no pertinentes</td></tr>
+  </tbody>
+</table>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 4 — EVALUACIÓN: BANCO DE REACTIVOS -->
+<!-- ============================================================ -->
+<section class="tab-panel" id="panel-evaluacion">
+<h2>4. Evaluación Diagnóstica y Sumativa — Banco de Reactivos</h2>
+
+<h3>Sección I: Reactivos de opción múltiple (selección simple)</h3>
+
+<div class="callout">
+  <h4>Instrucciones para el estudiante</h4>
+  <p>Cada reactivo presenta cuatro opciones de respuesta etiquetadas A, B, C y D. <strong>Solo una</strong> es la respuesta correcta. Marque su opción en la hoja de respuestas. Las claves de corrección se encuentran al final del banco y están protegidas con clave de catedrático; el docente las revelará tras la entrega. Tiempo estimado: 35 minutos. Penalización por respuesta incorrecta: 0,25 puntos sobre 1.</p>
+</div>
+
+<h4>Reactivo 1 — Antecedentes históricos</h4>
+<div class="exercise">
+  <p>¿Cuál de las siguientes obras es considerada fundacional de la psicología industrial como disciplina científica aplicada?</p>
+  <ol class="options" type="A">
+    <li><em>The Effects of Arts, Trades, and Professions on Health and Longevity</em> — Charles T. Thackrah, 1832.</li>
+    <li><em>Psychology and Industrial Efficiency</em> — Hugo Münsterberg, 1913.</li>
+    <li><em>Principles of Scientific Management</em> — Frederick W. Taylor, 1911.</li>
+    <li><em>Management and the Worker</em> — Roethlisberger &amp; Dickson, 1939.</li>
+  </ol>
+  <div class="answer" data-id="a9"></div>
+</div>
+
+<h4>Reactivo 2 — Experimentos de Hawthorne</h4>
+<div class="exercise">
+  <p>El resultado paradójico del primer experimento de Hawthorne (1924) fue que el rendimiento:</p>
+  <ol class="options" type="A">
+    <li>Mejoraba solo cuando se aumentaba la iluminación.</li>
+    <li>Mejoraba solo cuando se disminuía la iluminación.</li>
+    <li>Mejoraba tanto al aumentar como al disminuir la iluminación.</li>
+    <li>No mostraba variación respecto a la iluminación.</li>
+  </ol>
+  <div class="answer" data-id="a10"></div>
+</div>
+
+<h4>Reactivo 3 — Enfoque sociotécnico</h4>
+<div class="exercise">
+  <p>Según el enfoque sociotécnico del Tavistock Institute, el diseño óptimo de un sistema productivo exige:</p>
+  <ol class="options" type="A">
+    <li>Optimizar primero el sistema técnico y luego adaptar el sistema social.</li>
+    <li>Optimizar primero el sistema social y luego el sistema técnico.</li>
+    <li>Optimizar conjuntamente el sistema técnico y el sistema social.</li>
+    <li>Optimizar solo el sistema técnico; el social se ajusta espontáneamente.</li>
+  </ol>
+  <div class="answer" data-id="a11"></div>
+</div>
+
+<h4>Reactivo 4 — Modelo del queso suizo</h4>
+<div class="exercise">
+  <p>En el modelo del queso suizo de James Reason (1990), los "agujeros" de las lonchas representan:</p>
+  <ol class="options" type="A">
+    <li>Errores activos cometidos por los operadores en línea.</li>
+    <li>Fallas latentes de las defensas, procedimientos y cultura.</li>
+    <li>Diseños ergonómicos inadecuados del puesto.</li>
+    <li>Cambios tecnológicos no verificados.</li>
+  </ol>
+  <div class="answer" data-id="a12"></div>
+</div>
+
+<h4>Reactivo 5 — Niveles de control cognitivo</h4>
+<div class="exercise">
+  <p>Rasmussen y Vicente (1989) distinguen tres niveles de control cognitivo. Un operario que ejecuta un procedimiento aprendido de memoria (p. ej., arrancar la célula al inicio de turno) opera en el nivel:</p>
+  <ol class="options" type="A">
+    <li>Knowledge-based.</li>
+    <li>Rule-based.</li>
+    <li>Skill-based.</li>
+    <li>Reflex-based.</li>
+  </ol>
+  <div class="answer" data-id="a13"></div>
+</div>
+
+<h4>Reactivo 6 — Fatiga cognitiva</h4>
+<div class="exercise">
+  <p>Según la ISO 10075-1:2017, ¿cuál de los siguientes es un marcador <em>objetivo</em> de fatiga cognitiva sostenida?</p>
+  <ol class="options" type="A">
+    <li>Sensación subjetiva de cansancio.</li>
+    <li>Irritabilidad declarada por el trabajador.</li>
+    <li>Incremento del tiempo de reacción en PVT.</li>
+    <li>Disminución del interés por la tarea.</li>
+  </ol>
+  <div class="answer" data-id="a14"></div>
+</div>
+
+<h4>Reactivo 7 — Carga mental NASA-TLX</h4>
+<div class="exercise">
+  <p>En la escala NASA-TLX, la dimensión "rendimiento percibido" (Performance) se puntúa de modo que:</p>
+  <ol class="options" type="A">
+    <li>A mayor puntuación, mejor rendimiento (escala positiva).</li>
+    <li>A mayor puntuación, peor rendimiento (escala invertida).</li>
+    <li>La puntuación es neutra; solo cuenta el peso asignado.</li>
+    <li>El rendimiento no entra en el cálculo final.</li>
+  </ol>
+  <div class="answer" data-id="a15"></div>
+</div>
+
+<h4>Reactivo 8 — Cálculo del OEE</h4>
+<div class="exercise">
+  <p>Una célula con 80% de disponibilidad, 90% de rendimiento y 95% de calidad tiene un OEE de:</p>
+  <ol class="options" type="A">
+    <li>85,0%.</li>
+    <li>72,0%.</li>
+    <li>68,4%.</li>
+    <li>92,5%.</li>
+  </ol>
+  <div class="answer" data-id="a16"></div>
+</div>
+
+<h4>Reactivo 9 — Seis grandes pérdidas (TPM)</h4>
+<div class="exercise">
+  <p>Una parada de 5 segundos debida a un atasco de un alimentador de tornillos, repetida 8 veces por turno, corresponde a:</p>
+  <ol class="options" type="A">
+    <li>Equipment failure / breakdown loss.</li>
+    <li>Idling and minor stoppages (micro-parada).</li>
+    <li>Setup and adjustment loss.</li>
+    <li>Reduced speed loss.</li>
+  </ol>
+  <div class="answer" data-id="a17"></div>
+</div>
+
+<h4>Reactivo 10 — Wickens: multiple resource theory</h4>
+<div class="exercise">
+  <p>Según Wickens, dos tareas competirán más por los recursos cognitivos cuando:</p>
+  <ol class="options" type="A">
+    <li>Tengan diferente modalidad sensorial y diferente codificación.</li>
+    <li>Compartan la misma modalidad sensorial y la misma codificación.</li>
+    <li>Una sea automática y la otra controlada.</li>
+    <li>Estén separadas en el tiempo más de 30 segundos.</li>
+  </ol>
+  <div class="answer" data-id="a18"></div>
+</div>
+
+<h4>Reactivo 11 — Causa raíz y 5-Whys</h4>
+<div class="exercise">
+  <p>En un análisis 5-Whys, una <em>causa raíz organizacional</em> típicamente se identifica cuando el quinto por qué revela un problema en:</p>
+  <ol class="options" type="A">
+    <li>El hardware o la tecnología del proceso.</li>
+    <li>El diseño del sistema de gestión (procedimientos, KPIs, cultura).</li>
+    <li>La formación técnica del operario.</li>
+    <li>El clima atmosférico del día del incidente.</li>
+  </ol>
+  <div class="answer" data-id="a19"></div>
+</div>
+
+<h4>Reactivo 12 — Grupo semiautónomo (Tavistock)</h4>
+<div class="exercise">
+  <p>Una característica esencial del grupo semiautónomo sociotécnico es:</p>
+  <ol class="options" type="A">
+    <li>Eliminar todo supervisor jerárquico.</li>
+    <li>Asignar al grupo la responsabilidad de una unidad completa de trabajo.</li>
+    <li>Eliminar los procedimientos formales.</li>
+    <li>Reducir salarios fijos y pasar a comisión por pieza.</li>
+  </ol>
+  <div class="answer" data-id="a20"></div>
+</div>
+
+<h4>Reactivo 13 — Error por sobreautomatización (out-of-the-loop)</h4>
+<div class="exercise">
+  <p>El "out-of-the-loop problem" en células robotizadas se manifiesta típicamente como:</p>
+  <ol class="options" type="A">
+    <li>Reducción del tiempo de reacción ante una anomalía del proceso automatizado.</li>
+    <li>Aumento del tiempo de detección y respuesta ante una anomalía del proceso automatizado.</li>
+    <li>Mayor capacidad de multitarea del supervisor.</li>
+    <li>Disminución de la tasa de falsas alarmas.</li>
+  </ol>
+  <div class="answer" data-id="a21"></div>
+</div>
+
+<h4>Reactivo 14 — Ergonomía concebiente</h4>
+<div class="exercise">
+  <p>La distinción entre ergonomía <em>correctiva</em> y <em>concebiente</em> (J. K. Duncan, 1963) establece que la ergonomía concebiente actúa:</p>
+  <ol class="options" type="A">
+    <li>Sobre puestos de trabajo ya instalados, mediante correcciones puntuales.</li>
+    <li>En la fase de diseño del puesto, antes de su instalación.</li>
+    <li>Solo en respuesta a accidentes ya ocurridos.</li>
+    <li>Exclusivamente en tareas manuales repetitivas.</li>
+  </ol>
+  <div class="answer" data-id="a22"></div>
+</div>
+
+<h4>Reactivo 15 — Indicador de cultura de seguridad</h4>
+<div class="exercise">
+  <p>En una planta industrial, ¿cuál de los siguientes indicadores refleja una <em>cultura de seguridad madura</em>?</p>
+  <ol class="options" type="A">
+    <li>Tasa de accidentes con baja igual a cero.</li>
+    <li>Ausencia total de near-miss reportados.</li>
+    <li>Número elevado de near-miss reportados por los trabajadores.</li>
+    <li>Reducción sostenida de horas de capacitación HSE.</li>
+  </ol>
+  <div class="answer" data-id="a23"></div>
+</div>
+
+<div class="protected-marker"><span class="lock">&#128274;</span> Contenido protegido · requiere clave de catedrático para visualizar.</div>
+
+<div class="protected-section">
+<h3>Sección II: Clave de respuestas y justificaciones pedagógicas</h3>
+<div class="callout warn">
+  <h4>Acceso restringido</h4>
+  <p>La clave de respuestas está protegida con clave de catedrático. Haga clic en el botón "Mostrar respuestas" en la barra inferior e ingrese la clave para visualizar todas las respuestas simultáneamente. Las justificaciones pedagógicas están incluidas en cada reactivo bajo la clase <code>answer</code>.</p>
+</div>
+
+<table>
+  <thead><tr><th>Reactivo</th><th>Respuesta</th><th>Tema</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>B</td><td>Antecedentes históricos</td></tr>
+    <tr><td>2</td><td>C</td><td>Hawthorne</td></tr>
+    <tr><td>3</td><td>C</td><td>Sociotécnica</td></tr>
+    <tr><td>4</td><td>B</td><td>Queso suizo</td></tr>
+    <tr><td>5</td><td>C</td><td>Niveles de control</td></tr>
+    <tr><td>6</td><td>C</td><td>Fatiga cognitiva</td></tr>
+    <tr><td>7</td><td>B</td><td>NASA-TLX</td></tr>
+    <tr><td>8</td><td>C</td><td>Cálculo OEE</td></tr>
+    <tr><td>9</td><td>B</td><td>Seis grandes pérdidas</td></tr>
+    <tr><td>10</td><td>B</td><td>Recursos múltiples</td></tr>
+    <tr><td>11</td><td>B</td><td>5-Whys</td></tr>
+    <tr><td>12</td><td>B</td><td>Grupo semiautónomo</td></tr>
+    <tr><td>13</td><td>B</td><td>Out-of-the-loop</td></tr>
+    <tr><td>14</td><td>B</td><td>Ergonomía concebiente</td></tr>
+    <tr><td>15</td><td>C</td><td>Cultura de seguridad</td></tr>
+  </tbody>
+</table>
+</div>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- PESTAÑA 5 — GUÍA DE TAREA ASÍNCRONA -->
+<!-- ============================================================ -->
+<section class="tab-panel" id="panel-tarea-asincrona">
+<h2>5. Guía de Tarea Asíncrona — Caso de Estudio Avanzado de Intervención Sociotécnica</h2>
+
+<h3>5.1 Presentación de la tarea</h3>
+<p>Esta tarea asíncrona —a desarrollar en 14 días, fuera del horario presencial— propone al estudiante un caso avanzado de intervención sociotécnica en una planta industrial robotizada. El objetivo es movilizar de manera integrada los conocimientos adquiridos en las cuatro pestañas anteriores: el marco histórico-disciplinar, el caso de la Línea 4, las herramientas de OEE y los conceptos del enfoque sociotécnico del Tavistock Institute. La tarea se entrega en formato informe técnico de 3.500 a 4.500 palabras, en grupos de tres estudiantes, con defensa oral en clase de 15 minutos.</p>
+
+<h3>5.2 Descripción del caso avanzado: Planta de componentes electrónicos "ElectroNova"</h3>
+<p>ElectroNova es una empresa mediana de componentes electrónicos ubicada en una zona industrial del país. Su producto principal son placas de circuito impreso (PCB) para la industria automotriz. La planta cuenta con cuatro células robotizadas de ensamble y soldadura (CE-1 a CE-4), cada una con dos cobots UR5e, una máquina de pick-and-place Mydata, un horno de reflow y un sistema AOI (automated optical inspection). Hace seis meses, ElectroNova migró de un régimen de producción por lotes a una demanda nivelada (heijunka) siguiendo un asesoramiento Lean; simultáneamente introdujo un MES corporativo y un sistema de andon digital. Los resultados del semestre han sido contradictorios: la productividad aumentó un 14%, pero el ausentismo subió 8,5%, los near-miss reportados se desplomaron de 32 a 4 por mes, y la rotación voluntaria alcanzó 22% anual (la media sectorial es del 9%). Tres supervisores han pedido licencia médica por estrés. La dirección ha convocado a un equipo de intervención sociotécnica externo.</p>
+
+<h3>5.3 Datos operativos del último trimestre</h3>
+<table>
+  <thead><tr><th>Variable</th><th>CE-1</th><th>CE-2</th><th>CE-3</th><th>CE-4</th></tr></thead>
+  <tbody>
+    <tr><td>OEE (%)</td><td>78,3</td><td>74,1</td><td>69,8</td><td>66,2</td></tr>
+    <tr><td>Disponibilidad (%)</td><td>89,2</td><td>85,5</td><td>78,4</td><td>74,1</td></tr>
+    <tr><td>Rendimiento (%)</td><td>92,4</td><td>90,8</td><td>92,5</td><td>93,1</td></tr>
+    <tr><td>Calidad (%)</td><td>94,9</td><td>95,4</td><td>96,7</td><td>95,9</td></tr>
+    <tr><td>NASA-TLX supervisor</td><td>58</td><td>67</td><td>74</td><td>79</td></tr>
+    <tr><td>KSS fin de turno</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+    <tr><td>Horas sueño/noche (media 4 sem)</td><td>7,1</td><td>6,4</td><td>5,9</td><td>5,2</td></tr>
+    <tr><td>Near-miss reportados/mes</td><td>3</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>Ausentismo (%)</td><td>4,1</td><td>6,8</td><td>8,9</td><td>11,2</td></tr>
+    <tr><td>Turnos de operario eventual (%)</td><td>2</td><td>9</td><td>17</td><td>23</td></tr>
+  </tbody>
+</table>
+
+<h3>5.4 Objetivos de aprendizaje</h3>
+<ol>
+  <li>Diagnosticar, con datos cuantitativos, la correlación entre degradación del sistema social y degradación del OEE en una planta real.</li>
+  <li>Identificar los errores latentes (Reason, 1990) que la introducción del MES y del heijunka generaron sin gestión del cambio.</li>
+  <li>Proponer un plan de intervención sociotécnica articulado en fases (rápida, intermedia, profunda), con KPIs balanceados.</li>
+  <li>Justificar la intervención en términos de los principios del Tavistock Institute (joint optimization) y de la ISO 6385:2016.</li>
+  <li>Reflexionar sobre las implicaciones éticas de la introducción de tecnología 4.0 sin reingeniería social paralela.</li>
+</ol>
+
+<h3>5.5 Actividades obligatorias</h3>
+<table>
+  <thead><tr><th>#</th><th>Actividad</th><th>Producto</th><th>Hora est.</th></tr></thead>
+  <tbody>
+    <tr><td>A1</td><td>Calcular el OEE de las cuatro células y descomponer las pérdidas en las seis grandes pérdidas del TPM.</td><td>Tabla OEE + Ishikawa por célula</td><td>6 h</td></tr>
+    <tr><td>A2</td><td>Construir un cuadrante sociotécnico (Mumford) por célula y de la planta en general.</td><td>4 cuadrantes + síntesis</td><td>4 h</td></tr>
+    <tr><td>A3</td><td>Aplicar el método 5-Whys al descenso de near-miss reportados (pista: no es mejora de seguridad).</td><td>5-Whys + causa raíz</td><td>3 h</td></tr>
+    <tr><td>A4</td><td>Realizar un critical decision method (Klein, 1989) simulado con un supervisor ficticio.</td><td>Transcripción CDM</td><td>5 h</td></tr>
+    <tr><td>A5</td><td>Proponer un plan de intervención en tres fases (0–30 días, 30–90 días, 90–180 días).</td><td>Cronograma Gantt</td><td>6 h</td></tr>
+    <tr><td>A6</td><td>Definir un scorecard balanceado de 7 KPIs para la planta.</td><td>Cuadro de mando</td><td>3 h</td></tr>
+    <tr><td>A7</td><td>Elaborar un análisis ético de la introducción del MES y heijunka sin gestión del cambio.</td><td>Briefing ético (1.000 palabras)</td><td>4 h</td></tr>
+    <tr><td>A8</td><td>Redactar el informe final integrado (3.500–4.500 palabras).</td><td>Informe PDF</td><td>8 h</td></tr>
+    <tr><td>A9</td><td>Preparar defensa oral de 15 minutos.</td><td>PPT + guion</td><td>4 h</td></tr>
+  </tbody>
+</table>
+
+<h3>5.6 Preguntas guía para el análisis</h3>
+<ol>
+  <li>¿Por qué el OEE sube y, sin embargo, el ausentismo y la rotación aumentan? ¿Qué tipo de optimización se ha realizado?</li>
+  <li>¿Qué relación observa entre la degradación de los indicadores sociales (KSS, NASA-TLX, horas de sueño) y la degradación del OEE célula a célula? ¿Es lineal o exponencial?</li>
+  <li>El descenso de near-miss reportados de 32 a 4 por mes: ¿es positivo o es síntoma de miedo? Justifique.</li>
+  <li>¿Qué errores latentes (Reason) pudo introducir el MES sin gestión del cambio?</li>
+  <li>¿Qué principio de la ISO 6385:2016 (principios ergonómicos del diseño del trabajo) se está vulnerando en CE-4?</li>
+  <li>Proponga un plan de intervención de tres fases. En cada fase identifique: objetivo, acciones, KPI de control, plazos.</li>
+  <li>¿Cuál es la responsabilidad ética de los consultores Lean que asesoraron a ElectroNova? ¿Existen códigos deontológicos aplicables?</li>
+  <li>¿Cómo rediseñaría el grupo de trabajo de CE-4 según los principios del Tavistock?</li>
+</ol>
+
+<h3>5.7 Rúbrica de evaluación (100 puntos)</h3>
+<table>
+  <thead><tr><th>Criterio</th><th>Pts</th><th>Excelente</th><th>Suficiente</th><th>Insuficiente</th></tr></thead>
+  <tbody>
+    <tr><td>Cálculo OEE + Ishikawa</td><td>15</td><td>4 células correctas + Ishikawa 6 ramas</td><td>Cálculos correctos sin Ishikawa</td><td>Errores de cálculo</td></tr>
+    <tr><td>Cuadrante Mumford</td><td>10</td><td>4 cuadrantes + síntesis</td><td>Cuadrantes sin síntesis</td><td>Errores de cuadrante</td></tr>
+    <tr><td>Análisis 5-Whys</td><td>10</td><td>Causa raíz organizacional identificada</td><td>Causa técnica</td><td>Causa superficial</td></tr>
+    <tr><td>CDM simulado</td><td>10</td><td>Aplicación rigurosa del protocolo</td><td>Aplicación parcial</td><td>No aplica el protocolo</td></tr>
+    <tr><td>Plan de intervención en 3 fases</td><td>20</td><td>Cronograma + KPIs + acciones específicas</td><td>Cronograma sin KPIs</td><td>Plan inexistente</td></tr>
+    <tr><td>Scorecard balanceado</td><td>10</td><td>7 KPIs justificados (productividad + social)</td><td>7 KPIs sin balance</td><td>KPIs no pertinentes</td></tr>
+    <tr><td>Análisis ético</td><td>10</td><td>Reflexión con marcos deontológicos</td><td>Reflexión intuitiva</td><td>Sin reflexión ética</td></tr>
+    <tr><td>Calidad del informe</td><td>10</td><td>3.500–4.500 palabras; referencias APA</td><td>Cumple extensión, referencias incompletas</td><td>No cumple extensión</td></tr>
+    <tr><td>Defensa oral</td><td>5</td><td>15 min, dominio, claridad</td><td>Cumple tiempo, dominio medio</td><td>No cumple tiempo</td></tr>
+  </tbody>
+</table>
+
+<div class="protected-marker"><span class="lock">&#128274;</span> Contenido protegido · requiere clave de catedrático para visualizar.</div>
+
+<div class="protected-section">
+<h3>5.8 Solución orientativa del análisis (claves para el docente)</h3>
+
+<div class="exercise">
+  <h4>Solución A1 — OEE e Ishikawa</h4>
+  <p>OEE por célula: CE-1 = 0,783; CE-2 = 0,741; CE-3 = 0,698; CE-4 = 0,662. La pérdida principal varía: en CE-1 y CE-2 es disponibilidad (Mantenimiento); en CE-3 y CE-4 es disponibilidad + rendimiento (velocidad reducida por software de seguridad tras incidentes previos). Rama dominante del Ishikawa: <strong>Método</strong> (procedimientos heredados de pre-MES no rediseñados) y <strong>Mano de obra</strong> (turnos eventuales sin inducción).</p>
+  <div class="answer" data-id="a24"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A2 — Cuadrante Mumford</h4>
+  <p>CE-1 se ubica en cuadrante "Técnico optimizado / Social medio"; CE-2 en "Técnico medio / Social degradado"; CE-3 y CE-4 en "Técnico medio / Social degradado severo". La planta en general es un sistema con <strong>asimetría creciente</strong> entre sistema técnico y social, producto de una transformación Lean sin joint optimization.</p>
+  <div class="answer" data-id="a25"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A3 — 5-Whys al descenso de near-miss</h4>
+  <p>(1) ¿Por qué bajaron los near-miss? Porque los operarios dejaron de reportarlos. (2) ¿Por qué dejaron de reportarlos? Porque temen represalias. (3) ¿Por qué temen represalias? Porque un supervisor fue sancionado tras reportar un near-miss crítico. (4) ¿Por qué fue sancionado? Porque el KPI del supervisor penaliza la aparición de near-miss en lugar de penalizar la <em>falta de reporte</em>. (5) ¿Por qué penaliza la aparición? Porque el KPI fue diseñado con un modelo reactivo (castigo) y no con un modelo de cultura justa (just culture).</p>
+  <div class="answer" data-id="a26"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A4 — CDM simulado</h4>
+  <p>El supervisor de CE-4 debería reportar: indicios de fatiga creciente, decisiones basadas en reglas (rule-based) para casos que requieren conocimiento (knowledge-based), omisión de alarmas de severidad baja, sensación subjetiva de control que no coincide con los KPIs objetivos. La entrevista CDM debe identificar 3-5 "puntos críticos de decisión" y reconstruir la línea cognitiva en cada uno.</p>
+  <div class="answer" data-id="a27"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A5 — Plan de intervención en 3 fases</h4>
+  <p><strong>Fase 0-30 días (rápida):</strong> (a) Reformar KPI del supervisor (uptime + near-miss reportado + salud); (b) pausa estructurada obligatoria cada 90 min; (c) handover digital con timestamps; (d) reactivar mantenimiento preventivo; (e) campaña de just culture. <strong>Fase 30-90 días (intermedia):</strong> (a) rediseño del HMI consolidando pantallas; (b) inducción obligatoria para operarios eventuales con simulador; (c) rotación cada 90 min entre estaciones; (d) implementación de PVT mensual y NASA-TLX trimestral. <strong>Fase 90-180 días (profunda):</strong> (a) implementación de grupo semiautónomo en CE-3 y CE-4 siguiendo Tavistock; (b) rediseño de la planeación de turnos (fixed shift vs rotating); (c) evaluación sociotécnica integral anual; (d) scorecard balanceado de 7 KPIs.</p>
+  <div class="answer" data-id="a28"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A6 — Scorecard balanceado de 7 KPIs</h4>
+  <p>(1) OEE promedio (objetivo &gt; 80%); (2) Disponibilidad (objetivo &gt; 88%); (3) Tasa de near-miss reportados/mes (objetivo &gt; 15, indicador de cultura); (4) NASA-TLX medio supervisor (objetivo &lt; 55); (5) Horas medias de sueño/auto-reporte 7 días (objetivo &gt; 6,5 h); (6) Rotación voluntaria anualizada (objetivo &lt; 12%); (7) NPS interno del equipo (objetivo &gt; 30).</p>
+  <div class="answer" data-id="a29"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A7 — Análisis ético</h4>
+  <p>La introducción del MES y del heijunka sin gestión del cambio vulnera: (i) el principio de autonomía (los operarios no participaron en el rediseño); (ii) el principio de no maleficencia (se generó daño psicológico); (iii) el principio de justicia distributiva (las ganancias de productividad no se compartieron). La CIE (Comisión de Ética Profesional) y los códigos deontológicos de FECHA (Federación de Ergonomía de América) y SIETP (Sociedad Interamericana de Psicología del Trabajo) aplican. Los consultores Lean tienen responsabilidad ética compartida por no alertar del riesgo social.</p>
+  <div class="answer" data-id="a30"></div>
+</div>
+
+<div class="exercise">
+  <h4>Solución A8 — Rediseño del grupo de trabajo CE-4</h4>
+  <p>CE-4 debería reconstituirse como grupo semiautónomo de 4 miembros (1 coordinador rotatorio, 1 operario pick-and-place, 1 operario horno+AOI, 1 técnico de calidad/mantenimiento de primer nivel). Asignación de toda la célula como unidad de responsabilidad. Rotación cada 90 min. Reunión de inicio (5 min) y cierre (10 min) con handover digital. Mantenimiento autónomo, mejora continua (kaizen), gestión de near-miss. Funciones externas: mantenimiento especializado, ingeniería de procesos, auditoría.</p>
+  <div class="answer" data-id="a31"></div>
+</div>
+</div>
+
+<h3>5.9 Entrega y formato</h3>
+<ul>
+  <li>Formato: PDF + defensa en PPT (15 minutos + 5 min Q&amp;A).</li>
+  <li>Extensión: 3.500–4.500 palabras (informe). Excluir referencias y anexos.</li>
+  <li>Tipografía: Times New Roman 12 pt; interlineado 1,5; márgenes 2,5 cm.</li>
+  <li>Citas y bibliografía: norma APA 7ª edición.</li>
+  <li>Bibliografía mínima obligatoria: Reason (1990); Trist &amp; Bamforth (1951); Nakajima (1988); Wickens (1984); Klein (1989); ISO 6385:2016; ISO 10075-1:2017.</li>
+  <li>Entrega: subir al aula virtual antes de las 23:59 del día 14.</li>
+</ul>
+
+<div class="callout ok">
+  <h4>Nota final</h4>
+  <p>Esta tarea asíncrona no solo evalúa la apropiación de conceptos, sino que ejercita las competencias profesionales de diagnóstico, diseño de intervención y comunicación técnica que el psicólogo laboral y el ingeniero sociotécnico deberán desplegar en su práctica. El estudiante debe evitar la solución técnica pura: cualquier plan que ataque solo el OEE sin ocuparse del sistema social será considerado insuficiente. El verdadero reto es la <strong>joint optimization</strong>.</p>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>© Cátedra de Psicología Laboral y Ergonomía Sociotécnica · Material didáctico para uso académico · Prohibida su reproducción con fines comerciales.</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---- Routing por hash (URLs independientes) ---- */
+  var routes = ['historico','caso-linea-4','taller-oee','evaluacion','tarea-asincrona'];
+  var defaultRoute = 'historico';
+
+  function showRoute(route){
+    routes.forEach(function(r){
+      var panel = document.getElementById('panel-' + r);
+      var link = document.querySelector('.tabs a[data-route="' + r + '"]');
+      if(panel){ panel.classList.toggle('active', r === route); }
+      if(link){ link.classList.toggle('active', r === route); }
+    });
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+
+  function parseHash(){
+    var h = (window.location.hash || '').replace(/^#\//,'').replace(/^#/,'');
+    if(routes.indexOf(h) === -1){ h = defaultRoute; }
+    return h;
+  }
+
+  function onHashChange(){
+    showRoute(parseHash());
+  }
+
+  window.addEventListener('hashchange', onHashChange);
+
+  /* ---- Sistema de respuestas cifradas (XOR + Base64) ---- */
+  // La clave nunca aparece literalmente en el código fuente.
+  // Se reconstruye a partir de códigos de carácter.
+  var _expected = (function(){
+    var parts = [49, 57, 56, 52];
+    var s = '';
+    for(var i=0;i<parts.length;i++){ s += String.fromCharCode(parts[i]); }
+    return s;
+  })();
+  var _authorized = false;
+
+  // Objeto con respuestas cifradas (XOR con la clave, luego Base64)
+  var _ANSWERS = {
+  'a1': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaAAUXR0FYVgo7GRgUEX1RR0FWVl1TUFRdVVhcFAwZEGBYXFVEXhlcURFWSFFDWFtd8opWFB4ZbF1UVEhbEUlUVV9QXl1SWFxbEVddQF4QMhQRGRgIU0sGYFhcVUReGUhYUFdRUlhaWVBeGVZRRVYYCREODBoJAQgU07GqFAgXCwIBGQUUBwwWAQMJGFlYVzIUERkYCFNLBnBYSkhbX1BaXV1QXFVVGQUUBQ4WAgkBGBsRDw0aBAsIFAwZCBgGCwAHEdu+phEFS0BDVlZTDw4KGAkKHQgeSkxGXldfCjsZGBQRBVpGD2tdWlVQVV1UV0xbEQQYDAgXDAYBGRcUCAwWBwYPGAkRCRQNAg4OFNO/qhQNSkxGXldfCggKFAMHHAQbQk1KW19eBj4RGRgUDVtKCnJYVF1VWFwUDBkAAB8LDwURFhgMCBcMBgEZBRQBFQEAAw0Y1rerGAhCTUpbX14GDQUVCgAUBRdHRUtXWlYHMhQRGRgIU0sGe3R8GAkRCRQDAwELFPKuGAQdAAsDBxn7oxEJFA0FCwwUDBkIGAcNCwYR276mEQVLQENWVlMPdn1xEQQYAgUVCwYUBRdHRUtXWlYH',
+  'a2': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaAwUXR0FYVgo7GRgUERFZHREFS0BDVlZTD2pdQERJGFVfXRhVVVNNR0VUXVpFGVRbQkoEG0JNSltfXgYUGVpZWVNQVxRVXBhSXktVVUVWERo7GRgUEQVaRg8RWh0RBUtAQ1ZWUw9wXFhYV18UUFdcFFxQVltDGUtAXklIVVZcSwgeSkxGXldfChERVV1SS1cZQVhKVVVYERo7GRgUEQVaRg8RWx0RBUtAQ1ZWUw9qXUBESRhVX10YVVVTTUdFVF1aRRlUW0JKBBtCTUpbX14GFBlLXVdQVVFWQ1hbXfKKVhQMGVleREpMURgXMhQRGRgIU0sGHFUQGAhCTUpbX14GZ0VYSkBESRhGVFNdV0UFF0dFS1daVgcYHENcW1xQQ1cUVVwYVUNLWVpATF0dHzMYFBEZBFZDBxBRGBkER0VLV1pWB2pRVUxbUVUZS0RUXFwUXVZLRw0WS0BDVlZTDxkQQlRVV1dYXVlQEUtdUERaUVBQEBY+ERkYFA1bSgoZXxEUDUpMRl5XXwp0SE1dQVRdWkUZXlVYVU1GVBkXFFNLXVVaXVdDXxlUW0JKBBtCTUpbX14GFBlYTlFD+pVVGBc=',
+  'a3': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaAgUXR0FYVgo7GRgUEXVZFFL6kVhEVVkUcnxoGQYZSEZUSl1aRVgYQV8ZS11CTV1ZUBlM95haVl1SVhgIQk1KW19eBkRQS1tdUFVVUV9NXRReSUxdXFBCVVVWBBtCTUpbX14GFBlLXVpVUFVdVFdMWxEACxgGDx0USBlbVV1QXFVVGQEAHQsMER0ZVlsRVlpHRVhWQFQZVFURXVFHQVZWXVNQVF1VWFwUVVwYAwMVAAcUGVFaVVBbVRFMVhRVXExRQ1BXRl4ZXFFdGUtdQk1dWVAZTPeYWlZdUlYRGhF8VBRCUEtAVFRZFEJWW11QVRhRQk37lREFS0BDVlZTD11dU0NYXFVVVgQbQk1KW19eBg4Rd3lncBRseGkZBRQGCxgcF15MDxEPDRRSS/uZRVBbWxgZQRR6amsUDBkPFBkfX0AKGQwUUkv7mUVQW1sYFxhkXksYQFBXTFsdGUtREUxaXVJYGFFfGV1YEVpNVVVLWVpFXBgIQk1KW19eBtaxpWz3mFpWXVJWGFlUXVFbERYYZ15aUVVdGVxRVktZUFBdV9axpAQbQk1KW19eBhgRXElBWE9ZWFRXTFERWFQUVVwYWFAZdPecV11VEQ0YRENcTl1eGVlYEVpXWFBJS1sfGXRVEVBWQFRLTlFfWlH3glcYUFRbXRRBS1FbQ1BCVUMVGEdYVxhEVEtcUUMZXVgRWE5VX1pdFEX6kVdfUFtbHRlNWlAZSlFYV19RX1BdRvKUWRRCVltdUFUYHENWTFVSUPuHXxUYRFBMS1VCFRhGVF1RR1T6iVsRXV1YEXF1fRFdXVgRSk1EVEtOXUJWSh0f',
+  'a4': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaBQUXR0FYVgo7GRgUEXpZRlZYGEReV1xRQ1hcVREEGPqSGRBERFdMQVBaUfeCVxj3phlIUUJWERQeGfaXEUldR15KFj4RGRgUDVtKCgwZEAwB+q8BERIYAwT6rwcREhgDAfqvABESGAIB+q8GERIYAgT6rwYREhgHAfqvBRgZFxQADDIUERkYCFNLBgkREQwEARkTFAMLDRQaGQoMARkTFAALCBQaGQkHARkTFAIJERQeGQkBOxkYFBEFWkYPBBgFHwgAAREWGAUEMxgUERkEVkMHBRQNSkxGXldfCgYAFAQRSldWQ1wYBQEJBBtCTUpbX14GGjsZGBQRBVpGD2pNRFRLWRRUVRhBXFtKVV0ZW0bylExdUlYYUFQZDgER276mEUpdFFJWVlJYS1VVEVpZRlZYGFlUV0xVXRlZWEVYAxRUShhEQ1BXRlhNWUZYWBhBX1gYXV9NXUZHXFZXWPqLWh8=',
+  'a5': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaBAUXR0FYVgo7GRgUEQwWFPOGaFtDGUlB8pAYWl4ZS1ERS11XUFVRVkP6iwsR27igEQVLQENWVlMPaVdGQExdFFRVGERDVltRVVBVXVRXTFsRXV0UUlhVVlhWGFBUGV5bQ1RZQF4ZVlsRUFZXXUxBURFMVhRSUV1XWlVRR0UZXFERT11GWF9RV1BaUfeCVxhEXkoVV1BUWl1eGV5dQ1RZUF4ZSFtDGV1YEUpNRFRLTl1CVkoYEUAYUV0Zc2R4GVxREUxIQFhUXRRBXFZVXVBCVRFcVBRFUF1ZQVYYUFQZS1FFTEgIHkpMRl5XXwodGVRbEUhNURFQVldUV0xdR1gYVV0ZV0RUS1lGWFYYVRFWVV1FUEoUXVgYRlRaWVhYW0pVUlD7h18ZSFVDWBhaXhlKUVVMW11DGUtBEVtXWlhfUVdQWlH3glcWPhEZGBQNW0oKclhNR1AZSlXylEIUXktfVV9QQlVSUFdaUFUCFA1KTEZeV18KVVBLUfKIVxRVXFQUQlBLQFRUWRRVXBhdX1pdWkVQTltCGUEUUExLUV9aUVURXV0UUlFdV1pVUUdFGVtbXxlbW19NSltdGVxREV9RRlxYBBtCTUpbX14GGhFwVkBUS05RX1pR94JXAhRDXFxdQlz7hVBLGFFdGXNkeBkQQUFNUVlUGRMUUlhUXVVYXBQaGUtRVkxKXVVYXB0dGVFaRUtXUERaUUYRWlBRUlJUXUJNGFBYXlFAUFUYV15XGFJYS1VVHw==',
+  'a6': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaBwUXR0FYVgo7GRgUEXdNUUdYSxRBWEpVVVhLFF9WGERdWFZdV1BbVVVYSxQMGQkAHw4JBhH6rxQZCBjWuasYBB0KDR0RBBgNHwwOBh0BGFlYVxY+ERkYFA1bSgp8UFtGXhRIVUNYXFVCGV1YWFRRWlBdWUcLGdq8owoWBQMJGFlYVxY+ERkYFA1bSgp/TF1CXhlMXVRUSFsRXV0UXkldRlBaUfeCVxgJEQ0PGgcBABQaGRAFBRcPBQMZ2ryjGQEaBA8KGAkQGB8RChYFAwkYCREMDRoIDA8YAxlVXV8XMhQRGRgIU0sGekRcTlURXVFHQVZWXVNQVF1VWFwUDBkNAR8ADQMdCxgbEQ8NGgQLCBQMGQgYCQwMBhHbvqYRBUtAQ1ZWUw8BDRgFCx0IHkpMRl5XXwofMxgUERkEVkMHaEZeXU1XUlD7h18ZTFHyikpdUlgYWkRcTlURBBgBBBcBAQYVChTyrhgcAAsIGwcJERQMGQkFABcBBQUVDBRaUExHHzMYFBEZBFZDB2pRX11RWVhcVkBeGVVVX01dWlhdVxRUVxgNAhUPAhQZ2rKjGUhGXl1NV1JQ+4dfGUpRUFUYCREJFA0CDg4U8q4YBQAIFg0ADRQAEQQYBQENFg0DCxhfWE1LGjsZGBQRBVpGD3pZWFhdWVARV01RR1gYCREAABER276mEUxWXVVYXFFCGVtbX19XRlxcSxQMGQgYCAEY96YZCQQFFwEGAxkFFAAJChoJCwwaOxkYFBEFWkYPdn1xEQQYBB0BDQADGfujEQkUDQIODhTyrhgEHQAABAEZBRQBFQ8MBAkY1rerGAhCTUpbX14Ge3R8GAkRDgAYBAkdCB5KTEZeV18KHzMYFBEZBFZDB3ZbEUpdFFBVW1VfQ1kUVFUYQVxbSlVdGVtYUEpdFFxMVlBYWFQaEQVLQENWVlMPeldZVFdMVUNQVw4NFktAQ1ZWUw8ZXVgRWk1RXVVXFENcS0BQV0xREVxLQPKYGFFfGV1YEUtdWlVQVV1UV0xbEREBBx0ODhEYAhhHVBlKUVJWVV1UV1xVEVhMVVJYShRdWEsUQfqRRlVQXFVCGVxREU9dWF5aUVBQXRhGVF1NV1hdWRRIGUtRRUxIGg==',
+  'a7': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaBgUXR0FYVgo7GRgUEQVLQENWVlMPEVkdDRZLQENWVlMPGQwUXFBdWVNLV0cLGQkUUlZXRlVQVlVVVkoZXkldRlBNUUJeGRBGXlUYRl5NWUBeS1FbHRlWWxFTXUbymEpFRFBbWxgVGAURVkhRQ1hKXV4ZXFERXFZHUFRaWFQVGAURVkhRQ1hKXV4ZXFERSVlYVE1RTlBdVxgRCBhA8pBbWlhaVxRVXBhXUFVRUFBdFVlQV0xRX1BVXVRXTFsRXV0UQUtRWVRLGFpYT11YHzMYFBEZBFZDBwRHRUtXWlYHEFYYBRdHRUtXWlYHGGZeVV1HEVBWQFRLW1VcW1FVU1VdRxFUXVBYWFZAVBlVVUVLUU4RXV0UUlZVRFRNXVpSUFlHChlbW15LXF1fWFtd8opWFENWTFVFUE5VEVRdWkJMWVgfMxgUERkEVkMHBEdFS1daVgcQVxgFF0dFS1daVgcYcV0ZX0ZESVcUUEpNWVQDGFtBXEpVUlD7h18ZXFERVVkUUvqRWERVWRgRWllYWF1ZUBFQVhldUFZRHRlVVV9NXVpYVFFRX01XFFBMTPeCV1dZXhkQWFhUSF1UQ1kYEVVNVkNQW1VSUPuHXxUYVVtMS0BUGVVRX1ZKHR0ZVVFbVkpVEVpXWkVQVkFQGRBfUFBCUV8QFBRBS1dTQ1hVVVJQ+4dfGVxdUEtRVRFdXVpFS1cUVVxUFEFVWVoRSl1ZUFdZWB0ZX1FCTVH3glcYUFQZVlFQSxVZWEpLGjsZGBQRBVpGDwVLQENWVlMPEVwdDRZLQENWVlMPGWhRQ1RZWlRaXVoRXEBAVEtWVUIDGFlQV0xRX1BVXVRXTFsRXEtEVFpRVV1QQlVVVhQUWFdfUV9QXUbylFkUVVwYRENWW1FCVksYEVpXWUFLWUcdGWpmH3FwGh0ZWUFVUExbQ/qVVRFdXRRSWFRdVVhcGjsZGBQRBVpGDwVLQENWVlMPEV0dDRZLQENWVlMPGWpbRVhbXfKKVhRSWFxVEQAIFFxQVkFFVksUVFdMRlQZXUdFWFtdXlddRxERWVpFUBVSUE1RU1AZExRBVlRdR1hUUV9aUVUYAhhGVExWXfKKVhRTS11CVBlcURFQVl1SUFcUVVwYQERLVlsREQ0UXFBWHRFAGFBUGVtdVEtKURERCQQRVFFaHRlRWlJVTU1UGVBVX11XQlRLGFBYXlFAUFURGg==',
+  'a8': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYlZUQVJQ+4dfGQsaCQUXR0FYVgo7GRgUEQgWFA1KTEZeV18Kfnx9CB5KTEZeV18KERFXVltcTF1HVhgSVk0DFAYMHRRUVxhSUEpdFFVcGF1fTV1GR1xWV1j6i1odGR5TRQIYDAQcGFFfGV1HRVhcWxFcS0BQW1RRGBnatKUZSEZeXU1XRVBOXVVYXBo7GRgUEQVaRg8LFhQNSkxGXldfCn94a3UcbXRsEVRdWkJMWVgRXV1YEUpNRFRLTl1CVkoIHkpMRl5XXwoREVdWW1xMXUdWGBJdTQMUBAwRFNO5rBRSWEpTUBlVUV9NWVgfMxgUERkEVkMHCxoRBUtAQ1ZWUw9xV0ZQShhQVBlLQVT6iVsRWE1AXhRKUUFWSkBQXVlHEREPGVX6lVVCEAQbQk1KW19eBhQZVlpeVE1RQl4ZHlNFAhgCHQwYXB5d+5lQEBjWsa0YRlRaTURUS1lXWPqLWh8zGBQRGQRWQwcMGhEFS0BDVlZTD21ZR1AZXFERV11VQxRVXUJKGEZUSVdGRVhcW0IZSFtDGVVRQgUXR0VLV1pWBxgcXltSUUVQTlsRH19AChkNGBFQVlBYWllQXksYUFQZW0FdTU1GUBlcURFKXVNES1FQUF0RFNO5rBRCXF9BQ1BcVVUXMhQRGRgIU0sGAR8ZBEdFS1daVgd2ZGIZUVpFXEpaXhlcUV0ZXUVEUEhbDRZLQENWVlMPGRBRX1pNUUJNWRRQV/uHX1BVVR0ZV1ZbXExdR1YYElZNAxQCCREU07msFFJWUFFCUPuHXxlLW1JQWVgf',
+  'a9': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3sEG0JNSltfXgYaEXT7iF9KTFFDW11GVhkQBQgICx0RWEpAWFpNWFAZVFURSUtdUlZUW1b6lVURUFZQREpMRlhYVBRSVlVbEV1RR1JQSFhYV1kPEVVZRxFWTEZQShhbU0tZRxFKV1oRSUpRVVxbUUJWSlVCGVcUQVxKQFRXXVdUVxhVEVVZFFRKW0FUVVkUVVwYZlRVWVdYVlZRQhlwQVxYVlVCFw==',
+  'a10': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwsEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3oEG0JNSltfXgYaEXxUFENcVlBYVFFRX01XFFxcUltDWFpVEVxWFFBUWltCGVtVQlZLGBFVVxRATF0UUlZWUERTVxRQGVRVEVFRRPKKTFFCUEsUVVxUFFRfXVdFVhh8UE5MXF5LVlEREVlAVFdbXfKKVhRBSlFXXlX7h1ZQW1URQBhXXlFdR1j6i1oRXkpBQVhUHR8=',
+  'a11': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwoEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3oEG0JNSltfXgYaEXxUFEFLUVpSUEhdXhlWQVJVXVVDGVxRXRldWldWSUFUGUtbUlBXQPKQW1pYWlcUVEoYWFAZBFFcB1JbWFdMFF5JTF1cUEJVRVBXWg0WXVkPGdq0pVZIQFhUUU5QWlH3glcYV15XUkFfTVnWsa0YUFQZVFtCGUtdQk1dWVBKGEDykFtaWFpXFEgZS1tSUFlYHw==',
+  'a12': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYw0EG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3sEG0JNSltfXgYaEXVXRxFYX0FbXEpbQhlKUUFLXUdUV0xVXxkEUVwHVFVFXFZAEVpXWlVQTF1eV0sIHlxVChHbuKBXWFRYUEoYWFBNXVpFXEsUVFcYUFRfXVpCWEsYEUlKW1JcXF1cUF1aRVZLGBFaTVhFTEpV07msFEBMXRgRWFQUUFVRWlRYSkdUFRhEVEtVXUVcVhRdWBhAQ1hBUVJNV0ZYWBhQVFUYVVJaUVBUV0xRHw==',
+  'a13': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwwEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3oEG0JNSltfXgYaEXVXRxFJSltSXFxdXFBdWkVWSxRQTExbXFhMXUtYXFtCGVlEQ1xWUFhdV0cRXV0UXFxVW0NQWRRSVkpGVEpIW19dXVoRWFQUX1BOUV0ZBFFcB0tfWFVUGVNYS1FVBRdRXAcY1rGtW1tfTUpbXRlZQUVWVfeQTVFXXhUYR1hXGFdeV0tBXFYYV15XS1dYXFZAVBlcURFLXVdES0tbQhlZQFRXW11eV1lYVEoW',
+  'a14': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYw8EG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3oEG0JNSltfXgYaEXxUFGFvbBQZaUtNUlFXWV5NV0YRb1FTWFVZWlJcGGBUSkwdEVRRUFQZXVgRTVFRXElXFFVcGEZUWFtXWPqLWhFAGFheShhYUElLQUIZHlNFAhgBAQkYWUICGFFCGU1aEVRZRlJYXFtDGQRRXAdXVltcTF1HVgQbVFQGGhF1WUcRXV1Z8phLFEJWVhRcWFZdV1xLQFBaUVtfXEsUQkxaXlRNUUJQShY=',
+  'a15': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYw4EG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3sEG0JNSltfXgYaEXxWFH94a3UcbXRsHRlUVRFdUVlUV0td8opWFGFcSlJeS1VVX1pdFFRKTPeQGVFaR1xKQFhdWQ4RWBhZUEBXRhFJTVpFTFlXWPqLWh0ZSFFeSxhGVFdcXVxQXVpFVhhEVEtbXVNQXFsdGUhbQ0hNURFUWU1eSxhERFdMQVBaUfeCVxhTXVZaVV0ZUVlBVVFXUBlVVUhWShRSWEpTUBc=',
+  'a16': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwEEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3oEG0JNSltfXgYaEXZ9cREEGAQdAQgU8q4YBB0ACBTyrhgEHQANFAwZCBgHAQwU07+qFAcBFAAUFw==',
+  'a17': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwAEG0JJWVoPa11HQUxdR0VYGFdeS0pRUk1ZDhEFS0BDVlZTD3sEG0JNSltfXgYaEXVZRxFJWUZQXVlHEVpXRkVYSxRDXFtBQ0tdWkVcSxQZH1RAChkNFFxQVh0RWlRVQlBeXVJYVhRSVlVbEQVdWQ9QXFhYV18UUFdcFFxQVltDGUtAXklIVVZcSwgeXFUKEV1dWkVLVxRVXBhYUEoYR1RQSxRWS1laVVxLFEH6kUZVUFxVQhlcUV0ZbGR8Fw==',
+  'a18': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgICB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd6CB5KTEZeV18KHxl0VRFNXVtD+pVVEV1dFENcW0FDSldHEVT7jl1NUURdXEsUQUtdUFhaXRRYV0xRQ19dRlRXW11QGVX3kEFRWVAZW0FQV1xbEV1XRxFNWUZUWEsUUlZVRFBLTFFfGV1YEVRRR1xWGEZUWk1GQlYYHEEXGFFbFxQUVVZLFEVYSlFQShhCWEpNVV1cSxRSVlYUUlZcXVdQW1VSUPuHXxldR0FYW11QVREa',
+  'a19': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgJCB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd6CB5KTEZeV18KHxl9WBFITV1fTVcUQVZKFEBM+50RXFYUUFpbXVVcVkBUShhdX11NR0VLUVVdXEsURVBdWlVcGFURS11CVFVZRhFfWVhdWEsUVFcYUV0ZXF1CXPuFXhlcUV0ZS11CTV1ZUBlcURFeXUdFUPuHXxnatKVJSltSXFxdXFBdWkVWSxgRcmh9QhUYV0RVTEFDWNq0pRlV95BKGEVEXBhRXxldWBFWSFFDWFxbQxlRWlVQTl1VTFlYHw==',
+  'a20': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgKCB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd6CB5KTEZeV18KHxl9WBFeSkFBVhhHVFRRVURN+4dfVlVbEVdXFFRVUVlYV1kUQkxIUUNPUUdY+otaEVdRFEFLV1dUXVFZWFxWQF5KAxRCXBhXUEtZV0VcSl1LWBhEXksYVUJMVV1DGVRVEUtdR0FWVkdQW1FYWF1ZUBFdXRREV1kURFdRUFBdGFdeVEhYVE1ZFFVcGEBDWFpVW1YYHERXGERDVlxBUk1XGBFMVlURWvudXUxUVR0ZTVpQGVVdX1gRGBFaV1oRWE1AXldXWfKUWRRYV0xRQ1dZGg==',
+  'a21': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgLCB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd6CB5KTEZeV18KHxl9WBFWSFFDWEpdXhlcUUJYW1tBVVlQXhlcUV0ZVFVLVhhQVBlbW19NSltdGUhdVEtcURFaV1pSUF1aUlBZFEJQTEFQWlFbX1hUFEgZTFVDXVkUXPqZRxFcVhRVXExRUk1ZRhFAGEZUSkhbX11dRhFYVkBUGU1aUBlZWl5UWVjylFkUVVxUFEJQS0BUVFkUUExMW1xYTF1LWFxbHw==',
+  'a22': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgMCB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd6CB5KTEZeV18KHxl0VRFcSlNeV1dZ8pRZFFJWVldUW1FRX01dFFhXTFFDT1FRX1wYUV8ZXVgRXVFHVPqJWxFdXVgRSU1RQk1XFA1cVQpQV0xRQgUXUVwHGFBUGUtBEVBWR0VYVFVSUPuHXxUYWVhcVkBDWEsUQExdFF1YGFdeS0pRUk1RQlAZWVdF+oJVEUpXVkNcGEREXEtAXkoYTVAZUVpCTVlYUF1XRx8=',
+  'a23': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKYwgNCB5KSFVfB2pRQklNUUJNWRRSVkpGVFpMVQsZBEdFS1daVgd7CB5KTEZeV18KHxltWlAZW0FdTU1GUBlcURFKXVNES1FQUF0YWVBdTUZQGUtREVRZWlhfUVFCTVkUVFcYQV8ZVveLVF1GXhldWFRPWVBeGVxREVddVUMUVV1CShhGVElXRkVYXFtCAxhYXkoYQENYWlVbWFxbQ1xLFFJWVlLylFlaEVxWFEBMXRRUVRhGVElXRkVcGEdUS/uVEVxLV0RaUFVVVhhNEUxMXV1QQlVVVhhEUEtZFFxcUltDWEoYEVdXFEFYSlURSllaUlBXWlBLFg==',
+  'a24': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQUNFktEUFcGPhEZGBRnXEpdV1BbVUMDGHt0fBgJEX1RR0EZ+6MRa11aVRn7oxF6WVgfGWhVQ1gYd3QUCQ4RCRQMCAsY96YZCBgICwwU8q4YBB0ADA0RBBgEHQ4ABxHbpKcfGXRVEUtZWVAZcUdZUFNVRlgYWkRaVFFQSxhRQhkER0VLV1pWB3X3mE1XUF4ZExR8WFZbEV1dFF5bSlUNFktAQ1ZWUw8ZEFpeGXVVQExRWlBLUVUYFxh4UBlbVURKWVhYXVlQEUtZ95xDGFFCGVdGVlhWXUtYW11eV1lYHRlWWxFN+51SV1FXUBc=',
+  'a25': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQYNFktEUFcGPhEZGBRyTFlQQ1hWQFQZdUFcX1dGVQMYQPKQW1pYWlcUR0oWFEJWW11QVRgcXklMXVxQQlVVVhgbEV1dU0NYXFVVVhEaEWr7mV9NXUdYSgIUDUpMRl5XXwpQSlFZVE1K95xYGFdDXFtdVFdMUQ0WS0BDVlZTDxlM95haVl1SWBj3gklMXVxYGB8RSldXWFhUFFVcX0ZQXVlQXhkFFFhXW0FcSVRdXFBdWkVWGFBUVRhEQ1BWV1hJUVsRXV0UW1ZRWkUZV0RFUFVdS1hMXV5XGFBUVRhgUE9RR0VWW18f',
+  'a26': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQcNFktEUFcGPhEZGBRyWE1HUBlKVfKUQhReS19VX1BCVVJQV1pQVQIUDUpMRl5XXwpVUEtR8ohXFEFMVl1FUE5bEV1dWBFyaH0NFktAQ1ZWUw8ZSUFUGVtbX01KVVVQW1ERXFQUQUtRWlJQSF1eGVxREVNNR0UZW0FdTU1GVBkQZlRYS1tfFRgFCAAPHR8ZcVpFXEpCVFdbXfKKVg4RS11SXktVQV1YShRUVRh/YXADFENcW1tfVltRQxlBFEFLXVlYWEoUVFUYRlRJV0ZFXBhQVBlWUVBLFVlYSksa',
+  'a27': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQANFktEUFcGPhEZGBR5WFRYUENfW0IZXUdBXEpVVVZLDhFdXVNDWFxVUlD7h18ZXFERWldaRUtXWBFYTFFfWlFbX1hUFFVQTl1VUFxbChldRkNWSlFCGUpBXVwVVlBKXVARXFYUUlZWQFRBTFtCGUlBVBlKUUBMUVFDXFYUWldXQ11cXFNUFFpVQlxcDxFUXUBQWldTX1BbXfKKVhRVXF5dUlBdWkVcGBxCXFZHUFpR94JXGFBUGVtbX01KW10ZHlNFAhhXUElZV1hdWVARS11VXRAWFHxYSFFQSxgHHAwYV0NQTF1SWFQUVVxbXUJQV1oRSVddX01LFEgZS0FCGVtBVEoUFFRBSFFSTVlAWE9ZRxFAGFtBWlFbX1xLGg==',
+  'a28': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQENFktEUFcGPhEZGBR3WEtREQgYHEP6mURYXVkdCxlzZHgZExRBWE1HUEoYHxFRWVpVVk5RQxkTFGF0GB8RU01HRRlbQV1NTUZUFxhyUEpdFAMZEF1fTV1GXFxcXVAQAhR5dHEUGhlRWlVMW1dY+otaERIYRl5NWVdY+otaERIYWV5XUUBeS11bHxl+VUJcGAcREUhGXl9NWlVYEQ4RXkpBQVYYR1RUUVVETfuHX1ZVWxESGEBES1ZbQhkTFEJaV0ZUWllGVRcYCEJNSltfXgZ3Q1ZWW1ZLWVlQGX9VX01MCB5KTEZeV18KEV1dVlQZTl1CTFlYWENZRhFVWUcRTUpRQhleVUJcSxRSVlYUWVBMW0IZQRRDXEtEXldLVVNVXUcf',
+  'a29': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQINFktEUFcGPhEZGBQGGXNkeEoYVlBVWVpSXFlQXkoCFA1cVQoCGUhGXl1NV0VQTltCBRdRXAcYHH58fRgRfVFHQVZWXVNQVF1VWFwYEXpXWldWSllYXVlQGBkTFA1cVQoDGVxREUpZWERdF1JQTVFTUAUXUVwHGBx/eGt1HG10bB0ZUFtDWEsUVVwYR0Rc+4VeEBgfEQVdWQ8LGFBUGVtBXU1NRlAWSlFFXFZXWPqLWg0WXVkPGRBaVFhKGVxQS0cRS11EXktMVVVWSxgRS1dAUFpR94JXGEJeVU1aRVhKXVAZExR/aWsdHxlxWlVQW1VDGUhVQ1gYV1BdWRREV1cOEV/7h0NUTVhQFRhSRFxWQFQVGFJDXFtBVFdbXVAVGEFcW0pVXRlbRvKUTF1SVhQUQ1xLRF5XS1VTVV0a',
+  'a30': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQMNFktEUFcGPhEZGBR8WEpXXhlcUV5XTFtd+otTWFpXDhFJSl1fWlFEWFZLFFNQV/eYTVFXXkoYV136mUdYWldHERFZQUVWVltc+pVVHRlWWxFUWVhUX1FXVFdbXVAVGFZUV11SWFpdWlJQWRgRU01HRVBbXVAQGB8RWvuHVVBfW0IZfnFycXkUGhlrfXRtaBoRa11HQVZWR1BbUVhYXVlQEVpXWUFYSkBYXVkUUlZWFFJWVkdEVUxbQ1xLFH1cWVofGWpRUlZVUV9dWVdY+otaCxlbWPKYTUdEVVkUVVwYFlVMXRRVUFRdVlxWV1QZS1tSUFdA8pBbWlhaVxYRXFYUV0xMQUNYSxRSVlZHRFVMW0P6lVVCFw==',
+  'a31': 'DUpIVV8ZW1hQSksJE1JdTRxbWVBWXBoKclVZQlQZeQwNFktEUFcGPhEZGBR2S01EXhlLUVxQWUFF+otaXlRXFGVYTl1CTVdXWgMYABFUUVFcW0pbQhkTFENWTFVSUPuHXxkBBBFUUVoREhhcUFdcW0dcShRVUF9dRVhUFBoZVVVfTV1aWFRRUV9NVxRQTEz3gldXWV4ZExRaWFFOVFcWFHJWV0ZVUFZVUlD7h18ZSltFWExbQ1BZFBlXVxRbXEr3kEtJQVhaWR0fGX1MRVxKWlBKAhRcWFZAVFdRWVhcVkBeGV1HQVxbXVBVUU5QXVcYEVBWU1RXUVFD+pVVHRlZQVVQTFtD+pVVHRlqZh9xcBoReEhYWFpZRhFwa3sRDwsMBAMKBAAPGFdeVFcUXFhKV14ZVltDVFlAWE9XGg==',
+};
+
+  // Bytes de la clave como secuencia de códigos de carácter
+  var _KEY_BYTES = [49, 57, 56, 52];
+
+  function _decodeAnswer(encoded){
+    // 1. Base64 decode -> bytes
+    var binary = window.atob(encoded);
+    var bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    // 2. XOR con la clave (repetida)
+    for (var j = 0; j < bytes.length; j++) {
+      bytes[j] = bytes[j] ^ _KEY_BYTES[j % _KEY_BYTES.length];
+    }
+    // 3. UTF-8 decode
+    var decoder = new TextDecoder('utf-8');
+    return decoder.decode(bytes);
+  }
+
+  function _populateAnswers(){
+    document.querySelectorAll('.answer[data-id]').forEach(function(el){
+      var id = el.getAttribute('data-id');
+      if(_ANSWERS[id] && !el.getAttribute('data-populated')){
+        el.innerHTML = _decodeAnswer(_ANSWERS[id]);
+        el.setAttribute('data-populated', '1');
+      }
+    });
+  }
+
+  function unlock(){
+    if(_authorized){
+      _populateAnswers();
+      document.querySelectorAll('.answer').forEach(function(el){ el.classList.add('revealed'); });
+      document.querySelectorAll('.protected-section').forEach(function(el){ el.classList.add('revealed'); });
+      return true;
+    }
+    var input = window.prompt('Acceso a claves de respuesta. Ingrese la clave de catedrático:');
+    if(input === null || input === ''){ return false; }
+    if(input.trim() === _expected){
+      _authorized = true;
+      _populateAnswers();
+      document.querySelectorAll('.answer').forEach(function(el){ el.classList.add('revealed'); });
+      document.querySelectorAll('.protected-section').forEach(function(el){ el.classList.add('revealed'); });
+      updateStatus('Clave verificada · respuestas visibles');
+      return true;
+    } else {
+      window.alert('Clave incorrecta. Acceso denegado.');
+      updateStatus('Acceso denegado · último intento fallido');
+      return false;
+    }
+  }
+
+  function updateStatus(msg){
+    var st = document.getElementById('revealStatus');
+    if(st){ st.textContent = msg; }
+  }
+
+  // Botón global de revelación (se inyecta al cargar)
+  function injectRevealBar(){
+    var bar = document.createElement('div');
+    bar.className = 'reveal-bar';
+    bar.innerHTML =
+      '<span class="status" id="revealStatus">Claves de respuesta protegidas — requieren autorización docente.</span>' +
+      '<button id="unlockBtn">Mostrar respuestas</button>';
+    document.body.appendChild(bar);
+    document.getElementById('unlockBtn').addEventListener('click', unlock);
+  }
+
+  // Inicialización
+  document.addEventListener('DOMContentLoaded', function(){
+    injectRevealBar();
+    onHashChange();
+  });
+
+})();
+</script>
+
+</body>
+</html>
