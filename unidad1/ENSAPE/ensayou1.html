@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad Curricular: Psicología Laboral</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0284c7;
+            --accent: #dbeafe;
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--accent);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        /* Núcleos Temáticos */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--bg-page);
+            border-left: 4px solid var(--secondary);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1.25rem;
+        }
+
+        .card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Citas y Destacados */
+        .callout {
+            background-color: var(--accent);
+            border-left: 5px solid var(--secondary);
+            padding: 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+        }
+
+        .callout-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .callout p {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Ficha Metadatos de la Tarea */
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0 1.75rem;
+        }
+
+        .meta-box {
+            background: var(--bg-page);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+        }
+
+        .meta-box span {
+            display: block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .meta-box strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-top: 0.15rem;
+        }
+
+        /* Listas estructuradas */
+        .task-list {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .task-list li {
+            margin-bottom: 0.85rem;
+            font-size: 0.95rem;
+        }
+
+        .task-list li strong {
+            color: var(--primary);
+        }
+
+        .task-list ul {
+            list-style-type: circle;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Tabla Rúbrica */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            min-width: 720px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.85rem;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafbfd;
+        }
+
+        td strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        td small {
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container" style="margin: 0 auto; padding: 0;">
+            <h1>Cátedra de Psicología Laboral</h1>
+            <p>Guía de Aprendizaje Modular, Fundamentos y Orientación de Ensayo Académico</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- SECCIÓN 1: NÚCLEOS TEMÁTICOS -->
+        <section>
+            <h2>1. Núcleos Temáticos de la Unidad</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h4>1.1 Psicología Laboral</h4>
+                    <p>Comprensión de los principios rectores de la disciplina y su aplicación sistemática en la gestión del comportamiento humano en el ámbito del trabajo.</p>
+                </div>
+                <div class="card">
+                    <h4>1.2 Rol del Psicólogo</h4>
+                    <p>Identificación precisa de las funciones profesionales dirigidas a la promoción del bienestar y a la optimización técnica del rendimiento en las organizaciones.</p>
+                </div>
+                <div class="card">
+                    <h4>1.3 Desarrollo Histórico</h4>
+                    <p>Análisis de la evolución histórica, etapas críticas y corrientes teóricas (desde la administración científica clásica hasta las relaciones humanas y paradigmas modernos).</p>
+                </div>
+                <div class="card">
+                    <h4>1.4 Campo de Estudio</h4>
+                    <p>Delimitación epistemológica de la disciplina y su vinculación directa con el comportamiento individual, grupal y sistémico en contextos organizacionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: LECTURA APLICATIVA -->
+        <section>
+            <h2>2. Lectura Aplicativa y Pragmática</h2>
+            <p>Para contextualizar la evolución desde modelos laborales de control hacia enfoques centrados en el bienestar y la toma de decisiones fundamentada en datos, se establece la siguiente lectura obligatoria:</p>
+            
+            <div class="callout">
+                <div class="callout-title">Referencia Bibliográfica (Normas APA 7.ª ed.)</div>
+                <p>Bock, L. (2015). <em>Work Rules!: Insights from inside Google that will transform how you live and lead</em>. Twelve.</p>
+            </div>
+
+            <h3>Justificación y Articulación Práctica</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">
+                A través del caso empírico de Google, esta obra ilustra de forma anecdótica la superación del taylorismo (1.3), examinando cómo la ciencia del comportamiento permite diseñar sistemas de compensación justos, reducir sesgos en la selección de personal y elevar simultáneamente la satisfacción psicosocial y los indicadores de productividad organizacional (1.1, 1.2 y 1.4).
+            </p>
+        </section>
+
+        <!-- SECCIÓN 3: PLANTEAMIENTO DE LA TAREA -->
+        <section>
+            <h2>3. Planteamiento de la Tarea Académica</h2>
+            <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-dark);">
+                Del Mecanicismo a la Gestión del Talento: Ensayo Crítico sobre la Evolución y Aplicación de la Psicología Laboral
+            </p>
+
+            <div class="metadata-grid">
+                <div class="meta-box">
+                    <span>Modalidad</span>
+                    <strong>Individual</strong>
+                </div>
+                <div class="meta-box">
+                    <span>Tipo de Actividad</span>
+                    <strong>Ensayo Crítico-Analítico</strong>
+                </div>
+                <div class="meta-box">
+                    <span>Extensión</span>
+                    <strong>1,500 – 2,000 palabras</strong>
+                </div>
+                <div class="meta-box">
+                    <span>Formato y Estilo</span>
+                    <strong>PDF / Normas APA (7.ª ed.)</strong>
+                </div>
+            </div>
+
+            <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                <strong>Instrucciones Generales:</strong> A lo largo de las revoluciones industriales, la perspectiva sobre el factor humano en las organizaciones transitó desde un mecanicismo operativo hacia la valoración integral de las personas. El estudiante deberá redactar un ensayo crítico articulando los cuatro núcleos curriculares respetando la estructura indicada:
+            </p>
+
+            <ol class="task-list">
+                <li>
+                    <strong>Introducción Motivadora y Delimitación Conceptual (15–20%):</strong>
+                    Planteamiento explícito de la tesis central; definición del campo de estudio disciplinar (1.4) y caracterización de los principios fundamentales de la conducta humana en el trabajo (1.1).
+                </li>
+                <li>
+                    <strong>Cuerpo / Desarrollo Argumentativo (65–70%):</strong>
+                    <ul>
+                        <li><strong>Bloque Histórico-Epistemológico:</strong> Reconstrucción analítica de la evolución de la psicología laboral, contrastando la Escuela Clásica, Hawthorne y las corrientes contemporáneas (1.3).</li>
+                        <li><strong>Bloque Aplicativo e Intervención:</strong> Discusión técnica del rol del psicólogo como articulador entre el bienestar subjetivo y la productividad laboral (1.2), integrando evidencias, anécdotas o casos del texto <em>Work Rules!</em>.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Conclusiones y Proyección Disciplinar (10–15%):</strong>
+                    Síntesis articulada con la tesis inicial y balance prospectivo frente a desafíos contemporáneos (digitalización, tecnoestrés y automatización).
+                </li>
+                <li>
+                    <strong>Aparato Crítico:</strong>
+                    Mínimo 4 fuentes académicas arbitradas/indexadas, además de la obra complementaria de lectura.
+                </li>
+            </ol>
+        </section>
+
+        <!-- SECCIÓN 4: RÚBRICA DE EVALUACIÓN -->
+        <section>
+            <h2>4. Rúbrica Analítica de Evaluación (0 – 20 Puntos)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Criterio Evaluado</th>
+                            <th style="width: 20%;">Excelente (5 pts)</th>
+                            <th style="width: 20%;">Bueno (3.5 – 4 pts)</th>
+                            <th style="width: 20%;">Regular (2 – 3 pts)</th>
+                            <th style="width: 15%;">Insuficiente (0 – 1.5 pts)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Profundidad Conceptual</strong>
+                                <small>Núcleos 1.1 y 1.4</small>
+                            </td>
+                            <td>Delimita con rigor epistemológico los principios de la disciplina; articula con fluidez la relación entre conducta humana y contextos organizacionales.</td>
+                            <td>Describe con precisión los conceptos principales, aunque presenta conexiones parciales con las dinámicas operativas de la organización.</td>
+                            <td>Expone definiciones genéricas o imprecisas del campo de estudio; comprensión baja o superficial de los principios conductuales.</td>
+                            <td>Confusión conceptual severa o ausencia de delimitación disciplinar de la psicología laboral.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Análisis Histórico</strong>
+                                <small>Núcleo 1.3</small>
+                            </td>
+                            <td>Examina críticamente la evolución histórica, reconociendo hitos, corrientes y quiebres paradigmáticos con solidez teórica.</td>
+                            <td>Menciona cronológicamente las etapas históricas y corrientes principales, pero el análisis resulta predominantemente descriptivo.</td>
+                            <td>Omite etapas históricas relevantes o confunde aportes de corrientes teóricas fundamentales.</td>
+                            <td>Tratamiento histórico nulo, fragmentario o descontextualizado del ámbito laboral.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Rol y Aplicabilidad</strong>
+                                <small>Núcleo 1.2</small>
+                            </td>
+                            <td>Disecciona las funciones del psicólogo en el balance bienestar-rendimiento, articulando anécdotas y evidencias pragmáticas de alto nivel.</td>
+                            <td>Identifica las funciones clave en bienestar y optimización, pero la aplicación o ejemplificación resulta superficial.</td>
+                            <td>Aborda el rol del profesional de forma aislada, sin conectarlo con el rendimiento organizacional o el bienestar.</td>
+                            <td>No identifica las funciones operativas del profesional o presenta una perspectiva clínica desligada del entorno laboral.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Estructura y Normas APA</strong>
+                                <small>Redacción y Citación</small>
+                            </td>
+                            <td>Argumentación lógicamente hilvanada; redacción técnica impecable; citas y referencias en estricto cumplimiento del formato APA (7.ª ed.).</td>
+                            <td>Estructura comprensible con leves inconsistencias de transición; errores menores de formato APA en citas o referencias.</td>
+                            <td>Estructura desorganizada; fallas evidentes de sintaxis o uso inconsistente del estándar APA.</td>
+                            <td>Texto incoherente, plagio parcial o ausencia absoluta de aparato crítico y normas de citación.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Departamento Académico de Psicología y Gestión Humana &copy; 2026. Documento Curricular Universitario.</p>
+    </footer>
+
+</body>
+</html>
