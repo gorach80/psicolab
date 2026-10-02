@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicología Laboral — Guía de Cátedra & Taller N.° 1 | UPSE</title>
+<style>
+  :root{
+    --azul-upse:#0b3d62;
+    --azul-claro:#156a9b;
+    --dorado:#b8893a;
+    --gris-fondo:#f4f6f8;
+    --gris-borde:#dde3e8;
+    --texto:#1d2733;
+    --texto-suave:#4a5563;
+    --verde-solucion:#1f5c3a;
+    --rojo-alerta:#9c1c1c;
+    --fuente-titulo:'Georgia','Times New Roman',serif;
+    --fuente-cuerpo:'Segoe UI','Helvetica Neue',Arial,sans-serif;
+    --fuente-mono:'Consolas','Courier New',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--fuente-cuerpo);
+    color:var(--texto);
+    background:var(--gris-fondo);
+    line-height:1.65;
+    font-size:16px;
+  }
+  /* ===== Encabezado institucional ===== */
+  .institucional{
+    background:linear-gradient(135deg,#0b3d62 0%,#156a9b 100%);
+    color:#fff;
+    padding:24px 0 14px;
+    border-bottom:4px solid var(--dorado);
+  }
+  .institucional .contenedor{
+    max-width:1180px;margin:0 auto;padding:0 24px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  }
+  .institucional h1{
+    font-family:var(--fuente-titulo);
+    font-size:1.15rem;font-weight:600;letter-spacing:.3px;line-height:1.3;
+  }
+  .institucional .meta{
+    font-size:.78rem;opacity:.92;text-align:right;line-height:1.5;
+  }
+  .institucional .meta strong{color:#ffe7b8}
+
+  /* ===== Navegación por pestañas ===== */
+  .navegacion{
+    background:#fff;
+    border-bottom:1px solid var(--gris-borde);
+    position:sticky;top:0;z-index:50;
+    box-shadow:0 2px 8px rgba(11,61,98,.08);
+  }
+  .navegacion .contenedor{
+    max-width:1180px;margin:0 auto;padding:0 24px;
+    display:flex;gap:0;flex-wrap:wrap;
+  }
+  .navegacion a{
+    display:block;
+    padding:16px 28px;
+    text-decoration:none;
+    color:var(--texto-suave);
+    font-weight:600;
+    font-size:.95rem;
+    border-bottom:3px solid transparent;
+    transition:all .25s ease;
+    position:relative;
+  }
+  .navegacion a:hover{
+    color:var(--azul-upse);
+    background:#f8fafc;
+  }
+  .navegacion a.activo{
+    color:var(--azul-upse);
+    border-bottom-color:var(--dorado);
+    background:#fbfbf6;
+  }
+  .navegacion a .num{
+    display:inline-block;
+    width:22px;height:22px;
+    background:var(--azul-upse);
+    color:#fff;
+    border-radius:50%;
+    text-align:center;line-height:22px;
+    font-size:.72rem;margin-right:8px;font-weight:700;
+  }
+  .navegacion a.activo .num{background:var(--dorado)}
+
+  /* ===== Contenido ===== */
+  main{max-width:1180px;margin:32px auto;padding:0 24px 80px}
+  .panel{display:none}
+  .panel.activo{display:block;animation:fadeIn .4s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ===== Tarjetas / secciones ===== */
+  .tarjeta{
+    background:#fff;
+    border:1px solid var(--gris-borde);
+    border-radius:6px;
+    padding:32px 36px;
+    margin-bottom:24px;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);
+  }
+  .tarjeta h2{
+    font-family:var(--fuente-titulo);
+    color:var(--azul-upse);
+    font-size:1.6rem;
+    border-bottom:2px solid var(--dorado);
+    padding-bottom:10px;
+    margin-bottom:18px;
+    line-height:1.25;
+  }
+  .tarjeta h3{
+    font-family:var(--fuente-titulo);
+    color:var(--azul-claro);
+    font-size:1.18rem;
+    margin:24px 0 10px;
+    padding-left:10px;
+    border-left:4px solid var(--azul-claro);
+  }
+  .tarjeta h4{
+    font-family:var(--fuente-cuerpo);
+    color:var(--azul-upse);
+    font-size:1rem;font-weight:700;
+    margin:18px 0 6px;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .tarjeta p{margin-bottom:12px;text-align:justify}
+  .tarjeta ul,.tarjeta ol{margin:10px 0 14px 24px}
+  .tarjeta li{margin-bottom:6px}
+  .tarjeta strong{color:var(--azul-upse)}
+
+  /* ===== Ficha técnica ===== */
+  .ficha-tecnica{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:0;
+    background:#fbfcfd;
+    border:1px solid var(--gris-borde);
+    border-left:4px solid var(--dorado);
+    border-radius:4px;
+    margin-bottom:28px;
+    overflow:hidden;
+  }
+  .ficha-tecnica div{
+    padding:10px 16px;
+    border-bottom:1px solid #eef1f4;
+    font-size:.9rem;
+  }
+  .ficha-tecnica div:nth-child(odd){border-right:1px solid #eef1f4}
+  .ficha-tecnica div:nth-last-child(-n+2){border-bottom:none}
+  .ficha-tecnica .etiqueta{
+    display:block;font-size:.72rem;
+    text-transform:uppercase;letter-spacing:.6px;
+    color:var(--texto-suave);font-weight:600;margin-bottom:2px;
+  }
+  .ficha-tecnica .valor{color:var(--azul-upse);font-weight:500}
+
+  /* ===== Diagrama de niveles ===== */
+  .diagrama-niveles{
+    background:linear-gradient(180deg,#f0f5fa 0%,#fff 100%);
+    border:1px solid var(--gris-borde);
+    border-radius:8px;
+    padding:24px;
+    margin:20px 0;
+  }
+  .diagrama-niveles .flujo{
+    display:flex;justify-content:center;align-items:stretch;gap:12px;flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .diagrama-niveles .nivel{
+    flex:1;min-width:200px;max-width:280px;
+    background:#fff;border:2px solid var(--azul-claro);
+    border-radius:6px;padding:14px 16px;text-align:center;
+    position:relative;
+  }
+  .diagrama-niveles .nivel::after{
+    content:"→";position:absolute;right:-18px;top:50%;
+    transform:translateY(-50%);font-size:1.4rem;color:var(--dorado);font-weight:700;
+  }
+  .diagrama-niveles .nivel:last-child::after{display:none}
+  .diagrama-niveles .nivel h5{
+    color:#fff;background:var(--azul-claro);
+    margin:-14px -16px 10px;padding:8px;border-radius:4px 4px 0 0;
+    font-size:.95rem;font-family:var(--fuente-titulo);
+  }
+  .diagrama-niveles .nivel ul{
+    list-style:none;text-align:left;margin:0;font-size:.83rem;
+  }
+  .diagrama-niveles .nivel ul li{
+    padding:3px 0 3px 14px;position:relative;line-height:1.4;
+  }
+  .diagrama-niveles .nivel ul li::before{
+    content:"▸";position:absolute;left:0;color:var(--dorado);
+  }
+
+  /* ===== Tablas ===== */
+  .tabla-contenedor{overflow-x:auto;margin:18px 0;border:1px solid var(--gris-borde);border-radius:4px}
+  table.matriz{
+    width:100%;border-collapse:collapse;font-size:.86rem;background:#fff;
+  }
+  table.matriz th{
+    background:var(--azul-upse);color:#fff;
+    padding:12px 10px;text-align:left;font-weight:600;
+    border:1px solid #0a3254;font-size:.85rem;
+  }
+  table.matriz td{
+    padding:11px 10px;border:1px solid #e1e6eb;
+    vertical-align:top;line-height:1.5;
+  }
+  table.matriz td:first-child{
+    background:#f5f8fb;font-weight:600;color:var(--azul-upse);
+    width:18%;
+  }
+  table.matriz tr:nth-child(even) td:not(:first-child){background:#fafbfc}
+
+  /* Rúbricas */
+  table.rubrica th{
+    background:var(--azul-claro);font-size:.8rem;
+  }
+  table.rubrica td:first-child{
+    background:#eef4f9;color:var(--azul-upse);width:22%;font-weight:600;
+  }
+  table.rubrica .peso{
+    display:inline-block;background:var(--dorado);color:#fff;
+    padding:1px 6px;border-radius:3px;font-size:.72rem;margin-left:6px;
+  }
+  table.rubrica .nivel-tag{
+    display:inline-block;font-size:.7rem;font-weight:700;
+    color:#fff;padding:1px 5px;border-radius:3px;margin-bottom:4px;
+  }
+  .tag-excelente{background:#1f7a3a}
+  .tag-bueno{background:#156a9b}
+  .tag-regular{background:#b8893a}
+  .tag-insuficiente{background:#9c1c1c}
+
+  /* ===== Caso práctico ===== */
+  .caso-practico{
+    background:#fbfaf5;
+    border-left:5px solid var(--dorado);
+    padding:24px 28px;
+    border-radius:0 6px 6px 0;
+    margin:18px 0;
+  }
+  .caso-practico .escenario{
+    font-style:italic;color:var(--texto-suave);
+    border-bottom:1px dashed #d8c8a3;
+    padding-bottom:12px;margin-bottom:14px;
+  }
+  .caso-practico ol{counter-reset:caso;margin-left:0;padding-left:0}
+  .caso-practico ol > li{
+    list-style:none;margin-bottom:14px;padding-left:42px;position:relative;
+  }
+  .caso-practico ol > li::before{
+    counter-increment:caso;
+    content:counter(caso);
+    position:absolute;left:0;top:0;
+    width:28px;height:28px;background:var(--azul-upse);
+    color:#fff;border-radius:50%;text-align:center;line-height:28px;font-weight:700;
+  }
+  .leccion-ingenieril{
+    background:var(--azul-upse);color:#fff;
+    padding:14px 20px;border-radius:4px;margin-top:18px;font-style:italic;
+  }
+  .leccion-ingenieril strong{color:#ffe7b8}
+
+  /* ===== Bloques de cierre ===== */
+  .cierre-lista{
+    counter-reset:cierre;
+    padding-left:0;list-style:none;
+  }
+  .cierre-lista > li{
+    counter-increment:cierre;
+    padding:14px 16px 14px 56px;margin-bottom:10px;
+    background:#f7fafd;border-radius:4px;position:relative;
+    border-left:3px solid var(--azul-claro);
+  }
+  .cierre-lista > li::before{
+    content:counter(cierre);
+    position:absolute;left:14px;top:14px;
+    width:30px;height:30px;background:var(--dorado);
+    color:#fff;border-radius:50%;text-align:center;line-height:30px;font-weight:700;
+  }
+
+  /* ===== Referencias ===== */
+  .referencias{list-style:none;margin-left:0}
+  .referencias li{
+    padding:10px 0 10px 28px;border-bottom:1px solid #eef1f4;
+    position:relative;font-size:.92rem;
+  }
+  .referencias li::before{
+    content:"📚";position:absolute;left:0;top:10px;font-size:.95rem;
+  }
+  .referencias li em{color:var(--azul-claro)}
+
+  /* ===== Bloque cronometrado ===== */
+  .bloque-crono{
+    border:1px solid var(--gris-borde);
+    border-radius:6px;
+    margin-bottom:14px;
+    overflow:hidden;
+  }
+  .bloque-crono .cab{
+    background:linear-gradient(90deg,var(--azul-upse),var(--azul-claro));
+    color:#fff;padding:10px 16px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+  }
+  .bloque-crono .cab .tiempo{
+    background:rgba(255,255,255,.18);padding:2px 10px;border-radius:12px;
+    font-size:.78rem;font-family:var(--fuente-mono);
+  }
+  .bloque-crono .cab h4{color:#fff;margin:0;text-transform:none;letter-spacing:0;font-family:var(--fuente-titulo)}
+  .bloque-crono .cuerpo{padding:14px 18px;background:#fff}
+  .bloque-crono .cuerpo ul{margin:6px 0 0 18px}
+  .bloque-crono .cuerpo li{margin-bottom:5px}
+
+  /* ===== Bloque de prompt ===== */
+  .prompt-box{
+    background:#1e2933;color:#e8eef5;
+    font-family:var(--fuente-mono);font-size:.85rem;
+    padding:18px 22px;border-radius:6px;
+    overflow-x:auto;line-height:1.55;
+    border-left:4px solid var(--dorado);
+    white-space:pre-wrap;
+  }
+  .prompt-label{
+    display:inline-block;background:var(--dorado);color:#1e2933;
+    padding:2px 10px;border-radius:3px;font-weight:700;font-size:.72rem;
+    margin-bottom:8px;letter-spacing:.5px;
+  }
+
+  /* ===== Entrega ===== */
+  .entrega-box{
+    background:#f0f7f0;border:1px solid #c8dec8;
+    border-left:4px solid var(--verde-solucion);
+    padding:18px 22px;border-radius:4px;
+  }
+  .entrega-box ol{margin:6px 0 0 20px}
+
+  /* ===== Pie de página ===== */
+  footer{
+    background:#0b3d62;color:#cbd9e4;
+    padding:24px 0;text-align:center;font-size:.85rem;
+    border-top:3px solid var(--dorado);
+  }
+  footer .contenedor{max-width:1180px;margin:0 auto;padding:0 24px}
+  footer .small{font-size:.72rem;opacity:.7;margin-top:6px}
+  footer .acceso-docente{
+    display:inline-block;
+    background:transparent;
+    color:#7a8a9a;
+    border:none;cursor:pointer;
+    font-size:.7rem;letter-spacing:1px;
+    padding:4px 8px;margin-top:8px;
+    transition:color .3s;
+  }
+  footer .acceso-docente:hover{color:#cbd9e4}
+
+  /* ===== Modal de acceso ===== */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(11,61,98,.55);
+    z-index:1000;align-items:center;justify-content:center;
+    backdrop-filter:blur(3px);
+  }
+  .modal-overlay.activo{display:flex;animation:fadeIn .25s ease}
+  .modal{
+    background:#fff;border-radius:8px;
+    padding:32px 36px;width:90%;max-width:380px;
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+    border-top:5px solid var(--dorado);
+  }
+  .modal h3{
+    font-family:var(--fuente-titulo);color:var(--azul-upse);
+    margin-bottom:6px;font-size:1.2rem;
+  }
+  .modal p{font-size:.85rem;color:var(--texto-suave);margin-bottom:18px}
+  .modal input{
+    width:100%;padding:12px 14px;
+    border:2px solid var(--gris-borde);border-radius:4px;
+    font-size:1rem;letter-spacing:4px;text-align:center;
+    margin-bottom:14px;font-family:var(--fuente-mono);
+    transition:border-color .25s;
+  }
+  .modal input:focus{outline:none;border-color:var(--azul-claro)}
+  .modal .acciones{display:flex;gap:10px}
+  .modal button{
+    flex:1;padding:11px;border:none;border-radius:4px;
+    font-weight:600;cursor:pointer;font-size:.92rem;
+    transition:background .2s;
+  }
+  .modal button.btn-acceder{background:var(--azul-upse);color:#fff}
+  .modal button.btn-acceder:hover{background:#082a48}
+  .modal button.btn-cancelar{background:#eef1f4;color:var(--texto-suave)}
+  .modal button.btn-cancelar:hover{background:#dde3e8}
+  .modal .error{
+    color:var(--rojo-alerta);font-size:.8rem;
+    margin-top:8px;display:none;text-align:center;
+  }
+  .modal .error.visible{display:block}
+
+  /* ===== Banner de soluciones desbloqueadas ===== */
+  .banner-soluciones{
+    display:none;
+    background:linear-gradient(90deg,#1f5c3a,#2d8050);
+    color:#fff;padding:12px 24px;border-radius:4px;
+    margin-bottom:20px;font-size:.92rem;
+    align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .banner-soluciones.visible{display:flex;animation:fadeIn .4s ease}
+  .banner-soluciones strong{color:#ffe7b8}
+  .banner-soluciones button{
+    background:rgba(255,255,255,.2);color:#fff;border:none;
+    padding:6px 14px;border-radius:3px;cursor:pointer;font-size:.85rem;
+  }
+  .banner-soluciones button:hover{background:rgba(255,255,255,.32)}
+
+  /* ===== Bloque de soluciones (oculto por defecto) ===== */
+  .solucion-docente{
+    display:none;
+    background:#fdfcf6;
+    border:2px dashed var(--dorado);
+    border-radius:6px;
+    padding:0;
+    margin:30px 0 20px;
+    overflow:hidden;
+  }
+  .solucion-docente.visible{display:block;animation:fadeIn .5s ease}
+  .solucion-docente .sol-cabecera{
+    background:var(--dorado);color:#1d2733;
+    padding:14px 24px;font-family:var(--fuente-titulo);
+    font-size:1.15rem;font-weight:700;
+    display:flex;align-items:center;gap:10px;
+  }
+  .solucion-docente .sol-cabecera::before{content:"🔑";font-size:1.2rem}
+  .solucion-docente .sol-cuerpo{padding:24px 28px}
+  .solucion-docente h3{
+    color:var(--verde-solucion);
+    border-left-color:var(--verde-solucion);
+    margin-top:0;
+  }
+  .solucion-docente h4{color:var(--verde-solucion);margin-top:22px}
+  .solucion-docente .clave-evaluacion{
+    background:#eaf5ee;border-left:4px solid var(--verde-solucion);
+    padding:12px 16px;border-radius:4px;margin:10px 0;font-size:.92rem;
+  }
+  .solucion-docente .clave-evaluacion strong{color:var(--verde-solucion)}
+  .solucion-docente .modelo-respuesta{
+    background:#fff;border:1px solid #d8e5db;border-radius:4px;
+    padding:16px 20px;margin:12px 0;font-style:italic;color:var(--texto-suave);
+  }
+  .solucion-docente .modelo-respuesta::before{
+    content:"Modelo de respuesta esperada — Nivel Excelente (10-9 pts)";
+    display:block;font-style:normal;font-weight:700;color:var(--verde-solucion);
+    font-size:.78rem;margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase;
+  }
+  .solucion-docente .guion-modelo{
+    background:#1e2933;color:#e8eef5;
+    font-family:var(--fuente-mono);font-size:.82rem;
+    padding:16px 20px;border-radius:4px;margin:12px 0;
+    line-height:1.55;white-space:pre-wrap;
+  }
+  .solucion-docente .guion-modelo .voz{color:#ffd485;font-weight:700}
+  .solucion-docente .guion-modelo .visual{color:#8fd0ff;font-style:italic}
+
+  /* ===== Botón flotante de descarga ===== */
+  .btn-flotante{
+    position:fixed;bottom:24px;right:24px;z-index:100;
+    background:var(--azul-upse);color:#fff;
+    padding:12px 20px;border-radius:30px;
+    text-decoration:none;font-weight:600;font-size:.9rem;
+    box-shadow:0 4px 18px rgba(11,61,98,.35);
+    display:flex;align-items:center;gap:8px;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .btn-flotante:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(11,61,98,.45)}
+  .btn-flotante::before{content:"⬇";font-size:1.1rem}
+
+  /* ===== Responsive ===== */
+  @media (max-width:760px){
+    .institucional .contenedor{flex-direction:column;align-items:flex-start}
+    .institucional .meta{text-align:left}
+    .navegacion a{padding:12px 14px;font-size:.85rem;flex:1;text-align:center}
+    .navegacion a .num{display:none}
+    .tarjeta{padding:20px 18px}
+    .tarjeta h2{font-size:1.3rem}
+    .ficha-tecnica{grid-template-columns:1fr}
+    .ficha-tecnica div:nth-child(odd){border-right:none}
+    .diagrama-niveles .flujo{flex-direction:column}
+    .diagrama-niveles .nivel::after{content:"↓";right:50%;top:auto;bottom:-18px;transform:translateX(50%)}
+    .diagrama-niveles .nivel:last-child::after{display:none}
+    .btn-flotante{bottom:14px;right:14px;padding:10px 14px;font-size:.82rem}
+  }
+  @media print{
+    .navegacion,.btn-flotante,.acceso-docente,.modal-overlay,.banner-soluciones{display:none!important}
+    .panel{display:block!important}
+    .tarjeta{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Encabezado institucional ===== -->
+<header class="institucional">
+  <div class="contenedor">
+    <h1>Psicología Laboral y Comportamiento Organizacional<br><span style="font-size:.85rem;font-weight:400;opacity:.85">Guía de Cátedra · Taller N.° 1 — Curso 3/1</span></h1>
+    <div class="meta">
+      <strong>Universidad Estatal Península de Santa Elena</strong><br>
+      Facultad de Ciencias de la Ingeniería<br>
+      Seguridad Industrial / Ingeniería Industrial · Período 2026-2
+    </div>
+  </div>
+</header>
+
+<!-- ===== Navegación por pestañas con URLs independientes ===== -->
+<nav class="navegacion">
+  <div class="contenedor">
+    <a href="#/guia" id="tab-guia" data-tab="guia"><span class="num">1</span>Guía de Cátedra</a>
+    <a href="#/taller" id="tab-taller" data-tab="taller"><span class="num">2</span>Plan de Actividad Práctica</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============================================================= -->
+  <!-- ============ PESTAÑA 1: GUÍA DE CÁTEDRA ===================== -->
+  <!-- ============================================================= -->
+  <section id="panel-guia" class="panel">
+
+    <div class="tarjeta">
+      <h2>Guía de Cátedra: Campo de Estudio de la Psicología Laboral y Comportamiento Organizacional</h2>
+
+      <div class="ficha-tecnica">
+        <div><span class="etiqueta">Asignatura</span><span class="valor">Psicología Laboral</span></div>
+        <div><span class="etiqueta">Período Académico</span><span class="valor">2026-2</span></div>
+        <div><span class="etiqueta">Nivel / Paralelo</span><span class="valor">3/1 — Seguridad Industrial / Ingeniería Industrial</span></div>
+        <div><span class="etiqueta">Unidad Temática</span><span class="valor">Fundamentos de la Psicología del Trabajo y Factores Humanos</span></div>
+        <div style="grid-column:1/-1"><span class="etiqueta">Resultado de Aprendizaje</span><span class="valor">Reconocer el campo de estudio de la Psicología Laboral y su relación con el comportamiento humano en contextos organizacionales, identificando su impacto en la seguridad de procesos y la confiabilidad operacional.</span></div>
+      </div>
+
+      <h3>1. Definición y Delimitación del Campo de Estudio</h3>
+      <p>La <strong>Psicología Laboral</strong> (frecuentemente denominada Psicología del Trabajo y de las Organizaciones o Psicología I/O) es la disciplina científica que estudia el comportamiento, los procesos cognitivos y las respuestas afectivas de los individuos y grupos dentro del contexto laboral.</p>
+      <p>En la ingeniería de seguridad y de procesos, el trabajo no se analiza de manera aislada, sino como un <strong>sistema sociotécnico</strong>: una interacción dinámica y no lineal entre tres subsistemas:</p>
+      <ol>
+        <li><strong>Subsistema Técnico:</strong> Maquinaria, tecnología, herramientas, interfaces hombre-máquina (HMI), procedimientos operativos normalizados (PON) y condiciones físicas ambientales.</li>
+        <li><strong>Subsistema Social/Humano:</strong> Aptitudes, capacidades psicofisiológicas, percepción de riesgo, esquemas cognitivos, dinámicas de liderazgo, motivación y relaciones interpersonales.</li>
+        <li><strong>Subsistema Organizacional:</strong> Cultura preventiva, diseño del puesto de trabajo, líneas de autoridad, esquemas de turno y políticas de gestión de la seguridad y salud ocupacional (SST).</li>
+      </ol>
+      <p>El objetivo central de la disciplina no es únicamente el bienestar subjetivo del trabajador, sino el desacoplamiento de las fuentes de error humano mediante la optimización de las demandas mentales frente a la capacidad de respuesta individual.</p>
+
+      <h3>2. Dimensiones Fundamentales del Comportamiento Organizacional</h3>
+      <p>El comportamiento humano en las organizaciones se articula en tres niveles analíticos interdependientes:</p>
+
+      <div class="diagrama-niveles">
+        <div class="flujo">
+          <div class="nivel">
+            <h5>Nivel Individual</h5>
+            <ul>
+              <li>Carga mental</li>
+              <li>Sesgos cognitivos</li>
+              <li>Vigilancia y atención</li>
+            </ul>
+          </div>
+          <div class="nivel">
+            <h5>Nivel Grupal / Interaccional</h5>
+            <ul>
+              <li>Dinámicas de equipo / turnos</li>
+              <li>Liderazgo y supervisión directa</li>
+              <li>Comunicación operativa</li>
+            </ul>
+          </div>
+          <div class="nivel">
+            <h5>Nivel Organizacional</h5>
+            <ul>
+              <li>Clima y cultura de seguridad</li>
+              <li>Políticas de gestión SST</li>
+              <li>Estructura de turnos / rotación</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <ul>
+        <li><strong>Nivel Individual:</strong> Procesamiento de información en tiempo real, toma de decisiones bajo incertidumbre, fatiga y estrés (distrés). La discrepancia entre la capacidad del operador y la carga de trabajo impuesta determina la probabilidad de deslizamientos, lapsos o errores lógicos.</li>
+        <li><strong>Nivel Grupal:</strong> Cohesión de cuadrilla, confianza mutua y supervisión activa. Los grupos establecen normas implícitas de seguridad que con frecuencia entran en conflicto con las directrices formales de la ingeniería de planta.</li>
+        <li><strong>Nivel Organizacional:</strong> El diseño de la estructura jerárquica y los incentivos de producción. Cuando existe una presión operativa desproporcionada sobre los tiempos de ciclo, el comportamiento individual se adapta omitiendo barreras de control, derivando en actos inseguros sistémicos.</li>
+      </ul>
+
+      <h3>3. Matriz de Interacción: Psicología Laboral e Ingeniería de Seguridad Industrial</h3>
+      <div class="tabla-contenedor">
+        <table class="matriz">
+          <thead>
+            <tr>
+              <th>Dimensión Psicológica</th>
+              <th>Manifestación Conductual en Planta</th>
+              <th>Impacto en Seguridad y Operaciones</th>
+              <th>Estrategia de Control Ingenieril / Preventiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Carga Mental y Atención</td>
+              <td>Sobresaturación sensorial en paneles de control; omisión de alarmas secundarias.</td>
+              <td>Incremento en la tasa de error por omisión; degradación del OEE por paradas no programadas.</td>
+              <td>Rediseño de HMI bajo ergonomía cognitiva; jerarquización visual de alarmas críticas.</td>
+            </tr>
+            <tr>
+              <td>Percepción del Riesgo</td>
+              <td>Habituación al peligro (sesgo de optimismo); normalización de la desviación operativa.</td>
+              <td>Desactivación de interlocks; ingreso a zonas restringidas sin bloqueo y etiquetado (LOTO).</td>
+              <td>Entrenamiento situacional basado en simulaciones; auditorías de comportamiento basadas en observación directa.</td>
+            </tr>
+            <tr>
+              <td>Fatiga y Ritmos Circadianos</td>
+              <td>Disminución de la velocidad de reacción motora; micro-sueños en turnos rotativos nocturnos.</td>
+              <td>Colisiones con vehículos industriales (montacargas); atrapamientos en líneas de ensamble.</td>
+              <td>Cronobiología aplicada: rotación de turnos hacia adelante (mañana-tarde-noche) y pausas activas cognitivas.</td>
+            </tr>
+            <tr>
+              <td>Clima Organizacional</td>
+              <td>Miedo a represalias por reportar "cuasi-accidentes" (<em>near misses</em>); comunicación vertical rígida.</td>
+              <td>Ceguera situacional de la gerencia frente a condiciones subestándar latentes.</td>
+              <td>Implementación de una cultura justa (<em>Just Culture</em>); canales anónimos y trazables de reporte preventivo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4. Caso Práctico Aplicado: Análisis de Causa Raíz en Operaciones de Manufactura</h3>
+      <div class="caso-practico">
+        <p class="escenario"><strong>Escenario:</strong> En una línea de empaque y paletizado automatizado, un operador con 8 años de experiencia puenteó una cortina fotoeléctrica de seguridad durante un cambio de formato (<em>changeover</em>), sufriendo una contusión severa al quedar atrapado con el brazo robótico.</p>
+        <p><strong>Análisis desde la Psicología Laboral:</strong></p>
+        <ol>
+          <li><strong>Normalización de la Desviación (Vaughan, 1996):</strong> El operador había realizado esta maniobra en ocasiones anteriores sin consecuencias negativas, reforzando la creencia de que "el procedimiento oficial es ineficiente y no aporta seguridad real".</li>
+          <li><strong>Carga Temporal Impuesta:</strong> El indicador de rendimiento (KPI) de la línea exigía un cambio de formato en menos de 15 minutos para evitar penalizaciones en el OEE. La presión del subsistema organizacional indujo la eliminación de la barrera de seguridad física.</li>
+          <li><strong>Falsa Confianza Técnica:</strong> La experiencia acumulada redujo la percepción subjetiva de riesgo ante una cinemática de máquina invariable en condiciones normales, pero impredecible durante ajustes de mantenimiento menor.</li>
+        </ol>
+        <div class="leccion-ingenieril"><strong>Lección Ingenieril:</strong> El fallo no radica en la "negligencia individual", sino en la interacción fallida entre el diseño del sistema de incentivos de producción y las limitaciones de la percepción humana.</div>
+      </div>
+
+      <h3>5. Validación Conceptual y Cierre</h3>
+      <ol class="cierre-lista">
+        <li>La psicología laboral en plantas industriales no busca corregir personalidades, sino diagnosticar y mitigar los factores organizacionales y cognitivos que inducen al error humano.</li>
+        <li>Todo análisis de incidentes que concluya con "falta de atención del operario" constituye un análisis incompleto: la ingeniería debe identificar qué variable del sistema sociotécnico consumió los recursos atencionales de ese individuo.</li>
+        <li>El comportamiento observable en planta es el síntoma final de las políticas, el diseño ergonómico y el liderazgo imperantes en la empresa.</li>
+      </ol>
+
+      <h3>Referencias Bibliográficas</h3>
+      <ul class="referencias">
+        <li>Dekker, S. (2014). <em>The Field Guide to Understanding 'Human Error'</em> (3rd ed.). Ashgate Publishing.</li>
+        <li>Norman, D. (2013). <em>The Design of Everyday Things: Revised and Expanded Edition</em>. Basic Books.</li>
+        <li>Reason, J. (1990). <em>Human Error</em>. Cambridge University Press.</li>
+        <li>Salvendy, G. (Ed.). (2012). <em>Handbook of Human Factors and Ergonomics</em> (4th ed.). John Wiley &amp; Sons.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- ============ PESTAÑA 2: TALLER N.° 1 ======================== -->
+  <!-- ============================================================= -->
+  <section id="panel-taller" class="panel">
+
+    <div class="tarjeta">
+      <h2>Plan de Actividad Práctica de Cátedra: Taller N.° 1</h2>
+
+      <div class="ficha-tecnica">
+        <div><span class="etiqueta">Asignatura</span><span class="valor">Psicología Laboral (Presencial 3/1 — Seguridad Industrial / Ingeniería Industrial)</span></div>
+        <div><span class="etiqueta">Facultad</span><span class="valor">Facultad de Ciencias de la Ingeniería, Universidad Estatal Península de Santa Elena (UPSE)</span></div>
+        <div style="grid-column:1/-1"><span class="etiqueta">Unidad 1</span><span class="valor">Campo de estudio de la Psicología Laboral y comportamiento organizacional en sistemas sociotécnicos.</span></div>
+        <div style="grid-column:1/-1"><span class="etiqueta">Modalidad</span><span class="valor">Taller presencial con entrega digital (resumen analítico + producción audiovisual sintética con NotebookLM).</span></div>
+      </div>
+
+      <h3>1. Directriz General de la Actividad</h3>
+      <p>Cada estudiante redactará de forma individual un <strong>Resumen Analítico Estructurado</strong> a partir de los fundamentos teóricos revisados en la sesión (sistemas sociotécnicos, ergonomía cognitiva, normalización de la desviación y carga mental).</p>
+      <p>Posteriormente, cargará dicho resumen como fuente única en <strong>NotebookLM</strong> y utilizará las capacidades de síntesis y generación de la herramienta (módulo de resumen estructurado / <em>Audio Overview</em> o guion técnico para video) para producir una pieza audiovisual ejecutiva orientada a supervisores de planta y comités paritarios de SST (Seguridad y Salud en el Trabajo).</p>
+
+      <h3>2. Estructura Obligatoria del Video / Presentación Audiovisual</h3>
+      <p>El material audiovisual resultante debe tener una duración máxima de <strong>3 a 4 minutos</strong> y ajustarse estrictamente a la siguiente progresión temática:</p>
+
+      <div class="bloque-crono">
+        <div class="cab">
+          <h4>Bloque 1: Apertura y Encuadre Industrial</h4>
+          <span class="tiempo">00:00 — 00:30</span>
+        </div>
+        <div class="cuerpo">
+          <ul>
+            <li>Definición de la Psicología Laboral como eje del sistema sociotécnico.</li>
+            <li>Planteamiento del problema: ¿Por qué la ingeniería falla cuando ignora el factor humano?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque-crono">
+        <div class="cab">
+          <h4>Bloque 2: Articulación de los Tres Niveles de Comportamiento</h4>
+          <span class="tiempo">00:30 — 01:45</span>
+        </div>
+        <div class="cuerpo">
+          <ul>
+            <li><strong>Nivel Individual:</strong> Límites cognitivos, sesgo de optimismo y carga mental.</li>
+            <li><strong>Nivel Grupal:</strong> Presión de pares, subculturas de turno y liderazgo operativo.</li>
+            <li><strong>Nivel Organizacional:</strong> Ritmos de producción versus protocolos de seguridad.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque-crono">
+        <div class="cab">
+          <h4>Bloque 3: Evidencia de Falla Crítica (Normalización de la Desviación)</h4>
+          <span class="tiempo">01:45 — 02:45</span>
+        </div>
+        <div class="cuerpo">
+          <ul>
+            <li>Ejemplo concreto de planta (omisión de LOTO, bypass de enclavamientos, etc.).</li>
+            <li>Desmitificación del "error humano" como causa raíz única.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloque-crono">
+        <div class="cab">
+          <h4>Bloque 4: Conclusiones e Impacto en Confiabilidad Operacional</h4>
+          <span class="tiempo">02:45 — 03:30</span>
+        </div>
+        <div class="cuerpo">
+          <ul>
+            <li>Acciones de mitigación ergonómica y organizativa.</li>
+            <li>Aporte directo a la reducción de paradas no programadas y al OEE (<em>Overall Equipment Effectiveness</em>).</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>3. Rúbricas Analíticas de Calificación (Escala 0 a 10 puntos)</h3>
+
+      <h4 style="margin-top:24px">A. Rúbrica: Resumen Analítico Individual <span style="font-weight:400;color:var(--texto-suave);font-size:.85rem">(50% de la nota final de la actividad)</span></h4>
+      <div class="tabla-contenedor">
+        <table class="matriz rubrica">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Nivel Excelente (10-9 pts)</th>
+              <th>Nivel Bueno (8-7 pts)</th>
+              <th>Nivel Regular (6-5 pts)</th>
+              <th>Nivel Insuficiente (&lt;5 pts)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rigor Conceptual y Léxico Técnico <span class="peso">30%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> Emplea con precisión términos como sistemas sociotécnicos, carga mental, HMI y normalización de la desviación.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> Utiliza vocabulario técnico adecuado con inconsistencias menores de contexto.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Vocabulario genérico; confunde conceptos psicológicos con sentido común.</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> Errores conceptuales graves; ausencia de lenguaje técnico de ingeniería.</td>
+            </tr>
+            <tr>
+              <td>Capacidad de Síntesis y Estructura <span class="peso">30%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> Articula de forma lógica introducción, desarrollo de los 3 niveles y síntesis de causa raíz.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> Estructura clara, aunque con desbalance en la extensión de algunas secciones.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Redacción desorganizada o transcripción literal de diapositivas/apuntes.</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> Texto fragmentado, sin hilo conductor ni orden jerárquico.</td>
+            </tr>
+            <tr>
+              <td>Vinculación con la Seguridad Industrial <span class="peso">40%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> Conecta directamente los modelos conductuales con la prevención de accidentes y el desempeño de planta.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> Menciona la seguridad industrial, pero con ejemplos superficiales o aislados.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Vínculo débil con la industria; enfoque exclusivamente teórico/clínico.</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> No demuestra aplicación a contextos de ingeniería ni seguridad en el trabajo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>B. Rúbrica: Video / Entrega Audiovisual Generada <span style="font-weight:400;color:var(--texto-suave);font-size:.85rem">(50% de la nota final de la actividad)</span></h4>
+      <div class="tabla-contenedor">
+        <table class="matriz rubrica">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Nivel Excelente (10-9 pts)</th>
+              <th>Nivel Bueno (8-7 pts)</th>
+              <th>Nivel Regular (6-5 pts)</th>
+              <th>Nivel Insuficiente (&lt;5 pts)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fidelidad y Trazabilidad a la Fuente <span class="peso">35%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> El contenido del video proviene rigurosamente del resumen cargado, sin alucinaciones ni contradicciones.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> Guarda estrecha relación con el resumen, con ligeras desviaciones no críticas.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Introduce elementos ajenos que distorsionan el argumento del resumen.</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> No refleja el contenido del resumen cargado como fuente en la plataforma.</td>
+            </tr>
+            <tr>
+              <td>Estructura y Ritmo Expositivo <span class="peso">35%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> Respeta los 4 bloques temporales, manteniendo fluidez, dinamismo y claridad argumental.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> Cubre los bloques requeridos pero con transiciones abruptas o exceso de tiempo.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Omite uno de los bloques estructurales; ritmo monótono o confuso.</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> Desestructurado, incompleto o excede ampliamente el límite de tiempo fijado.</td>
+            </tr>
+            <tr>
+              <td>Aplicabilidad y Conclusión Ingenieril <span class="peso">30%</span></td>
+              <td><span class="nivel-tag tag-excelente">Excelente</span> El mensaje final entrega recomendaciones ejecutivas concretas para ingeniería y SST.</td>
+              <td><span class="nivel-tag tag-bueno">Bueno</span> La conclusión es válida pero abstracta para un entorno de planta real.</td>
+              <td><span class="nivel-tag tag-regular">Regular</span> Conclusión vaga ("hay que tener cuidado", "la seguridad es de todos").</td>
+              <td><span class="nivel-tag tag-insuficiente">Insuficiente</span> Sin conclusiones o propuestas de control sobre el sistema de trabajo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>4. Prompt Estandarizado para el Estudiante en NotebookLM</h3>
+      <p>El estudiante debe cargar <strong>únicamente su archivo de resumen</strong> en una libreta nueva de NotebookLM y ejecutar el siguiente prompt en la consola de instrucciones/chat para generar la base narrativa del video:</p>
+      <div class="prompt-box"><span class="prompt-label">PROMPT</span>
+Actúa como un Ingeniero Especialista en Factores Humanos y Seguridad de Procesos Industriales. Utilizando EXCLUSIVAMENTE la información de mi documento cargado como fuente (mi resumen de Psicología Laboral), genera el guion narrativo y técnico para un video ejecutivo de 3 minutos dirigido a supervisores de planta y técnicos de seguridad.
+
+La respuesta debe estructurarse obligatoriamente en 4 bloques cronometrados:
+
+1. [00:00 - 00:30] Bloque 1: Apertura técnica - Delimitación del campo de la Psicología Laboral y el concepto de sistema sociotécnico en planta.
+
+2. [00:30 - 01:45] Bloque 2: Los tres niveles de comportamiento (individual, grupal, organizacional) y sus manifestaciones observables en la línea de producción.
+
+3. [01:45 - 02:45] Bloque 3: Análisis de falla latente - Cómo la normalización de la desviación y la carga mental inducen al incidente.
+
+4. [02:45 - 03:30] Bloque 4: Cierre ejecutivo - Medidas de control de ingeniería de factores humanos y su aporte al OEE y la confiabilidad.
+
+Condiciones de salida:
+
+- Proporciona para cada bloque:
+  a) [Voz en Off / Locución]: Texto exacto y profesional a narrar, en tono sobrio y directivo.
+  b) [Recurso Visual Sugerido]: Descripción del gráfico, esquema de bloques o diagrama HMI a mostrar en pantalla.
+
+- No agregues teorías o autores que no figuren en el documento de origen.</div>
+
+      <h3>5. Instrucciones de Entrega para los Estudiantes de 3/1</h3>
+      <div class="entrega-box">
+        <ol>
+          <li><strong>Subir al entorno virtual de aprendizaje:</strong>
+            <ul>
+              <li>Archivo PDF del resumen analítico individual (máximo 2 páginas, formato institucional UPSE).</li>
+              <li>Enlace compartido del proyecto generado en NotebookLM o archivo del video/audio renderizado con el soporte visual correspondiente.</li>
+            </ul>
+          </li>
+          <li><strong>Plazo límite de ejecución:</strong> Finalización del bloque práctico de 2 horas de la sesión presencial.</li>
+        </ol>
+      </div>
+
+      <!-- ===== Banner de soluciones desbloqueadas ===== -->
+      <div class="banner-soluciones" id="banner-soluciones">
+        <span>🔐 <strong>Modo Docente activo:</strong> Se han desbloqueado las claves de evaluación y respuestas modelo.</span>
+        <button onclick="cerrarSoluciones()">Ocultar</button>
+      </div>
+
+      <!-- ===== Bloque SOLUCIONARIO DOCENTE (oculto) ===== -->
+      <div class="solucion-docente" id="solucion-docente">
+        <div class="sol-cabecera">Solucionario y Claves de Evaluación — Acceso Restringido al Docente</div>
+        <div class="sol-cuerpo">
+
+          <h3>Clave A — Resumen Analítico: Criterios de Corrección</h3>
+
+          <div class="clave-evaluacion">
+            <strong>Criterio 1 · Rigor Conceptual y Léxico Técnico (30%):</strong> El docente debe verificar la presencia explícita y uso correcto de los términos canónicos: <em>sistema sociotécnico</em>, <em>subsistema técnico/social/organizacional</em>, <em>carga mental</em>, <em>HMI</em>, <em>normalización de la desviación</em>, <em>OEE</em>, <em>LOTO</em>, <em>Just Culture</em>, <em>ergonomía cognitiva</em>, <em>near miss</em>. La ausencia de 3 o más términos canónicos desciende automáticamente al nivel Regular.
+          </div>
+          <div class="clave-evaluacion">
+            <strong>Criterio 2 · Capacidad de Síntesis y Estructura (30%):</strong> Verificar la articulación lógica <em>Introducción → Desarrollo de los 3 niveles → Síntesis de causa raíz</em>. Penalizar: transcripción literal, listas sin hilo conductor, omisión de la síntesis. La síntesis debe articular el caso práctico como evidencia, no como anécdota aislada.
+          </div>
+          <div class="clave-evaluacion">
+            <strong>Criterio 3 · Vinculación con la Seguridad Industrial (40% — mayor peso):</strong> El estudiante debe conectar explícitamente cada modelo conductual con un control ingenieril (HMI, LOTO, cronobiología, Just Culture). La mención genérica "la seguridad es importante" no supera el nivel Regular. Exigir al menos un ejemplo cuantitativo (KPI, OEE, tiempo de changeover, tasa de near miss).
+          </div>
+
+          <h4>Modelo de Respuesta Esperada — Resumen Analítico (Nivel Excelente)</h4>
+          <div class="modelo-respuesta">
+            "La Psicología Laboral, comprendida como disciplina del sistema sociotécnico (Trist &amp; Bamforth; Reason, 1990), estudia la interacción no lineal entre el subsistema técnico (maquinaria, HMI, PON), el subsistema social/humano (percepción de riesgo, sesgos cognitivos, fatiga) y el subsistema organizacional (cultura preventiva, incentivos, estructura jerárquica). En el nivel individual, la discrepancia entre carga mental impuesta y capacidad atencional del operador determina la probabilidad de deslizamientos y lapsos (Reason, 1990); en el nivel grupal, las normas implícitas de cuadrilla suelen contravenir los PON formales; en el nivel organizacional, los KPI de producción (p. ej. OEE, tiempo de changeover &lt; 15 min) inducen la eliminación de barreras físicas de seguridad.
+            <br><br>
+            El caso del operador con 8 años de experiencia que puentea la cortina fotoeléctrica ilustra la <em>normalización de la desviación</em> (Vaughan, 1996): la repetición exitosa de la maniobra insegura reforzó la creencia de que el PON es ineficiente. El análisis de causa raíz no debe concluir en 'negligencia individual', sino en la interacción fallida entre el sistema de incentivos (penalización del OEE), la falsa confianza técnica derivada de la experiencia y la ausencia de jerarquización visual de alarmas en el HMI. Las estrategias de control incluyen rediseño ergonómico del HMI, rotación de turnos hacia adelante (cronobiología aplicada) y consolidación de una cultura justa con canales trazables de reporte preventivo."
+          </div>
+
+          <h3>Clave B — Video NotebookLM: Criterios de Verificación</h3>
+
+          <div class="clave-evaluacion">
+            <strong>Criterio 1 · Fidelidad y Trazabilidad (35%):</strong> Verificar que el video NO cite autores, teorías o ejemplos no presentes en el resumen del estudiante. Indicador de alucinación: menciones a Kahneman, Maslow, Herzberg o KPI no incluidos en el resumen. Cualquier autor ajeno a Dekker, Norman, Reason, Salvendy o Vaughn debe tratarse como desviación crítica.
+          </div>
+          <div class="clave-evaluacion">
+            <strong>Criterio 2 · Estructura y Ritmo (35%):</strong> Cronometrar los 4 bloques. Tolerancia ±10 segundos por bloque. La omisión del Bloque 3 (normalización de la desviación) es fallo estructural crítico → máximo Nivel Regular. El Bloque 4 debe contener al menos una recomendación accionable.
+          </div>
+          <div class="clave-evaluacion">
+            <strong>Criterio 3 · Aplicabilidad Ingenieril (30%):</strong> La conclusión debe mencionar explícitamente OEE, paradas no programadas, LOTO, HMI, cronobiología o Just Culture. Frases genéricas como "la seguridad es responsabilidad de todos" → Nivel Regular.
+          </div>
+
+          <h4>Guion Modelo Esperado (Ejemplo de Nivel Excelente)</h4>
+          <div class="guion-modelo"><span class="voz">[VOZ EN OFF · Bloque 1 · 00:00-00:30]</span>
+En una planta industrial, laPsicología Laboral no es un complemento clínico: es el eje diagnóstico del sistema sociotécnico. Cuando la ingeniería ignora el factor humano, los PON fallan no por deficiencia técnica, sino porque la carga mental, los sesgos y la presión organizacional consumen la capacidad de respuesta del operador.
+
+<span class="visual">[VISUAL: Diagrama de tres círculos intersecados — Técnico / Social / Organizacional, etiqueta central "Sistema Sociotécnico"]</span>
+
+<span class="voz">[VOZ EN OFF · Bloque 2 · 00:30-01:45]</span>
+En el nivel individual, el operador enfrenta límites cognitivos: la atención es un recurso finito y el sesgo de optimismo subestima el riesgo. En el nivel grupal, la presión de pares y las subculturas de turno generan normas implícitas que contradicen el PON. En el nivel organizacional, los ritmos de producción y los KPI de OEE compiten directamente con los protocolos de seguridad.
+
+<span class="visual">[VISUAL: Tres paneles verticales con iconografía — cerebro / equipo / organigrama, conectados por flechas bidireccionales]</span>
+
+<span class="voz">[VOZ EN OFF · Bloque 3 · 01:45-02:45]</span>
+Caso concreto: un operador con 8 años de experiencia puentea una cortina fotoeléctrica durante un changeover para cumplir el KPI de 15 minutos. ¿Error humano? No. Es normalización de la desviación: la maniobra exitosa previa reforzó la creencia de que el PON era ineficiente. La causa raíz no es la negligencia, sino la interacción entre el sistema de incentivos, la falsa confianza técnica y el HMI mal jerarquizado.
+
+<span class="visual">[VISUAL: Captura de HMI con alarmas en rojo apagadas + línea de tiempo de OEE cayendo]</span>
+
+<span class="voz">[VOZ EN OFF · Bloque 4 · 02:45-03:30]</span>
+Las medidas de control son ingenieriles y organizacionales: rediseño ergonómico del HMI con jerarquía visual de alarmas críticas, rotación de turnos hacia adelante según cronobiología aplicada, y consolidación de una cultura justa con canales trazables de reporte de near misses. El resultado: reducción de paradas no programadas y mejora sostenida del OEE.
+
+<span class="visual">[VISUAL: Tablero OEE antes/después — 78% → 91%, con indicador "Near misses reportados: +340%"]</span>
+          </div>
+
+          <h3>Clave C — Rangos Numéricos de Calificación</h3>
+          <div class="tabla-contenedor">
+            <table class="matriz">
+              <thead>
+                <tr><th>Nivel</th><th>Rango puntos</th><th>Equivalencia cuantitativa</th><th>Decisión docente</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Excelente</td><td>10 — 9</td><td>10.0 / 9.5 / 9.0</td><td>Dominio conceptual + aplicación crítica al caso</td></tr>
+                <tr><td>Bueno</td><td>8 — 7</td><td>8.5 / 8.0 / 7.5 / 7.0</td><td>Cumple estructura; ejemplos genéricos pero correctos</td></tr>
+                <tr><td>Regular</td><td>6 — 5</td><td>6.5 / 6.0 / 5.5 / 5.0</td><td>Transcripción literal o vinculación débil con planta</td></tr>
+                <tr><td>Insuficiente</td><td>&lt; 5</td><td>4.5 / 4.0 / 3.0 / 0</td><td>No entrega, plagio o errores conceptuales graves</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Clave D — Indicadores de Detección de Alucinación en NotebookLM</h3>
+          <div class="clave-evaluacion">
+            <strong>Señales de alerta técnicas:</strong>
+            <ul style="margin-top:6px">
+              <li>Mención a autores no incluidos en el resumen del estudiante (Kahneman, Maslow, Herzberg, McGregor, Taylor, Fayol).</li>
+              <li>Cifras de OEE o KPI no presentes en el documento fuente.</li>
+              <li>Referencias a normativas (ISO 45001, OHSAS 18001, ANSI Z244) no citadas por el estudiante.</li>
+              <li>Tono promocional o de "coaching motivacional" — el guion debe ser sobrio y directivo.</li>
+              <li>Ejemplos de planta distintos al del caso (cortina fotoeléctrica / changeover / brazo robótico).</li>
+            </ul>
+          </div>
+
+          <h3>Clave E — Plantilla de Retroalimentación Docente</h3>
+          <div class="modelo-respuesta">
+            <strong>Formato sugerido para devolución al estudiante:</strong><br><br>
+            1. <em>Fortaleza conceptual identificada:</em> ____________________<br>
+            2. <em>Concepto que requiere reforzamiento:</em> ____________________<br>
+            3. <em>Vínculo con seguridad industrial (calificar 0-10):</em> ____<br>
+            4. <em>Recomendación específica de lectura:</em> Dekker / Norman / Reason / Salvendy (marcar uno)<br>
+            5. <em>Acción de mejora para próxima entrega:</em> ____________________
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Botón flotante de descarga ===== -->
+<a class="btn-flotante" href="javascript:void(0)" onclick="descargarHTML()">Descargar esta página</a>
+
+<!-- ===== Pie de página con acceso discreto ===== -->
+<footer>
+  <div class="contenedor">
+    <div>© 2026 · UPSE — Facultad de Ciencias de la Ingeniería</div>
+    <div class="small">Psicología Laboral · Curso 3/1 · Período 2026-2</div>
+    <button class="acceso-docente" onclick="abrirModal()" title="Acceso restringido">·</button>
+  </div>
+</footer>
+
+<!-- ===== Modal de acceso docente ===== -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>Acceso restringido</h3>
+    <p>Esta área contiene claves de evaluación y respuestas modelo. Ingrese la clave de acceso docente.</p>
+    <input type="password" id="clave-input" placeholder="• • • •" autocomplete="off" maxlength="6">
+    <div class="error" id="error-clave">Clave incorrecta. Verifique e intente nuevamente.</div>
+    <div class="acciones">
+      <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn-acceder" onclick="verificarClave()">Acceder</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ============================================================
+     ROUTING POR HASH — Pestañas con URLs independientes
+     ============================================================ */
+  const tabs = document.querySelectorAll('.navegacion a');
+  const paneles = document.querySelectorAll('.panel');
+
+  function activarTab(nombre){
+    tabs.forEach(t => t.classList.toggle('activo', t.dataset.tab === nombre));
+    paneles.forEach(p => p.classList.toggle('activo', p.id === 'panel-' + nombre));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function routingHash(){
+    const hash = window.location.hash.replace('#/','').replace('#','');
+    if(hash === 'taller'){
+      activarTab('taller');
+    } else if(hash === 'guia'){
+      activarTab('guia');
+    } else {
+      // Por defecto: guía
+      window.location.hash = '/guia';
+      activarTab('guia');
+    }
+  }
+
+  window.addEventListener('hashchange', routingHash);
+  window.addEventListener('DOMContentLoaded', routingHash);
+
+  /* ============================================================
+     MECANISMO DE ACCESO DOCENTE — Clave 1990
+     ============================================================ */
+  const CLAVE_DOCENTE = '1990';
+  let solucionesVisibles = false;
+
+  function abrirModal(){
+    document.getElementById('modal-overlay').classList.add('activo');
+    setTimeout(() => document.getElementById('clave-input').focus(), 100);
+  }
+
+  function cerrarModal(){
+    document.getElementById('modal-overlay').classList.remove('activo');
+    document.getElementById('clave-input').value = '';
+    document.getElementById('error-clave').classList.remove('visible');
+  }
+
+  function verificarClave(){
+    const valor = document.getElementById('clave-input').value.trim();
+    if(valor === CLAVE_DOCENTE){
+      mostrarSoluciones();
+      cerrarModal();
+    } else {
+      document.getElementById('error-clave').classList.add('visible');
+      document.getElementById('clave-input').value = '';
+      const input = document.getElementById('clave-input');
+      input.style.borderColor = '#9c1c1c';
+      setTimeout(() => { input.style.borderColor = ''; }, 1500);
+    }
+  }
+
+  function mostrarSoluciones(){
+    document.getElementById('solucion-docente').classList.add('visible');
+    document.getElementById('banner-soluciones').classList.add('visible');
+    solucionesVisibles = true;
+    // Scroll suave a las soluciones
+    setTimeout(() => {
+      document.getElementById('solucion-docente').scrollIntoView({behavior:'smooth', block:'start'});
+    }, 200);
+  }
+
+  function cerrarSoluciones(){
+    document.getElementById('solucion-docente').classList.remove('visible');
+    document.getElementById('banner-soluciones').classList.remove('visible');
+    solucionesVisibles = false;
+  }
+
+  // Cerrar modal con ESC
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') cerrarModal();
+    if(e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('activo')){
+      verificarClave();
+    }
+  });
+
+  // Cerrar modal al hacer clic fuera
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if(e.target.id === 'modal-overlay') cerrarModal();
+  });
+
+  /* ============================================================
+     DESCARGA DEL HTML COMPLETO
+     ============================================================ */
+  function descargarHTML(){
+    // Clonar el documento actual y eliminar estados efímeros
+    const clone = document.documentElement.cloneNode(true);
+    // Limpiar inputs y estados
+    const modal = clone.querySelector('#modal-overlay');
+    if(modal) modal.classList.remove('activo');
+    const input = clone.querySelector('#clave-input');
+    if(input) input.value = '';
+    const error = clone.querySelector('#error-clave');
+    if(error) error.classList.remove('visible');
+    // Preservar estado de soluciones si estaban visibles — no, ocultarlas en el descargable
+    const sol = clone.querySelector('#solucion-docente');
+    if(sol) sol.classList.remove('visible');
+    const banner = clone.querySelector('#banner-soluciones');
+    if(banner) banner.classList.remove('visible');
+
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'clase4_psicologia_laboral.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /* ============================================================
+     ATAJO DE TECLADO DISCRETO — CTRL+SHIFT+D
+     ============================================================ */
+  document.addEventListener('keydown', e => {
+    if(e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')){
+      e.preventDefault();
+      abrirModal();
+    }
+  });
+</script>
+
+</body>
+</html>
