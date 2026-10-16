@@ -1,0 +1,239 @@
+<!-- CONTENEDOR PRINCIPAL MOODLE COMPATIBLE (100% INLINE STYLES) -->
+<div id="plantilla-ruta-metodologica" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; background-color: #f8fafc; padding: 25px; border-radius: 12px; line-height: 1.6; max-width: 1000px; margin: 0 auto; box-sizing: border-box;">
+
+  <!-- TARJETA SUPERIOR AZUL MARINO CON BADGE Y ACCIONES PDF -->
+  <div style="background-color: #0f172a; color: #ffffff; padding: 32px 28px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); margin-bottom: 25px; border: 1px solid #1e293b;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <div style="display: inline-block; background-color: #1e40af; color: #dbeafe; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 12px; border-radius: 9999px; margin-bottom: 14px;">
+          Ingeniería de Confiabilidad • Guía Práctica de Aplicación
+        </div>
+        <h1 style="margin: 0 0 10px 0; font-size: 24px; font-weight: 800; color: #f8fafc; line-height: 1.25; border: none; padding: 0;">
+          Ruta Metodológica Industrial: Ciclo Integrado de Ingeniería y Confiabilidad
+        </h1>
+        <p style="margin: 0; font-size: 14px; color: #94a3b8; font-weight: 500;">
+          Plantilla Operativa de Análisis Forense Sociotécnico, Cuantificación OEE y Protocolos ISO 45003:2021
+        </p>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN PARA GUARDAR E IMPRIMIR EN PDF -->
+      <div style="display: flex; gap: 10px; margin-top: 5px;">
+        <button type="button" onclick="window.print();" style="background-color: #2563eb; color: #ffffff; border: 1px solid #3b82f6; padding: 10px 18px; font-size: 13px; font-weight: 700; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+          🖨️ Imprimir / Guardar en PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 1: DATOS GENERALES DEL ESTUDIANTE Y EQUIPO DE TRABAJO -->
+  <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #2563eb; padding: 24px; margin-bottom: 22px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);">
+    <h2 style="margin-top: 0; margin-bottom: 14px; color: #0f172a; font-size: 18px; font-weight: 700; border: none;">
+      1. Registro de la Célula de Confiabilidad y Metadatos de la Práctica
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase;">Estudiante / Integrantes del Equipo:</label>
+        <input type="text" placeholder="Ej. Apellidos, Nombres (Líder y Miembros)" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #f8fafc; outline: none;">
+      </div>
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase;">Carrera / Asignatura:</label>
+        <input type="text" placeholder="Ej. Psicología Laboral en la Empresa / Factores Humanos" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #f8fafc; outline: none;">
+      </div>
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase;">Instalación / Caso de Estudio Asignado:</label>
+        <input type="text" placeholder="Ej. Unidad de Almacenamiento MIC / Pozo Macondo" style="width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #f8fafc; outline: none;">
+      </div>
+      <div>
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase;">Fecha de Auditoría:</label>
+        <input type="date" value="2026-10-16" style="width: 100%; padding: 9px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #f8fafc; outline: none;">
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 2: FASE 1 - MATRIZ DE DEGRADACIÓN PSICOSOCIAL Y CLIMA -->
+  <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #4f46e5; padding: 24px; margin-bottom: 22px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px;">
+      <h2 style="margin: 0; color: #0f172a; font-size: 18px; font-weight: 700; border: none;">
+        2. Fase I: Matriz de Trazabilidad Psicopatológica (Litwin &amp; Stringer / Zohar)
+      </h2>
+      <span style="background-color: #e0e7ff; color: #4338ca; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px;">Evaluación Cualitativa y Cuantitativa</span>
+    </div>
+    
+    <p style="font-size: 13.5px; color: #334155; margin-bottom: 16px; text-align: justify;">
+      Complete cada dimensión documentando la evidencia operativa identificada en el sistema, describa el mecanismo técnico de falla latente inducido y asigne la puntuación de Severidad del Clima (<em>S<sub>c</sub></em>) en escala discreta de 1 a 5 (1 = Funcional / Resiliente; 5 = Crítico / Patológico):
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; margin-bottom: 10px;">
+        <thead>
+          <tr style="background-color: #0f172a; color: #ffffff;">
+            <th style="padding: 10px 12px; border: 1px solid #334155; font-weight: 600; width: 22%;">Dimensión Evaluada</th>
+            <th style="padding: 10px 12px; border: 1px solid #334155; font-weight: 600; width: 36%;">Evidencia Empírica Observada en Planta</th>
+            <th style="padding: 10px 12px; border: 1px solid #334155; font-weight: 600; width: 32%;">Mecanismo de Falla Latente</th>
+            <th style="padding: 10px 12px; border: 1px solid #334155; font-weight: 600; text-align: center; width: 10%;">S<sub>c</sub> (1-5)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- FILA 1 -->
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b; vertical-align: top;">
+              Estructura y Reglas<br>
+              <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Claridad de SOP y jerarquía)</span>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Describa la ambigüedad en los procedimientos operativos..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Mecanismo latente que propicia el error..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: middle; text-align: center;">
+              <input type="number" min="1" max="5" placeholder="1-5" style="width: 50px; padding: 6px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; color: #b91c1c;">
+            </td>
+          </tr>
+          <!-- FILA 2 -->
+          <tr style="background-color: #ffffff;">
+            <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b; vertical-align: top;">
+              Recompensas e Incentivos<br>
+              <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Presión por costos/metas)</span>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Describa las presiones de producción y bonos por ahorro..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Decisiones de corte de seguridad derivadas..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: middle; text-align: center;">
+              <input type="number" min="1" max="5" placeholder="1-5" style="width: 50px; padding: 6px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; color: #b91c1c;">
+            </td>
+          </tr>
+          <!-- FILA 3 -->
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b; vertical-align: top;">
+              Riesgo y Desafío<br>
+              <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Normalización de la desviación)</span>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Tolerancia histórica a microfugas o lecturas fuera de rango..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Pérdida de sensibilidad perceptiva en el operador..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: middle; text-align: center;">
+              <input type="number" min="1" max="5" placeholder="1-5" style="width: 50px; padding: 6px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; color: #b91c1c;">
+            </td>
+          </tr>
+          <!-- FILA 4 -->
+          <tr style="background-color: #ffffff;">
+            <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b; vertical-align: top;">
+              Clima de Seguridad (Zohar)<br>
+              <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Prioridad real de la dirección)</span>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Tratamiento de auditorías de seguridad previas y recursos asignados..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Mensaje implícito transmitido a la línea operativa..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: middle; text-align: center;">
+              <input type="number" min="1" max="5" placeholder="1-5" style="width: 50px; padding: 6px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; color: #b91c1c;">
+            </td>
+          </tr>
+          <!-- FILA 5 -->
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600; color: #1e293b; vertical-align: top;">
+              Cultura Justa (No Punitiva)<br>
+              <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Gestión de cuasi-accidentes)</span>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Respuesta directiva ante incidentes precursores o disenso técnico..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: top;">
+              <textarea placeholder="Grado de sub-reporte y silenciamiento del operador..." style="width: 100%; height: 55px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+            </td>
+            <td style="padding: 8px; border: 1px solid #e2e8f0; vertical-align: middle; text-align: center;">
+              <input type="number" min="1" max="5" placeholder="1-5" style="width: 50px; padding: 6px; text-align: center; font-weight: bold; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 13px; color: #b91c1c;">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TARJETA 3: FASE 2 - MODELACIÓN MATEMÁTICA OEE Y LATENCIA HUMANA -->
+  <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #d97706; padding: 24px; margin-bottom: 22px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px;">
+      <h2 style="margin: 0; color: #0f172a; font-size: 18px; font-weight: 700; border: none;">
+        3. Fase II: Modelación del Factor Humano en el OEE (Overall Equipment Effectiveness)
+      </h2>
+      <span style="background-color: #fef3c7; color: #b45309; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px;">Cálculo de Rendimiento Sociotécnico</span>
+    </div>
+
+    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 16px; text-align: center;">
+      <span style="font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 16px; font-weight: bold; color: #0f172a;">
+        OEE = A × P × Q &nbsp;&nbsp;|&nbsp;&nbsp; P<sub>humano</sub> = Δt<sub>diseño</sub> / Δt<sub>real</sub>
+      </span>
+    </div>
+
+    <!-- CALCULADORA / ESPACIO INTERACTIVO DE ENTRADA -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 16px;">
+      <div style="background-color: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">Δt de Diseño Normativo (min):</label>
+        <input type="number" step="any" placeholder="Ej. 5" style="width: 100%; padding: 8px; border: 1px solid #94a3b8; border-radius: 4px; font-size: 13px; box-sizing: border-box;">
+      </div>
+      <div style="background-color: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">Δt Real Observado (min):</label>
+        <input type="number" step="any" placeholder="Ej. 90" style="width: 100%; padding: 8px; border: 1px solid #94a3b8; border-radius: 4px; font-size: 13px; box-sizing: border-box;">
+      </div>
+      <div style="background-color: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1;">
+        <label style="display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px;">Rendimiento P<sub>humano</sub> Calculado:</label>
+        <input type="text" placeholder="Ej. 0.0556 (5.56%)" style="width: 100%; padding: 8px; border: 1px solid #94a3b8; border-radius: 4px; font-size: 13px; font-weight: bold; color: #0369a1; box-sizing: border-box;">
+      </div>
+    </div>
+
+    <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase;">Deducción Analítica del Colapso de Confiabilidad:</label>
+    <textarea placeholder="Redacte la justificación matemática que demuestre cómo el clima adverso destruyó la Disponibilidad (A) y la Calidad (Q), dejando al sistema operando con un OEE nulo antes del evento mayor..." style="width: 100%; height: 85px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+  </div>
+
+  <!-- TARJETA 4: FASE 3 - PLAN DE REINGENIERÍA DEL CLIMA ISO 45003:2021 -->
+  <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #059669; padding: 24px; margin-bottom: 22px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px;">
+      <h2 style="margin: 0; color: #0f172a; font-size: 18px; font-weight: 700; border: none;">
+        4. Fase III: Salvaguardas Ingenieriles y Mitigación de Riesgos Psicosociales (ISO 45003)
+      </h2>
+      <span style="background-color: #d1fae5; color: #065f46; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 6px;">Protocolo Técnico de Intervención</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; background-color: #f8fafc;">
+        <span style="font-weight: 700; color: #065f46; font-size: 13px;">Directriz 1 • Cláusula 6.1.2.1 (Diseño Organizacional de la Carga de Trabajo y Turnos):</span>
+        <textarea placeholder="Especifique límites horarios, descansos ergonómicos y tripulación mínima para consolas críticas..." style="width: 100%; height: 60px; margin-top: 8px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12.5px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+      </div>
+
+      <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; background-color: #f8fafc;">
+        <span style="font-weight: 700; color: #065f46; font-size: 13px;">Directriz 2 • Cláusula 6.1.2.2 (Cultura de Reporte Anónimo y Stop Work Authority):</span>
+        <textarea placeholder="Diseñe el canal de reporte de precursores técnicos con protección no punitiva y tiempo límite de respuesta..." style="width: 100%; height: 60px; margin-top: 8px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12.5px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+      </div>
+
+      <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; background-color: #f8fafc;">
+        <span style="font-weight: 700; color: #065f46; font-size: 13px;">Directriz 3 • Cláusula 8.1 (Control Operacional de Factores Ambientales y Ergonomía):</span>
+        <textarea placeholder="Defina los requerimientos para control de fatiga sensorial, instrumentación redundante e interfaces..." style="width: 100%; height: 60px; margin-top: 8px; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 12.5px; box-sizing: border-box; background-color: #ffffff; resize: vertical;"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 5: RÚBRICA DE AUTORIZACIÓN Y CIERRE DE AUDITORÍA -->
+  <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #64748b; padding: 24px; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07);">
+    <h2 style="margin-top: 0; margin-bottom: 12px; color: #0f172a; font-size: 16px; font-weight: 700; border: none;">
+      5. Dictamen Forense Final de la Célula
+    </h2>
+    <textarea placeholder="Conclusiones integradas sobre la relación entre el clima organizacional, la latencia humana y la efectividad global de las barreras..." style="width: 100%; height: 75px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; color: #0f172a; box-sizing: border-box; background-color: #f8fafc; resize: vertical;"></textarea>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0;">
+      <span style="font-size: 12px; color: #64748b;">Validación de Integridad Sociotécnica • Confiabilidad OEE: 100%</span>
+      <button type="button" onclick="window.print();" style="background-color: #0f172a; color: #ffffff; border: none; padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer;">
+        📄 Exportar Reporte a PDF
+      </button>
+    </div>
+  </div>
+
+</div>
