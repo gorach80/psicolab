@@ -1,0 +1,617 @@
+<!-- ============================================================= -->
+<!-- PLANTILLA DIDÁCTICA INTERACTIVA · MOODLE (Atto / TinyMCE)      -->
+<!-- Sin <html>, <head>, <body>, <style>. Estilos 100% inline.     -->
+<!-- Interactividad: Vanilla JS en <script> manipulando display.    -->
+<!-- ============================================================= -->
+
+<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif; max-width: 980px; margin: 0 auto; padding: 0; line-height: 1.65; color: #1f2937;">
+
+  <!-- ===================== ENCABEZADO ===================== -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 24px; margin-bottom: 22px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25); position: relative; overflow: hidden;">
+
+    <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: -30px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+    <div style="position: relative;">
+      <span style="display: inline-block; background: #2563eb; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.40);">
+        TALLER EXPERIMENTAL | INGENIERÍA DE CONFIABILIDAD
+      </span>
+
+      <h1 style="color: #f8fafc; font-size: 24px; font-weight: 800; margin: 0 0 12px 0; line-height: 1.3; letter-spacing: -0.3px;">
+        Taller Práctico de Confiabilidad Humana y Modelación del OEE
+      </h1>
+
+      <p style="color: #cbd5e1; font-size: 14.5px; line-height: 1.7; margin: 0 0 14px 0; text-align: justify;">
+        Caso Forense <strong style="color: #93c5fd;">UCIL Bhopal (1984)</strong> — Aplicación práctica de la teoría sociotécnica de Reason (1990) y la norma <strong style="color: #93c5fd;">ISO 45003:2021</strong>. El estudiante recorrerá tres estaciones secuenciales de auditoría psicosocial, modelación matemática del OEE y reingeniería operacional. La hoja de respuestas oficial se desbloquea al finalizar mediante contraseña.
+      </p>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid rgba(148, 163, 184, 0.25);">
+        <div style="color: #93c5fd; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></span>
+          Modalidad: Células de Confiabilidad (3-4 est.)
+        </div>
+        <div style="color: #93c5fd; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></span>
+          Duración: 90 min
+        </div>
+        <div style="color: #93c5fd; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px;">
+          <span style="display: inline-block; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%;"></span>
+          Nivel: Posgrado / Maestría
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== NAVEGADOR DE PESTAÑAS ===================== -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #2563eb; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+
+    <h2 style="color: #0f172a; font-size: 19px; font-weight: 700; margin: 0 0 6px 0;">Estaciones de Trabajo Forense</h2>
+    <p style="color: #64748b; font-size: 13px; margin: 0 0 16px 0;">Avanza secuencialmente por las estaciones. Cada campo se valida en tiempo real con retroalimentación formativa inmediata.</p>
+
+    <!-- Botones de pestañas -->
+    <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+      <button onclick="showTab('tab1')" id="btnTab1" style="background: #2563eb; color: #ffffff; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 220px;">📊 Estación 1 · Mapeo Forense</button>
+      <button onclick="showTab('tab2')" id="btnTab2" style="background: #e2e8f0; color: #475569; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 220px;">🧮 Estación 2 · Modelación OEE</button>
+      <button onclick="showTab('tab3')" id="btnTab3" style="background: #e2e8f0; color: #475569; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 220px;">🔧 Estación 3 · Reingeniería ISO</button>
+      <button onclick="showTab('tab4')" id="btnTab4" style="background: #e2e8f0; color: #475569; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 220px;">🔓 Estación 4 · Solución</button>
+    </div>
+
+    <!-- ============ PESTAÑA 1: MAPEO FORENSE ============ -->
+    <div id="tab1" style="display: block;">
+
+      <div style="background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;">
+        <div style="color: #1e3a8a; font-weight: 700; font-size: 13px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">▸ Guía Interactiva</div>
+        <p style="color: #1e40af; font-size: 13.5px; line-height: 1.7; margin: 0;">
+          Analiza la evidencia empírica documentada en UCIL Bhopal y califica la <strong>Severidad del Clima (Sc)</strong> en escala de 1 a 5 (1 = Funcional/Resiliente; 5 = Crítico/Patológico). Selecciona tu valor en cada fila y observa la retroalimentación inmediata.
+        </p>
+      </div>
+
+      <!-- Fila 1: Factores Higiénicos -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px;">
+            <div style="color: #0f172a; font-weight: 700; font-size: 15px; margin-bottom: 4px;">Fila 1 · Factores Higiénicos (Herzberg, 1959)</div>
+            <div style="color: #64748b; font-size: 12.5px; margin-bottom: 8px; line-height: 1.5;">Evidencia: Congelamiento salarial sistemático, degradación de cabina de control y calor sofocante sin climatización.</div>
+            <div style="color: #475569; font-size: 12.5px;"><strong>Mecanismo de falla:</strong> Insatisfacción severa; reducción de la vigilancia al mínimo esfuerzo.</div>
+          </div>
+          <div style="min-width: 160px;">
+            <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Severidad Sc (1-5)</label>
+            <select id="sc1" onchange="validateSc('sc1','msg1',5)" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+              <option value="">— Seleccionar —</option>
+              <option value="1">1 · Funcional</option>
+              <option value="2">2 · Leve</option>
+              <option value="3">3 · Moderado</option>
+              <option value="4">4 · Alto</option>
+              <option value="5">5 · Crítico</option>
+            </select>
+          </div>
+        </div>
+        <div id="msg1" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Fila 2: Competencia e Instrumentalidad -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px;">
+            <div style="color: #0f172a; font-weight: 700; font-size: 15px; margin-bottom: 4px;">Fila 2 · Competencia e Instrumentalidad (Ryan &amp; Deci / Vroom)</div>
+            <div style="color: #64748b; font-size: 12.5px; margin-bottom: 8px; line-height: 1.5;">Evidencia: Entrenamiento recortado a semanas; manuales en inglés para personal hindi; culpabilización al operario Ashraf tras fallecer por fosgeno (1981).</div>
+            <div style="color: #475569; font-size: 12.5px;"><strong>Mecanismo de falla:</strong> Pérdida de autoeficacia; miedo punitivo y silenciamiento del reporte de fugas (M → 0).</div>
+          </div>
+          <div style="min-width: 160px;">
+            <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Severidad Sc (1-5)</label>
+            <select id="sc2" onchange="validateSc('sc2','msg2',5)" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+              <option value="">— Seleccionar —</option>
+              <option value="1">1 · Funcional</option>
+              <option value="2">2 · Leve</option>
+              <option value="3">3 · Moderado</option>
+              <option value="4">4 · Alto</option>
+              <option value="5">5 · Crítico</option>
+            </select>
+          </div>
+        </div>
+        <div id="msg2" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Fila 3: Incentivos Perversos -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 0;">
+        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 280px;">
+            <div style="color: #0f172a; font-weight: 700; font-size: 15px; margin-bottom: 4px;">Fila 3 · Incentivos Perversos de Productividad</div>
+            <div style="color: #64748b; font-size: 12.5px; margin-bottom: 8px; line-height: 1.5;">Evidencia: Apagado intencional de la refrigeración del tanque E610 a 0 °C para ahorrar energía; desmontaje de la torre incineradora.</div>
+            <div style="color: #475569; font-size: 12.5px;"><strong>Mecanismo de falla:</strong> Subordinación del control de procesos al ahorro financiero de corto plazo.</div>
+          </div>
+          <div style="min-width: 160px;">
+            <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Severidad Sc (1-5)</label>
+            <select id="sc3" onchange="validateSc('sc3','msg3',5)" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+              <option value="">— Seleccionar —</option>
+              <option value="1">1 · Funcional</option>
+              <option value="2">2 · Leve</option>
+              <option value="3">3 · Moderado</option>
+              <option value="4">4 · Alto</option>
+              <option value="5">5 · Crítico</option>
+            </select>
+          </div>
+        </div>
+        <div id="msg3" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+    </div>
+
+    <!-- ============ PESTAÑA 2: MODELACIÓN OEE ============ -->
+    <div id="tab2" style="display: none;">
+
+      <div style="background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;">
+        <div style="color: #1e3a8a; font-weight: 700; font-size: 13px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">▸ Guía Interactiva Paso a Paso</div>
+        <p style="color: #1e40af; font-size: 13.5px; line-height: 1.7; margin: 0;">
+          El <strong>Rendimiento Humano</strong> evalúa la latencia psicomotriz de detección y corrección de desvíos en consola: <strong>P<sub>humano</sub> = Δt<sub>diseño</sub> / Δt<sub>real</sub></strong>. El <strong>OEE</strong> es la interacción multiplicativa de tres factores: <strong>OEE = A × P × Q</strong>. Ingresa los valores registrados en UCIL Bhopal y valida tu cálculo.
+        </p>
+      </div>
+
+      <!-- Campo 1: Δt_diseño -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <label style="display: block; color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Campo 1 · Δt_diseño (minutos normativos según diseño)</label>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Tiempo estándar de detección e inspección según el protocolo de diseño del sistema.</div>
+        <input type="text" id="dtDesign" oninput="validateDtDesign()" placeholder="Ej: 10" style="width: 100%; max-width: 280px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+        <div id="msgDt1" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Campo 2: Δt_real -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <label style="display: block; color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Campo 2 · Δt_real (minutos reales observados en UCIL)</label>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Latencia real desde el ascenso de presión de 2 a 10 psi a las 23:30 h hasta la inspección física del tanque E610.</div>
+        <input type="text" id="dtReal" oninput="validateDtReal()" placeholder="Ej: 90" style="width: 100%; max-width: 280px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+        <div id="msgDt2" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Campo 3: P_humano -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <label style="display: block; color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Campo 3 · Rendimiento Humano P<sub>humano</sub> (% o decimal)</label>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Calcula el cociente Δt_diseño / Δt_real. Ingresa el resultado en porcentaje (11.11) o decimal (0.1111).</div>
+        <input type="text" id="pHumano" oninput="validatePHumano()" placeholder="Ej: 11.11 o 0.1111" style="width: 100%; max-width: 280px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+        <div id="msgDt3" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Campo 4: A y Q -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <label style="display: block; color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Campo 4 · Disponibilidad (A) y Calidad (Q)</label>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Las tres defensas técnicas de contención primaria estaban fuera de servicio (lavador cáustico inoperativo, antorcha desmontada, cortina de agua sin presión). El lavado de líneas se realizó sin disco ciego (slip-blind), catalizando la hidrólisis exotérmica del MIC.</div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <div>
+            <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px;">Disponibilidad (A)</label>
+            <input type="text" id="valA" oninput="validateA()" placeholder="Ej: 0" style="width: 120px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+          </div>
+          <div>
+            <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px;">Calidad (Q)</label>
+            <input type="text" id="valQ" oninput="validateQ()" placeholder="Ej: 0" style="width: 120px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+          </div>
+        </div>
+        <div id="msgDt4" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+        <div id="msgDt4b" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Campo 5: OEE Total -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 0;">
+        <label style="display: block; color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Campo 5 · OEE Total del Sistema (%)</label>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Aplica la fórmula multiplicativa OEE = A × P × Q e ingresa el resultado final en porcentaje.</div>
+        <input type="text" id="oeeTotal" oninput="validateOEE()" placeholder="Ej: 0" style="width: 100%; max-width: 280px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 14px; font-size: 14px; color: #0f172a;" />
+        <div id="msgDt5" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+    </div>
+
+    <!-- ============ PESTAÑA 3: REINGENIERÍA ISO 45003 ============ -->
+    <div id="tab3" style="display: none;">
+
+      <div style="background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px;">
+        <div style="color: #1e3a8a; font-weight: 700; font-size: 13px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">▸ Guía Interactiva</div>
+        <p style="color: #1e40af; font-size: 13.5px; line-height: 1.7; margin: 0;">
+          Asocia cada medida de control con la cláusula correspondiente de la norma <strong>ISO 45003:2021</strong>. Las cláusulas disponibles son: <strong>6.1.2.1</strong> (Diseño del Trabajo y Turnos), <strong>6.1.2.2</strong> (Soporte Social y Cultura de Reporte) y <strong>8.1</strong> (Control Operacional Ergonómico y Ambiental). Selecciona tu respuesta en cada medida.
+        </p>
+      </div>
+
+      <!-- Medida 1 -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Medida 1 · Pausas ergonómicas y turnos nocturnos ≤ 8 h</div>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Fijar descansos ergonómicos obligatorios y prohibir turnos rotativos nocturnos mayores a 8 horas; garantizar 3 operadores certificados por consola crítica.</div>
+        <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Cláusula ISO 45003 correspondiente</label>
+        <select id="iso1" onchange="validateIso('iso1','msgIso1','6.1.2.1')" style="width: 100%; max-width: 320px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+          <option value="">— Seleccionar cláusula —</option>
+          <option value="6.1.2.1">Cláusula 6.1.2.1 · Diseño del Trabajo y Turnos</option>
+          <option value="6.1.2.2">Cláusula 6.1.2.2 · Soporte Social y Cultura de Reporte</option>
+          <option value="8.1">Cláusula 8.1 · Control Operacional Ergonómico y Ambiental</option>
+        </select>
+        <div id="msgIso1" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Medida 2 -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Medida 2 · Canal de reporte anónimo y Stop Work Authority sin represalias</div>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Implementar un canal anónimo y no punitivo de reporte de microfugas que otorgue potestad contractual de Paro Seguro de Emergencia sin represalias.</div>
+        <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Cláusula ISO 45003 correspondiente</label>
+        <select id="iso2" onchange="validateIso('iso2','msgIso2','6.1.2.2')" style="width: 100%; max-width: 320px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+          <option value="">— Seleccionar cláusula —</option>
+          <option value="6.1.2.1">Cláusula 6.1.2.1 · Diseño del Trabajo y Turnos</option>
+          <option value="6.1.2.2">Cláusula 6.1.2.2 · Soporte Social y Cultura de Reporte</option>
+          <option value="8.1">Cláusula 8.1 · Control Operacional Ergonómico y Ambiental</option>
+        </select>
+        <div id="msgIso2" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Medida 3 -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 0;">
+        <div style="color: #0f172a; font-weight: 700; font-size: 14.5px; margin-bottom: 4px;">Medida 3 · Climatización de cabina ≤ 22 °C y mantenimiento preventivo de instrumentos</div>
+        <div style="color: #64748b; font-size: 12.5px; margin-bottom: 10px; line-height: 1.5;">Mantenimiento prioritario a la instrumentación analógica y climatización obligatoria en cabina (≤ 22 °C) para evitar la fatiga térmica y el descarte de alarmas.</div>
+        <label style="display: block; color: #334155; font-size: 12px; font-weight: 700; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Cláusula ISO 45003 correspondiente</label>
+        <select id="iso3" onchange="validateIso('iso3','msgIso3','8.1')" style="width: 100%; max-width: 320px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 9px 12px; font-size: 14px; color: #0f172a; cursor: pointer;">
+          <option value="">— Seleccionar cláusula —</option>
+          <option value="6.1.2.1">Cláusula 6.1.2.1 · Diseño del Trabajo y Turnos</option>
+          <option value="6.1.2.2">Cláusula 6.1.2.2 · Soporte Social y Cultura de Reporte</option>
+          <option value="8.1">Cláusula 8.1 · Control Operacional Ergonómico y Ambiental</option>
+        </select>
+        <div id="msgIso3" style="margin-top: 10px; padding: 10px 14px; border-radius: 6px; font-size: 13px; line-height: 1.55; display: none;"></div>
+      </div>
+
+    </div>
+
+    <!-- ============ PESTAÑA 4: SOLUCIÓN BLOQUEADA ============ -->
+    <div id="tab4" style="display: none;">
+
+      <!-- Bloqueo de acceso -->
+      <div id="lockCard" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #d97706; border-radius: 10px; padding: 26px; text-align: center;">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #d97706; color: #ffffff; border-radius: 50%; font-size: 28px; font-weight: 800; margin-bottom: 16px; box-shadow: 0 6px 18px rgba(217, 119, 6, 0.30);">🔒</div>
+        <h3 style="color: #78350f; font-size: 19px; font-weight: 800; margin: 0 0 10px 0;">Hoja de Respuestas Protegida</h3>
+        <p style="color: #92400e; font-size: 14px; line-height: 1.7; margin: 0 0 18px 0;">
+          Esta sección contiene la matriz analítica completa, los cálculos matemáticos paso a paso y la justificación bajo ISO 45003:2021. Ingresa la contraseña oficial para desbloquear la hoja forense.
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; align-items: center;">
+          <input type="password" id="pwdInput" placeholder="Contraseña oficial" style="background: #ffffff; border: 2px solid #d97706; border-radius: 8px; padding: 11px 16px; font-size: 14px; color: #0f172a; width: 220px;" />
+          <button onclick="unlockSolution()" style="background: #d97706; color: #ffffff; border: none; padding: 11px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 14px rgba(217, 119, 6, 0.30);">Desbloquear Hoja Forense Oficial</button>
+        </div>
+        <div id="pwdMsg" style="margin-top: 16px; padding: 12px 16px; border-radius: 8px; font-size: 13.5px; line-height: 1.55; display: none;"></div>
+      </div>
+
+      <!-- Contenido de solución (oculto hasta desbloqueo) -->
+      <div id="solutionCard" style="display: none;">
+
+        <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; text-align: center;">
+          <div style="color: #065f46; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;">✓ Hoja Forense Oficial Desbloqueada</div>
+          <h3 style="color: #064e3b; font-size: 18px; font-weight: 800; margin: 0;">Matriz Analítica y Modelación Completa</h3>
+        </div>
+
+        <!-- Solución Estación 1 -->
+        <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Estación 1 · Matriz de Severidad Psicosocial</div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+              <tr>
+                <th style="background: #0f172a; color: #ffffff; padding: 10px 12px; text-align: left; border: 1px solid #1e293b;">Dimensión</th>
+                <th style="background: #0f172a; color: #ffffff; padding: 10px 12px; text-align: center; border: 1px solid #1e293b;">Sc</th>
+                <th style="background: #0f172a; color: #ffffff; padding: 10px 12px; text-align: left; border: 1px solid #1e293b;">Justificación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0; font-weight: 600;">Factores Higiénicos</td>
+                <td style="background: #fef2f2; padding: 10px 12px; text-align: center; color: #dc2626; font-weight: 800; border: 1px solid #fecaca;">5/5</td>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0;">Insatisfacción severa; reducción de la vigilancia al mínimo esfuerzo.</td>
+              </tr>
+              <tr>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0; font-weight: 600;">Competencia / Instrumentalidad</td>
+                <td style="background: #fef2f2; padding: 10px 12px; text-align: center; color: #dc2626; font-weight: 800; border: 1px solid #fecaca;">5/5</td>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0;">Miedo punitivo y silenciamiento del reporte de fugas (M → 0).</td>
+              </tr>
+              <tr>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0; font-weight: 600;">Incentivos Perversos</td>
+                <td style="background: #fef2f2; padding: 10px 12px; text-align: center; color: #dc2626; font-weight: 800; border: 1px solid #fecaca;">5/5</td>
+                <td style="background: #ffffff; padding: 10px 12px; color: #334155; border: 1px solid #e2e8f0;">Subordinación del control de procesos al ahorro financiero.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Solución Estación 2 -->
+        <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;">Estación 2 · Modelación Matemática OEE</div>
+          <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 12px;">
+            <div style="color: #93c5fd; font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">Rendimiento Humano</div>
+            <div style="color: #ffffff; font-size: 20px; font-weight: 700; font-family: 'Times New Roman', Georgia, serif; margin-bottom: 8px;">P<sub style="font-size: 13px;">humano</sub> = 10 / 90</div>
+            <div style="color: #6ee7b7; font-size: 26px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif;">≈ 0.1111 (11.11%)</div>
+          </div>
+          <div style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 12px;">
+            <div style="color: #fecaca; font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">Disponibilidad y Calidad</div>
+            <div style="color: #ffffff; font-size: 22px; font-weight: 700; font-family: 'Times New Roman', Georgia, serif;">A = 0  ·  Q = 0</div>
+          </div>
+          <div style="background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border-radius: 8px; padding: 16px; text-align: center;">
+            <div style="color: #a7f3d0; font-size: 11px; letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase;">OEE Total del Sistema</div>
+            <div style="color: #ffffff; font-size: 22px; font-weight: 700; font-family: 'Times New Roman', Georgia, serif; margin-bottom: 8px;">OEE = 0 × 0.1111 × 0</div>
+            <div style="color: #6ee7b7; font-size: 38px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif;">= 0%</div>
+          </div>
+          <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 6px; padding: 10px 14px; margin-top: 12px; text-align: center;">
+            <span style="color: #92400e; font-size: 13px; font-weight: 700;">🔑 Contraseña del candado gamificado: 11 (P<sub>humano</sub> = 11%)</span>
+          </div>
+        </div>
+
+        <!-- Solución Estación 3 -->
+        <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 0;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Estación 3 · Reingeniería ISO 45003:2021</div>
+          <ul style="color: #334155; font-size: 13.5px; margin: 0; padding-left: 22px; line-height: 1.9;">
+            <li><strong>Cláusula 6.1.2.1:</strong> Pausas ergonómicas y turnos nocturnos ≤ 8 h; mínimo 3 operadores certificados por consola.</li>
+            <li><strong>Cláusula 6.1.2.2:</strong> Canal anónimo de reporte de microfugas + <em>Stop Work Authority</em> sin represalias.</li>
+            <li><strong>Cláusula 8.1:</strong> Climatización de cabina ≤ 22 °C + mantenimiento preventivo de instrumentación analógica.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ===================== RECURSOS DIDÁCTICOS ===================== -->
+
+  <!-- 1° VIDEO -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #dc2626; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #dc2626; color: #ffffff; border-radius: 8px; font-size: 15px; font-weight: 800;">▶</span>
+      <div>
+        <h3 style="color: #0f172a; font-size: 17px; font-weight: 700; margin: 0;">1 · Contenedor de Video</h3>
+        <div style="color: #64748b; font-size: 12.5px; margin-top: 2px;">Material audiovisual complementario — placeholder profesional</div>
+      </div>
+      <span style="margin-left: auto; background: #fef2f2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #fecaca; text-transform: uppercase;">Video</span>
+    </div>
+    <p style="color: #475569; font-size: 13.5px; line-height: 1.65; margin: 0 0 14px 0;">
+      Contenedor responsivo con borde redondeado para integrar el documental audiovisual sobre el caso UCIL Bhopal.
+    </p>
+    <div style="background: #0f172a; border-radius: 12px; padding: 8px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);">
+      <div style="background: #000000; border-radius: 8px; overflow: hidden; line-height: 0;">
+        <!-- Reemplazar el src con la URL del video subido a Moodle o Google Drive -->
+        <iframe src="#" width="100%" height="420" allow="autoplay" style="display: block; width: 100%; height: 420px; border: 0; border-radius: 8px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2° GUÍA DIDÁCTICA PDF -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #2563eb; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #2563eb; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">PDF</span>
+      <div>
+        <h3 style="color: #0f172a; font-size: 17px; font-weight: 700; margin: 0;">2 · Guía Didáctica PDF</h3>
+        <div style="color: #64748b; font-size: 12.5px; margin-top: 2px;">Documento descargable complementario</div>
+      </div>
+      <span style="margin-left: auto; background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #bfdbfe; text-transform: uppercase;">Documento</span>
+    </div>
+    <p style="color: #475569; font-size: 13.5px; line-height: 1.65; margin: 0 0 16px 0;">
+      Documento PDF de apoyo con el desarrollo completo del caso, protocolos de auditoría y rúbrica de evaluación.
+    </p>
+    <!-- Reemplazar el href con la URL del PDF subido a Moodle (archivo del curso) o Google Drive -->
+    <a href="#" target="_blank" rel="noopener" style="display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.30); cursor: pointer;">
+      📥 Guía Didáctica: Auditoría Psicosocial y Confiabilidad Humana (PDF)
+    </a>
+  </div>
+
+  <!-- 3° NOTEBOOKLM -->
+  <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 2px solid #7c3aed; border-radius: 10px; padding: 22px; margin-bottom: 22px; box-shadow: 0 6px 20px rgba(124, 58, 237, 0.18);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #7c3aed; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">AI</span>
+      <div>
+        <h3 style="color: #5b21b6; font-size: 17px; font-weight: 700; margin: 0;">3 · Cuaderno de Investigación (NotebookLM)</h3>
+        <div style="color: #7c3aed; font-size: 12.5px; margin-top: 2px;">Análisis forense potenciado con IA — Gemini NotebookLM</div>
+      </div>
+      <span style="margin-left: auto; background: #f5f3ff; color: #6d28d9; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #ddd6fe; text-transform: uppercase;">IA</span>
+    </div>
+    <p style="color: #5b21b6; font-size: 13.5px; line-height: 1.65; margin: 0 0 16px 0;">
+      Accede al cuaderno de análisis forense sintetizado con IA en Gemini NotebookLM para explorar fuentes primarias, resúmenes automáticos y conexiones temáticas sobre el caso UCIL Bhopal.
+    </p>
+    <a href="https://notebooklm.link.google/SAgZ5hivE0Zo" target="_blank" rel="noopener" style="display: inline-block; background: #7c3aed; color: #ffffff; text-decoration: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(124, 58, 237, 0.30); cursor: pointer;">
+      🔬 Explorar Cuaderno de Análisis Forense en Gemini NotebookLM
+    </a>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 18px 22px; text-align: center;">
+    <div style="color: #93c5fd; font-size: 12px; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase;">
+      Taller Experimental · Ingeniería de Confiabilidad
+    </div>
+    <div style="color: #ffffff; font-size: 13px; font-weight: 500;">
+      Caso UCIL Bhopal (1984) — ISO 45003:2021 · Reason (1990)
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============ NAVEGACIÓN DE PESTAÑAS ============
+function showTab(tabId) {
+  var tabs = ['tab1', 'tab2', 'tab3', 'tab4'];
+  for (var i = 0; i < tabs.length; i++) {
+    document.getElementById(tabs[i]).style.display = 'none';
+    var btn = document.getElementById('btn' + tabs[i].charAt(0).toUpperCase() + tabs[i].slice(1));
+    if (btn) {
+      btn.style.background = '#e2e8f0';
+      btn.style.color = '#475569';
+    }
+  }
+  document.getElementById(tabId).style.display = 'block';
+  var activeBtn = document.getElementById('btn' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
+  if (activeBtn) {
+    activeBtn.style.background = '#2563eb';
+    activeBtn.style.color = '#ffffff';
+  }
+}
+
+// ============ ESTACIÓN 1: VALIDACIÓN SEVERIDAD Sc ============
+function validateSc(selectId, msgId, expected) {
+  var sel = document.getElementById(selectId);
+  var msg = document.getElementById(msgId);
+  var val = sel.value;
+  if (val === '') {
+    msg.style.display = 'none';
+    sel.style.borderColor = '#cbd5e1';
+    return;
+  }
+  msg.style.display = 'block';
+  if (val === String(expected)) {
+    msg.style.background = '#d1fae5';
+    msg.style.color = '#065f46';
+    msg.style.border = '1px solid #10b981';
+    msg.innerHTML = '<strong>✓ Correcto.</strong> Severidad crítica (Sc = 5/5) correctamente asignada. La patología institucional en esta dimensión destruye la barrera humana de defensa.';
+    sel.style.borderColor = '#10b981';
+  } else {
+    msg.style.background = '#fef2f2';
+    msg.style.color = '#991b1b';
+    msg.style.border = '1px solid #dc2626';
+    if (selectId === 'sc1') {
+      msg.innerHTML = '<strong>Error de calibración:</strong> El congelamiento salarial sistemático y el calor sofocante sin climatización constituyen una patología extrema de higiene (Severidad requerida: 5).';
+    } else if (selectId === 'sc2') {
+      msg.innerHTML = '<strong>Error:</strong> La supresión del entrenamiento y la culpabilización del operario Ashraf extinguieron la autoeficacia (Severidad requerida: 5).';
+    } else if (selectId === 'sc3') {
+      msg.innerHTML = '<strong>Error:</strong> Apagar la refrigeración del tanque E610 para ahorrar costos representa un desvío crítico de la contención primaria (Severidad requerida: 5).';
+    }
+    sel.style.borderColor = '#dc2626';
+  }
+}
+
+// ============ ESTACIÓN 2: VALIDACIONES MATEMÁTICAS ============
+function showOk(msgId, html, inputId) {
+  var msg = document.getElementById(msgId);
+  msg.style.display = 'block';
+  msg.style.background = '#d1fae5';
+  msg.style.color = '#065f46';
+  msg.style.border = '1px solid #10b981';
+  msg.innerHTML = html;
+  if (inputId) document.getElementById(inputId).style.borderColor = '#10b981';
+}
+function showErr(msgId, html, inputId) {
+  var msg = document.getElementById(msgId);
+  msg.style.display = 'block';
+  msg.style.background = '#fef2f2';
+  msg.style.color = '#991b1b';
+  msg.style.border = '1px solid #dc2626';
+  msg.innerHTML = html;
+  if (inputId) document.getElementById(inputId).style.borderColor = '#dc2626';
+}
+function resetMsg(msgId, inputId) {
+  document.getElementById(msgId).style.display = 'none';
+  if (inputId) document.getElementById(inputId).style.borderColor = '#cbd5e1';
+}
+
+function validateDtDesign() {
+  var v = document.getElementById('dtDesign').value.trim();
+  if (v === '') { resetMsg('msgDt1', 'dtDesign'); return; }
+  if (v === '10') {
+    showOk('msgDt1', '<strong>✓ Correcto.</strong> El estándar normativo de detección e inspección es de 10 minutos.', 'dtDesign');
+  } else {
+    showErr('msgDt1', '<strong>Incorrecto:</strong> El estándar normativo de detección e inspección es de 10 minutos.', 'dtDesign');
+  }
+}
+
+function validateDtReal() {
+  var v = document.getElementById('dtReal').value.trim();
+  if (v === '') { resetMsg('msgDt2', 'dtReal'); return; }
+  if (v === '90') {
+    showOk('msgDt2', '<strong>✓ Correcto.</strong> La latencia real registrada en la consola del tanque E610 fue de 90 minutos.', 'dtReal');
+  } else {
+    showErr('msgDt2', '<strong>Incorrecto:</strong> La latencia real registrada en la consola del tanque E610 fue de 90 minutos.', 'dtReal');
+  }
+}
+
+function validatePHumano() {
+  var v = document.getElementById('pHumano').value.trim();
+  if (v === '') { resetMsg('msgDt3', 'pHumano'); return; }
+  if (v === '11.11' || v === '0.1111' || v === '11,11' || v === '0,1111') {
+    showOk('msgDt3', '<strong>✓ Correcto.</strong> P<sub>humano</sub> = 10 / 90 = 11.11% (0.1111). El rendimiento humano colapsó a un nivel 7.5 veces inferior al estándar HRO (83.33%).', 'pHumano');
+  } else {
+    showErr('msgDt3', '<strong>Error de cálculo:</strong> P<sub>humano</sub> = 10 / 90 = 11.11% (0.1111).', 'pHumano');
+  }
+}
+
+function validateA() {
+  var v = document.getElementById('valA').value.trim();
+  if (v === '') { resetMsg('msgDt4', 'valA'); return; }
+  if (v === '0') {
+    showOk('msgDt4', '<strong>✓ Correcto.</strong> Disponibilidad A = 0. Las tres defensas técnicas (lavador cáustico, antorcha y cortina de agua) estaban fuera de servicio.', 'valA');
+  } else {
+    showErr('msgDt4', '<strong>Error:</strong> A = 0. El lavador cáustico estaba en mantenimiento sin respaldo, la antorcha de venteo estaba desmontada y la cortina de agua carecía de presión suficiente.', 'valA');
+  }
+}
+
+function validateQ() {
+  var v = document.getElementById('valQ').value.trim();
+  if (v === '') { resetMsg('msgDt4b', 'valQ'); return; }
+  if (v === '0') {
+    showOk('msgDt4b', '<strong>✓ Correcto.</strong> Calidad Q = 0. El lavado de tuberías sin disco ciego (slip-blind) catalizó la hidrólisis exotérmica del MIC.', 'valQ');
+  } else {
+    showErr('msgDt4b', '<strong>Error:</strong> Q = 0. El lavado de líneas se realizó sin disco ciego (slip-blind), el agua catalizó la hidrólisis exotérmica y liberó 42 toneladas de MIC.', 'valQ');
+  }
+}
+
+function validateOEE() {
+  var v = document.getElementById('oeeTotal').value.trim();
+  if (v === '') { resetMsg('msgDt5', 'oeeTotal'); return; }
+  if (v === '0' || v === '0%' || v === '0.0' || v === '0,0') {
+    showOk('msgDt5', '<strong>✓ Correcto.</strong> OEE = A × P × Q = 0 × 0.1111 × 0 = 0%. Colapso total del sistema sociotécnico.', 'oeeTotal');
+  } else {
+    showErr('msgDt5', '<strong>Error:</strong> OEE = 0 × 0.1111 × 0 = 0%. Al anularse la Disponibilidad (A = 0) y la Calidad (Q = 0), el producto multiplicativo colapsa a cero.', 'oeeTotal');
+  }
+}
+
+// ============ ESTACIÓN 3: VALIDACIÓN ISO 45003 ============
+function validateIso(selectId, msgId, expected) {
+  var sel = document.getElementById(selectId);
+  var msg = document.getElementById(msgId);
+  var val = sel.value;
+  if (val === '') {
+    msg.style.display = 'none';
+    sel.style.borderColor = '#cbd5e1';
+    return;
+  }
+  msg.style.display = 'block';
+  if (val === expected) {
+    msg.style.background = '#d1fae5';
+    msg.style.color = '#065f46';
+    msg.style.border = '1px solid #10b981';
+    var clausula = '';
+    if (expected === '6.1.2.1') clausula = 'Diseño del Trabajo y Turnos: fija descansos ergonómicos y regula la jornada laboral.';
+    else if (expected === '6.1.2.2') clausula = 'Soporte Social y Cultura de Reporte: canal anónimo y Stop Work Authority.';
+    else if (expected === '8.1') clausula = 'Control Operacional Ergonómico y Ambiental: climatización y mantenimiento preventivo.';
+    msg.innerHTML = '<strong>✓ Correcto.</strong> Cláusula ' + expected + ' · ' + clausula;
+    sel.style.borderColor = '#10b981';
+  } else {
+    msg.style.background = '#fef3c7';
+    msg.style.color = '#92400e';
+    msg.style.border = '1px solid #f59e0b';
+    var pista = '';
+    if (selectId === 'iso1') pista = 'Esta medida regula el diseño de turnos y descansos ergonómicos. Revise la cláusula sobre Diseño del Trabajo.';
+    else if (selectId === 'iso2') pista = 'Esta medida protege el reporte libre de microfugas. Revise la cláusula sobre Soporte Social.';
+    else if (selectId === 'iso3') pista = 'Esta medida controla factores ambientales de la cabina. Revise la cláusula sobre Control Operacional.';
+    msg.innerHTML = '<strong>Asociación incorrecta.</strong> ' + pista + ' (Cláusula esperada: ' + expected + ').';
+    sel.style.borderColor = '#f59e0b';
+  }
+}
+
+// ============ ESTACIÓN 4: DESBLOQUEO POR CONTRASEÑA ============
+function unlockSolution() {
+  var pwd = document.getElementById('pwdInput').value.trim();
+  var msg = document.getElementById('pwdMsg');
+  var lock = document.getElementById('lockCard');
+  var sol = document.getElementById('solutionCard');
+
+  if (pwd === '1994') {
+    msg.style.display = 'block';
+    msg.style.background = '#d1fae5';
+    msg.style.color = '#065f46';
+    msg.style.border = '1px solid #10b981';
+    msg.innerHTML = '<strong>✓ Contraseña correcta.</strong> Desbloqueando hoja forense oficial...';
+    setTimeout(function() {
+      lock.style.display = 'none';
+      sol.style.display = 'block';
+    }, 700);
+  } else {
+    msg.style.display = 'block';
+    msg.style.background = '#fef2f2';
+    msg.style.color = '#991b1b';
+    msg.style.border = '1px solid #dc2626';
+    msg.innerHTML = '<strong>Contraseña incorrecta.</strong> Consulte con el docente o complete los cálculos de confiabilidad en las estaciones 1, 2 y 3.';
+  }
+}
+</script>

@@ -1,0 +1,468 @@
+<!-- ============================================================= -->
+<!-- COMPONENTE INTERACTIVO · MOODLE (Atto / TinyMCE)              -->
+<!-- Sin <html>, <head>, <body>, <style>. Estilos 100% inline.     -->
+<!-- Interactividad: vanilla JS en <script> manipulando display.    -->
+<!-- ============================================================= -->
+
+<div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif; max-width: 960px; margin: 0 auto; padding: 0; line-height: 1.65; color: #1f2937;">
+
+  <!-- ===================== CABECERA ===================== -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 12px; padding: 24px; margin-bottom: 22px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25); position: relative; overflow: hidden;">
+
+    <div style="position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -40px; left: -30px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+    <div style="position: relative;">
+      <span style="display: inline-block; background: #2563eb; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.40);">
+        UNIDAD 2: Psicología Laboral y OEE | ISO 45003:2021
+      </span>
+
+      <h1 style="color: #ffffff; font-size: 24px; font-weight: 800; margin: 0 0 14px 0; line-height: 1.3; letter-spacing: -0.3px;">
+        Modelación Forense de la Confiabilidad Humana: Caso UCIL Bhopal (1984)
+      </h1>
+
+      <p style="color: #cbd5e1; font-size: 14.5px; line-height: 1.75; margin: 0; text-align: justify;">
+        En la ingeniería de seguridad contemporánea, las catástrofes industriales rara vez son atribuibles a la fatalidad o a un error mecánico fortuito; constituyen la manifestación final de <strong style="color: #93c5fd;">fallas latentes incubadas en el diseño sociotécnico y organizacional</strong> (Reason, 1990). En las industrias de alto riesgo (<em>High-Reliability Organizations</em>, HRO), la productividad real no se mide por la reducción contable de costos fijos a corto plazo, sino por la capacidad de sostener operaciones continuas dentro de los márgenes normativos de <strong style="color: #93c5fd;">seguridad de procesos</strong>. La tragedia de UCIL Bhopal evidencia cómo el desmantelamiento de la motivación y la imposición de incentivos perversos de austeridad destruyen la barrera humana de defensa y anulan la Efectividad Global de los Equipos (OEE).
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================== NAVEGADOR DE PESTAÑAS ===================== -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #2563eb; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+
+    <h2 style="color: #0f172a; font-size: 19px; font-weight: 700; margin: 0 0 6px 0;">Navegador de Módulos Interactivos</h2>
+    <p style="color: #64748b; font-size: 13px; margin: 0 0 16px 0;">Haz clic en cada pestaña para alternar entre los módulos de análisis forense.</p>
+
+    <!-- Botones de pestañas -->
+    <div style="display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;">
+      <button onclick="showTab('tab1')" id="btnTab1" style="background: #2563eb; color: #ffffff; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 200px; transition: background 0.2s;">📊 Marco Teórico Motivacional</button>
+      <button onclick="showTab('tab2')" id="btnTab2" style="background: #e2e8f0; color: #475569; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 200px;">🔍 Matriz Forense de Auditoría</button>
+      <button onclick="showTab('tab3')" id="btnTab3" style="background: #e2e8f0; color: #475569; border: none; padding: 11px 16px; border-radius: 8px; font-size: 13.5px; font-weight: 600; cursor: pointer; flex: 1; min-width: 200px;">🧮 Modelación Matemática OEE</button>
+    </div>
+
+    <!-- ============ PESTAÑA 1: MARCO TEÓRICO ============ -->
+    <div id="tab1" style="display: block;">
+
+      <!-- Bloque 1: Herzberg -->
+      <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #2563eb; color: #ffffff; border-radius: 7px; font-size: 14px; font-weight: 800;">1</span>
+          <h3 style="color: #0f172a; font-size: 16px; font-weight: 700; margin: 0;">Modelo Bifactorial de Herzberg (1959)</h3>
+        </div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 14px 0; text-align: justify;">
+          Los <strong>factores higiénicos</strong> (salario, iluminación, climatización, seguridad física) evitan la insatisfacción pero no generan motivación positiva por sí mismos. La verdadera motivación proviene de <strong>factores motivacionales intrínsecos</strong>. En UCIL, la administración redujo simultáneamente ambos factores, generando un estado crónico de apatía funcional.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 12px 14px;">
+            <div style="color: #92400e; font-weight: 700; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">⚠ Higiénicos Degradados</div>
+            <ul style="color: #78350f; font-size: 13px; margin: 0; padding-left: 18px; line-height: 1.7;">
+              <li>Congelamiento salarial sostenido</li>
+              <li>Calor extremo en cabina de control</li>
+              <li>Degradación de instalaciones físicas</li>
+              <li>Políticas administrativas punitivas</li>
+            </ul>
+          </div>
+          <div style="background: #fee2e2; border: 1px solid #ef4444; border-radius: 8px; padding: 12px 14px;">
+            <div style="color: #991b1b; font-weight: 700; font-size: 12px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">✗ Motivacionales Nulos</div>
+            <ul style="color: #7f1d1d; font-size: 13px; margin: 0; padding-left: 18px; line-height: 1.7;">
+              <li>Anulación de planes de carrera</li>
+              <li>Sin reconocimiento técnico</li>
+              <li>Rotación forzada de ingenieros</li>
+              <li>Pérdida de estatus profesional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque 2: SDT -->
+      <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #2563eb; color: #ffffff; border-radius: 7px; font-size: 14px; font-weight: 800;">2</span>
+          <h3 style="color: #0f172a; font-size: 16px; font-weight: 700; margin: 0;">Teoría de la Autodeterminación (Ryan &amp; Deci, 2000)</h3>
+        </div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 14px 0; text-align: justify;">
+          La productividad técnica de alto rendimiento requiere satisfacer <strong>tres necesidades psicológicas básicas</strong>. UCIL impuso <strong style="color: #dc2626;">manuales en inglés</strong> a operarios que solo leían <strong>hindi</strong> y castigó el disenso gremial, destruyendo la autonomía, anulando el sentimiento de competencia y reduciendo la conducta de los trabajadores a la <strong style="color: #dc2626;">amotivación</strong> (esfuerzo mínimo para subsistir administrativamente).
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div style="background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; padding: 12px; text-align: center;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #2563eb; color: #ffffff; border-radius: 50%; font-size: 14px; font-weight: 800; margin-bottom: 6px;">A</div>
+            <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px;">Autonomía</div>
+            <div style="color: #1e40af; font-size: 11.5px; margin-top: 3px; line-height: 1.4;">Anulada por estilo directivo autoritario</div>
+          </div>
+          <div style="background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; padding: 12px; text-align: center;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #2563eb; color: #ffffff; border-radius: 50%; font-size: 14px; font-weight: 800; margin-bottom: 6px;">C</div>
+            <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px;">Competencia</div>
+            <div style="color: #1e40af; font-size: 11.5px; margin-top: 3px; line-height: 1.4;">Manuales en inglés / personal hindi</div>
+          </div>
+          <div style="background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; padding: 12px; text-align: center;">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #2563eb; color: #ffffff; border-radius: 50%; font-size: 14px; font-weight: 800; margin-bottom: 6px;">R</div>
+            <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px;">Relación</div>
+            <div style="color: #1e40af; font-size: 11.5px; margin-top: 3px; line-height: 1.4;">Disenso gremial = sabotaje</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque 3: Vroom -->
+      <div style="background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #2563eb; color: #ffffff; border-radius: 7px; font-size: 14px; font-weight: 800;">3</span>
+          <h3 style="color: #0f172a; font-size: 16px; font-weight: 700; margin: 0;">Teoría de la Expectativa (Vroom, 1964)</h3>
+        </div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 14px 0; text-align: justify;">
+          La fuerza motivacional se define como <strong>M = V × I × E</strong>. La <strong>Expectativa</strong> (E: esfuerzo traducido en desempeño) y la <strong>Instrumentalidad</strong> (I: desempeño recompensado de manera justa) cayeron a cero tras sancionar sistemáticamente a los operadores que reportaban anomalías técnicas o <em>near-misses</em>. Cuando E → 0 e I → 0, entonces <strong style="color: #dc2626;">M → 0</strong> (amotivación).
+        </p>
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 18px; text-align: center;">
+          <div style="color: #93c5fd; font-size: 11px; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase;">Ecuación Motivacional de Vroom</div>
+          <div style="color: #ffffff; font-size: 32px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; letter-spacing: 2px;">M = V × I × E</div>
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 14px; flex-wrap: wrap;">
+            <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 14px;">
+              <div style="color: #93c5fd; font-size: 11px; font-weight: 700;">V</div>
+              <div style="color: #ffffff; font-size: 12px;">Valencia</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 14px;">
+              <div style="color: #fca5a5; font-size: 11px; font-weight: 700;">I → 0</div>
+              <div style="color: #ffffff; font-size: 12px;">Instrumentalidad</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.08); border-radius: 6px; padding: 8px 14px;">
+              <div style="color: #fca5a5; font-size: 11px; font-weight: 700;">E → 0</div>
+              <div style="color: #ffffff; font-size: 12px;">Expectativa</div>
+            </div>
+            <div style="background: rgba(220, 38, 38, 0.25); border: 1px solid #dc2626; border-radius: 6px; padding: 8px 14px;">
+              <div style="color: #fecaca; font-size: 11px; font-weight: 700;">M → 0</div>
+              <div style="color: #ffffff; font-size: 12px;">Amotivación</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PESTAÑA 2: MATRIZ FORENSE ============ -->
+    <div id="tab2" style="display: none;">
+      <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px 0;">
+        Auditoría forense de los factores psicosociales y organizacionales en UCIL Bhopal. La <strong>Severidad del Clima (Sc)</strong> se evalúa en escala de 1 a 5, donde 5 = Crítico/Patológico.
+      </p>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px;">
+          <thead>
+            <tr>
+              <th style="background: #0f172a; color: #ffffff; padding: 12px 14px; text-align: left; font-weight: 700; border: 1px solid #1e293b; width: 22%;">Dimensión Evaluada</th>
+              <th style="background: #0f172a; color: #ffffff; padding: 12px 14px; text-align: left; font-weight: 700; border: 1px solid #1e293b; width: 28%;">Evidencia Forense en UCIL</th>
+              <th style="background: #0f172a; color: #ffffff; padding: 12px 14px; text-align: left; font-weight: 700; border: 1px solid #1e293b; width: 30%;">Mecanismo de Falla Latente</th>
+              <th style="background: #0f172a; color: #ffffff; padding: 12px 14px; text-align: center; font-weight: 700; border: 1px solid #1e293b; width: 20%;">Severidad (Sc)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="background: #f8fafc; padding: 14px; font-weight: 700; color: #0f172a; border: 1px solid #e2e8f0; vertical-align: top;">
+                Factores Higiénicos
+                <div style="font-weight: 500; color: #64748b; font-size: 11.5px; margin-top: 4px;">(Herzberg, 1959)</div>
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Congelamiento salarial sostenido; degradación de la cabina de control; calor extremo en ambiente térmico.
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Insatisfacción severa; reducción de la vigilancia al mínimo esfuerzo.
+              </td>
+              <td style="background: #fef2f2; padding: 14px; text-align: center; border: 1px solid #fecaca; vertical-align: middle;">
+                <span style="display: inline-block; background: #dc2626; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold;">5 / 5</span>
+                <div style="color: #991b1b; font-size: 11px; margin-top: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Crítico</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="background: #f8fafc; padding: 14px; font-weight: 700; color: #0f172a; border: 1px solid #e2e8f0; vertical-align: top;">
+                Competencia e Instrumentalidad
+                <div style="font-weight: 500; color: #64748b; font-size: 11.5px; margin-top: 4px;">(Ryan &amp; Deci / Vroom)</div>
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Manuales de procedimiento en inglés para personal hindi; culpabilización disciplinaria al operario Ashraf tras fallecer por fosgeno (1981).
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Pérdida de autoeficacia; miedo punitivo y silenciamiento del reporte de fugas (M → 0).
+              </td>
+              <td style="background: #fef2f2; padding: 14px; text-align: center; border: 1px solid #fecaca; vertical-align: middle;">
+                <span style="display: inline-block; background: #dc2626; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold;">5 / 5</span>
+                <div style="color: #991b1b; font-size: 11px; margin-top: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Crítico</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="background: #f8fafc; padding: 14px; font-weight: 700; color: #0f172a; border: 1px solid #e2e8f0; vertical-align: top;">
+                Incentivos Perversos
+                <div style="font-weight: 500; color: #64748b; font-size: 11.5px; margin-top: 4px;">(Productividad distorsionada)</div>
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Apagado intencional de la refrigeración del MIC a 0 °C para ahorrar energía (junio 1984); desmontaje de la torre incineradora.
+              </td>
+              <td style="background: #ffffff; padding: 14px; color: #334155; border: 1px solid #e2e8f0; vertical-align: top;">
+                Subordinación del control de procesos al ahorro financiero de corto plazo.
+              </td>
+              <td style="background: #fef2f2; padding: 14px; text-align: center; border: 1px solid #fecaca; vertical-align: middle;">
+                <span style="display: inline-block; background: #dc2626; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold;">5 / 5</span>
+                <div style="color: #991b1b; font-size: 11px; margin-top: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Crítico</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="background: #fef2f2; border-left: 4px solid #dc2626; border-radius: 8px; padding: 14px 18px; margin-top: 18px;">
+        <div style="color: #991b1b; font-weight: 700; font-size: 12.5px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px;">▸ Conclusión Forense</div>
+        <p style="color: #7f1d1d; font-size: 13.5px; line-height: 1.65; margin: 0;">
+          Las tres dimensiones alcanzan <strong>severidad máxima (Sc = 5/5)</strong>, evidenciando un colapso sistémico del clima psicosocial. La sumatoria de fallas latentes destruyó la barrera humana de defensa, habilitando el colapso técnico de las barreras físicas de contención primaria y culminando en la liberación de <strong>42 toneladas de MIC</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- ============ PESTAÑA 3: MODELACIÓN OEE ============ -->
+    <div id="tab3" style="display: none;">
+      <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px 0;">
+        Deducción formal y cálculo <strong>paso a paso</strong> del colapso de la Efectividad Global de los Equipos (OEE). Haz clic en cada paso para revelar progresivamente el análisis matemático.
+      </p>
+
+      <!-- Botones de pasos -->
+      <div style="display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap;">
+        <button onclick="showStep(1)" id="stepBtn1" style="background: #2563eb; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 1 · OEE</button>
+        <button onclick="showStep(2)" id="stepBtn2" style="background: #64748b; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 2 · P_humano</button>
+        <button onclick="showStep(3)" id="stepBtn3" style="background: #64748b; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 3 · Comparativa HRO</button>
+        <button onclick="showStep(4)" id="stepBtn4" style="background: #64748b; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 4 · A = 0</button>
+        <button onclick="showStep(5)" id="stepBtn5" style="background: #64748b; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 5 · Q = 0</button>
+        <button onclick="showStep(6)" id="stepBtn6" style="background: #64748b; color: #ffffff; border: none; padding: 8px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer;">Paso 6 · OEE = 0%</button>
+      </div>
+
+      <!-- Paso 1 -->
+      <div id="step1" style="display: block; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 12px;">
+        <div style="color: #2563eb; font-weight: 700; font-size: 12.5px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Paso 1 · Ecuación General del OEE</div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 12px 0; text-align: justify;">
+          El OEE representa la interacción multiplicativa de tres factores de ingeniería: <strong>Disponibilidad (A)</strong>, <strong>Rendimiento (P)</strong> y <strong>Calidad (Q)</strong>. Al ser multiplicativa, la anulación de cualquier factor colapsa el producto total.
+        </p>
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 18px; text-align: center;">
+          <div style="color: #93c5fd; font-size: 11px; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase;">Efectividad Global de los Equipos</div>
+          <div style="color: #ffffff; font-size: 34px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; letter-spacing: 2px;">OEE = A × P × Q</div>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div id="step2" style="display: none; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 12px;">
+        <div style="color: #2563eb; font-weight: 700; font-size: 12.5px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Paso 2 · Cálculo del Rendimiento Humano (P_humano)</div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 12px 0; text-align: justify;">
+          El Rendimiento Humano evalúa la latencia psicomotriz de detección y corrección de desvíos en consola. Con un tiempo normativo de diseño <strong>Δt_diseño = 10 min</strong> y una latencia real observada <strong>Δt_real = 90 min</strong> (desde el ascenso de presión de 2 a 10 psi a las 23:30 h hasta la inspección física):
+        </p>
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 12px;">
+          <div style="color: #93c5fd; font-size: 11px; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase;">Rendimiento Humano · UCIL</div>
+          <div style="color: #ffffff; font-size: 22px; font-weight: 700; font-family: 'Times New Roman', Georgia, serif; margin-bottom: 8px;">P<sub style="font-size: 14px;">humano</sub> = Δt<sub style="font-size: 14px;">diseño</sub> / Δt<sub style="font-size: 14px;">real</sub> = 10 / 90</div>
+          <div style="color: #fca5a5; font-size: 30px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif;">≈ 0.1111 (11.11%)</div>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div id="step3" style="display: none; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 12px;">
+        <div style="color: #2563eb; font-weight: 700; font-size: 12.5px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Paso 3 · Comparativa con Estándar HRO</div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 14px 0; text-align: justify;">
+          Una organización de alta confiabilidad (HRO) con <strong>Δt_real = 12 min</strong> alcanza un rendimiento humano <strong>7.5 veces superior</strong> al de UCIL Bhopal. La diferencia cuantifica el deterioro de la barrera humana por desmotivación y desentrenamiento.
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 10px; padding: 16px; text-align: center;">
+            <div style="color: #991b1b; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">UCIL Bhopal (Patológico)</div>
+            <div style="color: #dc2626; font-size: 32px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; line-height: 1;">11.11%</div>
+            <div style="color: #7f1d1d; font-size: 12px; margin-top: 8px;">Δt<sub>real</sub> = 90 min</div>
+          </div>
+          <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 10px; padding: 16px; text-align: center;">
+            <div style="color: #065f46; font-size: 11.5px; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;">Estándar HRO (Confiable)</div>
+            <div style="color: #059669; font-size: 32px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; line-height: 1;">83.33%</div>
+            <div style="color: #047857; font-size: 12px; margin-top: 8px;">Δt<sub>real</sub> = 12 min</div>
+          </div>
+        </div>
+        <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 6px; padding: 10px 14px; margin-top: 12px; text-align: center;">
+          <span style="color: #92400e; font-size: 13px; font-weight: 700;">🔑 Contraseña del candado gamificado: 11</span>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div id="step4" style="display: none; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 12px;">
+        <div style="color: #2563eb; font-weight: 700; font-size: 12.5px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Paso 4 · Disponibilidad (A = 0)</div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 12px 0; text-align: justify;">
+          Las <strong>tres defensas técnicas activas</strong> de contención primaria estaban deliberadamente fuera de servicio por decisiones de austeridad:
+        </p>
+        <ul style="color: #334155; font-size: 13.5px; margin: 0; padding-left: 22px; line-height: 1.8;">
+          <li><strong>Lavador cáustico:</strong> en mantenimiento sin respaldo operativo.</li>
+          <li><strong>Antorcha de venteo (flare tower):</strong> desmontada y no reinstalada.</li>
+          <li><strong>Cortina de agua:</strong> presión insuficiente para alcanzar la altura de venteo.</li>
+        </ul>
+        <div style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 8px; padding: 14px; text-align: center; margin-top: 12px;">
+          <div style="color: #fecaca; font-size: 11px; letter-spacing: 2px; margin-bottom: 6px; text-transform: uppercase;">Disponibilidad</div>
+          <div style="color: #ffffff; font-size: 32px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif;">A = 0</div>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div id="step5" style="display: none; background: #f8fafc; border-left: 4px solid #2563eb; border-radius: 8px; padding: 16px 18px; margin-bottom: 12px;">
+        <div style="color: #2563eb; font-weight: 700; font-size: 12.5px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Paso 5 · Calidad (Q = 0)</div>
+        <p style="color: #334155; font-size: 14px; line-height: 1.7; margin: 0 0 12px 0; text-align: justify;">
+          La apatía procedimental conllevó al lavado de tuberías con agua <strong>sin disco ciego (slip-blind)</strong>. El agua catalizó una <strong>hidrólisis exotérmica violenta</strong> dentro del tanque E610, liberando <strong style="color: #dc2626;">42 toneladas de MIC</strong> y destruyendo la capacidad productiva.
+        </p>
+        <div style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 8px; padding: 14px; text-align: center; margin-top: 12px;">
+          <div style="color: #fecaca; font-size: 11px; letter-spacing: 2px; margin-bottom: 6px; text-transform: uppercase;">Calidad</div>
+          <div style="color: #ffffff; font-size: 32px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif;">Q = 0</div>
+        </div>
+      </div>
+
+      <!-- Paso 6 -->
+      <div id="step6" style="display: none; background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 10px; padding: 22px; text-align: center; color: #ffffff; margin-bottom: 12px;">
+        <div style="color: #fecaca; font-size: 11px; letter-spacing: 2.5px; margin-bottom: 12px; text-transform: uppercase;">Paso 6 · Colapso Total del OEE</div>
+        <div style="color: #ffffff; font-size: 22px; font-weight: 700; font-family: 'Times New Roman', Georgia, serif; margin-bottom: 12px;">OEE = A × P × Q</div>
+        <div style="color: #ffffff; font-size: 26px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; margin-bottom: 14px;">OEE = 0 × 0.1111 × 0</div>
+        <div style="color: #fca5a5; font-size: 46px; font-weight: 800; font-family: 'Times New Roman', Georgia, serif; line-height: 1;">= 0%</div>
+        <div style="color: #fee2e2; font-size: 14px; margin-top: 14px; font-style: italic;">Colapso total del sistema sociotécnico</div>
+      </div>
+
+      <!-- Caja de Reingeniería ISO 45003 -->
+      <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #2563eb; border-radius: 10px; padding: 20px; margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #2563eb; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">ISO</span>
+          <h3 style="color: #1e3a8a; font-size: 16.5px; font-weight: 700; margin: 0;">Caja de Reingeniería Operacional — ISO 45003:2021</h3>
+        </div>
+
+        <div style="background: #ffffff; border-left: 4px solid #2563eb; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px; margin-bottom: 4px;">Cláusula 6.1.2.1 · Diseño del Trabajo y Turnos</div>
+          <p style="color: #334155; font-size: 13px; line-height: 1.65; margin: 0;">Fijar descansos ergonómicos, prohibir turnos rotativos nocturnos mayores a 8 horas y garantizar un mínimo de 3 operadores certificados por consola crítica.</p>
+        </div>
+
+        <div style="background: #ffffff; border-left: 4px solid #2563eb; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px; margin-bottom: 4px;">Cláusula 6.1.2.2 · Soporte Social y Cultura de Reporte</div>
+          <p style="color: #334155; font-size: 13px; line-height: 1.65; margin: 0;">Implementar canal anónimo y no punitivo de reporte de microfugas que otorgue <strong style="color: #2563eb;">Stop Work Authority</strong> (Paro Seguro de Emergencia) sin represalias.</p>
+        </div>
+
+        <div style="background: #ffffff; border-left: 4px solid #2563eb; border-radius: 6px; padding: 12px 16px;">
+          <div style="color: #1e3a8a; font-weight: 700; font-size: 13.5px; margin-bottom: 4px;">Cláusula 8.1 · Control Operacional Ergonómico y Ambiental</div>
+          <p style="color: #334155; font-size: 13px; line-height: 1.65; margin: 0;">Mantenimiento prioritario a la instrumentación analógica y climatización obligatoria en cabina (≤ 22 °C) para evitar la fatiga térmica y el descarte de alarmas.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== RECURSOS DIDÁCTICOS ===================== -->
+
+  <!-- 1° VIDEO EXPOSITIVO -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #dc2626; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #dc2626; color: #ffffff; border-radius: 8px; font-size: 15px; font-weight: 800;">▶</span>
+      <div>
+        <h3 style="color: #0f172a; font-size: 17px; font-weight: 700; margin: 0;">1 · Video Expositivo</h3>
+        <div style="color: #64748b; font-size: 12.5px; margin-top: 2px;">Auditoría_UCIL_Bhopal.mp4 — Material audiovisual</div>
+      </div>
+      <span style="margin-left: auto; background: #fef2f2; color: #dc2626; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #fecaca; text-transform: uppercase;">Video MP4</span>
+    </div>
+    <p style="color: #475569; font-size: 13.5px; line-height: 1.65; margin: 0 0 14px 0;">
+      Documental audiovisual sobre la auditoría del caso UCIL Bhopal para análisis crítico forense. Contenedor responsivo con borde redondeado y reproductor integrado de Google Drive.
+    </p>
+    <div style="background: #0f172a; border-radius: 12px; padding: 8px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);">
+      <div style="background: #000000; border-radius: 8px; overflow: hidden; line-height: 0;">
+        <iframe src="https://drive.google.com/file/d/1NLH8ueFo8mDcQMsoA7-3fg6F6K1kWVfJ/preview" width="100%" height="480" allow="autoplay" style="display: block; width: 100%; height: 480px; border: 0; border-radius: 8px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2° GUÍA DIDÁCTICA PDF -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #2563eb; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #2563eb; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">PDF</span>
+      <div>
+        <h3 style="color: #0f172a; font-size: 17px; font-weight: 700; margin: 0;">2 · Guía Didáctica PDF</h3>
+        <div style="color: #64748b; font-size: 12.5px; margin-top: 2px;">Guia_Didactica_Bhopal_Confiabilidad_Humana.pdf</div>
+      </div>
+      <span style="margin-left: auto; background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #bfdbfe; text-transform: uppercase;">Documento</span>
+    </div>
+    <p style="color: #475569; font-size: 13.5px; line-height: 1.65; margin: 0 0 14px 0;">
+      Documento completo de Auditoría Psicosocial y Modelación Forense de la Confiabilidad Humana. Protocolo paso a paso, matriz de evaluación y rúbrica bajo ISO 45003:2021.
+    </p>
+    <div style="background: #0f172a; border-radius: 12px; padding: 8px; box-shadow: 0 6px 18px rgba(11, 36, 71, 0.20);">
+      <div style="background: #ffffff; border-radius: 8px; overflow: hidden; line-height: 0;">
+        <iframe src="https://drive.google.com/file/d/18MiRquouIK-lvwDlMX4e9nIaHRiFwixa/preview" width="100%" height="600" allow="autoplay" style="display: block; width: 100%; height: 600px; border: 0; border-radius: 8px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3° PRESENTACIÓN GOOGLE SLIDES -->
+  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #ea580c; border-radius: 10px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #ea580c; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">▣</span>
+      <div>
+        <h3 style="color: #0f172a; font-size: 17px; font-weight: 700; margin: 0;">3 · Presentación Interactiva</h3>
+        <div style="color: #64748b; font-size: 12.5px; margin-top: 2px;">Modelación_Forense_de_Confiabilidad_Humana_en_Bhopal — Google Slides</div>
+      </div>
+      <span style="margin-left: auto; background: #fff7ed; color: #c2410c; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #fed7aa; text-transform: uppercase;">Slides</span>
+    </div>
+    <p style="color: #475569; font-size: 13.5px; line-height: 1.65; margin: 0 0 14px 0;">
+      Presentación visual con la modelación forense de la confiabilidad humana en UCIL Bhopal. Navega por las diapositivas directamente desde el contenedor embebido.
+    </p>
+    <div style="background: #0f172a; border-radius: 12px; padding: 8px; box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);">
+      <div style="background: #ffffff; border-radius: 8px; overflow: hidden; line-height: 0;">
+        <iframe src="https://docs.google.com/presentation/d/1Kr269LHmCTIHRTx-VYnqwKtHZXibrf069u2ZR4d55Co/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="display: block; width: 100%; height: 569px; border: 0; border-radius: 8px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4° NOTEBOOKLM -->
+  <div style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 2px solid #7c3aed; border-radius: 10px; padding: 22px; margin-bottom: 22px; box-shadow: 0 6px 20px rgba(124, 58, 237, 0.18);">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #7c3aed; color: #ffffff; border-radius: 8px; font-size: 13px; font-weight: 800;">AI</span>
+      <div>
+        <h3 style="color: #5b21b6; font-size: 17px; font-weight: 700; margin: 0;">4 · Cuaderno de Investigación Interactivo (NotebookLM)</h3>
+        <div style="color: #7c3aed; font-size: 12.5px; margin-top: 2px;">Análisis forense potenciado con IA — Gemini NotebookLM</div>
+      </div>
+      <span style="margin-left: auto; background: #f5f3ff; color: #6d28d9; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid #ddd6fe; text-transform: uppercase;">IA</span>
+    </div>
+    <p style="color: #5b21b6; font-size: 13.5px; line-height: 1.65; margin: 0 0 16px 0;">
+      Accede al cuaderno de análisis forense sintetizado con IA en Gemini NotebookLM para explorar fuentes primarias, resúmenes automáticos, preguntas guiadas y conexiones temáticas sobre el caso UCIL Bhopal.
+    </p>
+    <a href="https://notebooklm.link.google/SAgZ5hivE0Zo" target="_blank" rel="noopener" style="display: inline-block; background: #7c3aed; color: #ffffff; text-decoration: none; padding: 13px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; box-shadow: 0 4px 14px rgba(124, 58, 237, 0.30); cursor: pointer;">
+      🔬 Explorar Cuaderno de Análisis Forense en Gemini NotebookLM
+    </a>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 10px; padding: 18px 22px; text-align: center;">
+    <div style="color: #93c5fd; font-size: 12px; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 4px; text-transform: uppercase;">
+      Unidad 2 · Psicología Laboral y OEE
+    </div>
+    <div style="color: #ffffff; font-size: 13px; font-weight: 500;">
+      Caso UCIL Bhopal (1984) — Ingeniería de Confiabilidad y Factores Humanos · ISO 45003:2021
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(tabId) {
+  var tabs = ['tab1', 'tab2', 'tab3'];
+  for (var i = 0; i < tabs.length; i++) {
+    document.getElementById(tabs[i]).style.display = 'none';
+    var btn = document.getElementById('btn' + tabs[i].charAt(0).toUpperCase() + tabs[i].slice(1));
+    if (btn) {
+      btn.style.background = '#e2e8f0';
+      btn.style.color = '#475569';
+    }
+  }
+  document.getElementById(tabId).style.display = 'block';
+  var activeBtn = document.getElementById('btn' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
+  if (activeBtn) {
+    activeBtn.style.background = '#2563eb';
+    activeBtn.style.color = '#ffffff';
+  }
+}
+
+function showStep(stepNum) {
+  for (var i = 1; i <= 6; i++) {
+    document.getElementById('step' + i).style.display = 'none';
+    var btn = document.getElementById('stepBtn' + i);
+    if (btn) {
+      btn.style.background = '#64748b';
+    }
+  }
+  document.getElementById('step' + stepNum).style.display = 'block';
+  var activeBtn = document.getElementById('stepBtn' + stepNum);
+  if (activeBtn) {
+    activeBtn.style.background = '#2563eb';
+  }
+}
+</script>
